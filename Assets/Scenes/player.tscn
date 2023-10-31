@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://ic6hfst5ehlq"]
+
+[ext_resource type="Script" path="res://Assets/Code/Core/Player.cs" id="1_ju12i"]
+[ext_resource type="Script" path="res://Assets/Code/Resources/LifeForce.cs" id="2_3u1uo"]
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_ju12i")
+
+[node name="Resource-Lifeforce" type="Node2D" parent="."]
+script = ExtResource("2_3u1uo")

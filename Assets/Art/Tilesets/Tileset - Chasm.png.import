@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rt6wbjenqthe"
-path="res://.godot/imported/E5nNT.jpg-da65650a84a75eb8b19c96d399e5579c.ctex"
+uid="uid://ca2slv0m3ouj4"
+path="res://.godot/imported/Tileset - Chasm.png-9ec7676ae473ed143a44ab0cf08a47eb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/Reference/E5nNT.jpg"
-dest_files=["res://.godot/imported/E5nNT.jpg-da65650a84a75eb8b19c96d399e5579c.ctex"]
+source_file="res://Assets/Art/Tilesets/Tileset - Chasm.png"
+dest_files=["res://.godot/imported/Tileset - Chasm.png-9ec7676ae473ed143a44ab0cf08a47eb.ctex"]
 
 [params]
 
