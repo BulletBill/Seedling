@@ -1,10 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://ic6hfst5ehlq"]
+[gd_scene load_steps=3 format=3 uid="uid://bjw6kr2iicx2x"]
 
-[ext_resource type="Script" path="res://Assets/Code/Core/Player.cs" id="1_ju12i"]
-[ext_resource type="Script" path="res://Assets/Code/Resources/LifeForce.cs" id="2_3u1uo"]
+[ext_resource type="Script" path="res://Assets/Code/Player/Player.cs" id="1_ludrr"]
+[ext_resource type="Script" path="res://Assets/Code/Player/ResourcePool.cs" id="2_mfeyy"]
 
 [node name="Player" type="Node2D"]
-script = ExtResource("1_ju12i")
+script = ExtResource("1_ludrr")
 
-[node name="Resource-Lifeforce" type="Node2D" parent="."]
-script = ExtResource("2_3u1uo")
+[node name="Currency-LifeForce" type="Node2D" parent="."]
+script = ExtResource("2_mfeyy")

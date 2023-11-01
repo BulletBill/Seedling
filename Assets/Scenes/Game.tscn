@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Assets/Code/Core/Game.cs" id="1_6pfw6"]
 [ext_resource type="TileSet" uid="uid://se8ye8sftem5" path="res://Assets/Data/Tilesets/TileSet_Main.tres" id="1_vpnna"]
-[ext_resource type="PackedScene" uid="uid://ic6hfst5ehlq" path="res://Assets/Scenes/player.tscn" id="2_5ryln"]
+[ext_resource type="PackedScene" uid="uid://bjw6kr2iicx2x" path="res://Assets/Scenes/player.tscn" id="2_5ryln"]
 [ext_resource type="Script" path="res://Assets/Code/Tilemap/MainMap.cs" id="2_qs264"]
 
 [node name="Game" type="Node2D"]
