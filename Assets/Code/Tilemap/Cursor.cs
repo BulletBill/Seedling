@@ -1,8 +1,15 @@
 using Godot;
 using System;
 
-public partial class Cursor : Node2D
+public partial class Cursor : Sprite2D
 {
+	// Cursor states
+	// Free
+	// Building
+	// Power
+	// Menu
+	
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -11,5 +18,6 @@ public partial class Cursor : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		
 	}
 }

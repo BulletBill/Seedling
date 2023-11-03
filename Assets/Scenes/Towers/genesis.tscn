@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwhstlgj7kxrn"]
+
+[ext_resource type="Texture2D" uid="uid://v83jt5ibxbrx" path="res://Assets/Art/Towers/Genesis.png" id="1_dvwho"]
+[ext_resource type="Script" path="res://Assets/Code/Towers/Tower.cs" id="2_kt2fq"]
+[ext_resource type="Script" path="res://Assets/Code/Towers/C_AlignToMap.cs" id="3_acqjr"]
+[ext_resource type="Script" path="res://Assets/Code/Towers/C_GrassGrowth.cs" id="4_t7x8y"]
+
+[node name="Genesis" type="Sprite2D"]
+texture = ExtResource("1_dvwho")
+offset = Vector2(0, -8)
+script = ExtResource("2_kt2fq")
+
+[node name="AlignToMap" type="Node2D" parent="."]
+script = ExtResource("3_acqjr")
+
+[node name="GrassGrowth" type="Node2D" parent="."]
+script = ExtResource("4_t7x8y")
+Radius = 96.0

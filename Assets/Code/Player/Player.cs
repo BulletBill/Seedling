@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public partial class Player : Node2D
 {
-    public Dictionary<ECurrencyType, Currency> Currencies;
+    public Dictionary<ECurrencyType, Currency> Currencies = new Dictionary<ECurrencyType, Currency>();
 
     public void CurrencyTick()
     {

@@ -15,6 +15,10 @@ run/main_scene="res://Assets/Scenes/Game.tscn"
 config/features=PackedStringArray("4.0", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
+[display]
+
+mouse_cursor/custom_image="res://Assets/Art/Cursors/Basic.png"
+
 [dotnet]
 
 project/assembly_name="Project Seedling"

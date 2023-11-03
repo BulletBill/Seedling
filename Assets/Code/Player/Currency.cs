@@ -12,14 +12,14 @@ public enum ECurrencyType
 
 public partial class Currency : Node2D
 {
-    [Export] public ECurrencyType CurrencyType;
+    [Export] public ECurrencyType CurrencyType = ECurrencyType.Lifeforce;
     [Export] public Texture2D IconLarge;
     [Export] public Texture2D IconSmall;
     [Export] public bool ShowMaximum;
     [Export] public bool ShowBar;
     public int HeldAmount { get; protected set; }
-    public int MaximumAmount;
-    public int GainPerTick;
+    public int MaximumAmount { get; protected set; }
+    public int GainPerTick { get; protected set; }
 
     [Signal] public delegate void OnCurrencyChangedEventHandler();
     public override void _EnterTree()
