@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://lg766o0t6sy0"]
+[gd_scene load_steps=8 format=3 uid="uid://lg766o0t6sy0"]
 
 [ext_resource type="Script" path="res://Assets/Code/Player/Player.cs" id="1_ludrr"]
 [ext_resource type="Script" path="res://Assets/Code/Player/Currency.cs" id="2_uj2m1"]
 [ext_resource type="Texture2D" uid="uid://1p5pgipw4fyf" path="res://Assets/Art/Icons/Lifeforce Small.png" id="3_r2y3h"]
+[ext_resource type="Texture2D" uid="uid://cfgjt6q84i8j7" path="res://Assets/Art/Icons/Substance Small.png" id="4_a3hlt"]
+[ext_resource type="Texture2D" uid="uid://d2fe67br8fs2m" path="res://Assets/Art/Icons/Flow Small.png" id="5_oahkm"]
+[ext_resource type="Texture2D" uid="uid://b8i6unfgcqe38" path="res://Assets/Art/Icons/Breath Small.png" id="6_udv5i"]
+[ext_resource type="Texture2D" uid="uid://dj2gxm4a45ewu" path="res://Assets/Art/Icons/Energy Small.png" id="7_1lyna"]
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_ludrr")
@@ -10,3 +14,23 @@ script = ExtResource("1_ludrr")
 [node name="Currency-LifeForce" type="Node2D" parent="."]
 script = ExtResource("2_uj2m1")
 IconSmall = ExtResource("3_r2y3h")
+
+[node name="Currency-Substance" type="Node2D" parent="."]
+script = ExtResource("2_uj2m1")
+CurrencyType = 1
+IconSmall = ExtResource("4_a3hlt")
+
+[node name="Currency-Flow" type="Node2D" parent="."]
+script = ExtResource("2_uj2m1")
+CurrencyType = 2
+IconSmall = ExtResource("5_oahkm")
+
+[node name="Currency-Breath" type="Node2D" parent="."]
+script = ExtResource("2_uj2m1")
+CurrencyType = 3
+IconSmall = ExtResource("6_udv5i")
+
+[node name="Currency-Energy" type="Node2D" parent="."]
+script = ExtResource("2_uj2m1")
+CurrencyType = 4
+IconSmall = ExtResource("7_1lyna")

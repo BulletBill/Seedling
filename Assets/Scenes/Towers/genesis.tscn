@@ -15,4 +15,5 @@ script = ExtResource("3_acqjr")
 
 [node name="GrassGrowth" type="Node2D" parent="."]
 script = ExtResource("4_t7x8y")
-Radius = 96.0
+Radius = 108.0
+GrowthInterval = 0.2
