@@ -19,11 +19,6 @@ public partial class Player : Node2D
         
     }
 
-    public override void _ExitTree()
-    {
-        base._ExitTree();
-    }
-
     public void CurrencyTick()
     {
         foreach(var c in Currencies)
@@ -33,5 +28,10 @@ public partial class Player : Node2D
     }
 
     // Static functions
-
+    public static Currency GetCurrency(ECurrencyType Type)
+    {
+        if (Player.Singleton == null) return null;
+        if (Player.Singleton.Currencies.ContainsKey(Type) == false) return null;
+        return Player.Singleton.Currencies[Type];
+    }
 }

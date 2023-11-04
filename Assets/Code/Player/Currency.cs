@@ -19,9 +19,9 @@ public partial class Currency : Node2D
     [Export] public bool ShowBar;
     public int HeldAmount { get; protected set; }
     public int MaximumAmount { get; protected set; }
-    public int GainPerTick { get; protected set; }
+    public int Income { get; protected set; }
 
-    [Signal] public delegate void OnCurrencyChangedEventHandler();
+    [Signal] public delegate void OnCurrencyChangedEventHandler(Currency UpdatedCurrency);
     public override void _EnterTree()
     {
         if (GetParentOrNull<Player>() is Player PlayerParent)
@@ -32,7 +32,7 @@ public partial class Currency : Node2D
 
     public void CurrencyTick()
     {
-        AddAmount(GainPerTick);
+        AddAmount(Income);
     }
 
     public void AddAmount(int Amount)
@@ -42,7 +42,7 @@ public partial class Currency : Node2D
 
         if (PrevAmount != HeldAmount)
         {
-            EmitSignal("OnCurrencyChanged");
+            EmitSignal("OnCurrencyChanged", this);
         }
     }
 }

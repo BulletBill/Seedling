@@ -17,3 +17,5 @@ script = ExtResource("3_acqjr")
 script = ExtResource("4_t7x8y")
 Radius = 108.0
 GrowthInterval = 0.2
+
+[node name="GenerateResource" type="Node2D" parent="."]
