@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://n2v64e1eokwc"]
+
+[ext_resource type="Texture2D" uid="uid://c4cqjktrt205k" path="res://Assets/Art/Interface/WindowBG.png" id="1_21l8l"]
+[ext_resource type="Texture2D" uid="uid://1p5pgipw4fyf" path="res://Assets/Art/Icons/Lifeforce Small.png" id="2_sxneq"]
+[ext_resource type="FontFile" uid="uid://w05srxbcg8v8" path="res://Assets/Art/Fonts/Default_UI.tres" id="3_yhh80"]
+
+[node name="CurrencyDisplay" type="Node2D"]
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+offset_right = 141.0
+offset_bottom = 24.0
+texture = ExtResource("1_21l8l")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(12, 12)
+texture = ExtResource("2_sxneq")
+
+[node name="Count" type="RichTextLabel" parent="."]
+offset_left = 22.0
+offset_top = 1.0
+offset_right = 90.0
+offset_bottom = 21.0
+theme_override_fonts/normal_font = ExtResource("3_yhh80")
+text = "999/999"
+scroll_active = false
+
+[node name="Income" type="RichTextLabel" parent="."]
+offset_left = 96.0
+offset_top = 1.0
+offset_right = 137.0
+offset_bottom = 21.0
+theme_override_fonts/normal_font = ExtResource("3_yhh80")
+bbcode_enabled = true
+text = "[right]+999[/right]"
+scroll_active = false

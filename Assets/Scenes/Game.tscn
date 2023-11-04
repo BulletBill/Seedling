@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bmmdp84nwxj07"]
+[gd_scene load_steps=7 format=3 uid="uid://bmmdp84nwxj07"]
 
 [ext_resource type="Script" path="res://Assets/Code/Core/Game.cs" id="1_6pfw6"]
 [ext_resource type="TileSet" uid="uid://se8ye8sftem5" path="res://Assets/Data/Tilesets/TileSet_Main.tres" id="1_vpnna"]
 [ext_resource type="PackedScene" uid="uid://lg766o0t6sy0" path="res://Assets/Scenes/player.tscn" id="2_5ryln"]
 [ext_resource type="Script" path="res://Assets/Code/Tilemap/MainMap.cs" id="2_qs264"]
 [ext_resource type="PackedScene" uid="uid://bwhstlgj7kxrn" path="res://Assets/Scenes/Towers/genesis.tscn" id="5_dfbf8"]
+[ext_resource type="PackedScene" uid="uid://n2v64e1eokwc" path="res://Assets/Scenes/Interface/CurrencyDisplay.tscn" id="6_6nu1p"]
 
 [node name="Game" type="Node2D"]
 position = Vector2(-1, 0)
@@ -37,3 +38,8 @@ script = ExtResource("2_qs264")
 
 [node name="Genesis" parent="TestMap/TileMap" instance=ExtResource("5_dfbf8")]
 position = Vector2(560, 560)
+
+[node name="UI Canvas Layer" type="CanvasLayer" parent="."]
+
+[node name="CurrencyDisplay" parent="UI Canvas Layer" instance=ExtResource("6_6nu1p")]
+position = Vector2(3, 3)
