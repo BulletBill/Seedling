@@ -1,11 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bmmdp84nwxj07"]
+[gd_scene load_steps=8 format=3 uid="uid://euw2bkl4xeki"]
 
 [ext_resource type="Script" path="res://Assets/Code/Core/Game.cs" id="1_6pfw6"]
 [ext_resource type="TileSet" uid="uid://se8ye8sftem5" path="res://Assets/Data/Tilesets/TileSet_Main.tres" id="1_vpnna"]
-[ext_resource type="PackedScene" uid="uid://lg766o0t6sy0" path="res://Assets/Scenes/player.tscn" id="2_5ryln"]
+[ext_resource type="PackedScene" uid="uid://crks2aw8cc252" path="res://Assets/Scenes/player.tscn" id="2_5ryln"]
 [ext_resource type="Script" path="res://Assets/Code/Tilemap/MainMap.cs" id="2_qs264"]
-[ext_resource type="PackedScene" uid="uid://bwhstlgj7kxrn" path="res://Assets/Scenes/Towers/genesis.tscn" id="5_dfbf8"]
-[ext_resource type="PackedScene" uid="uid://n2v64e1eokwc" path="res://Assets/Scenes/Interface/CurrencyDisplay.tscn" id="6_6nu1p"]
+[ext_resource type="PackedScene" uid="uid://bltnii6x6epdm" path="res://Assets/Scenes/Towers/genesis.tscn" id="5_dfbf8"]
+[ext_resource type="PackedScene" uid="uid://bqo4ffahkqb78" path="res://Assets/Scenes/Interface/CurrencyDisplay.tscn" id="6_6nu1p"]
 [ext_resource type="Texture2D" uid="uid://c4cqjktrt205k" path="res://Assets/Art/Interface/WindowBG.png" id="7_rxf23"]
 
 [node name="Game" type="Node2D"]

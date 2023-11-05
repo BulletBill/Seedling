@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://n2v64e1eokwc"]
+[gd_scene load_steps=10 format=3 uid="uid://bqo4ffahkqb78"]
 
 [ext_resource type="Texture2D" uid="uid://c4cqjktrt205k" path="res://Assets/Art/Interface/WindowBG.png" id="1_21l8l"]
 [ext_resource type="Script" path="res://Assets/Code/Interface/CurrencyDisplay.cs" id="1_52qu5"]

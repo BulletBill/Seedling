@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public enum ECurrencyType
 {
@@ -20,6 +21,7 @@ public partial class Currency : Node2D
     public int HeldAmount { get; protected set; }
     public int MaximumAmount { get; protected set; }
     public int Income { get; protected set; }
+    List<C_GenerateResource> Generators = new();
 
     [Signal] public delegate void OnCurrencyChangedEventHandler(Currency UpdatedCurrency);
     public override void _EnterTree()
@@ -38,11 +40,37 @@ public partial class Currency : Node2D
     public void AddAmount(int Amount)
     {
         int PrevAmount = HeldAmount;
-        HeldAmount = Math.Clamp(HeldAmount + Amount, 0, MaximumAmount);
+        HeldAmount += Amount;
+        if (MaximumAmount > 0)
+        {
+            HeldAmount = Math.Clamp(HeldAmount, 0, MaximumAmount);
+        }
 
         if (PrevAmount != HeldAmount)
         {
             EmitSignal("OnCurrencyChanged", this);
         }
+    }
+
+    public void AddGenerator(C_GenerateResource NewGenerator)
+    {
+        if (Generators.Contains(NewGenerator)) return;
+
+        Generators.Add(NewGenerator);
+        MaximumAmount += NewGenerator.IncreaseMaximum;
+        Income += NewGenerator.AddedIncome;
+        HeldAmount = Math.Clamp(HeldAmount + NewGenerator.AddFlatAmount, 0, MaximumAmount);
+        EmitSignal("OnCurrencyChanged", this);
+    }
+
+    public void RemoveGenerator(C_GenerateResource RemovedGenerator)
+    {
+        if (!Generators.Contains(RemovedGenerator)) return;
+
+        Generators.Remove(RemovedGenerator);
+        MaximumAmount -= RemovedGenerator.IncreaseMaximum;
+        Income -= RemovedGenerator.AddedIncome;
+        HeldAmount = Math.Clamp(HeldAmount - RemovedGenerator.AddFlatAmount, 0, MaximumAmount);
+        EmitSignal("OnCurrencyChanged", this);
     }
 }

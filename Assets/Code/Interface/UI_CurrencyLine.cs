@@ -4,8 +4,10 @@ using System;
 public partial class UI_CurrencyLine : Node2D
 {
 	[Export] public ECurrencyType CurrencyType;
-	[Export] public static readonly Color ExcessColor;
-	[Export] public static readonly Color DeficitColor;
+	
+	// TODO: Add UI color data store
+	public readonly Color ExcessColor = Colors.Green;
+	public readonly Color DeficitColor = Colors.Red;
 	Sprite2D Icon;
 	RichTextLabel Amount;
 	RichTextLabel Income;

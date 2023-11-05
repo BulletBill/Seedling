@@ -16,7 +16,16 @@ public partial class Player : Node2D
 
     public override void _Process(double delta)
     {
-        
+        if (IncomeTimer >= 0.0f)
+        {
+            IncomeTimer -= (float)delta;
+
+            if (IncomeTimer < 0.0f)
+            {
+                CurrencyTick();
+                IncomeTimer += IncomeInterval;
+            }
+        }
     }
 
     public void CurrencyTick()

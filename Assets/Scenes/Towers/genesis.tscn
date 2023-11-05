@@ -1,21 +1,37 @@
-[gd_scene load_steps=5 format=3 uid="uid://bwhstlgj7kxrn"]
+[gd_scene load_steps=6 format=3 uid="uid://bltnii6x6epdm"]
 
 [ext_resource type="Texture2D" uid="uid://v83jt5ibxbrx" path="res://Assets/Art/Towers/Genesis.png" id="1_dvwho"]
-[ext_resource type="Script" path="res://Assets/Code/Towers/Tower.cs" id="2_kt2fq"]
-[ext_resource type="Script" path="res://Assets/Code/Towers/C_AlignToMap.cs" id="3_acqjr"]
-[ext_resource type="Script" path="res://Assets/Code/Towers/C_GrassGrowth.cs" id="4_t7x8y"]
+[ext_resource type="Script" path="res://Assets/Code/Towers/Tower.cs" id="2_6vrd6"]
+[ext_resource type="Script" path="res://Assets/Code/Towers/C_AlignToMap.cs" id="3_sfwam"]
+[ext_resource type="Script" path="res://Assets/Code/Towers/C_GrassGrowth.cs" id="4_pgxo7"]
+[ext_resource type="Script" path="res://Assets/Code/Towers/C_GenerateResource.cs" id="5_u28xf"]
 
 [node name="Genesis" type="Sprite2D"]
 texture = ExtResource("1_dvwho")
 offset = Vector2(0, -8)
-script = ExtResource("2_kt2fq")
+script = ExtResource("2_6vrd6")
 
 [node name="AlignToMap" type="Node2D" parent="."]
-script = ExtResource("3_acqjr")
+script = ExtResource("3_sfwam")
 
 [node name="GrassGrowth" type="Node2D" parent="."]
-script = ExtResource("4_t7x8y")
+script = ExtResource("4_pgxo7")
 Radius = 108.0
 GrowthInterval = 0.2
 
-[node name="GenerateResource" type="Node2D" parent="."]
+[node name="AddLifeforce" type="Node2D" parent="."]
+script = ExtResource("5_u28xf")
+AddFlatAmount = 5
+IncreaseMaximum = 5
+
+[node name="Substance Income" type="Node2D" parent="."]
+script = ExtResource("5_u28xf")
+CurrencyType = 1
+AddedIncome = 5
+IncreaseMaximum = 100
+
+[node name="Flow Income" type="Node2D" parent="."]
+script = ExtResource("5_u28xf")
+CurrencyType = 2
+AddedIncome = 1
+IncreaseMaximum = 20
