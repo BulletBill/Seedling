@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://d2k206m54ooy6"]
+
+[ext_resource type="Texture2D" uid="uid://vreeyj5md8vc" path="res://Assets/Art/Towers/Sapling.png" id="1_8re0u"]
+[ext_resource type="Script" path="res://Assets/Code/Towers/Tower.cs" id="2_gn2dk"]
+[ext_resource type="Script" path="res://Assets/Code/Towers/C_AlignToMap.cs" id="3_3xuv4"]
+[ext_resource type="Script" path="res://Assets/Code/Towers/C_GrassGrowth.cs" id="4_xwlmf"]
+[ext_resource type="Script" path="res://Assets/Code/Towers/C_GenerateResource.cs" id="5_jn7g3"]
+
+[node name="Sapling" type="Sprite2D"]
+texture = ExtResource("1_8re0u")
+offset = Vector2(0, -8)
+script = ExtResource("2_gn2dk")
+
+[node name="AlignToMap" type="Node2D" parent="."]
+script = ExtResource("3_3xuv4")
+
+[node name="GrassGrowth" type="Node2D" parent="."]
+script = ExtResource("4_xwlmf")
+Radius = 108.0
+GrowthInterval = 5.0
+
+[node name="AddLifeforce" type="Node2D" parent="."]
+script = ExtResource("5_jn7g3")
+AddFlatAmount = 2
+IncreaseMaximum = 2

@@ -31,6 +31,13 @@ public partial class MainMap : TileMap
 	public override void _Process(double delta)
 	{
 	}
+
+	// Static accessors
+	public static int GetTileSize()
+	{
+		if (MainMap.Singleton == null) return 32;
+		return MainMap.Singleton.TileSet.TileSize.X;
+	}
 }
 
 public class TileAtDistance
