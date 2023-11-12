@@ -20,7 +20,10 @@ public partial class C_Free : Node, ICursorState
     }
 	public void OnClick()
     {
+        if (ParentCursor == null) return;
+        if (ParentCursor.HoverList.Count <= 0) return;
 
+        ParentCursor.HoverList[0].OnClick();
     }
 	public void OnMove(Vector2I NewMapPosition)
     {

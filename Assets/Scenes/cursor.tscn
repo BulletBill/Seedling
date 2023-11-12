@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://d23djhsg62jyj"]
+
+[ext_resource type="Script" path="res://Assets/Code/Cursor/Cursor.cs" id="1_85qhr"]
+[ext_resource type="Texture2D" uid="uid://b3pem66tm4y5e" path="res://Assets/Art/Cursors/BasicSquare.png" id="2_7i45e"]
+[ext_resource type="Script" path="res://Assets/Code/Cursor/C_Free.cs" id="3_syvqy"]
+[ext_resource type="Script" path="res://Assets/Code/Cursor/C_PlaceTower.cs" id="4_p6iw2"]
+
+[node name="Cursor" type="Node2D" node_paths=PackedStringArray("DefaultCursorState")]
+z_index = 500
+script = ExtResource("1_85qhr")
+DefaultCursorState = NodePath("State_Free")
+
+[node name="GridHighlight" type="Sprite2D" parent="."]
+self_modulate = Color(0.203922, 1, 0.152941, 0.443137)
+z_index = 5
+texture = ExtResource("2_7i45e")
+offset = Vector2(16, 16)
+
+[node name="PlacementGhost" type="Sprite2D" parent="."]
+
+[node name="State_Free" type="Node2D" parent="."]
+script = ExtResource("3_syvqy")
+
+[node name="State_Placement" type="Node2D" parent="."]
+script = ExtResource("4_p6iw2")

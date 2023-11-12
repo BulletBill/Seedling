@@ -1,16 +1,24 @@
 using Godot;
 using System;
+using System.Collections.Generic;
+using System.Globalization;
 
 public partial class Cursor : Node2D
 {
+	public static Cursor Singleton;
 	ICursorState CurrentState;
 	[Export] public Node DefaultCursorState;
 	Vector2I CurrentTile = new();
 	int TileSize = 32;
 	public Sprite2D GridHighlight;
 	public Sprite2D PlacementGhost;
+	public List<HoverArea> HoverList {get; protected set;} = new();
 
-	// Called when the node enters the scene tree for the first time.
+    public override void _EnterTree()
+    {
+        Cursor.Singleton = this;
+    }
+    
 	public override void _Ready()
 	{
 		TileSize = MainMap.GetTileSize();
@@ -38,6 +46,11 @@ public partial class Cursor : Node2D
 		}
 
 		GridHighlight.GlobalPosition = new Vector2(CurrentTile.X, CurrentTile.Y) * TileSize;
+
+		if (Input.IsActionJustPressed("Click"))
+		{
+			CurrentState?.OnClick();
+		}
 	}
 
 	public void SwitchState(ICursorState NewState)
@@ -47,6 +60,21 @@ public partial class Cursor : Node2D
 		CurrentState?.OnDisable();
 		CurrentState = NewState;
 		CurrentState?.OnEnable();
+	}
+
+	// Static accessors
+	public static void AddHoverArea(HoverArea AddedArea)
+	{
+		if (Cursor.Singleton == null) return;
+		if (Cursor.Singleton.HoverList.Contains(AddedArea)) return;
+
+		Cursor.Singleton.HoverList.Add(AddedArea);
+	}
+
+	public static void RemoveHoverArea(HoverArea RemovedArea)
+	{
+		if (Cursor.Singleton == null) return;
+		Cursor.Singleton.HoverList.Remove(RemovedArea);
 	}
 }
 

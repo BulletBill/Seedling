@@ -1,39 +1,20 @@
-[gd_scene load_steps=12 format=3 uid="uid://df7u54ytfaqgo"]
+[gd_scene load_steps=10 format=3 uid="uid://df7u54ytfaqgo"]
 
 [ext_resource type="Script" path="res://Assets/Code/Core/Game.cs" id="1_6pfw6"]
 [ext_resource type="TileSet" uid="uid://se8ye8sftem5" path="res://Assets/Data/Tilesets/TileSet_Main.tres" id="1_vpnna"]
-[ext_resource type="Script" path="res://Assets/Code/Cursor/Cursor.cs" id="2_1wrr1"]
 [ext_resource type="PackedScene" uid="uid://crks2aw8cc252" path="res://Assets/Scenes/player.tscn" id="2_5ryln"]
+[ext_resource type="PackedScene" uid="uid://d23djhsg62jyj" path="res://Assets/Scenes/cursor.tscn" id="2_fwv7t"]
 [ext_resource type="Script" path="res://Assets/Code/Tilemap/MainMap.cs" id="2_qs264"]
-[ext_resource type="Texture2D" uid="uid://b3pem66tm4y5e" path="res://Assets/Art/Cursors/BasicSquare.png" id="3_wpmpu"]
-[ext_resource type="Script" path="res://Assets/Code/Cursor/C_Free.cs" id="4_evexj"]
-[ext_resource type="Script" path="res://Assets/Code/Cursor/C_PlaceTower.cs" id="5_d0fso"]
 [ext_resource type="PackedScene" uid="uid://bltnii6x6epdm" path="res://Assets/Scenes/Towers/genesis.tscn" id="5_dfbf8"]
 [ext_resource type="PackedScene" uid="uid://bqo4ffahkqb78" path="res://Assets/Scenes/Interface/CurrencyDisplay.tscn" id="6_6nu1p"]
 [ext_resource type="Texture2D" uid="uid://c4cqjktrt205k" path="res://Assets/Art/Interface/WindowBG.png" id="7_rxf23"]
+[ext_resource type="PackedScene" uid="uid://dlgl700nd4604" path="res://Assets/Scenes/Interface/BuildButton.tscn" id="8_7jknq"]
 
 [node name="Game" type="Node2D"]
 position = Vector2(-1, 0)
 script = ExtResource("1_6pfw6")
 
-[node name="Cursor" type="Node2D" parent="." node_paths=PackedStringArray("DefaultCursorState")]
-z_index = 500
-script = ExtResource("2_1wrr1")
-DefaultCursorState = NodePath("State_Free")
-
-[node name="GridHighlight" type="Sprite2D" parent="Cursor"]
-self_modulate = Color(0.203922, 1, 0.152941, 0.443137)
-z_index = 5
-texture = ExtResource("3_wpmpu")
-offset = Vector2(16, 16)
-
-[node name="PlacementGhost" type="Sprite2D" parent="Cursor"]
-
-[node name="State_Free" type="Node2D" parent="Cursor"]
-script = ExtResource("4_evexj")
-
-[node name="State_Placement" type="Node2D" parent="Cursor"]
-script = ExtResource("5_d0fso")
+[node name="Cursor" parent="." instance=ExtResource("2_fwv7t")]
 
 [node name="Player" parent="." instance=ExtResource("2_5ryln")]
 
@@ -72,6 +53,10 @@ position = Vector2(0, 1008)
 [node name="CurrencyDisplay" parent="UI Canvas Layer/Control Panel" instance=ExtResource("6_6nu1p")]
 z_index = 10
 position = Vector2(2, -174)
+
+[node name="BuildButton" parent="UI Canvas Layer/Control Panel" instance=ExtResource("8_7jknq")]
+z_index = 10
+position = Vector2(297, -172)
 
 [node name="NinePatchRect" type="NinePatchRect" parent="UI Canvas Layer/Control Panel"]
 offset_top = -176.0

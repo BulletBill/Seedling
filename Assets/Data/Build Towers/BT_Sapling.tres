@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://pqk4g5tts6in"]
+
+[ext_resource type="Script" path="res://Assets/Code/Towers/R_BuildTower.cs" id="1_45ya2"]
+[ext_resource type="PackedScene" uid="uid://d2k206m54ooy6" path="res://Assets/Scenes/Towers/sapling.tscn" id="1_t0tt7"]
+
+[resource]
+script = ExtResource("1_45ya2")
+TowerToBuild = ExtResource("1_t0tt7")
+LifeForceCost = 0
+SubstanceCost = 40
+FlowCost = 4
+BreathCost = 0
+EnergyCost = 0
+BuildTime = 5.0
+NeedsGrass = true
+BuildOnWater = false

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgnh626id26jp"]
+
+[ext_resource type="Texture2D" uid="uid://7fhu5lxwhvq5" path="res://Assets/Art/Interface/HoverBackground.png" id="1_06cdm"]
+[ext_resource type="Script" path="res://Assets/Code/Interface/HoverArea.cs" id="1_ow51u"]
+
+[node name="HoverArea" type="Area2D"]
+script = ExtResource("1_ow51u")
+
+[node name="Background" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("1_06cdm")
+
+[connection signal="mouse_entered" from="." to="." method="OnMouseEnter"]
+[connection signal="mouse_exited" from="." to="." method="OnMouseExit"]
