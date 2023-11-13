@@ -109,6 +109,14 @@ public partial class Cursor : Node2D
 		if (Cursor.Singleton == null) return null;
 		return Cursor.Singleton.PopState_Internal();
 	}
+
+	public static Vector2 GetTilePosition()
+	{
+		if (Cursor.Singleton == null) return new Vector2(0, 0);
+
+		return new Vector2(Cursor.Singleton.CurrentTile.X * Cursor.Singleton.TileSize,
+						   Cursor.Singleton.CurrentTile.Y * Cursor.Singleton.TileSize);
+	}
 }
 
 public interface ICursorState

@@ -8,6 +8,7 @@ public partial class S_PlaceTower : Node, ICursorState
     Cursor ParentCursor;
     R_BuildTower TowerToBuild;
     bool PlacementIsValid;
+    MainMap CachedTileMap;
     public override void _Ready()
     {
         ParentCursor = GetParentOrNull<Cursor>();
@@ -18,6 +19,7 @@ public partial class S_PlaceTower : Node, ICursorState
     public void OnEnable()
     {
         GD.Print("Cursor State changed to Placement");
+        CachedTileMap = MainMap.Singleton;
     }
 	public void OnDisable()
     {
@@ -30,7 +32,20 @@ public partial class S_PlaceTower : Node, ICursorState
     }
 	public void OnClick()
     {
+        if (PlacementIsValid == false) return;
+        if (TowerToBuild.TowerToBuild == null) return;
 
+        Tower NewTower = TowerToBuild.TowerToBuild.Instantiate<Tower>();
+        if (NewTower == null) return;
+        NewTower.GlobalPosition = Cursor.GetTilePosition();
+        MainMap.Singleton.AddChild(NewTower);
+
+        Player.GetCurrency(ECurrencyType.Substance).AddAmount(-1 * TowerToBuild.SubstanceCost);
+        Player.GetCurrency(ECurrencyType.Flow).AddAmount(-1 * TowerToBuild.FlowCost);
+        Player.GetCurrency(ECurrencyType.Breath).AddAmount(-1 * TowerToBuild.BreathCost);
+        Player.GetCurrency(ECurrencyType.Energy).AddAmount(-1 * TowerToBuild.EnergyCost);
+
+        Cursor.PopState();
     }
     public void OnEscape()
     {
@@ -39,6 +54,15 @@ public partial class S_PlaceTower : Node, ICursorState
 	public void OnMove(Vector2I NewMapPosition)
     {
         if (TowerToBuild == null) return;
+        if (CachedTileMap == null) { CachedTileMap = MainMap.Singleton; return; }
+
+        bool CanAfford = Player.CanAfford(TowerToBuild);
+        bool CanPlace = (CachedTileMap.GetCellTileData(MainMap.Layer_Ground, NewMapPosition).Terrain == MainMap.Terrain_Grass)
+                            || !TowerToBuild.NeedsGrass;
+
+        PlacementIsValid = CanAfford && CanPlace;
+
+        ParentCursor.GridHighlight.SelfModulate = PlacementIsValid ? GoodColor : BadColor;
     }
     public void SetTowerToBuild(R_BuildTower NewTowerToBuild)
     {

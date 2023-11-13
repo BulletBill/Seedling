@@ -24,5 +24,5 @@ public partial class R_BuildTower : Resource
     [Export] public int EnergyCost;
     [Export] public float BuildTime;
     [Export] public bool NeedsGrass = true;
-    [Export] public bool BuildOnWater = false;
+    //[Export] public bool NeedsWater = false;
 }
