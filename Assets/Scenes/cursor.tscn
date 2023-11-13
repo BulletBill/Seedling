@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://d23djhsg62jyj"]
+[gd_scene load_steps=6 format=3 uid="uid://2ekwlaa17gji"]
 
 [ext_resource type="Script" path="res://Assets/Code/Cursor/Cursor.cs" id="1_85qhr"]
 [ext_resource type="Texture2D" uid="uid://b3pem66tm4y5e" path="res://Assets/Art/Cursors/BasicSquare.png" id="2_7i45e"]
-[ext_resource type="Script" path="res://Assets/Code/Cursor/C_Free.cs" id="3_syvqy"]
-[ext_resource type="Script" path="res://Assets/Code/Cursor/C_PlaceTower.cs" id="4_p6iw2"]
+[ext_resource type="Texture2D" uid="uid://vreeyj5md8vc" path="res://Assets/Art/Towers/Sapling.png" id="3_21r5y"]
+[ext_resource type="Script" path="res://Assets/Code/Cursor/S_Free.cs" id="3_wjcte"]
+[ext_resource type="Script" path="res://Assets/Code/Cursor/S_PlaceTower.cs" id="4_voq7h"]
 
 [node name="Cursor" type="Node2D" node_paths=PackedStringArray("DefaultCursorState")]
 z_index = 500
@@ -11,15 +12,19 @@ script = ExtResource("1_85qhr")
 DefaultCursorState = NodePath("State_Free")
 
 [node name="GridHighlight" type="Sprite2D" parent="."]
-self_modulate = Color(0.203922, 1, 0.152941, 0.443137)
+visible = false
+self_modulate = Color(1, 0, 0, 0.521569)
 z_index = 5
 texture = ExtResource("2_7i45e")
 offset = Vector2(16, 16)
 
 [node name="PlacementGhost" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_21r5y")
+offset = Vector2(16, 8)
 
 [node name="State_Free" type="Node2D" parent="."]
-script = ExtResource("3_syvqy")
+script = ExtResource("3_wjcte")
 
 [node name="State_Placement" type="Node2D" parent="."]
-script = ExtResource("4_p6iw2")
+script = ExtResource("4_voq7h")

@@ -6,7 +6,7 @@ using System.Globalization;
 public partial class Cursor : Node2D
 {
 	public static Cursor Singleton;
-	ICursorState CurrentState;
+	Stack<ICursorState> StateStack = new();
 	[Export] public Node DefaultCursorState;
 	Vector2I CurrentTile = new();
 	int TileSize = 32;
@@ -27,8 +27,8 @@ public partial class Cursor : Node2D
 
 		if (DefaultCursorState is ICursorState cursorState)
 		{
-			CurrentState = cursorState;
-			CurrentState.OnEnable();
+			StateStack.Push(cursorState);
+			StateStack.Peek().OnEnable();
 		}
 	}
 
@@ -40,26 +40,47 @@ public partial class Cursor : Node2D
 		CurrentTile.X = Mathf.FloorToInt(Position.X / TileSize);
 		CurrentTile.Y = Mathf.FloorToInt(Position.Y / TileSize);
 		
-		if (PrevTile != CurrentTile && CurrentState != null)
+		if (PrevTile != CurrentTile && StateStack.Peek() != null)
 		{
-			CurrentState.OnMove(CurrentTile);
+			StateStack.Peek().OnMove(CurrentTile);
 		}
 
-		GridHighlight.GlobalPosition = new Vector2(CurrentTile.X, CurrentTile.Y) * TileSize;
+		Vector2 TileCenter = new Vector2(CurrentTile.X, CurrentTile.Y) * TileSize;
+		GridHighlight.GlobalPosition = TileCenter;
+		PlacementGhost.GlobalPosition = TileCenter;
 
 		if (Input.IsActionJustPressed("Click"))
 		{
-			CurrentState?.OnClick();
+			StateStack.Peek()?.OnClick();
+		}
+		if (Input.IsActionJustPressed("UI_Back"))
+		{
+			PopState_Internal();
 		}
 	}
 
-	public void SwitchState(ICursorState NewState)
+	ICursorState PushState_Internal(String StateName)
 	{
-		if (NewState == CurrentState) return;
-		
-		CurrentState?.OnDisable();
-		CurrentState = NewState;
-		CurrentState?.OnEnable();
+		ICursorState NewState = Cursor.Singleton.GetNodeOrNull<ICursorState>(StateName);
+		if (NewState == null) return StateStack.Count > 0 ? StateStack.Peek() : null;
+
+		StateStack.Peek()?.OnDisable();
+		StateStack.Push(NewState);
+		NewState?.OnEnable();
+
+		return NewState;
+	}
+
+	ICursorState PopState_Internal()
+	{
+		// Don't pop last state
+		if (StateStack.Count <= 1) return StateStack.Count > 0 ? StateStack.Peek() : null;
+
+		StateStack.Peek()?.OnDisable();
+		StateStack.Pop();
+		StateStack.Peek()?.OnEnable();
+
+		return StateStack.Peek();
 	}
 
 	// Static accessors
@@ -76,6 +97,18 @@ public partial class Cursor : Node2D
 		if (Cursor.Singleton == null) return;
 		Cursor.Singleton.HoverList.Remove(RemovedArea);
 	}
+
+	public static ICursorState PushState(String StateName)
+	{
+		if (Cursor.Singleton == null) return null;
+		return Cursor.Singleton.PushState_Internal(StateName);
+	}
+
+	public static ICursorState PopState()
+	{
+		if (Cursor.Singleton == null) return null;
+		return Cursor.Singleton.PopState_Internal();
+	}
 }
 
 public interface ICursorState
@@ -83,5 +116,6 @@ public interface ICursorState
 	public void OnEnable();
 	public void OnDisable();
 	public void OnClick();
+	public void OnEscape();
 	public void OnMove(Vector2I NewMapPosition);
 }

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Assets/Code/Core/Game.cs" id="1_6pfw6"]
 [ext_resource type="TileSet" uid="uid://se8ye8sftem5" path="res://Assets/Data/Tilesets/TileSet_Main.tres" id="1_vpnna"]
 [ext_resource type="PackedScene" uid="uid://crks2aw8cc252" path="res://Assets/Scenes/player.tscn" id="2_5ryln"]
-[ext_resource type="PackedScene" uid="uid://d23djhsg62jyj" path="res://Assets/Scenes/cursor.tscn" id="2_fwv7t"]
+[ext_resource type="PackedScene" uid="uid://2ekwlaa17gji" path="res://Assets/Scenes/cursor.tscn" id="2_fwv7t"]
 [ext_resource type="Script" path="res://Assets/Code/Tilemap/MainMap.cs" id="2_qs264"]
 [ext_resource type="PackedScene" uid="uid://bltnii6x6epdm" path="res://Assets/Scenes/Towers/genesis.tscn" id="5_dfbf8"]
 [ext_resource type="PackedScene" uid="uid://bqo4ffahkqb78" path="res://Assets/Scenes/Interface/CurrencyDisplay.tscn" id="6_6nu1p"]

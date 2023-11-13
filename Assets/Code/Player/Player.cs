@@ -43,4 +43,16 @@ public partial class Player : Node2D
         if (Player.Singleton.Currencies.ContainsKey(Type) == false) return null;
         return Player.Singleton.Currencies[Type];
     }
+
+    public static bool CanAfford(R_BuildTower BuildTower)
+    {
+        if (Player.Singleton == null) return false;
+        if (Player.Singleton.Currencies[ECurrencyType.Lifeforce].HeldAmount < BuildTower.LifeForceCost) return false;
+        if (Player.Singleton.Currencies[ECurrencyType.Substance].HeldAmount < BuildTower.SubstanceCost) return false;
+        if (Player.Singleton.Currencies[ECurrencyType.Flow].HeldAmount < BuildTower.FlowCost) return false;
+        if (Player.Singleton.Currencies[ECurrencyType.Breath].HeldAmount < BuildTower.BreathCost) return false;
+        if (Player.Singleton.Currencies[ECurrencyType.Energy].HeldAmount < BuildTower.EnergyCost) return false;
+
+        return true;
+    }
 }

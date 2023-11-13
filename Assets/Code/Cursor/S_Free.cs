@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class C_Free : Node, ICursorState
+public partial class S_Free : Node, ICursorState
 {
     Cursor ParentCursor;
     public override void _Ready()
@@ -17,6 +17,10 @@ public partial class C_Free : Node, ICursorState
 	public void OnDisable()
     {
 
+    }
+    public void OnEscape()
+    {
+        //TODO: Open Game Menu
     }
 	public void OnClick()
     {
