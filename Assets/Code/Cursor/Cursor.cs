@@ -10,7 +10,7 @@ public partial class Cursor : Node2D
 	[Export] public Node DefaultCursorState;
 	Vector2I CurrentTile = new();
 	int TileSize = 32;
-	public Sprite2D GridHighlight;
+	float MapScale = 1.0f;
 	public Sprite2D PlacementGhost;
 	public List<HoverArea> HoverList {get; protected set;} = new();
 
@@ -21,9 +21,14 @@ public partial class Cursor : Node2D
     
 	public override void _Ready()
 	{
+		MapScale = MainMap.Singleton.GlobalScale.X;
 		TileSize = MainMap.GetTileSize();
-		GridHighlight = GetNodeOrNull<Sprite2D>("GridHighlight");
 		PlacementGhost = GetNodeOrNull<Sprite2D>("PlacementGhost");
+
+		if (PlacementGhost != null)
+		{
+			PlacementGhost.GlobalScale = new Vector2(MapScale, MapScale);
+		}
 
 		if (DefaultCursorState is ICursorState cursorState)
 		{
@@ -37,16 +42,15 @@ public partial class Cursor : Node2D
 	{
 		Vector2I PrevTile = CurrentTile;
 		Position = GetGlobalMousePosition();
-		CurrentTile.X = Mathf.FloorToInt(Position.X / TileSize);
-		CurrentTile.Y = Mathf.FloorToInt(Position.Y / TileSize);
+		CurrentTile.X = Mathf.FloorToInt(Position.X / (TileSize * MapScale));
+		CurrentTile.Y = Mathf.FloorToInt(Position.Y / (TileSize * MapScale));
 		
 		if (PrevTile != CurrentTile && StateStack.Peek() != null)
 		{
 			StateStack.Peek().OnMove(CurrentTile);
 		}
 
-		Vector2 TileCenter = new Vector2(CurrentTile.X, CurrentTile.Y) * TileSize;
-		GridHighlight.GlobalPosition = TileCenter;
+		Vector2 TileCenter = new Vector2(CurrentTile.X, CurrentTile.Y) * (TileSize * MapScale);
 		PlacementGhost.GlobalPosition = TileCenter;
 
 		if (Input.IsActionJustPressed("Click"))

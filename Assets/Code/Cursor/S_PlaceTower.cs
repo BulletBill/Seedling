@@ -28,7 +28,6 @@ public partial class S_PlaceTower : Node, ICursorState
 
         if (ParentCursor == null) return;
         ParentCursor.PlacementGhost.Visible = false;
-        ParentCursor.GridHighlight.Visible = false;
     }
 	public void OnClick()
     {
@@ -62,7 +61,10 @@ public partial class S_PlaceTower : Node, ICursorState
 
         PlacementIsValid = CanAfford && CanPlace;
 
-        ParentCursor.GridHighlight.SelfModulate = PlacementIsValid ? GoodColor : BadColor;
+        if (ParentCursor != null)
+        {
+            ParentCursor.PlacementGhost.SelfModulate = PlacementIsValid ? GoodColor : BadColor;
+        }
     }
     public void SetTowerToBuild(R_BuildTower NewTowerToBuild)
     {
@@ -71,10 +73,7 @@ public partial class S_PlaceTower : Node, ICursorState
         TowerToBuild = NewTowerToBuild;
         ParentCursor.PlacementGhost.Visible = true;
         ParentCursor.PlacementGhost.Texture = TowerToBuild.PlacementSprite;
-        ParentCursor.PlacementGhost.SelfModulate = new Color(1.0f, 1.0f, 1.0f, 0.5f);
-
-        ParentCursor.GridHighlight.Visible = true;
-        ParentCursor.GridHighlight.SelfModulate = BadColor;
+        ParentCursor.PlacementGhost.SelfModulate = PlacementIsValid ? GoodColor : BadColor;
 
         GD.Print("Placement target is " + NewTowerToBuild.TowerName);
     }

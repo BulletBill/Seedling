@@ -53,7 +53,7 @@ public partial class C_GrassGrowth : Node2D
 
             Vector2 TilePos = CachedTileMap.ToGlobal(CachedTileMap.MapToLocal(i));
             float Distance = ParentNode.GlobalPosition.DistanceTo(TilePos);
-            if (Distance < Radius)
+            if (Distance < (Radius * GlobalScale.X))
             {
                 TilesInRange.Add(new TileAtDistance(i, Distance));
             }
