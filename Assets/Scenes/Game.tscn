@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://df7u54ytfaqgo"]
+[gd_scene load_steps=11 format=3 uid="uid://df7u54ytfaqgo"]
 
 [ext_resource type="Script" path="res://Assets/Code/Core/Game.cs" id="1_6pfw6"]
 [ext_resource type="TileSet" uid="uid://se8ye8sftem5" path="res://Assets/Data/Tilesets/TileSet_Main.tres" id="1_vpnna"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://bqo4ffahkqb78" path="res://Assets/Scenes/Interface/CurrencyDisplay.tscn" id="6_6nu1p"]
 [ext_resource type="Texture2D" uid="uid://c4cqjktrt205k" path="res://Assets/Art/Interface/WindowBG.png" id="7_rxf23"]
 [ext_resource type="PackedScene" uid="uid://dlgl700nd4604" path="res://Assets/Scenes/Interface/BuildButton.tscn" id="8_7jknq"]
+
+[sub_resource type="Curve2D" id="Curve2D_441a2"]
 
 [node name="Game" type="Node2D"]
 position = Vector2(-1, 0)
@@ -43,6 +45,9 @@ script = ExtResource("2_qs264")
 
 [node name="Genesis" parent="TestMap/TileMap" instance=ExtResource("5_dfbf8")]
 position = Vector2(944, 720)
+
+[node name="Path2D" type="Path2D" parent="TestMap/TileMap"]
+curve = SubResource("Curve2D_441a2")
 
 [node name="UI Canvas Layer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true

@@ -1,12 +1,81 @@
-[gd_scene load_steps=6 format=3 uid="uid://bltnii6x6epdm"]
+[gd_scene load_steps=14 format=3 uid="uid://bltnii6x6epdm"]
 
 [ext_resource type="Texture2D" uid="uid://v83jt5ibxbrx" path="res://Assets/Art/Towers/Genesis.png" id="1_dvwho"]
+[ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_kbkup"]
 [ext_resource type="Script" path="res://Assets/Code/Towers/Tower.cs" id="2_6vrd6"]
 [ext_resource type="Script" path="res://Assets/Code/Towers/C_AlignToMap.cs" id="3_sfwam"]
 [ext_resource type="Script" path="res://Assets/Code/Towers/C_GrassGrowth.cs" id="4_pgxo7"]
 [ext_resource type="Script" path="res://Assets/Code/Towers/C_GenerateResource.cs" id="5_u28xf"]
+[ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Scenes/Interface/HoverArea.tscn" id="7_7uqw5"]
 
-[node name="Genesis" type="Sprite2D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7wjg6"]
+shader = ExtResource("1_kbkup")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 0.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+
+[sub_resource type="Animation" id="Animation_vro8x"]
+resource_name = "Hover"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 2.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_8e3l7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_n53sj"]
+resource_name = "Unhover"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v61gj"]
+_data = {
+"Hover": SubResource("Animation_vro8x"),
+"RESET": SubResource("Animation_8e3l7"),
+"Unhover": SubResource("Animation_n53sj")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3lnn7"]
+size = Vector2(30, 31)
+
+[node name="Genesis" type="Sprite2D" groups=["Tower"]]
+z_index = 10
+material = SubResource("ShaderMaterial_7wjg6")
 texture = ExtResource("1_dvwho")
 offset = Vector2(0, -8)
 script = ExtResource("2_6vrd6")
@@ -35,3 +104,15 @@ script = ExtResource("5_u28xf")
 CurrencyType = 2
 AddedIncome = 1
 IncreaseMaximum = 20
+
+[node name="HoverAnimator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_v61gj")
+}
+
+[node name="HoverArea" parent="." node_paths=PackedStringArray("ParentAnimator") instance=ExtResource("7_7uqw5")]
+ParentAnimator = NodePath("../HoverAnimator")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HoverArea"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_3lnn7")
