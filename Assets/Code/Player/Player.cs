@@ -6,7 +6,7 @@ public partial class Player : Node2D
 {
     static Player Singleton;
     [Export] public float IncomeInterval;
-    float IncomeTimer = 0.1f;
+    public float IncomeTimer { get; protected set; } = 0.1f;
     public Dictionary<ECurrencyType, Currency> Currencies = new();
 
     public override void _Ready()
@@ -42,6 +42,14 @@ public partial class Player : Node2D
         if (Player.Singleton == null) return null;
         if (Player.Singleton.Currencies.ContainsKey(Type) == false) return null;
         return Player.Singleton.Currencies[Type];
+    }
+
+    public static float GetIncomePercent()
+    {
+        if (Player.Singleton == null) return 0.0f;
+        if (Player.Singleton.IncomeInterval == 0.0f) return 0.0f;
+
+        return (1 - (Player.Singleton.IncomeTimer / Player.Singleton.IncomeInterval)) * 100.0f;
     }
 
     public static bool CanAfford(R_BuildTower BuildTower)

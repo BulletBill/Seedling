@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=3 uid="uid://bi0jvwn73aj8o"]
+
+[ext_resource type="Texture2D" uid="uid://c4cqjktrt205k" path="res://Assets/Art/Interface/WindowBG.png" id="1_bo6re"]
+[ext_resource type="PackedScene" uid="uid://dlgl700nd4604" path="res://Assets/Scenes/Interface/BuildButton.tscn" id="2_mapgn"]
+[ext_resource type="Resource" uid="uid://pqk4g5tts6in" path="res://Assets/Data/Build Towers/BT_Sapling.tres" id="3_xafu6"]
+
+[node name="CommandPanel" type="Node2D"]
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+offset_right = 266.0
+offset_bottom = 201.0
+texture = ExtResource("1_bo6re")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="BuildButton" parent="." instance=ExtResource("2_mapgn")]
+position = Vector2(4, 4)
+BuildParams = ExtResource("3_xafu6")
+
+[node name="TowerSprite" parent="BuildButton" index="1"]
+visible = true
+
+[node name="BuildButton2" parent="." instance=ExtResource("2_mapgn")]
+position = Vector2(4, 69)
+
+[node name="BuildButton3" parent="." instance=ExtResource("2_mapgn")]
+position = Vector2(4, 134)
+
+[node name="BuildButton4" parent="." instance=ExtResource("2_mapgn")]
+position = Vector2(69, 4)
+
+[node name="BuildButton5" parent="." instance=ExtResource("2_mapgn")]
+position = Vector2(69, 69)
+
+[node name="BuildButton6" parent="." instance=ExtResource("2_mapgn")]
+position = Vector2(69, 134)
+
+[node name="BuildButton7" parent="." instance=ExtResource("2_mapgn")]
+position = Vector2(134, 4)
+
+[node name="BuildButton8" parent="." instance=ExtResource("2_mapgn")]
+position = Vector2(134, 69)
+
+[node name="BuildButton9" parent="." instance=ExtResource("2_mapgn")]
+position = Vector2(134, 134)
+
+[node name="BuildButton10" parent="." instance=ExtResource("2_mapgn")]
+position = Vector2(199, 4)
+
+[node name="BuildButton11" parent="." instance=ExtResource("2_mapgn")]
+position = Vector2(199, 69)
+
+[node name="BuildButton12" parent="." instance=ExtResource("2_mapgn")]
+position = Vector2(199, 134)
+
+[editable path="BuildButton"]

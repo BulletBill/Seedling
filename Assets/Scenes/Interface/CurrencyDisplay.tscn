@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bqo4ffahkqb78"]
+[gd_scene load_steps=12 format=3 uid="uid://bqo4ffahkqb78"]
 
 [ext_resource type="Texture2D" uid="uid://c4cqjktrt205k" path="res://Assets/Art/Interface/WindowBG.png" id="1_21l8l"]
 [ext_resource type="Script" path="res://Assets/Code/Interface/CurrencyDisplay.cs" id="1_52qu5"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://d2fe67br8fs2m" path="res://Assets/Art/Icons/Flow Small.png" id="5_4u7b0"]
 [ext_resource type="Texture2D" uid="uid://b8i6unfgcqe38" path="res://Assets/Art/Icons/Breath Small.png" id="6_akerk"]
 [ext_resource type="Texture2D" uid="uid://dj2gxm4a45ewu" path="res://Assets/Art/Icons/Energy Small.png" id="7_4mkmt"]
+[ext_resource type="Theme" uid="uid://svogtundy1nx" path="res://Assets/Art/Interface/default_theme.tres" id="10_eqccp"]
+[ext_resource type="Script" path="res://Assets/Code/Interface/IncomeBar.cs" id="11_a1odx"]
 
 [node name="CurrencyDisplay" type="Node2D"]
 scale = Vector2(2, 2)
@@ -16,15 +18,26 @@ script = ExtResource("1_52qu5")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 offset_right = 141.0
-offset_bottom = 96.0
+offset_bottom = 120.0
 texture = ExtResource("1_21l8l")
 patch_margin_left = 3
 patch_margin_top = 3
 patch_margin_right = 3
 patch_margin_bottom = 3
 
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = 6.0
+offset_top = 5.5
+offset_right = 135.0
+offset_bottom = 22.5
+theme = ExtResource("10_eqccp")
+show_percentage = false
+script = ExtResource("11_a1odx")
+
 [node name="Lifeforce" type="Node2D" parent="."]
+position = Vector2(0, 24)
 script = ExtResource("3_2w8lf")
+ShowMaximum = false
 
 [node name="Icon" type="Sprite2D" parent="Lifeforce"]
 position = Vector2(12, 12)
@@ -36,7 +49,7 @@ offset_top = 1.0
 offset_right = 90.0
 offset_bottom = 21.0
 theme_override_fonts/normal_font = ExtResource("3_yhh80")
-text = "999/999"
+text = "999"
 scroll_active = false
 
 [node name="Income" type="RichTextLabel" parent="Lifeforce"]
@@ -51,7 +64,7 @@ text = "[right]+999[/right]"
 scroll_active = false
 
 [node name="Substance" type="Node2D" parent="."]
-position = Vector2(0, 18)
+position = Vector2(0, 42)
 script = ExtResource("3_2w8lf")
 CurrencyType = 1
 
@@ -80,7 +93,7 @@ text = "[right]+999[/right]"
 scroll_active = false
 
 [node name="Flow" type="Node2D" parent="."]
-position = Vector2(0, 36)
+position = Vector2(0, 60)
 script = ExtResource("3_2w8lf")
 CurrencyType = 2
 
@@ -109,7 +122,7 @@ text = "[right]+999[/right]"
 scroll_active = false
 
 [node name="Breath" type="Node2D" parent="."]
-position = Vector2(0, 54)
+position = Vector2(0, 78)
 script = ExtResource("3_2w8lf")
 CurrencyType = 3
 
@@ -138,7 +151,7 @@ text = "[right]+999[/right]"
 scroll_active = false
 
 [node name="Energy" type="Node2D" parent="."]
-position = Vector2(0, 72)
+position = Vector2(0, 96)
 script = ExtResource("3_2w8lf")
 CurrencyType = 4
 

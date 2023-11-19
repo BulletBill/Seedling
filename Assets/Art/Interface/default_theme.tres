@@ -1,0 +1,25 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://svogtundy1nx"]
+
+[ext_resource type="Texture2D" uid="uid://dy8nudyd7nsh2" path="res://Assets/Art/Interface/Bar9Slice.png" id="1_7lsai"]
+[ext_resource type="FontFile" uid="uid://w05srxbcg8v8" path="res://Assets/Art/Fonts/Default_UI.tres" id="1_pgb4i"]
+[ext_resource type="Texture2D" uid="uid://7fhu5lxwhvq5" path="res://Assets/Art/Interface/HoverBackground.png" id="2_tc4ko"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_escmc"]
+texture = ExtResource("1_7lsai")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pepqq"]
+texture = ExtResource("2_tc4ko")
+modulate_color = Color(0, 0.376471, 0, 1)
+
+[resource]
+default_font = ExtResource("1_pgb4i")
+ProgressBar/styles/background = SubResource("StyleBoxTexture_escmc")
+ProgressBar/styles/fill = SubResource("StyleBoxTexture_pepqq")

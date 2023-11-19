@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjvtnmut5ak7p"]
+
+[ext_resource type="Texture2D" uid="uid://c4cqjktrt205k" path="res://Assets/Art/Interface/WindowBG.png" id="1_pk03u"]
+[ext_resource type="Texture2D" uid="uid://bo8xgep7v788l" path="res://Assets/Art/Towers/Spark.png" id="2_dmqoo"]
+[ext_resource type="FontFile" path="res://Assets/Art/Fonts/Header_UI.tres" id="3_4fh3t"]
+
+[node name="DetailPanel" type="Node2D"]
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+offset_right = 270.0
+offset_bottom = 134.0
+texture = ExtResource("1_pk03u")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(20, 20)
+texture = ExtResource("2_dmqoo")
+
+[node name="Header" type="RichTextLabel" parent="."]
+offset_left = 39.0
+offset_top = 6.0
+offset_right = 150.0
+offset_bottom = 23.0
+scale = Vector2(2, 2)
+theme_override_fonts/normal_font = ExtResource("3_4fh3t")
+bbcode_enabled = true
+text = "[center]Genesis[/center]"
+scroll_active = false
+
+[node name="Description" type="RichTextLabel" parent="."]
+offset_left = 6.0
+offset_top = 41.0
+offset_right = 264.0
+offset_bottom = 133.0
+text = "Generates Grass and Resources. Contains general upgrades for Towers.
+Another line."
+scroll_active = false

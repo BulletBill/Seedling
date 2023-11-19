@@ -4,6 +4,7 @@ using System;
 public partial class UI_CurrencyLine : Node2D
 {
 	[Export] public ECurrencyType CurrencyType;
+	[Export] public bool ShowMaximum = true;
 	
 	// TODO: Add UI color data store
 	public readonly Color ExcessColor = Colors.Green;
@@ -42,7 +43,7 @@ public partial class UI_CurrencyLine : Node2D
 
 			int MaxValue = UpdatedCurrency.MaximumAmount;
 			Amount.Text = Value.ToString();
-			if (MaxValue > 0)
+			if (MaxValue > 0 && ShowMaximum)
 			{
 				Amount.AppendText("/" + MaxValue.ToString());
 				if (Value > MaxValue)
