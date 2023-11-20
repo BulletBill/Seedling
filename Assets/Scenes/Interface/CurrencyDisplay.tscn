@@ -17,6 +17,7 @@ scale = Vector2(2, 2)
 script = ExtResource("1_52qu5")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.490196)
 offset_right = 141.0
 offset_bottom = 120.0
 texture = ExtResource("1_21l8l")
@@ -48,6 +49,7 @@ offset_left = 22.0
 offset_top = 1.0
 offset_right = 90.0
 offset_bottom = 21.0
+theme = ExtResource("10_eqccp")
 theme_override_fonts/normal_font = ExtResource("3_yhh80")
 text = "999"
 scroll_active = false

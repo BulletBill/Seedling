@@ -52,14 +52,28 @@ public partial class Player : Node2D
         return (1 - (Player.Singleton.IncomeTimer / Player.Singleton.IncomeInterval)) * 100.0f;
     }
 
-    public static bool CanAfford(R_BuildTower BuildTower)
+    public static bool CanAfford(R_Cost Cost)
     {
         if (Player.Singleton == null) return false;
-        if (Player.Singleton.Currencies[ECurrencyType.Lifeforce].HeldAmount < BuildTower.LifeForceCost) return false;
-        if (Player.Singleton.Currencies[ECurrencyType.Substance].HeldAmount < BuildTower.SubstanceCost) return false;
-        if (Player.Singleton.Currencies[ECurrencyType.Flow].HeldAmount < BuildTower.FlowCost) return false;
-        if (Player.Singleton.Currencies[ECurrencyType.Breath].HeldAmount < BuildTower.BreathCost) return false;
-        if (Player.Singleton.Currencies[ECurrencyType.Energy].HeldAmount < BuildTower.EnergyCost) return false;
+        if (Player.Singleton.Currencies[ECurrencyType.Lifeforce].HeldAmount < Cost.LifeForce) return false;
+        if (Player.Singleton.Currencies[ECurrencyType.Substance].HeldAmount < Cost.Substance) return false;
+        if (Player.Singleton.Currencies[ECurrencyType.Flow].HeldAmount < Cost.Flow) return false;
+        if (Player.Singleton.Currencies[ECurrencyType.Breath].HeldAmount < Cost.Breath) return false;
+        if (Player.Singleton.Currencies[ECurrencyType.Energy].HeldAmount < Cost.Energy) return false;
+
+        return true;
+    }
+
+    public static bool Spend(R_Cost Cost)
+    {
+        if (Player.Singleton == null) return false;
+        if (Player.CanAfford(Cost) == false) return false;
+
+        Player.GetCurrency(ECurrencyType.Lifeforce).AddAmount(-1 * Cost.LifeForce);
+        Player.GetCurrency(ECurrencyType.Substance).AddAmount(-1 * Cost.Substance);
+        Player.GetCurrency(ECurrencyType.Flow).AddAmount(-1 * Cost.Flow);
+        Player.GetCurrency(ECurrencyType.Breath).AddAmount(-1 * Cost.Breath);
+        Player.GetCurrency(ECurrencyType.Energy).AddAmount(-1 * Cost.Energy);
 
         return true;
     }

@@ -12,6 +12,29 @@ public partial class BuildButton : Node2D
 		{
 			hoverArea.Clicked += OnClick;
 		}
+
+		if (BuildParams != null)
+		{
+			Sprite2D TowerSprite = GetNodeOrNull<Sprite2D>("TowerSprite");
+			if (TowerSprite != null)
+			{
+				TowerSprite.Texture = BuildParams.PlacementSprite;
+			}
+		}
+
+		Sprite2D Outline = GetNodeOrNull<Sprite2D>("Outline");
+		if (Outline != null)
+		{
+			Outline.Material = new ShaderMaterial() { Shader = (Outline.Material as ShaderMaterial).Shader.Duplicate() as Shader };
+			AnimationPlayer Anim = GetNodeOrNull<AnimationPlayer>("HoverAnimator");
+			Anim?.Play("Unhover");
+		}
+
+		CostReadout CostText = GetNodeOrNull<CostReadout>("Cost");
+		if (CostText != null && BuildParams != null)
+		{
+			CostText.SetCosts(BuildParams.Cost);
+		}
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -23,10 +46,16 @@ public partial class BuildButton : Node2D
 	{
 		if (BuildParams == null) return;
 		if (BuildParams.TowerToBuild == null) return;
+		AnimationPlayer Anim = GetNodeOrNull<AnimationPlayer>("AnimationPlayer");
 
-		if (Player.CanAfford(BuildParams) == false) return;
+		if (Player.CanAfford(BuildParams.Cost) == false)
+		{
+			Anim?.Play("Error");
+			return;
+		}
         if (Cursor.PushState("State_Placement") is S_PlaceTower PlacementState)
         {
+			Anim?.Play("Success");
             PlacementState.SetTowerToBuild(BuildParams);
         }
     }

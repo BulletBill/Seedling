@@ -23,3 +23,6 @@ modulate_color = Color(0, 0.376471, 0, 1)
 default_font = ExtResource("1_pgb4i")
 ProgressBar/styles/background = SubResource("StyleBoxTexture_escmc")
 ProgressBar/styles/fill = SubResource("StyleBoxTexture_pepqq")
+RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
+RichTextLabel/colors/font_shadow_color = Color(0, 0, 0, 0.996078)
+RichTextLabel/constants/outline_size = 1

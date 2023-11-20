@@ -9,6 +9,7 @@ public partial class S_PlaceTower : Node, ICursorState
     R_BuildTower TowerToBuild;
     bool PlacementIsValid;
     MainMap CachedTileMap;
+    static readonly uint GridCode = 2;
     public override void _Ready()
     {
         ParentCursor = GetParentOrNull<Cursor>();
@@ -20,11 +21,13 @@ public partial class S_PlaceTower : Node, ICursorState
     {
         GD.Print("Cursor State changed to Placement");
         CachedTileMap = MainMap.Singleton;
+        MainMap.AddOutlineActive(GridCode);
     }
 	public void OnDisable()
     {
         TowerToBuild = null;
         PlacementIsValid = false;
+        MainMap.RemoveOutlineActive(GridCode);
 
         if (ParentCursor == null) return;
         ParentCursor.PlacementGhost.Visible = false;
@@ -39,10 +42,7 @@ public partial class S_PlaceTower : Node, ICursorState
         NewTower.GlobalPosition = Cursor.GetTilePosition();
         MainMap.Singleton.AddChild(NewTower);
 
-        Player.GetCurrency(ECurrencyType.Substance).AddAmount(-1 * TowerToBuild.SubstanceCost);
-        Player.GetCurrency(ECurrencyType.Flow).AddAmount(-1 * TowerToBuild.FlowCost);
-        Player.GetCurrency(ECurrencyType.Breath).AddAmount(-1 * TowerToBuild.BreathCost);
-        Player.GetCurrency(ECurrencyType.Energy).AddAmount(-1 * TowerToBuild.EnergyCost);
+        Player.Spend(TowerToBuild.Cost);
 
         Cursor.PopState();
     }
@@ -55,7 +55,7 @@ public partial class S_PlaceTower : Node, ICursorState
         if (TowerToBuild == null) return;
         if (CachedTileMap == null) { CachedTileMap = MainMap.Singleton; return; }
 
-        bool CanAfford = Player.CanAfford(TowerToBuild);
+        bool CanAfford = Player.CanAfford(TowerToBuild.Cost);
         bool CanPlace = (CachedTileMap.GetCellTileData(MainMap.Layer_Ground, NewMapPosition).Terrain == MainMap.Terrain_Grass)
                             || !TowerToBuild.NeedsGrass;
 

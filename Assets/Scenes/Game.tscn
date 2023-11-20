@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://df7u54ytfaqgo"]
+[gd_scene load_steps=13 format=3 uid="uid://df7u54ytfaqgo"]
 
 [ext_resource type="Script" path="res://Assets/Code/Core/Game.cs" id="1_6pfw6"]
 [ext_resource type="TileSet" uid="uid://se8ye8sftem5" path="res://Assets/Data/Tilesets/TileSet_Main.tres" id="1_vpnna"]
@@ -8,7 +8,8 @@
 [ext_resource type="Script" path="res://Assets/Code/Tilemap/MainMap.cs" id="2_qs264"]
 [ext_resource type="PackedScene" uid="uid://bltnii6x6epdm" path="res://Assets/Scenes/Towers/genesis.tscn" id="5_dfbf8"]
 [ext_resource type="PackedScene" uid="uid://bqo4ffahkqb78" path="res://Assets/Scenes/Interface/CurrencyDisplay.tscn" id="6_6nu1p"]
-[ext_resource type="PackedScene" uid="uid://bi0jvwn73aj8o" path="res://Assets/Scenes/Interface/CommandPanel.tscn" id="9_rgod8"]
+[ext_resource type="PackedScene" uid="uid://dlgl700nd4604" path="res://Assets/Scenes/Interface/BuildButton.tscn" id="8_7jknq"]
+[ext_resource type="Resource" uid="uid://pqk4g5tts6in" path="res://Assets/Data/Build Towers/BT_Sapling.tres" id="9_qaekf"]
 [ext_resource type="PackedScene" uid="uid://cjvtnmut5ak7p" path="res://Assets/Scenes/Interface/DetailPanel.tscn" id="10_14nb1"]
 
 [sub_resource type="Curve2D" id="Curve2D_441a2"]
@@ -69,15 +70,17 @@ curve = SubResource("Curve2D_441a2")
 
 [node name="UI Canvas Layer" type="CanvasLayer" parent="."]
 
+[node name="InfoPanel" type="Node2D" parent="UI Canvas Layer"]
+
+[node name="CurrencyDisplay" parent="UI Canvas Layer/InfoPanel" instance=ExtResource("6_6nu1p")]
+z_index = 10
+
+[node name="DetailPanel" parent="UI Canvas Layer/InfoPanel" instance=ExtResource("10_14nb1")]
+position = Vector2(0, 241)
+
 [node name="Control Panel" type="Node2D" parent="UI Canvas Layer"]
 position = Vector2(0, 1008)
 
-[node name="CurrencyDisplay" parent="UI Canvas Layer/Control Panel" instance=ExtResource("6_6nu1p")]
-z_index = 10
-position = Vector2(0, -168)
-
-[node name="CommandPanel" parent="UI Canvas Layer/Control Panel" instance=ExtResource("9_rgod8")]
-position = Vector2(283, -129)
-
-[node name="DetailPanel" parent="UI Canvas Layer/Control Panel" instance=ExtResource("10_14nb1")]
-position = Vector2(550, -62)
+[node name="BuildButton" parent="UI Canvas Layer/Control Panel" instance=ExtResource("8_7jknq")]
+position = Vector2(960, 0)
+BuildParams = ExtResource("9_qaekf")

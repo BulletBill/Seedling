@@ -2,10 +2,13 @@ using Godot;
 using GodotPlugins.Game;
 using System;
 using System.Buffers;
+using System.Collections.Generic;
 
 public partial class MainMap : TileMap
 {
 	[Export] public Color GridColor;
+	static readonly uint GridCode = 1;
+	uint OutlineActive = 0;
 	bool OutlineShown = false;
 	public static MainMap Singleton;
 
@@ -29,23 +32,45 @@ public partial class MainMap : TileMap
 	public override void _EnterTree()
 	{
 		MainMap.Singleton = this;
-		ShowOutline(OutlineShown);
+		SetLayerModulate(Layer_Outline, new Color(0.0f, 0.0f, 0.0f, 0.0f));
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if (OutlineShown != Input.IsActionPressed("ShowGrid"))
+		if (!OutlineShown && Input.IsActionJustPressed("ShowGrid"))
 		{
-			ShowOutline(Input.IsActionPressed("ShowGrid"));
+			AddOutlineActive_Internal(GridCode);
+			GD.Print("MainMap._Process: ShowGrid action just pressed.");
+		}
+		
+		if (OutlineShown && Input.IsActionJustReleased("ShowGrid"))
+		{
+			RemoveOutlineActive_Internal(GridCode);
+			GD.Print("MainMap._Process: ShowGrid action just released.");
+		}
+
+		if (OutlineActive > 0 && !OutlineShown)
+		{
+			OutlineShown = true;
+			SetLayerModulate(Layer_Outline, GridColor);
+		}
+
+		if (OutlineActive <= 0 && OutlineShown)
+		{
+			OutlineShown = false;
+			SetLayerModulate(Layer_Outline, new Color(0.0f, 0.0f, 0.0f, 0.0f));
 		}
 	}
 
-	void ShowOutline(bool Show)
+	void AddOutlineActive_Internal(uint OutlineActivate)
 	{
-		OutlineShown = Show;
-		Color NewGridColor = Show ? GridColor : new Color(0.0f, 0.0f, 0.0f, 0.0f);
-		SetLayerModulate(Layer_Outline, NewGridColor);
+		OutlineActive |= OutlineActivate;
+	}
+
+	void RemoveOutlineActive_Internal(uint OutlineActivate)
+	{
+		OutlineActive &= ~OutlineActivate;
 	}
 
 	// Static accessors
@@ -63,6 +88,18 @@ public partial class MainMap : TileMap
 		int Ground = MainMap.Singleton.GetCellTileData(Layer_Ground, GridPosition).Terrain;
 
 		return Ground;
+	}
+
+	public static void AddOutlineActive(uint ActiveFlag)
+	{
+		if (MainMap.Singleton == null) return;
+		MainMap.Singleton.AddOutlineActive_Internal(ActiveFlag);
+	}
+
+	public static void RemoveOutlineActive(uint ActiveFlag)
+	{
+		if (MainMap.Singleton == null) return;
+		MainMap.Singleton.RemoveOutlineActive_Internal(ActiveFlag);
 	}
 }
 

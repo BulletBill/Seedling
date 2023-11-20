@@ -26,6 +26,10 @@ mouse_cursor/custom_image="res://Assets/Art/Cursors/Basic.png"
 
 project/assembly_name="Project Seedling"
 
+[gui]
+
+theme/custom="res://Assets/Art/Interface/default_theme.tres"
+
 [input]
 
 Click={
