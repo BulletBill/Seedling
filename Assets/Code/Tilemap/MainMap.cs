@@ -3,6 +3,7 @@ using GodotPlugins.Game;
 using System;
 using System.Buffers;
 using System.Collections.Generic;
+using System.Data.Common;
 
 public partial class MainMap : TileMap
 {
@@ -83,11 +84,23 @@ public partial class MainMap : TileMap
 	public static int GetTileType(Vector2I GridPosition)
 	{
 		if (MainMap.Singleton == null) return MainMap.Terrain_Void;
-		int Above = MainMap.Singleton.GetCellTileData(Layer_Above, GridPosition).Terrain;
-		int Below = MainMap.Singleton.GetCellTileData(Layer_Below, GridPosition).Terrain;
-		int Ground = MainMap.Singleton.GetCellTileData(Layer_Ground, GridPosition).Terrain;
+		
+		if (MainMap.Singleton.GetCellTileData(Layer_Above, GridPosition) != null)
+		{
+			return MainMap.Singleton.GetCellTileData(Layer_Above, GridPosition).Terrain;
+		}
 
-		return Ground;
+		if (MainMap.Singleton.GetCellTileData(Layer_Below, GridPosition) != null)
+		{
+			return MainMap.Singleton.GetCellTileData(Layer_Below, GridPosition).Terrain;
+		}
+
+		if (MainMap.Singleton.GetCellTileData(Layer_Ground, GridPosition) != null)
+		{
+			return MainMap.Singleton.GetCellTileData(Layer_Ground, GridPosition).Terrain;
+		}
+
+		return Terrain_Void;
 	}
 
 	public static void AddOutlineActive(uint ActiveFlag)

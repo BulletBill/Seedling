@@ -56,8 +56,7 @@ public partial class S_PlaceTower : Node, ICursorState
         if (CachedTileMap == null) { CachedTileMap = MainMap.Singleton; return; }
 
         bool CanAfford = Player.CanAfford(TowerToBuild.Cost);
-        bool CanPlace = (CachedTileMap.GetCellTileData(MainMap.Layer_Ground, NewMapPosition).Terrain == MainMap.Terrain_Grass)
-                            || !TowerToBuild.NeedsGrass;
+        bool CanPlace = MainMap.GetTileType(NewMapPosition) == MainMap.Terrain_Grass;
 
         PlacementIsValid = CanAfford && CanPlace;
 

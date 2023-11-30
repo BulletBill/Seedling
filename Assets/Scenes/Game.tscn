@@ -76,6 +76,7 @@ curve = SubResource("Curve2D_441a2")
 z_index = 10
 
 [node name="DetailPanel" parent="UI Canvas Layer/InfoPanel" instance=ExtResource("10_14nb1")]
+visible = false
 position = Vector2(0, 241)
 
 [node name="Control Panel" type="Node2D" parent="UI Canvas Layer"]
