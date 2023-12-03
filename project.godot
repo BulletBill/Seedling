@@ -30,8 +30,9 @@ project/assembly_name="Project Seedling"
 
 folder_colors={
 "res://Assets/Art/": "red",
+"res://Assets/Audio/": "green",
 "res://Assets/Code/": "blue",
-"res://Assets/Data/": "gray"
+"res://Assets/Data/": "purple"
 }
 
 [gui]

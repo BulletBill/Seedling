@@ -79,6 +79,7 @@ material = SubResource("ShaderMaterial_7wjg6")
 texture = ExtResource("1_dvwho")
 offset = Vector2(0, -8)
 script = ExtResource("2_6vrd6")
+IsDefendTarget = true
 
 [node name="AlignToMap" type="Node2D" parent="."]
 script = ExtResource("3_sfwam")

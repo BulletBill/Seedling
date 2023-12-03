@@ -44,12 +44,12 @@ public partial class C_GrassGrowth : Node2D
         Node2D ParentNode = GetParentOrNull<Node2D>();
         if (ParentNode == null) return;
 
-        Array<Vector2I> AllCells = CachedTileMap.GetUsedCells(0);
+        Array<Vector2I> AllCells = CachedTileMap.GetUsedCells(MainMap.Layer_Ground);
         TilesInRange.Clear();
         foreach(Vector2I i in AllCells)
         {
             // Don't bother with grass tiles
-            if (CachedTileMap.GetCellTileData(0, i).Terrain == MainMap.Terrain_Grass) continue;
+            if (CachedTileMap.GetCellTileData(MainMap.Layer_Ground, i).Terrain == MainMap.Terrain_Grass) continue;
 
             Vector2 TilePos = CachedTileMap.ToGlobal(CachedTileMap.MapToLocal(i));
             float Distance = ParentNode.GlobalPosition.DistanceTo(TilePos);

@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://c4nme8pyly5sa"]
+
+[ext_resource type="Script" path="res://Assets/Code/Enemies/Enemy.cs" id="1_u2htd"]
+[ext_resource type="Script" path="res://Assets/Code/Enemies/C_HealthPool.cs" id="2_8wvkh"]
+[ext_resource type="Texture2D" uid="uid://cfgjt6q84i8j7" path="res://Assets/Art/Icons/Substance Small.png" id="2_m78xc"]
+[ext_resource type="Script" path="res://Assets/Code/Towers/C_AlignToMap.cs" id="2_y6cnj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1e1oq"]
+radius = 14.0357
+
+[node name="E1Clod" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+motion_mode = 1
+script = ExtResource("1_u2htd")
+Speed = 80.0
+
+[node name="AlignToMap" type="Node2D" parent="."]
+script = ExtResource("2_y6cnj")
+
+[node name="HealthPool" type="Node" parent="."]
+script = ExtResource("2_8wvkh")
+
+[node name="HealthBar" type="ProgressBar" parent="HealthPool"]
+offset_left = -15.0
+offset_top = 17.0
+offset_right = 15.0
+offset_bottom = 23.0
+max_value = 10.0
+step = 1.0
+value = 5.0
+rounded = true
+show_percentage = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("2_m78xc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_1e1oq")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_postprocessing = 1

@@ -23,9 +23,9 @@ public partial class MainMap : TileMap
 
 	public static readonly int TerrainSet_Default = 0;
 
-	public static readonly int Layer_Ground = 0;
-	public static readonly int Layer_Below = 1;
-	public static readonly int Layer_Above = 2;
+	public static readonly int Layer_Path = 0;
+	public static readonly int Layer_Ground = 1;
+	public static readonly int Layer_Below = 2;
 	public static readonly int Layer_Outline = 3;
 
 
@@ -85,9 +85,9 @@ public partial class MainMap : TileMap
 	{
 		if (MainMap.Singleton == null) return MainMap.Terrain_Void;
 		
-		if (MainMap.Singleton.GetCellTileData(Layer_Above, GridPosition) != null)
+		if (MainMap.Singleton.GetCellTileData(Layer_Path, GridPosition) != null)
 		{
-			return MainMap.Singleton.GetCellTileData(Layer_Above, GridPosition).Terrain;
+			return MainMap.Singleton.GetCellTileData(Layer_Path, GridPosition).Terrain;
 		}
 
 		if (MainMap.Singleton.GetCellTileData(Layer_Below, GridPosition) != null)
