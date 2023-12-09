@@ -24,9 +24,6 @@ public partial class Tower : Sprite2D
 		Game.DefendTargets.Remove(this);
     }
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    
-
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{

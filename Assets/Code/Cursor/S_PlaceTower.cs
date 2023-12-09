@@ -57,8 +57,19 @@ public partial class S_PlaceTower : Node, ICursorState
 
         bool CanAfford = Player.CanAfford(TowerToBuild.Cost);
         bool CanPlace = MainMap.GetTileType(NewMapPosition) == MainMap.Terrain_Grass;
+        bool Occupied = false;
+        foreach (Node TowerNode in GetTree().GetNodesInGroup(Tower.GroupName))
+        {
+            Tower Tower = TowerNode as Tower;
+            if (Tower == null) continue;
+            if (Tower.MapPosition == NewMapPosition)
+            {
+                Occupied = true;
+                break;
+            }
+        }
 
-        PlacementIsValid = CanAfford && CanPlace;
+        PlacementIsValid = CanAfford && CanPlace && !Occupied;
 
         if (ParentCursor != null)
         {

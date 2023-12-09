@@ -18,7 +18,7 @@ public partial class Currency : Node2D
     [Export] public Texture2D IconSmall;
     [Export] public bool ShowMaximum;
     [Export] public bool ShowBar;
-    public int HeldAmount { get; protected set; }
+    public int Amount { get; protected set; }
     public int MaximumAmount { get; protected set; }
     public int Income { get; protected set; }
     List<C_GenerateResource> Generators = new();
@@ -37,16 +37,16 @@ public partial class Currency : Node2D
         AddAmount(Income);
     }
 
-    public void AddAmount(int Amount)
+    public void AddAmount(int InAmount)
     {
-        int PrevAmount = HeldAmount;
-        HeldAmount += Amount;
+        int PrevAmount = Amount;
+        Amount += InAmount;
         if (MaximumAmount > 0)
         {
-            HeldAmount = Math.Clamp(HeldAmount, 0, MaximumAmount);
+            Amount = Math.Clamp(Amount, 0, MaximumAmount);
         }
 
-        if (PrevAmount != HeldAmount)
+        if (PrevAmount != Amount)
         {
             EmitSignal("OnCurrencyChanged", this);
         }
@@ -59,7 +59,7 @@ public partial class Currency : Node2D
         Generators.Add(NewGenerator);
         MaximumAmount += NewGenerator.IncreaseMaximum;
         Income += NewGenerator.AddedIncome;
-        HeldAmount = Math.Clamp(HeldAmount + NewGenerator.AddFlatAmount, 0, MaximumAmount);
+        Amount = Math.Clamp(Amount + NewGenerator.AddFlatAmount, 0, MaximumAmount);
         EmitSignal("OnCurrencyChanged", this);
     }
 
@@ -70,7 +70,7 @@ public partial class Currency : Node2D
         Generators.Remove(RemovedGenerator);
         MaximumAmount -= RemovedGenerator.IncreaseMaximum;
         Income -= RemovedGenerator.AddedIncome;
-        HeldAmount = Math.Clamp(HeldAmount - RemovedGenerator.AddFlatAmount, 0, MaximumAmount);
+        Amount = Math.Clamp(Amount - RemovedGenerator.AddFlatAmount, 0, MaximumAmount);
         EmitSignal("OnCurrencyChanged", this);
     }
 }

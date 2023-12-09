@@ -75,6 +75,7 @@ size = Vector2(30, 31)
 
 [node name="Sapling" type="Sprite2D" groups=["Tower"]]
 z_index = 10
+y_sort_enabled = true
 material = SubResource("ShaderMaterial_bjj0w")
 texture = ExtResource("1_8re0u")
 offset = Vector2(0, -8)
@@ -90,8 +91,6 @@ GrowthInterval = 5.0
 
 [node name="AddLifeforce" type="Node2D" parent="."]
 script = ExtResource("5_jn7g3")
-AddFlatAmount = 2
-IncreaseMaximum = 2
 
 [node name="HoverAnimator" type="AnimationPlayer" parent="."]
 libraries = {

@@ -1,15 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://bltnii6x6epdm"]
+[gd_scene load_steps=13 format=3 uid="uid://dbr6bnc2oohvr"]
 
-[ext_resource type="Texture2D" uid="uid://v83jt5ibxbrx" path="res://Assets/Art/Towers/Genesis.png" id="1_dvwho"]
-[ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_kbkup"]
-[ext_resource type="Script" path="res://Assets/Code/Towers/Tower.cs" id="2_6vrd6"]
-[ext_resource type="Script" path="res://Assets/Code/Towers/C_AlignToMap.cs" id="3_sfwam"]
-[ext_resource type="Script" path="res://Assets/Code/Towers/C_GrassGrowth.cs" id="4_pgxo7"]
-[ext_resource type="Script" path="res://Assets/Code/Towers/C_GenerateResource.cs" id="5_u28xf"]
-[ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Scenes/Interface/HoverArea.tscn" id="7_7uqw5"]
+[ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_ngx3s"]
+[ext_resource type="Texture2D" uid="uid://c8oydv3o33tcw" path="res://Assets/Art/Towers/Sun Leaf.png" id="2_f7v0a"]
+[ext_resource type="Script" path="res://Assets/Code/Towers/Tower.cs" id="3_xav0s"]
+[ext_resource type="Script" path="res://Assets/Code/Towers/C_AlignToMap.cs" id="4_t3g32"]
+[ext_resource type="Script" path="res://Assets/Code/Towers/C_GenerateResource.cs" id="6_5sn2s"]
+[ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Scenes/Interface/HoverArea.tscn" id="7_6t1o4"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7wjg6"]
-shader = ExtResource("1_kbkup")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bjj0w"]
+shader = ExtResource("1_ngx3s")
 shader_parameter/color = Color(1, 1, 1, 1)
 shader_parameter/width = 0.0
 shader_parameter/pattern = 0
@@ -70,52 +69,37 @@ _data = {
 "Unhover": SubResource("Animation_n53sj")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3lnn7"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6l6xg"]
 size = Vector2(30, 31)
 
-[node name="Genesis" type="Sprite2D" groups=["Tower"]]
+[node name="Sunleaf" type="Sprite2D" groups=["Tower"]]
 z_index = 10
 y_sort_enabled = true
-material = SubResource("ShaderMaterial_7wjg6")
-texture = ExtResource("1_dvwho")
-offset = Vector2(0, -8)
-script = ExtResource("2_6vrd6")
-IsDefendTarget = true
+material = SubResource("ShaderMaterial_bjj0w")
+texture = ExtResource("2_f7v0a")
+script = ExtResource("3_xav0s")
 
 [node name="AlignToMap" type="Node2D" parent="."]
-y_sort_enabled = true
-script = ExtResource("3_sfwam")
+script = ExtResource("4_t3g32")
 
-[node name="GrassGrowth" type="Node2D" parent="."]
-script = ExtResource("4_pgxo7")
-Radius = 108.0
-GrowthInterval = 0.2
+[node name="AddSubstance" type="Node2D" parent="."]
+script = ExtResource("6_5sn2s")
+CurrencyType = 1
+AddedIncome = 8
+IncreaseMaximum = 10
 
 [node name="AddLifeforce" type="Node2D" parent="."]
-script = ExtResource("5_u28xf")
-AddFlatAmount = 5
-IncreaseMaximum = 5
-
-[node name="Substance Income" type="Node2D" parent="."]
-script = ExtResource("5_u28xf")
-CurrencyType = 1
-AddedIncome = 5
-IncreaseMaximum = 100
-
-[node name="Flow Income" type="Node2D" parent="."]
-script = ExtResource("5_u28xf")
-CurrencyType = 2
-AddedIncome = 1
-IncreaseMaximum = 20
+script = ExtResource("6_5sn2s")
+AddFlatAmount = 2
 
 [node name="HoverAnimator" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_v61gj")
 }
 
-[node name="HoverArea" parent="." node_paths=PackedStringArray("ParentAnimator") instance=ExtResource("7_7uqw5")]
+[node name="HoverArea" parent="." node_paths=PackedStringArray("ParentAnimator") instance=ExtResource("7_6t1o4")]
 ParentAnimator = NodePath("../HoverAnimator")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HoverArea"]
 position = Vector2(0, -0.5)
-shape = SubResource("RectangleShape2D_3lnn7")
+shape = SubResource("RectangleShape2D_6l6xg")

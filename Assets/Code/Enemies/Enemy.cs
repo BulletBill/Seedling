@@ -3,12 +3,17 @@ using System;
 
 public partial class Enemy : CharacterBody2D
 {
+	public static readonly float SeekInterval = 1.0f;
+	public static readonly String EnemyGroup = "Enemy";
 	[Export] public float Speed = 40.0f;
 	NavigationAgent2D Nav;
-	public static readonly float SeekInterval = 1.0f;
 	float SeekTimer;
 	bool TargetReachable;
 	C_HealthPool HealthPool;
+
+	// Targeting Metrics
+	public float HealthPercent { get; protected set; } = 100.0f;
+	public float DistanceToTarget { get; protected set; } = 0.0f;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -36,6 +41,8 @@ public partial class Enemy : CharacterBody2D
         Vector2 NextMove = Nav.GetNextPathPosition();
 		Velocity = (NextMove - GlobalPosition).Normalized() * Speed;
 		MoveAndSlide();
+
+		DistanceToTarget = Nav.DistanceToTarget();
     }
 
 	void MakePath()
@@ -54,5 +61,12 @@ public partial class Enemy : CharacterBody2D
 	{
 		if (HealthPool == null) return;
 		HealthPool.TakeDamage(InDamage);
+	}
+
+	public int GetRemainingHealth()
+	{
+		if (HealthPool == null) return -1;
+
+		return HealthPool.CurrentHealth;
 	}
 }

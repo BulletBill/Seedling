@@ -13,7 +13,7 @@ DefaultCursorState = NodePath("State_Free")
 visible = false
 z_index = 10
 texture = ExtResource("3_21r5y")
-offset = Vector2(16, 8)
+offset = Vector2(16, 16)
 
 [node name="State_Free" type="Node2D" parent="."]
 script = ExtResource("3_wjcte")

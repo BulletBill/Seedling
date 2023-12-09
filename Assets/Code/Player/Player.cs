@@ -8,6 +8,7 @@ public partial class Player : Node2D
     [Export] public float IncomeInterval;
     public float IncomeTimer { get; protected set; } = 0.1f;
     public Dictionary<ECurrencyType, Currency> Currencies = new();
+    [Signal] public delegate void ResourcesChangedEventHandler();
 
     public override void _Ready()
     {
@@ -55,11 +56,11 @@ public partial class Player : Node2D
     public static bool CanAfford(R_Cost Cost)
     {
         if (Player.Singleton == null) return false;
-        if (Player.Singleton.Currencies[ECurrencyType.Lifeforce].HeldAmount < Cost.LifeForce) return false;
-        if (Player.Singleton.Currencies[ECurrencyType.Substance].HeldAmount < Cost.Substance) return false;
-        if (Player.Singleton.Currencies[ECurrencyType.Flow].HeldAmount < Cost.Flow) return false;
-        if (Player.Singleton.Currencies[ECurrencyType.Breath].HeldAmount < Cost.Breath) return false;
-        if (Player.Singleton.Currencies[ECurrencyType.Energy].HeldAmount < Cost.Energy) return false;
+        if (Player.Singleton.Currencies[ECurrencyType.Lifeforce].Amount < Cost.LifeForce) return false;
+        if (Player.Singleton.Currencies[ECurrencyType.Substance].Amount < Cost.Substance) return false;
+        if (Player.Singleton.Currencies[ECurrencyType.Flow].Amount < Cost.Flow) return false;
+        if (Player.Singleton.Currencies[ECurrencyType.Breath].Amount < Cost.Breath) return false;
+        if (Player.Singleton.Currencies[ECurrencyType.Energy].Amount < Cost.Energy) return false;
 
         return true;
     }

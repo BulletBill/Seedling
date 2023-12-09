@@ -1,0 +1,24 @@
+[gd_resource type="Resource" load_steps=6 format=3 uid="uid://pqk4g5tts6in"]
+
+[ext_resource type="Script" path="res://Assets/Code/Towers/R_Cost.cs" id="1_4jkm7"]
+[ext_resource type="Texture2D" uid="uid://c8oydv3o33tcw" path="res://Assets/Art/Towers/Sun Leaf.png" id="2_7dtlk"]
+[ext_resource type="PackedScene" uid="uid://dbr6bnc2oohvr" path="res://Assets/Scenes/Towers/sunleaf.tscn" id="3_vequt"]
+[ext_resource type="Script" path="res://Assets/Code/Towers/R_BuildTower.cs" id="4_40fvq"]
+
+[sub_resource type="Resource" id="Resource_4ujqw"]
+script = ExtResource("1_4jkm7")
+LifeForce = 0
+Substance = 30
+Flow = 0
+Breath = 0
+Energy = 0
+
+[resource]
+script = ExtResource("4_40fvq")
+PlacementSprite = ExtResource("2_7dtlk")
+TowerToBuild = ExtResource("3_vequt")
+TowerName = "Sunleaf"
+Description = ""
+Cost = SubResource("Resource_4ujqw")
+BuildTime = 5.0
+NeedsGrass = true

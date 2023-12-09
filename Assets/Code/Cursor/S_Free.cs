@@ -31,13 +31,5 @@ public partial class S_Free : Node, ICursorState
     }
 	public void OnMove(Vector2I NewMapPosition)
     {
-        bool ShowHighlight = false;
-        foreach(Tower t in GetTree().GetNodesInGroup(Tower.GroupName))
-        {
-            if (t.MapPosition == NewMapPosition)
-            {
-                ShowHighlight = true;
-            }
-        }
     }
 }

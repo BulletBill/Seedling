@@ -39,7 +39,7 @@ public partial class UI_CurrencyLine : Node2D
 	{
 		if (Amount != null)
 		{
-			int Value = UpdatedCurrency.HeldAmount;
+			int Value = UpdatedCurrency.Amount;
 
 			int MaxValue = UpdatedCurrency.MaximumAmount;
 			Amount.Text = Value.ToString();
