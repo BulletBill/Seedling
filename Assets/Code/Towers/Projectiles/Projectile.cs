@@ -14,6 +14,8 @@ public partial class Projectile : Sprite2D
 
 	public void Assign(Vector2 StartPosition, Enemy TargetEnemy, float TravelTime)
 	{
+		if (!IsInstanceValid(TargetEnemy)) return;
+
 		Origin = StartPosition;
 		GlobalPosition = StartPosition;
 
@@ -26,12 +28,19 @@ public partial class Projectile : Sprite2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		if (!IsInstanceValid(Target))
+		{
+			QueueFree();
+			return;
+		}
+
 		if (RemainingTime > 0.0f)
 		{
 			RemainingTime -= (float)delta;
 			if (RemainingTime <= 0.0f)
 			{
 				QueueFree();
+				return;
 			}
 
 			GlobalPosition = Origin.Lerp(Target.GlobalPosition, 1 - (RemainingTime / StartTime));
