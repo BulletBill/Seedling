@@ -5,7 +5,9 @@ public partial class Enemy : CharacterBody2D
 {
 	public static readonly float SeekInterval = 1.0f;
 	public static readonly String EnemyGroup = "Enemy";
+	[Export] public int SpawnCost = 1;
 	[Export] public float Speed = 40.0f;
+	public bool Active = false;
 	NavigationAgent2D Nav;
 	float SeekTimer;
 	bool TargetReachable;
@@ -26,6 +28,8 @@ public partial class Enemy : CharacterBody2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		if (!Active) return;
+		
 		SeekTimer -= (float)delta;
 		if (SeekTimer <= 0.0f)
 		{
@@ -48,8 +52,8 @@ public partial class Enemy : CharacterBody2D
 	void MakePath()
 	{
 		if (Nav == null) return;
-		if (Game.DefendTargets.Count <= 0) return;
-		Nav.TargetPosition = Game.DefendTargets[0].GlobalPosition;
+		if (Player.DefendTargets.Count <= 0) return;
+		Nav.TargetPosition = Player.DefendTargets[0].GlobalPosition;
 		TargetReachable = Nav.IsTargetReachable();
 		if (!TargetReachable)
 		{

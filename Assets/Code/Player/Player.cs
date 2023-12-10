@@ -4,11 +4,15 @@ using System.Collections.Generic;
 
 public partial class Player : Node2D
 {
-    static Player Singleton;
+    public static Player Singleton;
     [Export] public float IncomeInterval;
     public float IncomeTimer { get; protected set; } = 0.1f;
     public Dictionary<ECurrencyType, Currency> Currencies = new();
+    public static List<Tower> DefendTargets = new();
+
+    // Signals
     [Signal] public delegate void ResourcesChangedEventHandler();
+    [Signal] public delegate void GrassGrownEventHandler(int Count);
 
     public override void _Ready()
     {

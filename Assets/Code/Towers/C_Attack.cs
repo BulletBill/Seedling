@@ -85,7 +85,7 @@ public partial class C_Attack : Node2D
             float Score = 0.0f;
             if (TargetPriority == ETargetPriority.ClosestToShooter)
             {
-                Score = Distance;
+                Score = 10000 - Distance;
             }
             else if (TargetPriority == ETargetPriority.ClosestToFinish)
             {
@@ -103,12 +103,13 @@ public partial class C_Attack : Node2D
             if (Score > BestScore)
             {
                 NewTarget = TestEnemy;
+                BestScore = Score;
             }
         }
 
         if (IsInstanceValid(NewTarget) && NewTarget != CurrentTarget)
         {
-            GD.Print(Name + " C_Attack.SeekTarget: New target is " + NewTarget.Name);
+            //GD.Print(Name + " C_Attack.SeekTarget: New target is " + NewTarget.Name);
             CurrentTarget = NewTarget;
         }
 

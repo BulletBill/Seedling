@@ -14,14 +14,14 @@ public partial class Tower : Sprite2D
 
 		if (IsDefendTarget)
 		{
-			Game.DefendTargets.Add(this);
+			Player.DefendTargets.Add(this);
 		}
 	}
 
     public override void _ExitTree()
     {
         base._ExitTree();
-		Game.DefendTargets.Remove(this);
+		Player.DefendTargets.Remove(this);
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

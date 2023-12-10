@@ -10,13 +10,18 @@ public partial class C_AlignToMap : Node
 
     public void AlignToMap()
     {
-        Tower ParentNode = GetParentOrNull<Tower>();
+        Node2D ParentNode = GetParentOrNull<Node2D>();
         if (ParentNode == null) return;
 
         MainMap CachedTileMap = MainMap.Singleton;
         if (CachedTileMap == null) return;
 
-        ParentNode.MapPosition = CachedTileMap.LocalToMap(CachedTileMap.ToLocal(ParentNode.GlobalPosition));
-		ParentNode.GlobalPosition = CachedTileMap.ToGlobal(CachedTileMap.MapToLocal(ParentNode.MapPosition));
+        Vector2I MapPosition = CachedTileMap.LocalToMap(CachedTileMap.ToLocal(ParentNode.GlobalPosition));
+		ParentNode.GlobalPosition = CachedTileMap.ToGlobal(CachedTileMap.MapToLocal(MapPosition));
+
+        if (ParentNode is Tower ParentTower)
+        {
+            ParentTower.MapPosition = MapPosition;
+        }
     }
 }

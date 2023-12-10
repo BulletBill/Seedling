@@ -4,12 +4,14 @@ using Godot.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Intrinsics.Arm;
+using System.Reflection;
 
 [Tool]
 public partial class C_GrassGrowth : Node2D
 {
     [Export] public float Radius = 1.0f;
     [Export] public float GrowthInterval = 2.0f;
+    [Export] public bool AttractEnemies = true;
     float GrowthTimer = 0.1f;
     List<TileAtDistance> TilesInRange = new();
 
@@ -75,11 +77,23 @@ public partial class C_GrassGrowth : Node2D
         {
             if (TilesInRange[i].Distance <= DistanceToUse)
             {
-                TilesToGrow.Add(TilesInRange[i].TilePosition);
+                // Tile might have become grass from another tower in the mean time
+                if (CachedTileMap.GetCellTileData(MainMap.Layer_Ground, TilesInRange[i].TilePosition).Terrain != MainMap.Terrain_Grass)
+                {
+                    TilesToGrow.Add(TilesInRange[i].TilePosition);
+                }
                 TilesInRange.RemoveAt(i);
             }
         }
-        CachedTileMap.SetCellsTerrainConnect(MainMap.Layer_Ground, TilesToGrow, MainMap.TerrainSet_Default, MainMap.Terrain_Grass);
+
+        if (TilesToGrow.Count > 0)
+        {
+            CachedTileMap.SetCellsTerrainConnect(MainMap.Layer_Ground, TilesToGrow, MainMap.TerrainSet_Default, MainMap.Terrain_Grass);
+            if (AttractEnemies)
+            {
+                Player.Singleton.EmitSignal("GrassGrown", TilesToGrow.Count);
+            }
+        }
     }
 
     public override void _Draw()

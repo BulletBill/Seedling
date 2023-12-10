@@ -74,7 +74,6 @@ _data = {
 size = Vector2(30, 31)
 
 [node name="Genesis" type="Sprite2D" groups=["Tower"]]
-z_index = 10
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_7wjg6")
 texture = ExtResource("1_dvwho")
@@ -90,6 +89,7 @@ script = ExtResource("3_sfwam")
 script = ExtResource("4_pgxo7")
 Radius = 108.0
 GrowthInterval = 0.2
+AttractEnemies = false
 
 [node name="AddLifeforce" type="Node2D" parent="."]
 script = ExtResource("5_u28xf")
