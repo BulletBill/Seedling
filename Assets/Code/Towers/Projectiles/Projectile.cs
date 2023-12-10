@@ -4,6 +4,7 @@ using System;
 public partial class Projectile : Sprite2D
 {
 	public Vector2 Origin = new();
+	public Vector2 TargetLocation = new();
 	public Enemy Target = new();
 	public float RemainingTime = 1.0f;
 	float StartTime = 1.0f;
@@ -28,10 +29,9 @@ public partial class Projectile : Sprite2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if (!IsInstanceValid(Target))
+		if (IsInstanceValid(Target))
 		{
-			QueueFree();
-			return;
+			TargetLocation = Target.GlobalPosition;
 		}
 
 		if (RemainingTime > 0.0f)
@@ -43,8 +43,8 @@ public partial class Projectile : Sprite2D
 				return;
 			}
 
-			GlobalPosition = Origin.Lerp(Target.GlobalPosition, 1 - (RemainingTime / StartTime));
-			LookAt(Target.GlobalPosition);
+			GlobalPosition = Origin.Lerp(TargetLocation, 1 - (RemainingTime / StartTime));
+			LookAt(TargetLocation);
 		}
 	}
 }

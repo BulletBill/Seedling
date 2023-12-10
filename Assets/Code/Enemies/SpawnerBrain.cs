@@ -30,7 +30,7 @@ public partial class SpawnerBrain : Node
         SpawnPressure += 3.0f * Count;
         SpawningPool += Count;
 
-        GD.Print("SpawnerBrain.GrassGrown: Current Pressure is " + SpawnPressure.ToString() + " Spawning pool is " + SpawningPool.ToString());
+        //GD.Print("SpawnerBrain.GrassGrown: Current Pressure is " + SpawnPressure.ToString() + " Spawning pool is " + SpawningPool.ToString());
 
         if (Game.GetFloatInRange(0.0f, 100.0f) < SpawnPressure)
         {
@@ -55,7 +55,7 @@ public partial class SpawnerBrain : Node
             {
                 Spawners[SpawnerIndex].EnemiesToPlace.Enqueue(NewEnemy);
                 SpawningPool -= Math.Max(NewEnemy.SpawnCost, 1); // Kind of failsafe
-                GD.Print("SpawnerBrain.TryToSpawn: Spawned enemy " + NewEnemy.Name + " at spawner " + SpawnerIndex.ToString());
+                //GD.Print("SpawnerBrain.TryToSpawn: Spawned enemy " + NewEnemy.Name + " at spawner " + SpawnerIndex.ToString());
             }
             else
             {

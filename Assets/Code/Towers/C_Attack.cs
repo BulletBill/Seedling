@@ -123,7 +123,7 @@ public partial class C_Attack : Node2D
     {
         if (!IsInstanceValid(CurrentTarget)) return;
         AttackTimer = AttackDelay;
-        DamageTimer = DamageDelay;
+        DamageTimer = DamageDelay * (GlobalPosition.DistanceTo(CurrentTarget.GlobalPosition) / Range);
         PendingDamageTaker = CurrentTarget;
 
         if (FiredProjectile != null)
@@ -132,7 +132,7 @@ public partial class C_Attack : Node2D
             if(NewProjectile != null)
             {
                 AddChild(NewProjectile);
-                NewProjectile.Assign(GlobalPosition, CurrentTarget, DamageDelay);
+                NewProjectile.Assign(GlobalPosition, CurrentTarget, DamageTimer);
             }
         }
     }
