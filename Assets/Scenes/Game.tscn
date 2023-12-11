@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://df7u54ytfaqgo"]
+[gd_scene load_steps=20 format=3 uid="uid://df7u54ytfaqgo"]
 
 [ext_resource type="Script" path="res://Assets/Code/Core/Game.cs" id="1_6pfw6"]
 [ext_resource type="TileSet" uid="uid://se8ye8sftem5" path="res://Assets/Data/Tilesets/TileSet_Main.tres" id="1_vpnna"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://crks2aw8cc252" path="res://Assets/Scenes/player.tscn" id="2_5ryln"]
 [ext_resource type="PackedScene" uid="uid://2ekwlaa17gji" path="res://Assets/Scenes/cursor.tscn" id="2_fwv7t"]
 [ext_resource type="Script" path="res://Assets/Code/Tilemap/MainMap.cs" id="2_qs264"]
+[ext_resource type="Script" path="res://Assets/Code/Enemies/EnemyController.cs" id="5_2d86f"]
 [ext_resource type="Script" path="res://Assets/Code/Enemies/SpawnerBrain.cs" id="5_5wunb"]
 [ext_resource type="PackedScene" uid="uid://bltnii6x6epdm" path="res://Assets/Scenes/Towers/genesis.tscn" id="5_dfbf8"]
 [ext_resource type="PackedScene" uid="uid://bqo4ffahkqb78" path="res://Assets/Scenes/Interface/CurrencyDisplay.tscn" id="6_6nu1p"]
@@ -13,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cqlpygxb75t08" path="res://Assets/Scenes/Enemies/EnemySpawner.tscn" id="8_a3n2v"]
 [ext_resource type="Resource" uid="uid://bmd4ngk8oi5f1" path="res://Assets/Data/Build Towers/BT_Sapling.tres" id="9_qaekf"]
 [ext_resource type="PackedScene" uid="uid://cjvtnmut5ak7p" path="res://Assets/Scenes/Interface/DetailPanel.tscn" id="10_14nb1"]
+[ext_resource type="PackedScene" uid="uid://dynjwh5qcpo7t" path="res://Assets/Scenes/Interface/ObjectiveDisplay.tscn" id="12_3v315"]
 [ext_resource type="PackedScene" uid="uid://c4nme8pyly5sa" path="res://Assets/Scenes/Enemies/E1 Clod.tscn" id="12_ccdgc"]
 [ext_resource type="Resource" uid="uid://coyd0ad8jrvd7" path="res://Assets/Data/Build Towers/BT_Buckthorn.tres" id="13_lgdtf"]
 [ext_resource type="Resource" uid="uid://pqk4g5tts6in" path="res://Assets/Data/Build Towers/BT_Sunleaf.tres" id="13_qekwa"]
@@ -36,7 +38,10 @@ z_index = 50
 
 [node name="Player" parent="." instance=ExtResource("2_5ryln")]
 
-[node name="Enemy" type="Node2D" parent="."]
+[node name="EnemyController" type="Node2D" parent="."]
+script = ExtResource("5_2d86f")
+
+[node name="SpawnerBrain" type="Node2D" parent="EnemyController"]
 script = ExtResource("5_5wunb")
 EnemiesToSpawn = [ExtResource("12_ccdgc")]
 
@@ -88,6 +93,9 @@ layer = 100
 
 [node name="CurrencyDisplay" parent="UI Canvas Layer/InfoPanel" instance=ExtResource("6_6nu1p")]
 z_index = 10
+position = Vector2(0, 130)
+
+[node name="ObjectiveDisplay" parent="UI Canvas Layer/InfoPanel" instance=ExtResource("12_3v315")]
 
 [node name="DetailPanel" parent="UI Canvas Layer/InfoPanel" instance=ExtResource("10_14nb1")]
 visible = false

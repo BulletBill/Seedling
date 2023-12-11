@@ -1,10 +1,13 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 public partial class Player : Node2D
 {
     public static Player Singleton;
+    [Export] public int StartingLives = 12;
+    public int Lives { get; protected set;}
     [Export] public float IncomeInterval;
     public float IncomeTimer { get; protected set; } = 0.1f;
     public Dictionary<ECurrencyType, Currency> Currencies = new();
@@ -13,10 +16,16 @@ public partial class Player : Node2D
     // Signals
     [Signal] public delegate void ResourcesChangedEventHandler();
     [Signal] public delegate void GrassGrownEventHandler(int Count);
+    [Signal] public delegate void LiveChangedEventHandler();
+
+    public override void _EnterTree()
+    {
+        Player.Singleton = this;
+    }
 
     public override void _Ready()
     {
-        Player.Singleton = this;
+        Lives = StartingLives;
     }
 
     public override void _Process(double delta)

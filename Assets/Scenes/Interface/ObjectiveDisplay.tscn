@@ -1,0 +1,75 @@
+[gd_scene load_steps=8 format=3 uid="uid://dynjwh5qcpo7t"]
+
+[ext_resource type="Script" path="res://Assets/Code/Interface/LifeCounter.cs" id="2_ggogv"]
+[ext_resource type="Texture2D" uid="uid://c4cqjktrt205k" path="res://Assets/Art/Interface/WindowBG.png" id="2_oqybb"]
+[ext_resource type="Theme" uid="uid://svogtundy1nx" path="res://Assets/Art/Interface/default_theme.tres" id="3_20eby"]
+[ext_resource type="Texture2D" uid="uid://1p5pgipw4fyf" path="res://Assets/Art/Icons/Lifeforce Small.png" id="6_0661i"]
+[ext_resource type="Texture2D" uid="uid://iinbdvqjsk7n" path="res://Assets/Art/Icons/Clock Small.png" id="6_kwm7g"]
+[ext_resource type="Script" path="res://Assets/Code/Interface/WaveTimerDisplay.cs" id="6_yxj3j"]
+[ext_resource type="FontFile" uid="uid://w05srxbcg8v8" path="res://Assets/Art/Fonts/Default_UI.tres" id="7_i4671"]
+
+[node name="ObjectiveDisplay" type="Node2D"]
+scale = Vector2(2, 2)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.490196)
+offset_right = 141.0
+offset_bottom = 65.0
+texture = ExtResource("2_oqybb")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="Lives" type="Node2D" parent="."]
+position = Vector2(1.5, 2.5)
+script = ExtResource("2_ggogv")
+
+[node name="Lives Bar" type="ProgressBar" parent="Lives"]
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 134.0
+offset_bottom = 20.0
+theme = ExtResource("3_20eby")
+value = 50.0
+show_percentage = false
+
+[node name="Icon" type="Sprite2D" parent="Lives"]
+position = Vector2(12, 11.5)
+texture = ExtResource("6_0661i")
+
+[node name="Count" type="RichTextLabel" parent="Lives"]
+offset_left = 20.5
+offset_right = 88.5
+offset_bottom = 20.0
+theme_override_fonts/normal_font = ExtResource("7_i4671")
+text = "9999"
+scroll_active = false
+
+[node name="Timer" type="Node2D" parent="."]
+position = Vector2(0.5, 41)
+script = ExtResource("6_yxj3j")
+
+[node name="Icon" type="Sprite2D" parent="Timer"]
+position = Vector2(12, 12)
+texture = ExtResource("6_kwm7g")
+
+[node name="Time" type="RichTextLabel" parent="Timer"]
+offset_left = 22.0
+offset_top = 1.0
+offset_right = 90.0
+offset_bottom = 21.0
+theme = ExtResource("3_20eby")
+theme_override_fonts/normal_font = ExtResource("7_i4671")
+text = "5:00"
+scroll_active = false
+
+[node name="Label" type="RichTextLabel" parent="Timer"]
+offset_left = 4.0
+offset_top = -16.5
+offset_right = 91.0
+offset_bottom = 3.5
+theme = ExtResource("3_20eby")
+theme_override_fonts/normal_font = ExtResource("7_i4671")
+text = "Next Wave"
+scroll_active = false

@@ -10,7 +10,7 @@ public partial class SpawnerBrain : Node
     public int SpawningPool = 0;
     public float SpawnPressure = 0.0f;
 
-    public float BigWaveTimer { get; protected set; } = 300.0f;
+    public float BigWaveTimer { get; protected set; } = 301.0f;
     int BigWaveSpawningPool = 100;
 
     public override void _Ready()
@@ -22,6 +22,14 @@ public partial class SpawnerBrain : Node
             {
                 Spawners.Add(Spawner);
             }
+        }
+    }
+
+    public override void _Process(double delta)
+    {
+        if (BigWaveTimer > 0)
+        {
+            BigWaveTimer -= (float)delta;
         }
     }
 
