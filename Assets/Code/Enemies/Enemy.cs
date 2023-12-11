@@ -6,6 +6,7 @@ public partial class Enemy : CharacterBody2D
 	public static readonly float SeekInterval = 1.0f;
 	public static readonly String EnemyGroup = "Enemy";
 	[Export] public int SpawnCost = 1;
+	[Export] public int PlayerDamage = 1;
 	[Export] public float Speed = 40.0f;
 	public bool Active = false;
 	NavigationAgent2D Nav;
@@ -29,7 +30,7 @@ public partial class Enemy : CharacterBody2D
 	public override void _Process(double delta)
 	{
 		if (!Active) return;
-		
+
 		SeekTimer -= (float)delta;
 		if (SeekTimer <= 0.0f)
 		{
@@ -47,6 +48,11 @@ public partial class Enemy : CharacterBody2D
 		MoveAndSlide();
 
 		DistanceToTarget = Nav.DistanceToTarget();
+		if (DistanceToTarget < MainMap.GetTileSize())
+		{
+			Player.TakeDamage(PlayerDamage);
+			QueueFree();
+		}
     }
 
 	void MakePath()

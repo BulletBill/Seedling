@@ -16,7 +16,7 @@ public partial class Player : Node2D
     // Signals
     [Signal] public delegate void ResourcesChangedEventHandler();
     [Signal] public delegate void GrassGrownEventHandler(int Count);
-    [Signal] public delegate void LiveChangedEventHandler();
+    [Signal] public delegate void LivesChangedEventHandler();
 
     public override void _EnterTree()
     {
@@ -47,6 +47,16 @@ public partial class Player : Node2D
         foreach(var c in Currencies)
         {
             c.Value.CurrencyTick();
+        }
+    }
+
+    void TakeDamage_Internal(int Damage)
+    {
+        Lives -= Damage;
+        EmitSignal("LivesChanged");
+        if (Lives <= 0)
+        {
+            GetTree().Quit();
         }
     }
 
@@ -90,5 +100,12 @@ public partial class Player : Node2D
         Player.GetCurrency(ECurrencyType.Energy).AddAmount(-1 * Cost.Energy);
 
         return true;
+    }
+
+    public static void TakeDamage(int Damage)
+    {
+        if (Player.Singleton == null) return;
+
+        Player.Singleton.TakeDamage_Internal(Damage);
     }
 }

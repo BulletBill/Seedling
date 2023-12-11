@@ -5,7 +5,7 @@ public partial class LifeCounter : Node
 {
     public override void _Ready()
     {
-        Player.Singleton.LiveChanged += Update;
+        Player.Singleton.LivesChanged += Update;
         Update();
     }
 
