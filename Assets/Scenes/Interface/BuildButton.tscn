@@ -168,6 +168,7 @@ texture = ExtResource("4_ektdc")
 
 [node name="TowerSprite" type="Sprite2D" parent="."]
 z_index = 1
+material = ExtResource("3_r4kpr")
 texture = ExtResource("3_80dcy")
 
 [node name="Cost" type="RichTextLabel" parent="."]

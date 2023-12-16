@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://dbr6bnc2oohvr"]
 
 [ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_ngx3s"]
-[ext_resource type="Texture2D" uid="uid://c8oydv3o33tcw" path="res://Assets/Art/Towers/Sun Leaf.png" id="2_f7v0a"]
+[ext_resource type="Texture2D" uid="uid://blygruvq4wq11" path="res://Assets/Towers/Sun Leaf/Art-Sun Leaf.png" id="2_i7nei"]
 [ext_resource type="Script" path="res://Assets/Code/Towers/Tower.cs" id="3_xav0s"]
 [ext_resource type="Script" path="res://Assets/Code/Towers/C_AlignToMap.cs" id="4_t3g32"]
 [ext_resource type="Script" path="res://Assets/Code/Towers/C_GenerateResource.cs" id="6_5sn2s"]
@@ -76,7 +76,7 @@ size = Vector2(30, 31)
 z_index = 10
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_bjj0w")
-texture = ExtResource("2_f7v0a")
+texture = ExtResource("2_i7nei")
 script = ExtResource("3_xav0s")
 
 [node name="AlignToMap" type="Node2D" parent="."]
@@ -101,5 +101,6 @@ libraries = {
 ParentAnimator = NodePath("../HoverAnimator")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HoverArea"]
+visible = false
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_6l6xg")

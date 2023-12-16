@@ -139,6 +139,9 @@ public partial class C_Attack : Node2D
 
     public override void _Draw()
     {
-        DrawArc(Position, Range, 0.0f, 360.0f, 36, Colors.OrangeRed);
+        if (MainMap.IsOutlineActive())
+        {
+            DrawArc(Position, Range, 0.0f, 360.0f, 36, Colors.OrangeRed);
+        }
     }
 }

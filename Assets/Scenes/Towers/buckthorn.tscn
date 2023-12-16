@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://cnq5verjyrwl7"]
 
 [ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_ix1iv"]
-[ext_resource type="Texture2D" uid="uid://fkw50o3asbl2" path="res://Assets/Art/Towers/Buckthorn.png" id="2_og3e3"]
+[ext_resource type="Texture2D" uid="uid://cedcepcgtfr5w" path="res://Assets/Towers/Buckthorn/Art-Buckthorn.png" id="2_dpoq4"]
 [ext_resource type="Script" path="res://Assets/Code/Towers/Tower.cs" id="3_o2nw0"]
 [ext_resource type="Script" path="res://Assets/Code/Towers/C_AlignToMap.cs" id="4_mtrqy"]
 [ext_resource type="Script" path="res://Assets/Code/Towers/C_Attack.cs" id="4_uxvqx"]
@@ -77,8 +77,7 @@ size = Vector2(30, 31)
 z_index = 10
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_bjj0w")
-texture = ExtResource("2_og3e3")
-offset = Vector2(0, -8)
+texture = ExtResource("2_dpoq4")
 script = ExtResource("3_o2nw0")
 
 [node name="Attack" type="Node2D" parent="." groups=["Attacker"]]
@@ -102,5 +101,6 @@ libraries = {
 ParentAnimator = NodePath("../HoverAnimator")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HoverArea"]
+visible = false
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_6l6xg")

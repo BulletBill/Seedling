@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://d2k206m54ooy6"]
 
-[ext_resource type="Texture2D" uid="uid://vreeyj5md8vc" path="res://Assets/Art/Towers/Sapling.png" id="1_8re0u"]
 [ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_rsmg3"]
+[ext_resource type="Texture2D" uid="uid://brtlf65prxos0" path="res://Assets/Towers/Sapling/Art-Sapling.png" id="2_2tikx"]
 [ext_resource type="Script" path="res://Assets/Code/Towers/Tower.cs" id="2_gn2dk"]
 [ext_resource type="Script" path="res://Assets/Code/Towers/C_AlignToMap.cs" id="3_3xuv4"]
 [ext_resource type="Script" path="res://Assets/Code/Towers/C_GrassGrowth.cs" id="4_xwlmf"]
@@ -77,8 +77,7 @@ size = Vector2(30, 31)
 z_index = 10
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_bjj0w")
-texture = ExtResource("1_8re0u")
-offset = Vector2(0, -8)
+texture = ExtResource("2_2tikx")
 script = ExtResource("2_gn2dk")
 
 [node name="AlignToMap" type="Node2D" parent="."]
@@ -101,5 +100,6 @@ libraries = {
 ParentAnimator = NodePath("../HoverAnimator")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HoverArea"]
+visible = false
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_6l6xg")

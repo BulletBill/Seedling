@@ -114,6 +114,13 @@ public partial class MainMap : TileMap
 		if (MainMap.Singleton == null) return;
 		MainMap.Singleton.RemoveOutlineActive_Internal(ActiveFlag);
 	}
+
+	public static bool IsOutlineActive()
+	{
+		if (MainMap.Singleton == null) return false;
+
+		return MainMap.Singleton.OutlineActive > 0;
+	}
 }
 
 public class TileAtDistance

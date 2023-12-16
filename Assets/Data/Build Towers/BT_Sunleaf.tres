@@ -1,7 +1,7 @@
 [gd_resource type="Resource" load_steps=6 format=3 uid="uid://pqk4g5tts6in"]
 
 [ext_resource type="Script" path="res://Assets/Code/Towers/R_Cost.cs" id="1_4jkm7"]
-[ext_resource type="Texture2D" uid="uid://c8oydv3o33tcw" path="res://Assets/Art/Towers/Sun Leaf.png" id="2_7dtlk"]
+[ext_resource type="Texture2D" uid="uid://blygruvq4wq11" path="res://Assets/Towers/Sun Leaf/Art-Sun Leaf.png" id="2_0ycwf"]
 [ext_resource type="PackedScene" uid="uid://dbr6bnc2oohvr" path="res://Assets/Scenes/Towers/sunleaf.tscn" id="3_vequt"]
 [ext_resource type="Script" path="res://Assets/Code/Towers/R_BuildTower.cs" id="4_40fvq"]
 
@@ -15,7 +15,7 @@ Energy = 0
 
 [resource]
 script = ExtResource("4_40fvq")
-PlacementSprite = ExtResource("2_7dtlk")
+PlacementSprite = ExtResource("2_0ycwf")
 TowerToBuild = ExtResource("3_vequt")
 TowerName = "Sunleaf"
 Description = ""
