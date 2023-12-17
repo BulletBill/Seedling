@@ -68,6 +68,14 @@ public partial class Player : Node2D
         return Player.Singleton.Currencies[Type];
     }
 
+    public static int GetCurrentAmount(ECurrencyType Type)
+    {
+        Currency Context = GetCurrency(Type);
+        if (Context == null) return 0;
+
+        return Context.Amount;
+    }
+
     public static float GetIncomePercent()
     {
         if (Player.Singleton == null) return 0.0f;

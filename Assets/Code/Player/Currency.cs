@@ -49,6 +49,7 @@ public partial class Currency : Node2D
         if (PrevAmount != Amount)
         {
             EmitSignal("OnCurrencyChanged", this);
+            Player.Singleton.EmitSignal("ResourcesChanged");
         }
     }
 

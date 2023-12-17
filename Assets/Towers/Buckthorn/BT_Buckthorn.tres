@@ -1,0 +1,24 @@
+[gd_resource type="Resource" load_steps=6 format=3 uid="uid://coyd0ad8jrvd7"]
+
+[ext_resource type="Script" path="res://Assets/Code/Towers/R_Cost.cs" id="1_okcfk"]
+[ext_resource type="Texture2D" uid="uid://cedcepcgtfr5w" path="res://Assets/Towers/Buckthorn/Art-Buckthorn.png" id="2_c3nqm"]
+[ext_resource type="PackedScene" uid="uid://cnq5verjyrwl7" path="res://Assets/Towers/Buckthorn/buckthorn.tscn" id="3_alrds"]
+[ext_resource type="Script" path="res://Assets/Code/Towers/R_BuildTower.cs" id="4_xuhh0"]
+
+[sub_resource type="Resource" id="Resource_4ujqw"]
+script = ExtResource("1_okcfk")
+LifeForce = 1
+Substance = 5
+Flow = 1
+Breath = 0
+Energy = 0
+
+[resource]
+script = ExtResource("4_xuhh0")
+PlacementSprite = ExtResource("2_c3nqm")
+TowerToBuild = ExtResource("3_alrds")
+TowerName = "Buckthorn"
+Description = ""
+Cost = SubResource("Resource_4ujqw")
+BuildTime = 5.0
+NeedsGrass = true

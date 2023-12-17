@@ -70,7 +70,7 @@ public partial class C_GrassGrowth : Node2D
         MainMap CachedTileMap = MainMap.Singleton;
         if (CachedTileMap == null) return;
 
-        Array<Vector2I> TilesToGrow = new();
+        List<TileAtDistance> TilesToGrow = new();
         float DistanceToUse = TilesInRange[0].Distance;
 
         for(int i = TilesInRange.Count - 1; i >= 0; i--)
@@ -80,18 +80,22 @@ public partial class C_GrassGrowth : Node2D
                 // Tile might have become grass from another tower in the mean time
                 if (CachedTileMap.GetCellTileData(MainMap.Layer_Ground, TilesInRange[i].TilePosition).Terrain != MainMap.Terrain_Grass)
                 {
-                    TilesToGrow.Add(TilesInRange[i].TilePosition);
+                    TilesToGrow.Add(TilesInRange[i]);
                 }
-                TilesInRange.RemoveAt(i);
+                //TilesInRange.RemoveAt(i);
             }
         }
 
         if (TilesToGrow.Count > 0)
         {
-            CachedTileMap.SetCellsTerrainConnect(MainMap.Layer_Ground, TilesToGrow, MainMap.TerrainSet_Default, MainMap.Terrain_Grass);
+            int GrowIndex = Game.GetIntInRange(0, TilesToGrow.Count - 1);
+            Array<Vector2I> TileToGrow = new();
+            TileToGrow.Add(TilesToGrow[GrowIndex].TilePosition);
+            TilesInRange.Remove(TilesToGrow[GrowIndex]);
+            CachedTileMap.SetCellsTerrainConnect(MainMap.Layer_Ground, TileToGrow, MainMap.TerrainSet_Default, MainMap.Terrain_Grass);
             if (AttractEnemies)
             {
-                Player.Singleton.EmitSignal("GrassGrown", TilesToGrow.Count);
+                Player.Singleton.EmitSignal("GrassGrown", TileToGrow.Count);
             }
         }
     }

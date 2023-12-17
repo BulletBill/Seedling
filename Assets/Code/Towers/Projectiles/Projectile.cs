@@ -21,6 +21,7 @@ public partial class Projectile : Sprite2D
 		GlobalPosition = StartPosition;
 
 		Target = TargetEnemy;
+		TargetLocation = Target.GlobalPosition;
 
 		RemainingTime = TravelTime;
 		StartTime = TravelTime;

@@ -1,15 +1,15 @@
 [gd_scene load_steps=14 format=3 uid="uid://d2k206m54ooy6"]
 
-[ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_rsmg3"]
-[ext_resource type="Texture2D" uid="uid://brtlf65prxos0" path="res://Assets/Towers/Sapling/Art-Sapling.png" id="2_2tikx"]
-[ext_resource type="Script" path="res://Assets/Code/Towers/Tower.cs" id="2_gn2dk"]
-[ext_resource type="Script" path="res://Assets/Code/Towers/C_AlignToMap.cs" id="3_3xuv4"]
-[ext_resource type="Script" path="res://Assets/Code/Towers/C_GrassGrowth.cs" id="4_xwlmf"]
-[ext_resource type="Script" path="res://Assets/Code/Towers/C_GenerateResource.cs" id="5_jn7g3"]
-[ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Scenes/Interface/HoverArea.tscn" id="6_vd2oi"]
+[ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_rdm0s"]
+[ext_resource type="Texture2D" uid="uid://brtlf65prxos0" path="res://Assets/Towers/Sapling/Art-Sapling.png" id="2_0dani"]
+[ext_resource type="Script" path="res://Assets/Code/Towers/Tower.cs" id="3_lo0be"]
+[ext_resource type="Script" path="res://Assets/Code/Towers/C_AlignToMap.cs" id="4_wn8xk"]
+[ext_resource type="Script" path="res://Assets/Code/Towers/C_GrassGrowth.cs" id="5_58ag6"]
+[ext_resource type="Script" path="res://Assets/Code/Towers/C_GenerateResource.cs" id="6_gf1b1"]
+[ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Scenes/Interface/HoverArea.tscn" id="7_2eaun"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bjj0w"]
-shader = ExtResource("1_rsmg3")
+shader = ExtResource("1_rdm0s")
 shader_parameter/color = Color(1, 1, 1, 1)
 shader_parameter/width = 0.0
 shader_parameter/pattern = 0
@@ -77,26 +77,27 @@ size = Vector2(30, 31)
 z_index = 10
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_bjj0w")
-texture = ExtResource("2_2tikx")
-script = ExtResource("2_gn2dk")
+texture = ExtResource("2_0dani")
+script = ExtResource("3_lo0be")
 
 [node name="AlignToMap" type="Node2D" parent="."]
-script = ExtResource("3_3xuv4")
+script = ExtResource("4_wn8xk")
 
 [node name="GrassGrowth" type="Node2D" parent="."]
-script = ExtResource("4_xwlmf")
+script = ExtResource("5_58ag6")
 Radius = 108.0
-GrowthInterval = 5.0
+GrowthInterval = 0.5
 
 [node name="AddLifeforce" type="Node2D" parent="."]
-script = ExtResource("5_jn7g3")
+script = ExtResource("6_gf1b1")
+AddFlatAmount = 2
 
 [node name="HoverAnimator" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_v61gj")
 }
 
-[node name="HoverArea" parent="." node_paths=PackedStringArray("ParentAnimator") instance=ExtResource("6_vd2oi")]
+[node name="HoverArea" parent="." node_paths=PackedStringArray("ParentAnimator") instance=ExtResource("7_2eaun")]
 ParentAnimator = NodePath("../HoverAnimator")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HoverArea"]

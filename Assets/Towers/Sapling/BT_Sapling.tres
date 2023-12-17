@@ -1,0 +1,24 @@
+[gd_resource type="Resource" load_steps=6 format=3 uid="uid://bmd4ngk8oi5f1"]
+
+[ext_resource type="Script" path="res://Assets/Code/Towers/R_Cost.cs" id="1_wm3pd"]
+[ext_resource type="Texture2D" uid="uid://brtlf65prxos0" path="res://Assets/Towers/Sapling/Art-Sapling.png" id="2_opbt8"]
+[ext_resource type="PackedScene" uid="uid://d2k206m54ooy6" path="res://Assets/Towers/Sapling/sapling.tscn" id="3_eilvv"]
+[ext_resource type="Script" path="res://Assets/Code/Towers/R_BuildTower.cs" id="4_tlnc3"]
+
+[sub_resource type="Resource" id="Resource_4ujqw"]
+script = ExtResource("1_wm3pd")
+LifeForce = 0
+Substance = 5
+Flow = 1
+Breath = 0
+Energy = 0
+
+[resource]
+script = ExtResource("4_tlnc3")
+PlacementSprite = ExtResource("2_opbt8")
+TowerToBuild = ExtResource("3_eilvv")
+TowerName = "Sapling"
+Description = ""
+Cost = SubResource("Resource_4ujqw")
+BuildTime = 5.0
+NeedsGrass = true
