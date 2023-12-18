@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwsle41sxrc0k"]
+
+[ext_resource type="Script" path="res://Assets/Towers/BuildTower/BuildTower.cs" id="1_1extp"]
+[ext_resource type="PackedScene" uid="uid://cnq5verjyrwl7" path="res://Assets/Towers/Buckthorn/buckthorn.tscn" id="2_w82q5"]
+[ext_resource type="Texture2D" uid="uid://b3ohqqlo3egwh" path="res://Assets/Towers/Buckthorn/Art-BuildBuckthorn.png" id="3_uiggv"]
+[ext_resource type="Script" path="res://Assets/Code/Towers/C_AlignToMap.cs" id="4_a8ets"]
+
+[node name="Build-Buckthorn" type="Node2D"]
+script = ExtResource("1_1extp")
+TowerToBecome = ExtResource("2_w82q5")
+BuildTime = 8.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_uiggv")
+
+[node name="AlignToMap" type="Node2D" parent="."]
+script = ExtResource("4_a8ets")
+
+[node name="BuildBar" type="ProgressBar" parent="."]
+offset_left = -14.0
+offset_top = 8.0
+offset_right = 14.0
+offset_bottom = 14.0
+max_value = 500.0
+step = 1.0
+show_percentage = false

@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://brrad01kekp4g"]
+
+[ext_resource type="Script" path="res://Assets/Towers/BuildTower/BuildTower.cs" id="1_ypni4"]
+[ext_resource type="PackedScene" uid="uid://dbr6bnc2oohvr" path="res://Assets/Towers/Sun Leaf/sunleaf.tscn" id="2_ymfnc"]
+[ext_resource type="Texture2D" uid="uid://buxupkbpoki3h" path="res://Assets/Towers/Sun Leaf/Art-Build Sun Leaf.png" id="3_jjsab"]
+[ext_resource type="Script" path="res://Assets/Code/Towers/C_AlignToMap.cs" id="4_wrxcg"]
+
+[node name="Build-Sunleaf" type="Node2D"]
+script = ExtResource("1_ypni4")
+TowerToBecome = ExtResource("2_ymfnc")
+BuildTime = 5.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_jjsab")
+
+[node name="AlignToMap" type="Node2D" parent="."]
+script = ExtResource("4_wrxcg")
+
+[node name="BuildBar" type="ProgressBar" parent="."]
+offset_left = -14.0
+offset_top = 8.0
+offset_right = 14.0
+offset_bottom = 14.0
+max_value = 500.0
+step = 1.0
+show_percentage = false

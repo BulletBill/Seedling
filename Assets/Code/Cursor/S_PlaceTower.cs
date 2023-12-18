@@ -37,7 +37,7 @@ public partial class S_PlaceTower : Node, ICursorState
         if (PlacementIsValid == false) return;
         if (TowerToBuild.TowerToBuild == null) return;
 
-        Tower NewTower = TowerToBuild.TowerToBuild.Instantiate<Tower>();
+        Node2D NewTower = TowerToBuild.TowerToBuild.Instantiate<Node2D>();
         if (NewTower == null) return;
         NewTower.GlobalPosition = Cursor.GetTilePosition();
         MainMap.Singleton.AddChild(NewTower);

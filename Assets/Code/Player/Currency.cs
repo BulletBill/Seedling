@@ -62,6 +62,7 @@ public partial class Currency : Node2D
         Income += NewGenerator.AddedIncome;
         Amount = Math.Clamp(Amount + NewGenerator.AddFlatAmount, 0, MaximumAmount);
         EmitSignal("OnCurrencyChanged", this);
+        Player.Singleton.EmitSignal("ResourcesChanged");
     }
 
     public void RemoveGenerator(C_GenerateResource RemovedGenerator)
@@ -73,5 +74,6 @@ public partial class Currency : Node2D
         Income -= RemovedGenerator.AddedIncome;
         Amount = Math.Clamp(Amount - RemovedGenerator.AddFlatAmount, 0, MaximumAmount);
         EmitSignal("OnCurrencyChanged", this);
+        Player.Singleton.EmitSignal("ResourcesChanged");
     }
 }
