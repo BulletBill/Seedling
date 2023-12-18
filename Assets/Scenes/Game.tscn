@@ -12,7 +12,7 @@
 [ext_resource type="Resource" uid="uid://bmd4ngk8oi5f1" path="res://Assets/Towers/Sapling/BT_Sapling.tres" id="9_qaekf"]
 [ext_resource type="PackedScene" uid="uid://cjvtnmut5ak7p" path="res://Assets/Scenes/Interface/DetailPanel.tscn" id="10_14nb1"]
 [ext_resource type="PackedScene" uid="uid://dynjwh5qcpo7t" path="res://Assets/Scenes/Interface/ObjectiveDisplay.tscn" id="12_3v315"]
-[ext_resource type="PackedScene" uid="uid://c4nme8pyly5sa" path="res://Assets/Scenes/Enemies/E1 Clod.tscn" id="12_ccdgc"]
+[ext_resource type="PackedScene" uid="uid://c4nme8pyly5sa" path="res://Assets/Enemies/Clod-E1/E1 Clod.tscn" id="12_ccdgc"]
 [ext_resource type="Resource" uid="uid://coyd0ad8jrvd7" path="res://Assets/Towers/Buckthorn/BT_Buckthorn.tres" id="13_lgdtf"]
 [ext_resource type="Resource" uid="uid://pqk4g5tts6in" path="res://Assets/Towers/Sun Leaf/BT_Sunleaf.tres" id="13_qekwa"]
 [ext_resource type="PackedScene" uid="uid://ukt5pidwl63" path="res://Assets/Scenes/Interface/ContextMenu.tscn" id="19_s5hir"]

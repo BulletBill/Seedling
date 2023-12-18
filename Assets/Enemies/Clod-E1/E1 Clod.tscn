@@ -1,0 +1,117 @@
+[gd_scene load_steps=9 format=3 uid="uid://c4nme8pyly5sa"]
+
+[ext_resource type="Script" path="res://Assets/Code/Enemies/Enemy.cs" id="1_u2htd"]
+[ext_resource type="Script" path="res://Assets/Code/Enemies/C_HealthPool.cs" id="2_8wvkh"]
+[ext_resource type="Script" path="res://Assets/Code/Towers/C_AlignToMap.cs" id="2_y6cnj"]
+[ext_resource type="Texture2D" uid="uid://qywtdmokjhr3" path="res://Assets/Enemies/Clod-E1/Art-Clod.png" id="4_k00w4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1e1oq"]
+radius = 14.0357
+
+[sub_resource type="Animation" id="Animation_kkj0l"]
+resource_name = "Brotate"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Clod:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 3.14159, 6.26573]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shadow:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 3.14159, 6.26573]
+}
+
+[sub_resource type="Animation" id="Animation_v3dm3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Clod:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shadow:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o0jnh"]
+_data = {
+"Brotate": SubResource("Animation_kkj0l"),
+"RESET": SubResource("Animation_v3dm3")
+}
+
+[node name="E1Clod" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 0
+collision_mask = 0
+motion_mode = 1
+script = ExtResource("1_u2htd")
+
+[node name="AlignToMap" type="Node2D" parent="."]
+script = ExtResource("2_y6cnj")
+
+[node name="HealthPool" type="Node2D" parent="."]
+script = ExtResource("2_8wvkh")
+
+[node name="HealthBar" type="ProgressBar" parent="HealthPool"]
+visible = false
+offset_left = -15.0
+offset_top = -25.0
+offset_right = 15.0
+offset_bottom = -19.0
+step = 1.0
+value = 100.0
+show_percentage = false
+
+[node name="Clod" type="Sprite2D" parent="."]
+texture = ExtResource("4_k00w4")
+offset = Vector2(2, -1)
+
+[node name="Shadow" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0, 0, 0.392157)
+z_index = -1
+position = Vector2(0, 3)
+texture = ExtResource("4_k00w4")
+offset = Vector2(2, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_1e1oq")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+target_desired_distance = 20.0
+path_postprocessing = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_o0jnh")
+}
+autoplay = "Brotate"
