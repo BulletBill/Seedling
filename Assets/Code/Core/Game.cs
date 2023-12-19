@@ -1,10 +1,18 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 public partial class Game : Node
 {
+    [Export] public PackedScene DamageNumberPrefab;
+    public static Game Singleton { get; protected set; }
     static RandomNumberGenerator RNG = new();
+
+    public override void _EnterTree()
+    {
+        Singleton = this;
+    }
 
     public static int GetIntInRange(int Min, int Max)
     {
@@ -29,5 +37,18 @@ public partial class Game : Node
         ret += Seconds.ToString();
 
         return ret;
+    }
+
+    public static void SpawnResourceNumber(Vector2 Location, int Amount, ECurrencyType Type)
+    {
+        if (Game.Singleton == null) return;
+        if (Game.Singleton.DamageNumberPrefab == null) return;
+
+        DamageNumber NewNumber = Game.Singleton.DamageNumberPrefab.InstantiateOrNull<DamageNumber>();
+        if (NewNumber != null)
+        {
+            MainMap.Singleton.AddChild(NewNumber);
+            NewNumber.AssignResource(Location, Amount, Type);
+        }
     }
 }

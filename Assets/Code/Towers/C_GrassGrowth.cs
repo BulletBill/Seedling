@@ -12,6 +12,7 @@ public partial class C_GrassGrowth : Node2D
     [Export] public float Radius = 1.0f;
     [Export] public float GrowthInterval = 2.0f;
     [Export] public bool AttractEnemies = true;
+    public static int ResourcePerTile = 5;
     float GrowthTimer = 0.1f;
     List<TileAtDistance> TilesInRange = new();
 
@@ -89,8 +90,18 @@ public partial class C_GrassGrowth : Node2D
         if (TilesToGrow.Count > 0)
         {
             int GrowIndex = Game.GetIntInRange(0, TilesToGrow.Count - 1);
-            Array<Vector2I> TileToGrow = new();
-            TileToGrow.Add(TilesToGrow[GrowIndex].TilePosition);
+            Array<Vector2I> TileToGrow = new() { TilesToGrow[GrowIndex].TilePosition };
+
+            // Add resources for growing grass
+            ECurrencyType AddedType = MainMap.GetTileCurrency(TileToGrow[0]);
+            Currency AddedCurrency = Player.GetCurrency(AddedType);
+            if (AddedCurrency != null)
+            {
+                AddedCurrency.AddAmount(ResourcePerTile);
+                Game.SpawnResourceNumber(CachedTileMap.ToGlobal(CachedTileMap.MapToLocal(TileToGrow[0])), ResourcePerTile, AddedType);
+            }
+
+            // Modify Tilemap
             TilesInRange.Remove(TilesToGrow[GrowIndex]);
             CachedTileMap.SetCellsTerrainConnect(MainMap.Layer_Ground, TileToGrow, MainMap.TerrainSet_Default, MainMap.Terrain_Grass);
             if (AttractEnemies)

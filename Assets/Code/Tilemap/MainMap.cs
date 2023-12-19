@@ -4,6 +4,7 @@ using System;
 using System.Buffers;
 using System.Collections.Generic;
 using System.Data.Common;
+using System.Diagnostics;
 
 public partial class MainMap : TileMap
 {
@@ -101,6 +102,27 @@ public partial class MainMap : TileMap
 		}
 
 		return Terrain_Void;
+	}
+
+	public static ECurrencyType GetTileCurrency(Vector2I GridPosition)
+	{
+		int Type = GetTileType(GridPosition);
+		if (Type == MainMap.Terrain_Void) return ECurrencyType.None;
+
+		if (Type == MainMap.Terrain_Dirt || Type == MainMap.Terrain_Stone)
+		{
+			return ECurrencyType.Substance;
+		}
+		if (Type == MainMap.Terrain_Water)
+		{
+			return ECurrencyType.Flow;
+		}
+		if (Type == MainMap.Terrain_Chasm)
+		{
+			return ECurrencyType.Breath;
+		}
+
+		return ECurrencyType.None;
 	}
 
 	public static void AddOutlineActive(uint ActiveFlag)

@@ -9,6 +9,7 @@ public enum ECurrencyType
     Flow,
     Breath,
     Energy,
+    None,
 }
 
 public partial class Currency : Node2D
@@ -19,7 +20,7 @@ public partial class Currency : Node2D
     [Export] public bool ShowMaximum;
     [Export] public bool ShowBar;
     public int Amount { get; protected set; }
-    public int MaximumAmount { get; protected set; }
+    public int MaximumAmount { get; protected set; } = 999;
     public int Income { get; protected set; }
     List<C_GenerateResource> Generators = new();
 
