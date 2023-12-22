@@ -69,6 +69,7 @@ scroll_active = false
 position = Vector2(0, 42)
 script = ExtResource("3_2w8lf")
 CurrencyType = 1
+ShowMaximum = false
 
 [node name="Icon" type="Sprite2D" parent="Substance"]
 position = Vector2(12, 12)
@@ -98,6 +99,7 @@ scroll_active = false
 position = Vector2(0, 60)
 script = ExtResource("3_2w8lf")
 CurrencyType = 2
+ShowMaximum = false
 
 [node name="Icon" type="Sprite2D" parent="Flow"]
 position = Vector2(12, 12)
@@ -127,6 +129,7 @@ scroll_active = false
 position = Vector2(0, 78)
 script = ExtResource("3_2w8lf")
 CurrencyType = 3
+ShowMaximum = false
 
 [node name="Icon" type="Sprite2D" parent="Breath"]
 position = Vector2(12, 12)
@@ -156,6 +159,7 @@ scroll_active = false
 position = Vector2(0, 96)
 script = ExtResource("3_2w8lf")
 CurrencyType = 4
+ShowMaximum = false
 
 [node name="Icon" type="Sprite2D" parent="Energy"]
 position = Vector2(12, 12)

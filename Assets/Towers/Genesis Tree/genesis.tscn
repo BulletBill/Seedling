@@ -139,19 +139,14 @@ AttractEnemies = false
 [node name="AddLifeforce" type="Node2D" parent="."]
 script = ExtResource("6_vtcrn")
 AddFlatAmount = 5
-IncreaseMaximum = 999
 
 [node name="Substance Income" type="Node2D" parent="."]
 script = ExtResource("6_vtcrn")
 CurrencyType = 1
-AddedIncome = 5
-IncreaseMaximum = 100
 
 [node name="Flow Income" type="Node2D" parent="."]
 script = ExtResource("6_vtcrn")
 CurrencyType = 2
-AddedIncome = 1
-IncreaseMaximum = 20
 
 [node name="HoverAnimator" type="AnimationPlayer" parent="."]
 libraries = {

@@ -8,8 +8,8 @@
 [sub_resource type="Resource" id="Resource_4ujqw"]
 script = ExtResource("1_wm3pd")
 LifeForce = 0
-Substance = 5
-Flow = 1
+Substance = 0
+Flow = 40
 Breath = 0
 Energy = 0
 
@@ -20,5 +20,5 @@ TowerToBuild = ExtResource("3_i6sxi")
 TowerName = "Sapling"
 Description = ""
 Cost = SubResource("Resource_4ujqw")
-BuildTime = 5.0
+BuildTime = 10.0
 NeedsGrass = true

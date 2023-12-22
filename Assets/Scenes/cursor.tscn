@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://2ekwlaa17gji"]
+[gd_scene load_steps=4 format=3 uid="uid://2ekwlaa17gji"]
 
 [ext_resource type="Script" path="res://Assets/Code/Cursor/Cursor.cs" id="1_85qhr"]
-[ext_resource type="Texture2D" uid="uid://vreeyj5md8vc" path="res://Assets/Art/Towers/Sapling.png" id="3_21r5y"]
 [ext_resource type="Script" path="res://Assets/Code/Cursor/S_Free.cs" id="3_wjcte"]
 [ext_resource type="Script" path="res://Assets/Code/Cursor/S_PlaceTower.cs" id="4_voq7h"]
 
@@ -12,7 +11,6 @@ DefaultCursorState = NodePath("State_Free")
 [node name="PlacementGhost" type="Sprite2D" parent="."]
 visible = false
 z_index = 10
-texture = ExtResource("3_21r5y")
 offset = Vector2(16, 16)
 
 [node name="State_Free" type="Node2D" parent="."]

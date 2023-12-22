@@ -5,6 +5,7 @@ using System.Buffers;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Diagnostics;
+using System.Globalization;
 
 public partial class MainMap : TileMap
 {
@@ -13,6 +14,9 @@ public partial class MainMap : TileMap
 	uint OutlineActive = 0;
 	bool OutlineShown = false;
 	public static MainMap Singleton;
+
+	// Harvested Tiles
+	Dictionary<Vector2I, int> HarvestedTileCount = new();
 
 	// Terrain Index shortcuts
 	public static readonly int Terrain_Void = -1;
@@ -109,7 +113,7 @@ public partial class MainMap : TileMap
 		int Type = GetTileType(GridPosition);
 		if (Type == MainMap.Terrain_Void) return ECurrencyType.None;
 
-		if (Type == MainMap.Terrain_Dirt || Type == MainMap.Terrain_Stone)
+		if (Type == MainMap.Terrain_Dirt || Type == MainMap.Terrain_Stone || Type == MainMap.Terrain_Grass)
 		{
 			return ECurrencyType.Substance;
 		}
@@ -142,6 +146,20 @@ public partial class MainMap : TileMap
 		if (MainMap.Singleton == null) return false;
 
 		return MainMap.Singleton.OutlineActive > 0;
+	}
+
+	public static ECurrencyType HarvestTile(Vector2I TileLoc)
+	{
+		if (Singleton == null) return ECurrencyType.None;
+
+		if (Singleton.HarvestedTileCount.ContainsKey(TileLoc))
+		{
+			Singleton.HarvestedTileCount[TileLoc] += 1;
+			return ECurrencyType.None;
+		}
+
+		Singleton.HarvestedTileCount.Add(TileLoc, 1);
+		return GetTileCurrency(TileLoc);
 	}
 }
 
