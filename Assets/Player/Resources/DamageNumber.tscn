@@ -62,7 +62,7 @@ bbcode_enabled = true
 text = "[center]999[img]res://Assets/Art/Icons/Substance Small.png[/img][/center]"
 scroll_active = false
 script = ExtResource("2")
-HorizontalVariance = 5.0
+HorizontalVariance = 0.0
 Speed = 100.0
 Gravity = 250.0
 
