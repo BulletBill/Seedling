@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://d2k206m54ooy6"]
+[gd_scene load_steps=18 format=3 uid="uid://d2k206m54ooy6"]
 
 [ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_rdm0s"]
 [ext_resource type="Texture2D" uid="uid://brtlf65prxos0" path="res://Assets/Towers/Sapling/Art-Sapling.png" id="2_0dani"]
 [ext_resource type="Script" path="res://Assets/Towers/Tower.cs" id="3_r87ib"]
+[ext_resource type="Resource" uid="uid://bmd4ngk8oi5f1" path="res://Assets/Towers/Sapling/Data_Sapling.tres" id="4_ht4by"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="4_v61ee"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_GrassGrowth.cs" id="5_nkbpu"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_AddResources.cs" id="6_xffcw"]
@@ -96,6 +97,7 @@ y_sort_enabled = true
 material = SubResource("ShaderMaterial_bjj0w")
 texture = ExtResource("2_0dani")
 script = ExtResource("3_r87ib")
+TowerData = ExtResource("4_ht4by")
 
 [node name="AlignToMap" type="Node2D" parent="."]
 script = ExtResource("4_v61ee")

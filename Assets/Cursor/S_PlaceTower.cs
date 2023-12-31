@@ -6,7 +6,8 @@ public partial class S_PlaceTower : Node, ICursorState
     [Export] public Color GoodColor = new Color(0.0f, 1.0f, 0.0f, 0.5f);
     [Export] public Color BadColor = new Color(1.0f, 0.0f, 0.0f, 0.5f);
     Cursor ParentCursor;
-    Data_Tower TowerToBuild;
+    Data_Tower TowerData;
+    PackedScene TowerToBuild;
     bool PlacementIsValid;
     MainMap CachedTileMap;
     static readonly uint GridCode = 2;
@@ -25,7 +26,7 @@ public partial class S_PlaceTower : Node, ICursorState
     }
 	public void OnDisable()
     {
-        TowerToBuild = null;
+        TowerData = null;
         PlacementIsValid = false;
         MainMap.RemoveOutlineActive(GridCode);
 
@@ -35,14 +36,15 @@ public partial class S_PlaceTower : Node, ICursorState
 	public void OnClick()
     {
         if (PlacementIsValid == false) return;
-        if (TowerToBuild.TowerToBuild == null) return;
+        if (TowerData == null) return;
+        if (TowerToBuild == null) return;
 
-        Node2D NewTower = TowerToBuild.TowerToBuild.Instantiate<Node2D>();
+        Node2D NewTower = TowerToBuild.Instantiate<Node2D>();
         if (NewTower == null) return;
         NewTower.GlobalPosition = Cursor.GetTilePosition();
         MainMap.Singleton.AddChild(NewTower);
 
-        Player.Spend(TowerToBuild.Cost);
+        Player.Spend(TowerData.Cost);
 
         Cursor.PopState();
     }
@@ -52,10 +54,10 @@ public partial class S_PlaceTower : Node, ICursorState
     }
 	public void OnMove(Vector2I NewMapPosition)
     {
-        if (TowerToBuild == null) return;
+        if (TowerData == null) return;
         if (CachedTileMap == null) { CachedTileMap = MainMap.Singleton; return; }
 
-        bool CanAfford = Player.CanAfford(TowerToBuild.Cost);
+        bool CanAfford = Player.CanAfford(TowerData.Cost);
         bool CanPlace = MainMap.GetTileType(NewMapPosition) == MainMap.Terrain_Grass;
         bool Occupied = false;
         foreach (Node TowerNode in GetTree().GetNodesInGroup(Tower.GroupName))
@@ -76,15 +78,17 @@ public partial class S_PlaceTower : Node, ICursorState
             ParentCursor.PlacementGhost.SelfModulate = PlacementIsValid ? GoodColor : BadColor;
         }
     }
-    public void SetTowerToBuild(Data_Tower NewTowerToBuild)
+    public void SetTowerToBuild(Data_Tower NewTowerData, PackedScene NewTowerToBuild)
     {
         if (ParentCursor == null) return;
+        if (NewTowerData == null) return;
         if (NewTowerToBuild == null) return;
+        TowerData = NewTowerData;
         TowerToBuild = NewTowerToBuild;
         ParentCursor.PlacementGhost.Visible = true;
-        ParentCursor.PlacementGhost.Texture = TowerToBuild.PlacementSprite;
+        ParentCursor.PlacementGhost.Texture = TowerData.PlacementSprite;
         ParentCursor.PlacementGhost.SelfModulate = PlacementIsValid ? GoodColor : BadColor;
 
-        GD.Print("Placement target is " + NewTowerToBuild.TowerName);
+        GD.Print("Placement target is " + TowerData.TowerName);
     }
 }

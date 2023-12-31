@@ -1,0 +1,24 @@
+[gd_resource type="Resource" load_steps=6 format=3 uid="uid://cnxh15qnwr5eo"]
+
+[ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="1_dm8nn"]
+[ext_resource type="Texture2D" uid="uid://cjl4aixbpkx80" path="res://Assets/Towers/Genesis Tree/Art-Genesis Tree.png" id="2_cvbga"]
+[ext_resource type="PackedScene" uid="uid://bltnii6x6epdm" path="res://Assets/Towers/Genesis Tree/genesis.tscn" id="3_6inb3"]
+[ext_resource type="Script" path="res://Assets/Towers/Data_Tower.cs" id="4_tpeoe"]
+
+[sub_resource type="Resource" id="Resource_8bfvv"]
+script = ExtResource("1_dm8nn")
+LifeForce = 10
+Substance = 500
+Flow = 500
+Breath = 500
+Energy = 500
+
+[resource]
+script = ExtResource("4_tpeoe")
+PlacementSprite = ExtResource("2_cvbga")
+TowerToBuild = ExtResource("3_6inb3")
+TowerName = "Genesis Heart"
+Description = ""
+Cost = SubResource("Resource_8bfvv")
+BuildTime = 60.0
+NeedsGrass = true

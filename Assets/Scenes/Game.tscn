@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://df7u54ytfaqgo"]
+[gd_scene load_steps=21 format=3 uid="uid://df7u54ytfaqgo"]
 
 [ext_resource type="Script" path="res://Assets/Core/Game.cs" id="1_6pfw6"]
 [ext_resource type="Script" path="res://Assets/Core/CameraController.cs" id="2_1l8qg"]
@@ -10,12 +10,15 @@
 [ext_resource type="PackedScene" uid="uid://bqo4ffahkqb78" path="res://Assets/Scenes/Interface/CurrencyDisplay.tscn" id="6_6nu1p"]
 [ext_resource type="PackedScene" uid="uid://dlgl700nd4604" path="res://Assets/Scenes/Interface/BuildButton.tscn" id="8_7jknq"]
 [ext_resource type="PackedScene" uid="uid://b32yvj87mq78l" path="res://Assets/Maps/TestMap.tscn" id="8_xg1xo"]
-[ext_resource type="Resource" uid="uid://bmd4ngk8oi5f1" path="res://Assets/Towers/Sapling/BT_Sapling.tres" id="9_qaekf"]
+[ext_resource type="Resource" uid="uid://bmd4ngk8oi5f1" path="res://Assets/Towers/Sapling/Data_Sapling.tres" id="9_qaekf"]
 [ext_resource type="PackedScene" uid="uid://cjvtnmut5ak7p" path="res://Assets/Scenes/Interface/DetailPanel.tscn" id="10_14nb1"]
 [ext_resource type="PackedScene" uid="uid://dynjwh5qcpo7t" path="res://Assets/Scenes/Interface/ObjectiveDisplay.tscn" id="12_3v315"]
 [ext_resource type="PackedScene" uid="uid://c4nme8pyly5sa" path="res://Assets/Enemies/Clod-E1/E1 Clod.tscn" id="12_ccdgc"]
-[ext_resource type="Resource" uid="uid://coyd0ad8jrvd7" path="res://Assets/Towers/Buckthorn/BT_Buckthorn.tres" id="13_lgdtf"]
-[ext_resource type="Resource" uid="uid://pqk4g5tts6in" path="res://Assets/Towers/Sun Leaf/BT_Sunleaf.tres" id="13_qekwa"]
+[ext_resource type="Resource" uid="uid://coyd0ad8jrvd7" path="res://Assets/Towers/Buckthorn/Data_Buckthorn.tres" id="13_lgdtf"]
+[ext_resource type="Resource" uid="uid://pqk4g5tts6in" path="res://Assets/Towers/Sun Leaf/Data_Sunleaf.tres" id="13_qekwa"]
+[ext_resource type="PackedScene" uid="uid://d2k206m54ooy6" path="res://Assets/Towers/Sapling/sapling.tscn" id="14_l7b7n"]
+[ext_resource type="PackedScene" uid="uid://cnq5verjyrwl7" path="res://Assets/Towers/Buckthorn/buckthorn.tscn" id="16_tx2rw"]
+[ext_resource type="PackedScene" uid="uid://dbr6bnc2oohvr" path="res://Assets/Towers/Sun Leaf/sunleaf.tscn" id="18_gh8sf"]
 [ext_resource type="PackedScene" uid="uid://ukt5pidwl63" path="res://Assets/Scenes/Interface/ContextMenu.tscn" id="19_s5hir"]
 
 [node name="Game" type="Node2D"]
@@ -71,14 +74,17 @@ position = Vector2(0, 1008)
 
 [node name="Build Sapling Button" parent="UI Canvas Layer/Control Panel" instance=ExtResource("8_7jknq")]
 position = Vector2(959, -16)
+TowerToBuild = ExtResource("14_l7b7n")
 BuildParams = ExtResource("9_qaekf")
 
 [node name="Build Buckthorn" parent="UI Canvas Layer/Control Panel" instance=ExtResource("8_7jknq")]
 position = Vector2(1055, -16)
+TowerToBuild = ExtResource("16_tx2rw")
 BuildParams = ExtResource("13_lgdtf")
 
 [node name="Build Sunleaf Button" parent="UI Canvas Layer/Control Panel" instance=ExtResource("8_7jknq")]
 position = Vector2(863, -16)
+TowerToBuild = ExtResource("18_gh8sf")
 BuildParams = ExtResource("13_qekwa")
 
 [node name="ContextMenu" parent="UI Canvas Layer" instance=ExtResource("19_s5hir")]

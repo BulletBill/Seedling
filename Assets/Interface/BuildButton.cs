@@ -3,6 +3,7 @@ using System;
 
 public partial class BuildButton : Node2D
 {
+	[Export] public PackedScene TowerToBuild;
 	[Export] public Data_Tower BuildParams = new();
 	bool CanAfford = false;
 	// Called when the node enters the scene tree for the first time.
@@ -71,11 +72,11 @@ public partial class BuildButton : Node2D
 	void OnClick()
 	{
 		if (BuildParams == null) return;
-		if (BuildParams.TowerToBuild == null) return;
+		if (TowerToBuild == null) return;
 
         if (CanAfford && Cursor.PushState("State_Placement") is S_PlaceTower PlacementState)
         {
-            PlacementState.SetTowerToBuild(BuildParams);
+            PlacementState.SetTowerToBuild(BuildParams, TowerToBuild);
 
 			AnimationPlayer Anim = GetNodeOrNull<AnimationPlayer>("AnimationPlayer");
 			Anim?.Play("Success");

@@ -4,6 +4,7 @@ using System;
 public partial class Tower : Sprite2D
 {
 	[Export] public bool IsDefendTarget = false;
+	[Export] Data_Tower TowerData = new();
 	public static readonly String GroupName = "Tower";
 	public Vector2I MapPosition = new Vector2I();
 
