@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_lah4t"]
 [ext_resource type="Texture2D" uid="uid://blygruvq4wq11" path="res://Assets/Towers/Sun Leaf/Art-Sun Leaf.png" id="2_q21ul"]
-[ext_resource type="Script" path="res://Assets/Towers/Tower.cs" id="3_mvr7y"]
+[ext_resource type="Script" path="res://Assets/Towers/Tower.cs" id="3_xcnlb"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="4_7gefn"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_GenerateResource.cs" id="5_xogtc"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_HarvestArea.cs" id="6_8idby"]
@@ -79,7 +79,7 @@ z_index = 10
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_bjj0w")
 texture = ExtResource("2_q21ul")
-script = ExtResource("3_mvr7y")
+script = ExtResource("3_xcnlb")
 
 [node name="AlignToMap" type="Node2D" parent="."]
 script = ExtResource("4_7gefn")

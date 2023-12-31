@@ -4,7 +4,6 @@ using System;
 public partial class C_HarvestArea : Node2D
 {
 	[Export] public int Range = 1;
-	[Export] public float IncomeTime = 5.0f;
 	Vector2 ParentPositon;
 	float IncomeTimer = 1.0f;
 	int SubstanceIncome;
@@ -38,18 +37,23 @@ public partial class C_HarvestArea : Node2D
 			ParentPositon = GetParent<Node2D>().GlobalPosition;
 		}
 		TimerBar = GetNodeOrNull<ProgressBar>("TimerBar");
-		IncomeTimer = IncomeTime;
+		IncomeTimer = Player.IncomeTime;
+
+		if (SubstanceIncome > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Substance, SubstanceIncome); }
+		if (FlowIncome > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Flow, FlowIncome); }
+		if (BreathIncome > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Breath, BreathIncome); }
+		if (EnergyIncome > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Energy, EnergyIncome); }
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if (IncomeTime <= 0.0f) return;
+		if (Player.IncomeTime <= 0.0f) return;
 
 		IncomeTimer -= (float)delta;
 		if (IncomeTimer <= 0.0f)
 		{
-			IncomeTimer = IncomeTime;
+			IncomeTimer = Player.IncomeTime;
 			if (SubstanceIncome > 0)
 			{
 				PlayerEvent.Broadcast(PlayerEvent.SignalName.AddSubstance, SubstanceIncome);
@@ -74,7 +78,7 @@ public partial class C_HarvestArea : Node2D
 
 		if (IsInstanceValid(TimerBar))
 		{
-			TimerBar.Value = TimerBar.MaxValue - ((IncomeTimer / IncomeTime) * 100.0f);
+			TimerBar.Value = TimerBar.MaxValue - ((IncomeTimer / Player.IncomeTime) * 100.0f);
 		}
 	}
 }

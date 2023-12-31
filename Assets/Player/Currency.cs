@@ -32,7 +32,7 @@ public partial class Currency : Node2D
 
         PlayerEvent.RegisterResourceAdd(CurrencyType, Callable.From((int n) => AddAmount(n)));
         PlayerEvent.RegisterResourceAddMax(CurrencyType, Callable.From((int n) => AddMax(n)));
-        PlayerEvent.RegisterResourceIncome(CurrencyType, Callable.From((float n) => AddIncome(n)));
+        PlayerEvent.RegisterResourceAddIncome(CurrencyType, Callable.From((int n) => AddIncome(n)));
     }
 
     public override void _Ready()
@@ -69,11 +69,11 @@ public partial class Currency : Node2D
         BroadcastChange();
     }
 
-    public void AddIncome(float InIncome)
+    public void AddIncome(int InIncome)
     {
-        if (InIncome == 0.0f) return;
+        if (InIncome == 0) return;
         
-        Income = Mathf.FloorToInt(Income + InIncome);
+        Income = Mathf.CeilToInt(Income + InIncome);
         PlayerEvent.Broadcast(CurrencyType.ToString() + "IncomeChanged", Income);
         PlayerEvent.Broadcast(PlayerEvent.SignalName.AnyResourceChanged);
     }

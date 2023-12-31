@@ -39,11 +39,11 @@ public partial class UI_CurrencyLine : Node2D
 			}
 			else if (NewIncome > 0)
 			{
-				Income.Text = TextHelpers.Colorize("+" + NewIncome.ToString() + " /s", ExcessColor);
+				Income.Text = TextHelpers.Colorize("+" + NewIncome.ToString(), ExcessColor);
 			}
 			else if (NewIncome < 0)
 			{
-				Income.Text = TextHelpers.Colorize("-" + NewIncome.ToString() + " /s", DeficitColor);
+				Income.Text = TextHelpers.Colorize("-" + NewIncome.ToString(), DeficitColor);
 			}
 		}
 	}

@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_hwxa5"]
 [ext_resource type="Texture2D" uid="uid://cjl4aixbpkx80" path="res://Assets/Towers/Genesis Tree/Art-Genesis Tree.png" id="2_0hnto"]
-[ext_resource type="Script" path="res://Assets/Towers/Tower.cs" id="3_vxrwb"]
+[ext_resource type="Script" path="res://Assets/Towers/Tower.cs" id="3_3npxn"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="4_004cb"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_GrassGrowth.cs" id="5_3tnyx"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_GenerateResource.cs" id="6_2h17w"]
@@ -123,7 +123,7 @@ _data = {
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_7wjg6")
 texture = ExtResource("2_0hnto")
-script = ExtResource("3_vxrwb")
+script = ExtResource("3_3npxn")
 IsDefendTarget = true
 
 [node name="AlignToMap" type="Node2D" parent="."]

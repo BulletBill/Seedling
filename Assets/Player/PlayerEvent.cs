@@ -17,29 +17,34 @@ public partial class PlayerEvent : Node
 
     // Resources
     [Signal] public delegate void LifeforceChangedEventHandler(int NewAmount, int NewMax);
-    [Signal] public delegate void LifeforceIncomeChangedEventHandler(float NewAmount);
+    [Signal] public delegate void LifeforceIncomeChangedEventHandler(int NewAmount);
     [Signal] public delegate void AddLifeforceEventHandler(int AddAmount);
     [Signal] public delegate void AddLifeforceMaxEventHandler(int AddMax);
+    [Signal] public delegate void AddLifeforceIncomeEventHandler(int AddIncome);
 
     [Signal] public delegate void SubstanceChangedEventHandler(int NewAmount, int NewMax);
-    [Signal] public delegate void SubstanceIncomeChangedEventHandler(float NewAmount);
+    [Signal] public delegate void SubstanceIncomeChangedEventHandler(int NewAmount);
     [Signal] public delegate void AddSubstanceEventHandler(int AddAmount);
     [Signal] public delegate void AddSubstanceMaxEventHandler(int AddMax);
+    [Signal] public delegate void AddSubstanceIncomeEventHandler(int AddIncome);
 
     [Signal] public delegate void FlowChangedEventHandler(int NewAmount, int NewMax);
-    [Signal] public delegate void FlowIncomeChangedEventHandler(float NewAmount);
+    [Signal] public delegate void FlowIncomeChangedEventHandler(int NewAmount);
     [Signal] public delegate void AddFlowEventHandler(int AddAmount);
     [Signal] public delegate void AddFlowMaxEventHandler(int AddMax);
+    [Signal] public delegate void AddFlowIncomeEventHandler(int AddIncome);
 
     [Signal] public delegate void BreathChangedEventHandler(int NewAmount, int NewMax);
-    [Signal] public delegate void BreathIncomeChangedEventHandler(float NewAmount);
+    [Signal] public delegate void BreathIncomeChangedEventHandler(int NewAmount);
     [Signal] public delegate void AddBreathEventHandler(int AddAmount);
     [Signal] public delegate void AddBreathMaxEventHandler(int AddMax);
+    [Signal] public delegate void AddBreathIncomeEventHandler(int AddIncome);
 
     [Signal] public delegate void EnergyChangedEventHandler(int NewAmount, int NewMax);
-    [Signal] public delegate void EnergyIncomeChangedEventHandler(float NewAmount);
+    [Signal] public delegate void EnergyIncomeChangedEventHandler(int NewAmount);
     [Signal] public delegate void AddEnergyEventHandler(int AddAmount);
     [Signal] public delegate void AddEnergyMaxEventHandler(int AddMax);
+    [Signal] public delegate void AddEnergyIncomeEventHandler(int AddIncome);
 
     [Signal] public delegate void AnyResourceChangedEventHandler();
     [Signal] public delegate void SpendResourcesEventHandler(R_Cost Cost);
@@ -77,6 +82,10 @@ public partial class PlayerEvent : Node
     {
         return PlayerEvent.Register("Add" + Type.ToString() + "Max", Receiver);
     }
+    public static bool RegisterResourceAddIncome(ECurrencyType Type, Callable Receiver)
+    {
+        return PlayerEvent.Register("Add" + Type.ToString() + "Income", Receiver);
+    }
 
     public static Error Broadcast(String EventName, params Variant[] args)
     {
@@ -87,5 +96,9 @@ public partial class PlayerEvent : Node
     public static Error BroadcastAddResource(ECurrencyType Type, params Variant[] args)
     {
         return Broadcast("Add" + Type.ToString(), args);
+    }
+    public static Error BroadcastAddIncome(ECurrencyType Type, params Variant[] args)
+    {
+        return Broadcast("Add" + Type.ToString() + "Income", args);
     }
 }

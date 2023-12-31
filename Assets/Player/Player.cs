@@ -10,6 +10,7 @@ public partial class Player : Node2D
     public int Lives { get; protected set;}
     public Dictionary<ECurrencyType, Currency> Currencies = new();
     public static List<Tower> DefendTargets = new();
+    public static readonly float IncomeTime = 5.0f;
 
     // Signals
     /*[Signal] public delegate void ResourcesChangedEventHandler();
