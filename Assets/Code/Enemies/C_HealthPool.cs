@@ -3,12 +3,15 @@ using System;
 
 public partial class C_HealthPool : Node2D
 {
-    [Export] public int StartingHealth = 10;
+    [Export] public int MinStartingHealth = 10;
+    [Export] public int MaxStartingHealth = 12;
+    public int StartingHealth;
     public int CurrentHealth;
     ProgressBar HealthVisual;
 
     public override void _Ready()
     {
+        StartingHealth = Game.GetIntInRange(MinStartingHealth, MaxStartingHealth);
         CurrentHealth = StartingHealth;
         HealthVisual = GetNodeOrNull<ProgressBar>("HealthBar");
         if (HealthVisual != null)

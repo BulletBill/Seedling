@@ -80,13 +80,17 @@ script = ExtResource("2_y6cnj")
 
 [node name="HealthPool" type="Node2D" parent="."]
 script = ExtResource("2_8wvkh")
+MinStartingHealth = 12
+MaxStartingHealth = 20
 
 [node name="HealthBar" type="ProgressBar" parent="HealthPool"]
 visible = false
-offset_left = -15.0
-offset_top = -25.0
-offset_right = 15.0
-offset_bottom = -19.0
+z_index = 10
+offset_left = -10.0
+offset_top = -16.0
+offset_right = 30.0
+offset_bottom = -10.0
+scale = Vector2(0.5, 0.5)
 step = 1.0
 value = 100.0
 show_percentage = false
