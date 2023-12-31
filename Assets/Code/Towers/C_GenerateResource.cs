@@ -14,6 +14,10 @@ public partial class C_GenerateResource : Node
         if (AddFlatAmount != 0)
         {
             PlayerEvent.BroadcastAddResource(CurrencyType, AddFlatAmount);
+            if (GetParent<Node2D>() != null && GetParent<Node2D>().IsNodeReady())
+            {
+                Game.SpawnResourceNumber(GetParent<Node2D>().GlobalPosition, AddFlatAmount, CurrencyType);
+            }
         }
         if (IncreaseMaximum != 0)
         {

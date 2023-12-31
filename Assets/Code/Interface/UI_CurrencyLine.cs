@@ -26,6 +26,7 @@ public partial class UI_CurrencyLine : Node2D
 		Income = GetNodeOrNull<RichTextLabel>("Income");
 
 		CurrencyUpdate(Player.GetCurrentAmount(CurrencyType), Player.GetCurrentMax(CurrencyType));
+		IncomeUpdate(Player.GetCurrentIncome(CurrencyType));
 	}
 
 	void IncomeUpdate(int NewIncome)

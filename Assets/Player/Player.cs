@@ -60,6 +60,11 @@ public partial class Player : Node2D
         if (Singleton == null) return 0;
         return Singleton.Currencies[Type].MaximumAmount;
     }
+    public static int GetCurrentIncome(ECurrencyType Type)
+    {
+        if (Singleton == null) return 0;
+        return Singleton.Currencies[Type].Income;
+    }
 
     public static bool CanAfford(R_Cost Cost)
     {

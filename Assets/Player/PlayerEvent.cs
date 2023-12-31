@@ -29,7 +29,7 @@ public partial class PlayerEvent : Node
     [Signal] public delegate void FlowChangedEventHandler(int NewAmount, int NewMax);
     [Signal] public delegate void FlowIncomeChangedEventHandler(float NewAmount);
     [Signal] public delegate void AddFlowEventHandler(int AddAmount);
-    [Signal] public delegate void AddFlowEventMaxEventHandler(int AddMax);
+    [Signal] public delegate void AddFlowMaxEventHandler(int AddMax);
 
     [Signal] public delegate void BreathChangedEventHandler(int NewAmount, int NewMax);
     [Signal] public delegate void BreathIncomeChangedEventHandler(float NewAmount);
