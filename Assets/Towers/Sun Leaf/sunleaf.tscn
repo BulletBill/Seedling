@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dbr6bnc2oohvr"]
+[gd_scene load_steps=15 format=3 uid="uid://dbr6bnc2oohvr"]
 
 [ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_lah4t"]
 [ext_resource type="Texture2D" uid="uid://blygruvq4wq11" path="res://Assets/Towers/Sun Leaf/Art-Sun Leaf.png" id="2_q21ul"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Assets/Code/Towers/C_GenerateResource.cs" id="5_kxp3m"]
 [ext_resource type="Script" path="res://Assets/Code/Towers/C_HarvestArea.cs" id="6_7sml2"]
 [ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Scenes/Interface/HoverArea.tscn" id="6_xv2l5"]
+[ext_resource type="Theme" uid="uid://svogtundy1nx" path="res://Assets/Art/Interface/default_theme.tres" id="8_h0t5d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bjj0w"]
 shader = ExtResource("1_lah4t")
@@ -88,6 +89,16 @@ script = ExtResource("5_kxp3m")
 
 [node name="HarvestArea" type="Node2D" parent="."]
 script = ExtResource("6_7sml2")
+
+[node name="TimerBar" type="ProgressBar" parent="HarvestArea"]
+z_index = -1
+offset_left = -14.0
+offset_top = -15.0
+offset_right = 42.0
+offset_bottom = -9.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("8_h0t5d")
+show_percentage = false
 
 [node name="HoverAnimator" type="AnimationPlayer" parent="."]
 libraries = {

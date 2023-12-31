@@ -3,6 +3,9 @@ using System;
 
 public partial class IncomeBar : ProgressBar
 {
+	[Export] public float IncomeTime;
+	float IncomeTimer = 1.0f;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -11,6 +14,6 @@ public partial class IncomeBar : ProgressBar
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		Value = Player.GetIncomePercent();
+		//Value = Player.GetIncomePercent();
 	}
 }

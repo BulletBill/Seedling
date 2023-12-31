@@ -1,17 +1,16 @@
 [gd_scene load_steps=9 format=3 uid="uid://crks2aw8cc252"]
 
-[ext_resource type="Script" path="res://Assets/Code/Player/Currency.cs" id="1_jtxbn"]
-[ext_resource type="Script" path="res://Assets/Code/Player/Player.cs" id="1_ludrr"]
+[ext_resource type="Script" path="res://Assets/Player/Currency.cs" id="1_jtxbn"]
+[ext_resource type="Script" path="res://Assets/Player/Player.cs" id="1_ludrr"]
 [ext_resource type="Texture2D" uid="uid://1p5pgipw4fyf" path="res://Assets/Art/Icons/Lifeforce Small.png" id="3_r2y3h"]
 [ext_resource type="Texture2D" uid="uid://cfgjt6q84i8j7" path="res://Assets/Art/Icons/Substance Small.png" id="4_a3hlt"]
 [ext_resource type="Texture2D" uid="uid://d2fe67br8fs2m" path="res://Assets/Art/Icons/Flow Small.png" id="5_oahkm"]
 [ext_resource type="Texture2D" uid="uid://b8i6unfgcqe38" path="res://Assets/Art/Icons/Breath Small.png" id="6_udv5i"]
 [ext_resource type="Texture2D" uid="uid://dj2gxm4a45ewu" path="res://Assets/Art/Icons/Energy Small.png" id="7_1lyna"]
-[ext_resource type="Script" path="res://Assets/Code/Player/C_TowerBrain.cs" id="8_s3bsm"]
+[ext_resource type="Script" path="res://Assets/Player/C_TowerBrain.cs" id="8_s3bsm"]
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_ludrr")
-IncomeInterval = 2.0
 
 [node name="Currency-LifeForce" type="Node2D" parent="."]
 script = ExtResource("1_jtxbn")

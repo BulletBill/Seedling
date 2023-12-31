@@ -7,22 +7,25 @@ public partial class C_GenerateResource : Node
     [Export] public int AddedIncome;
     [Export] public int AddFlatAmount;
     [Export] public int IncreaseMaximum;
+    public float IncomeTime;
 
     public override void _Ready()
     {
-        Currency CurrencyPool = Player.GetCurrency(CurrencyType);
-        if (CurrencyPool != null)
+        if (AddFlatAmount != 0)
         {
-            CurrencyPool.AddGenerator(this);
+            PlayerEvent.BroadcastAddResource(CurrencyType, AddFlatAmount);
+        }
+        if (IncreaseMaximum != 0)
+        {
+            PlayerEvent.Broadcast("Add" + CurrencyType.ToString() + "Max", IncreaseMaximum);
         }
     }
 
     public override void _ExitTree()
     {
-        Currency CurrencyPool = Player.GetCurrency(CurrencyType);
-        if (CurrencyPool != null)
+        if (IncreaseMaximum != 0)
         {
-            CurrencyPool.RemoveGenerator(this);
+            PlayerEvent.Broadcast("Add" + CurrencyType.ToString() + "Max", IncreaseMaximum * -1);
         }
     }
 }

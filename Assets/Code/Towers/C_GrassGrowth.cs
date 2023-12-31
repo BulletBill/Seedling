@@ -94,12 +94,8 @@ public partial class C_GrassGrowth : Node2D
 
             // Add resources for growing grass
             ECurrencyType AddedType = MainMap.GetTileCurrency(TileToGrow[0]);
-            Currency AddedCurrency = Player.GetCurrency(AddedType);
-            if (AddedCurrency != null)
-            {
-                AddedCurrency.AddAmount(ResourcePerTile);
-                Game.SpawnResourceNumber(CachedTileMap.ToGlobal(CachedTileMap.MapToLocal(TileToGrow[0])), ResourcePerTile, AddedType);
-            }
+            PlayerEvent.BroadcastAddResource(AddedType, ResourcePerTile);
+            Game.SpawnResourceNumber(CachedTileMap.ToGlobal(CachedTileMap.MapToLocal(TileToGrow[0])), ResourcePerTile, AddedType);
 
             // Modify Tilemap
             TilesInRange.Remove(TilesToGrow[GrowIndex]);

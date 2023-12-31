@@ -50,7 +50,7 @@ public partial class Enemy : CharacterBody2D
 		DistanceToTarget = Nav.DistanceToTarget();
 		if (DistanceToTarget < MainMap.GetTileSize())
 		{
-			Player.TakeDamage(PlayerDamage);
+			PlayerEvent.Bus.EmitSignal(PlayerEvent.SignalName.LoseLife, PlayerDamage);
 			QueueFree();
 		}
     }

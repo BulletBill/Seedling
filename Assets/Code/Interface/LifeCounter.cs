@@ -3,25 +3,27 @@ using System;
 
 public partial class LifeCounter : Node
 {
+    public override void _EnterTree()
+    {
+        PlayerEvent.Register(PlayerEvent.SignalName.LivesChanged, Callable.From((int n) => Update(n)));
+    }
     public override void _Ready()
     {
-        Player.Singleton.LivesChanged += Update;
-        Update();
     }
 
-    void Update()
+    void Update(int NewLives)
     {
         ProgressBar LifeBar = GetNodeOrNull<ProgressBar>("Lives Bar");
         if (LifeBar != null)
         {
             LifeBar.MaxValue = Player.Singleton.StartingLives;
-            LifeBar.Value = Player.Singleton.Lives;
+            LifeBar.Value = NewLives;
         }
 
         RichTextLabel Label = GetNodeOrNull<RichTextLabel>("Count");
         if (Label != null)
         {
-            Label.Text = Player.Singleton.Lives.ToString();
+            Label.Text = NewLives.ToString();
         }
     }
 }

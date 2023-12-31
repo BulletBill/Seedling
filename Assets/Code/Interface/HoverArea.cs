@@ -25,6 +25,6 @@ public partial class HoverArea : Area2D
 
     public void OnClick()
     {
-        EmitSignal("Clicked");
+        EmitSignal(SignalName.Clicked);
     }
 }

@@ -23,7 +23,7 @@ public partial class BuildButton : Node2D
 		}
 
 		AssignBuildParams(BuildParams);
-		Player.Singleton.ResourcesChanged += UpdateCosts;
+		PlayerEvent.Register(PlayerEvent.SignalName.AnyResourceChanged, Callable.From(() => UpdateCosts()));
 		AnimationPlayer Anim = GetNodeOrNull<AnimationPlayer>("AnimationPlayer");
 		Anim?.Play("Disabled");
 	}

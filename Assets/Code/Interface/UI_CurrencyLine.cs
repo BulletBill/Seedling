@@ -13,60 +13,51 @@ public partial class UI_CurrencyLine : Node2D
 	RichTextLabel Amount;
 	RichTextLabel Income;
 
+    public override void _EnterTree()
+    {
+		PlayerEvent.RegisterResourceChanged(CurrencyType, Callable.From((int n, int m) => CurrencyUpdate(n,m)));
+		PlayerEvent.RegisterResourceIncome(CurrencyType, Callable.From((int n) => IncomeUpdate(n)));
+    }
+
 	public override void _Ready()
 	{
 		Icon = GetNodeOrNull<Sprite2D>("Icon");
 		Amount = GetNodeOrNull<RichTextLabel>("Count");
 		Income = GetNodeOrNull<RichTextLabel>("Income");
 
-		Currency TargetCurrency = Player.GetCurrency(CurrencyType);
-		if (TargetCurrency != null)
-		{
-			TargetCurrency.OnCurrencyChanged += OnCurrencyChanged;
-			OnCurrencyChanged(TargetCurrency);
-			if (Icon != null)
-			{
-				Icon.Texture = TargetCurrency.IconSmall;
-			}
-		}
+		CurrencyUpdate(Player.GetCurrentAmount(CurrencyType), Player.GetCurrentMax(CurrencyType));
 	}
 
-	public override void _Process(double delta)
+	void IncomeUpdate(int NewIncome)
 	{
-	}
-
-	void OnCurrencyChanged(Currency UpdatedCurrency)
-	{
-		if (Amount != null)
-		{
-			int Value = UpdatedCurrency.Amount;
-
-			int MaxValue = UpdatedCurrency.MaximumAmount;
-			Amount.Text = Value.ToString();
-			if (MaxValue > 0 && ShowMaximum)
-			{
-				Amount.AppendText("/" + MaxValue.ToString());
-				if (Value > MaxValue)
-				{
-					Amount.Text = TextHelpers.Colorize(Amount.Text, DeficitColor);
-				}
-			}
-		}
-
 		if (Income != null)
 		{
-			int Value = UpdatedCurrency.Income;
-			if (Value == 0)
+			if (NewIncome == 0)
 			{
 				Income.Text = "";
 			}
-			else if (Value > 0)
+			else if (NewIncome > 0)
 			{
-				Income.Text = TextHelpers.Colorize("+" + Value.ToString(), ExcessColor);
+				Income.Text = TextHelpers.Colorize("+" + NewIncome.ToString() + " /s", ExcessColor);
 			}
-			else if (Value < 0)
+			else if (NewIncome < 0)
 			{
-				Income.Text = TextHelpers.Colorize("-" + Value.ToString(), DeficitColor);
+				Income.Text = TextHelpers.Colorize("-" + NewIncome.ToString() + " /s", DeficitColor);
+			}
+		}
+	}
+	void CurrencyUpdate(int NewAmount, int NewMax)
+	{
+		if (Amount != null)
+		{
+			Amount.Text = NewAmount.ToString();
+			if (NewMax > 0 && ShowMaximum)
+			{
+				Amount.AppendText("/" + NewMax.ToString());
+				if (NewAmount > NewMax)
+				{
+					Amount.Text = TextHelpers.Colorize(Amount.Text, DeficitColor);
+				}
 			}
 		}
 	}

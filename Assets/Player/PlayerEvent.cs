@@ -1,0 +1,91 @@
+using Godot;
+using Microsoft.VisualBasic;
+using System;
+
+// For buses:
+// Establish singleton in Initializer
+// Receivers register for events in _EnterTree
+// Broadcaster fire initial events in _Ready
+
+public partial class PlayerEvent : Node
+{
+    public static PlayerEvent Bus { get; protected set; }
+
+    // Lives
+    [Signal] public delegate void LivesChangedEventHandler(int NewAmount);
+    [Signal] public delegate void LoseLifeEventHandler(int Damage);
+
+    // Resources
+    [Signal] public delegate void LifeforceChangedEventHandler(int NewAmount, int NewMax);
+    [Signal] public delegate void LifeforceIncomeChangedEventHandler(float NewAmount);
+    [Signal] public delegate void AddLifeforceEventHandler(int AddAmount);
+    [Signal] public delegate void AddLifeforceMaxEventHandler(int AddMax);
+
+    [Signal] public delegate void SubstanceChangedEventHandler(int NewAmount, int NewMax);
+    [Signal] public delegate void SubstanceIncomeChangedEventHandler(float NewAmount);
+    [Signal] public delegate void AddSubstanceEventHandler(int AddAmount);
+    [Signal] public delegate void AddSubstanceMaxEventHandler(int AddMax);
+
+    [Signal] public delegate void FlowChangedEventHandler(int NewAmount, int NewMax);
+    [Signal] public delegate void FlowIncomeChangedEventHandler(float NewAmount);
+    [Signal] public delegate void AddFlowEventHandler(int AddAmount);
+    [Signal] public delegate void AddFlowEventMaxEventHandler(int AddMax);
+
+    [Signal] public delegate void BreathChangedEventHandler(int NewAmount, int NewMax);
+    [Signal] public delegate void BreathIncomeChangedEventHandler(float NewAmount);
+    [Signal] public delegate void AddBreathEventHandler(int AddAmount);
+    [Signal] public delegate void AddBreathMaxEventHandler(int AddMax);
+
+    [Signal] public delegate void EnergyChangedEventHandler(int NewAmount, int NewMax);
+    [Signal] public delegate void EnergyIncomeChangedEventHandler(float NewAmount);
+    [Signal] public delegate void AddEnergyEventHandler(int AddAmount);
+    [Signal] public delegate void AddEnergyMaxEventHandler(int AddMax);
+
+    [Signal] public delegate void AnyResourceChangedEventHandler();
+    [Signal] public delegate void SpendResourcesEventHandler(R_Cost Cost);
+
+    public PlayerEvent()
+    {
+        if (Bus != null) { QueueFree(); return; }
+        Bus = this;
+    }
+
+    public static bool Register(String DelegateName, Callable Receiver)
+    {
+        if (Bus == null) return false;
+        Error Result = Bus.Connect(DelegateName, Receiver);
+        if (Result == Error.Ok)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public static bool RegisterResourceChanged(ECurrencyType Type, Callable Receiver)
+    {
+        return PlayerEvent.Register(Type.ToString() + "Changed", Receiver);
+    }
+    public static bool RegisterResourceIncome(ECurrencyType Type, Callable Receiver)
+    {
+        return PlayerEvent.Register(Type.ToString() + "IncomeChanged", Receiver);
+    }
+    public static bool RegisterResourceAdd(ECurrencyType Type, Callable Receiver)
+    {
+        return PlayerEvent.Register("Add" + Type.ToString(), Receiver);
+    }
+    public static bool RegisterResourceAddMax(ECurrencyType Type, Callable Receiver)
+    {
+        return PlayerEvent.Register("Add" + Type.ToString() + "Max", Receiver);
+    }
+
+    public static Error Broadcast(String EventName, params Variant[] args)
+    {
+        if (Bus == null) return Error.DoesNotExist;
+        return Bus.EmitSignal(EventName, args);
+    }
+
+    public static Error BroadcastAddResource(ECurrencyType Type, params Variant[] args)
+    {
+        return Broadcast("Add" + Type.ToString(), args);
+    }
+}

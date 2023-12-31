@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Assets/Code/Core/Game.cs" id="1_6pfw6"]
 [ext_resource type="Script" path="res://Assets/Code/Core/CameraController.cs" id="2_1l8qg"]
-[ext_resource type="PackedScene" uid="uid://crks2aw8cc252" path="res://Assets/Scenes/player.tscn" id="2_5ryln"]
+[ext_resource type="PackedScene" uid="uid://crks2aw8cc252" path="res://Assets/Player/player.tscn" id="2_5ryln"]
 [ext_resource type="PackedScene" uid="uid://b653ac6q6ipab" path="res://Assets/Player/Resources/DamageNumber.tscn" id="2_6m604"]
 [ext_resource type="PackedScene" uid="uid://2ekwlaa17gji" path="res://Assets/Scenes/cursor.tscn" id="2_fwv7t"]
 [ext_resource type="Script" path="res://Assets/Code/Enemies/EnemyController.cs" id="5_2d86f"]
