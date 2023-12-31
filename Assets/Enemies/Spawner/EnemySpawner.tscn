@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cqlpygxb75t08"]
 
 [ext_resource type="Texture2D" uid="uid://bo8xgep7v788l" path="res://Assets/Art/Towers/Spark.png" id="1_cr0cl"]
-[ext_resource type="Script" path="res://Assets/Code/Enemies/EnemySpawner.cs" id="2_km6b2"]
-[ext_resource type="Script" path="res://Assets/Code/Towers/C_AlignToMap.cs" id="3_cvkck"]
+[ext_resource type="Script" path="res://Assets/Enemies/Spawner/EnemySpawner.cs" id="2_km6b2"]
+[ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="3_cvkck"]
 
 [node name="EnemySpawner" type="Sprite2D" groups=["Spawner"]]
 texture = ExtResource("1_cr0cl")

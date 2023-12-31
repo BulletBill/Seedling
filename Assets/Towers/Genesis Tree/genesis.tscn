@@ -2,10 +2,10 @@
 
 [ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_hwxa5"]
 [ext_resource type="Texture2D" uid="uid://cjl4aixbpkx80" path="res://Assets/Towers/Genesis Tree/Art-Genesis Tree.png" id="2_0hnto"]
-[ext_resource type="Script" path="res://Assets/Code/Towers/Tower.cs" id="3_vxrwb"]
-[ext_resource type="Script" path="res://Assets/Code/Towers/C_AlignToMap.cs" id="4_uiq0e"]
-[ext_resource type="Script" path="res://Assets/Code/Towers/C_GrassGrowth.cs" id="5_4njpd"]
-[ext_resource type="Script" path="res://Assets/Code/Towers/C_GenerateResource.cs" id="6_vtcrn"]
+[ext_resource type="Script" path="res://Assets/Towers/Tower.cs" id="3_vxrwb"]
+[ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="4_004cb"]
+[ext_resource type="Script" path="res://Assets/Towers/Components/C_GrassGrowth.cs" id="5_3tnyx"]
+[ext_resource type="Script" path="res://Assets/Towers/Components/C_GenerateResource.cs" id="6_2h17w"]
 [ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Scenes/Interface/HoverArea.tscn" id="7_xll0q"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7wjg6"]
@@ -128,24 +128,24 @@ IsDefendTarget = true
 
 [node name="AlignToMap" type="Node2D" parent="."]
 y_sort_enabled = true
-script = ExtResource("4_uiq0e")
+script = ExtResource("4_004cb")
 
 [node name="GrassGrowth" type="Node2D" parent="."]
-script = ExtResource("5_4njpd")
+script = ExtResource("5_3tnyx")
 Radius = 108.0
 GrowthInterval = 0.1
 AttractEnemies = false
 
 [node name="AddLifeforce" type="Node2D" parent="."]
-script = ExtResource("6_vtcrn")
+script = ExtResource("6_2h17w")
 AddFlatAmount = 5
 
 [node name="Substance Income" type="Node2D" parent="."]
-script = ExtResource("6_vtcrn")
+script = ExtResource("6_2h17w")
 CurrencyType = 1
 
 [node name="Flow Income" type="Node2D" parent="."]
-script = ExtResource("6_vtcrn")
+script = ExtResource("6_2h17w")
 CurrencyType = 2
 
 [node name="HoverAnimator" type="AnimationPlayer" parent="."]

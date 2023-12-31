@@ -2,10 +2,10 @@
 
 [ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_lah4t"]
 [ext_resource type="Texture2D" uid="uid://blygruvq4wq11" path="res://Assets/Towers/Sun Leaf/Art-Sun Leaf.png" id="2_q21ul"]
-[ext_resource type="Script" path="res://Assets/Code/Towers/Tower.cs" id="3_mvr7y"]
-[ext_resource type="Script" path="res://Assets/Code/Towers/C_AlignToMap.cs" id="4_6y17a"]
-[ext_resource type="Script" path="res://Assets/Code/Towers/C_GenerateResource.cs" id="5_kxp3m"]
-[ext_resource type="Script" path="res://Assets/Code/Towers/C_HarvestArea.cs" id="6_7sml2"]
+[ext_resource type="Script" path="res://Assets/Towers/Tower.cs" id="3_mvr7y"]
+[ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="4_7gefn"]
+[ext_resource type="Script" path="res://Assets/Towers/Components/C_GenerateResource.cs" id="5_xogtc"]
+[ext_resource type="Script" path="res://Assets/Towers/Components/C_HarvestArea.cs" id="6_8idby"]
 [ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Scenes/Interface/HoverArea.tscn" id="6_xv2l5"]
 [ext_resource type="Theme" uid="uid://svogtundy1nx" path="res://Assets/Art/Interface/default_theme.tres" id="8_h0t5d"]
 
@@ -82,13 +82,13 @@ texture = ExtResource("2_q21ul")
 script = ExtResource("3_mvr7y")
 
 [node name="AlignToMap" type="Node2D" parent="."]
-script = ExtResource("4_6y17a")
+script = ExtResource("4_7gefn")
 
 [node name="AddLifeforce" type="Node2D" parent="."]
-script = ExtResource("5_kxp3m")
+script = ExtResource("5_xogtc")
 
 [node name="HarvestArea" type="Node2D" parent="."]
-script = ExtResource("6_7sml2")
+script = ExtResource("6_8idby")
 
 [node name="TimerBar" type="ProgressBar" parent="HarvestArea"]
 z_index = -1

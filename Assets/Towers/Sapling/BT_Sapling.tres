@@ -1,9 +1,9 @@
 [gd_resource type="Resource" load_steps=6 format=3 uid="uid://bmd4ngk8oi5f1"]
 
-[ext_resource type="Script" path="res://Assets/Code/Towers/R_Cost.cs" id="1_wm3pd"]
+[ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="1_wm3pd"]
 [ext_resource type="Texture2D" uid="uid://brtlf65prxos0" path="res://Assets/Towers/Sapling/Art-Sapling.png" id="2_opbt8"]
 [ext_resource type="PackedScene" uid="uid://cc014in5dphp3" path="res://Assets/Towers/Sapling/build-sapling.tscn" id="3_i6sxi"]
-[ext_resource type="Script" path="res://Assets/Code/Towers/R_BuildTower.cs" id="4_tlnc3"]
+[ext_resource type="Script" path="res://Assets/Towers/R_BuildTower.cs" id="4_tlnc3"]
 
 [sub_resource type="Resource" id="Resource_4ujqw"]
 script = ExtResource("1_wm3pd")

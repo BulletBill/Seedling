@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://dynjwh5qcpo7t"]
 
-[ext_resource type="Script" path="res://Assets/Code/Interface/LifeCounter.cs" id="2_ggogv"]
+[ext_resource type="Script" path="res://Assets/Interface/LifeCounter.cs" id="2_ggogv"]
 [ext_resource type="Texture2D" uid="uid://c4cqjktrt205k" path="res://Assets/Art/Interface/WindowBG.png" id="2_oqybb"]
 [ext_resource type="Theme" uid="uid://svogtundy1nx" path="res://Assets/Art/Interface/default_theme.tres" id="3_20eby"]
 [ext_resource type="Texture2D" uid="uid://1p5pgipw4fyf" path="res://Assets/Art/Icons/Lifeforce Small.png" id="6_0661i"]
 [ext_resource type="Texture2D" uid="uid://iinbdvqjsk7n" path="res://Assets/Art/Icons/Clock Small.png" id="6_kwm7g"]
-[ext_resource type="Script" path="res://Assets/Code/Interface/WaveTimerDisplay.cs" id="6_yxj3j"]
+[ext_resource type="Script" path="res://Assets/Interface/WaveTimerDisplay.cs" id="6_yxj3j"]
 [ext_resource type="FontFile" uid="uid://w05srxbcg8v8" path="res://Assets/Art/Fonts/Default_UI.tres" id="7_i4671"]
 
 [node name="ObjectiveDisplay" type="Node2D"]

@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://c4nme8pyly5sa"]
 
-[ext_resource type="Script" path="res://Assets/Code/Enemies/Enemy.cs" id="1_u2htd"]
-[ext_resource type="Script" path="res://Assets/Code/Enemies/C_HealthPool.cs" id="2_8wvkh"]
-[ext_resource type="Script" path="res://Assets/Code/Towers/C_AlignToMap.cs" id="2_y6cnj"]
+[ext_resource type="Script" path="res://Assets/Enemies/Enemy.cs" id="1_u2htd"]
+[ext_resource type="Script" path="res://Assets/Enemies/C_HealthPool.cs" id="2_8wvkh"]
+[ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="2_y6cnj"]
 [ext_resource type="Texture2D" uid="uid://qywtdmokjhr3" path="res://Assets/Enemies/Clod-E1/Art-Clod.png" id="4_k00w4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1e1oq"]

@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://2ekwlaa17gji"]
 
-[ext_resource type="Script" path="res://Assets/Code/Cursor/Cursor.cs" id="1_85qhr"]
-[ext_resource type="Script" path="res://Assets/Code/Cursor/S_Free.cs" id="3_wjcte"]
-[ext_resource type="Script" path="res://Assets/Code/Cursor/S_PlaceTower.cs" id="4_voq7h"]
+[ext_resource type="Script" path="res://Assets/Cursor/Cursor.cs" id="1_85qhr"]
+[ext_resource type="Script" path="res://Assets/Cursor/S_Free.cs" id="3_wjcte"]
+[ext_resource type="Script" path="res://Assets/Cursor/S_PlaceTower.cs" id="4_voq7h"]
 
 [node name="Cursor" type="Node2D" node_paths=PackedStringArray("DefaultCursorState")]
 script = ExtResource("1_85qhr")

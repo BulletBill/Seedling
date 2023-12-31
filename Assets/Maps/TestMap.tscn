@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://b32yvj87mq78l"]
 
-[ext_resource type="TileSet" uid="uid://se8ye8sftem5" path="res://Assets/Data/Tilesets/TileSet_Main.tres" id="1_lj10u"]
-[ext_resource type="Script" path="res://Assets/Code/Tilemap/MainMap.cs" id="2_nh8to"]
+[ext_resource type="TileSet" uid="uid://se8ye8sftem5" path="res://Assets/Maps/Tilesets/TileSet_Main.tres" id="1_lj10u"]
+[ext_resource type="Script" path="res://Assets/Maps/MainMap.cs" id="2_nh8to"]
 [ext_resource type="PackedScene" uid="uid://bltnii6x6epdm" path="res://Assets/Towers/Genesis Tree/genesis.tscn" id="3_o4emp"]
-[ext_resource type="PackedScene" uid="uid://cqlpygxb75t08" path="res://Assets/Enemies/EnemySpawner.tscn" id="4_76aas"]
+[ext_resource type="PackedScene" uid="uid://cqlpygxb75t08" path="res://Assets/Enemies/Spawner/EnemySpawner.tscn" id="4_76aas"]
 
 [node name="TileMap" type="TileMap"]
 y_sort_enabled = true

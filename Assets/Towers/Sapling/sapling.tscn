@@ -2,10 +2,10 @@
 
 [ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_rdm0s"]
 [ext_resource type="Texture2D" uid="uid://brtlf65prxos0" path="res://Assets/Towers/Sapling/Art-Sapling.png" id="2_0dani"]
-[ext_resource type="Script" path="res://Assets/Code/Towers/Tower.cs" id="3_lo0be"]
-[ext_resource type="Script" path="res://Assets/Code/Towers/C_AlignToMap.cs" id="4_wn8xk"]
-[ext_resource type="Script" path="res://Assets/Code/Towers/C_GrassGrowth.cs" id="5_58ag6"]
-[ext_resource type="Script" path="res://Assets/Code/Towers/C_GenerateResource.cs" id="6_gf1b1"]
+[ext_resource type="Script" path="res://Assets/Towers/Tower.cs" id="3_lo0be"]
+[ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="4_wn8xk"]
+[ext_resource type="Script" path="res://Assets/Towers/Components/C_GrassGrowth.cs" id="5_58ag6"]
+[ext_resource type="Script" path="res://Assets/Towers/Components/C_GenerateResource.cs" id="6_gf1b1"]
 [ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Scenes/Interface/HoverArea.tscn" id="7_2eaun"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bjj0w"]

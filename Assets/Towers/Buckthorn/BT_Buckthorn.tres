@@ -1,9 +1,9 @@
 [gd_resource type="Resource" load_steps=6 format=3 uid="uid://coyd0ad8jrvd7"]
 
-[ext_resource type="Script" path="res://Assets/Code/Towers/R_Cost.cs" id="1_okcfk"]
+[ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="1_okcfk"]
 [ext_resource type="Texture2D" uid="uid://cedcepcgtfr5w" path="res://Assets/Towers/Buckthorn/Art-Buckthorn.png" id="2_c3nqm"]
 [ext_resource type="PackedScene" uid="uid://dwsle41sxrc0k" path="res://Assets/Towers/Buckthorn/build-buckthorn.tscn" id="3_kb2b8"]
-[ext_resource type="Script" path="res://Assets/Code/Towers/R_BuildTower.cs" id="4_xuhh0"]
+[ext_resource type="Script" path="res://Assets/Towers/R_BuildTower.cs" id="4_xuhh0"]
 
 [sub_resource type="Resource" id="Resource_4ujqw"]
 script = ExtResource("1_okcfk")
