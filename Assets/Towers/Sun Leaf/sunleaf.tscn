@@ -1,10 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://dbr6bnc2oohvr"]
+[gd_scene load_steps=14 format=3 uid="uid://dbr6bnc2oohvr"]
 
 [ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_lah4t"]
 [ext_resource type="Texture2D" uid="uid://blygruvq4wq11" path="res://Assets/Towers/Sun Leaf/Art-Sun Leaf.png" id="2_q21ul"]
 [ext_resource type="Script" path="res://Assets/Towers/Tower.cs" id="3_xcnlb"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="4_7gefn"]
-[ext_resource type="Script" path="res://Assets/Towers/Components/C_GenerateResource.cs" id="5_xogtc"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_HarvestArea.cs" id="6_8idby"]
 [ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Scenes/Interface/HoverArea.tscn" id="6_xv2l5"]
 [ext_resource type="Theme" uid="uid://svogtundy1nx" path="res://Assets/Art/Interface/default_theme.tres" id="8_h0t5d"]
@@ -83,9 +82,6 @@ script = ExtResource("3_xcnlb")
 
 [node name="AlignToMap" type="Node2D" parent="."]
 script = ExtResource("4_7gefn")
-
-[node name="AddLifeforce" type="Node2D" parent="."]
-script = ExtResource("5_xogtc")
 
 [node name="HarvestArea" type="Node2D" parent="."]
 script = ExtResource("6_8idby")

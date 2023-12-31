@@ -1,11 +1,12 @@
-[gd_scene load_steps=18 format=3 uid="uid://bltnii6x6epdm"]
+[gd_scene load_steps=21 format=3 uid="uid://bltnii6x6epdm"]
 
 [ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_hwxa5"]
 [ext_resource type="Texture2D" uid="uid://cjl4aixbpkx80" path="res://Assets/Towers/Genesis Tree/Art-Genesis Tree.png" id="2_0hnto"]
 [ext_resource type="Script" path="res://Assets/Towers/Tower.cs" id="3_3npxn"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="4_004cb"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_GrassGrowth.cs" id="5_3tnyx"]
-[ext_resource type="Script" path="res://Assets/Towers/Components/C_GenerateResource.cs" id="6_2h17w"]
+[ext_resource type="Script" path="res://Assets/Towers/Components/C_AddResources.cs" id="6_8pluj"]
+[ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="7_equr8"]
 [ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Scenes/Interface/HoverArea.tscn" id="7_xll0q"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7wjg6"]
@@ -15,6 +16,22 @@ shader_parameter/width = 0.0
 shader_parameter/pattern = 0
 shader_parameter/inside = false
 shader_parameter/add_margins = true
+
+[sub_resource type="Resource" id="Resource_2llxm"]
+script = ExtResource("7_equr8")
+LifeForce = 5
+Substance = 0
+Flow = 0
+Breath = 0
+Energy = 0
+
+[sub_resource type="Resource" id="Resource_wt3hr"]
+script = ExtResource("7_equr8")
+LifeForce = 0
+Substance = 500
+Flow = 500
+Breath = 500
+Energy = 500
 
 [sub_resource type="Animation" id="Animation_vro8x"]
 resource_name = "Hover"
@@ -136,17 +153,10 @@ Radius = 108.0
 GrowthInterval = 0.1
 AttractEnemies = false
 
-[node name="AddLifeforce" type="Node2D" parent="."]
-script = ExtResource("6_2h17w")
-AddFlatAmount = 5
-
-[node name="Substance Income" type="Node2D" parent="."]
-script = ExtResource("6_2h17w")
-CurrencyType = 1
-
-[node name="Flow Income" type="Node2D" parent="."]
-script = ExtResource("6_2h17w")
-CurrencyType = 2
+[node name="ResourceOnSpawn" type="Node2D" parent="."]
+script = ExtResource("6_8pluj")
+AddFlatAmount = SubResource("Resource_2llxm")
+AddMaximum = SubResource("Resource_wt3hr")
 
 [node name="HoverAnimator" type="AnimationPlayer" parent="."]
 libraries = {

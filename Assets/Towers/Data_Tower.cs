@@ -11,7 +11,7 @@ public enum EBuildRequirement
     Lava,
 }
 
-public partial class R_BuildTower : Resource
+public partial class Data_Tower : Resource
 {
     [Export] public Texture2D PlacementSprite;
     [Export] public PackedScene TowerToBuild;

@@ -3,7 +3,7 @@ using System;
 
 public partial class BuildButton : Node2D
 {
-	[Export] public R_BuildTower BuildParams = new();
+	[Export] public Data_Tower BuildParams = new();
 	bool CanAfford = false;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -28,7 +28,7 @@ public partial class BuildButton : Node2D
 		Anim?.Play("Disabled");
 	}
 
-	public void AssignBuildParams(R_BuildTower NewParams)
+	public void AssignBuildParams(Data_Tower NewParams)
 	{
 		if (NewParams == null) return;
 		BuildParams = NewParams;

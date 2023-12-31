@@ -97,6 +97,10 @@ public partial class PlayerEvent : Node
     {
         return Broadcast("Add" + Type.ToString(), args);
     }
+    public static Error BroadcastAddMaxResource(ECurrencyType Type, params Variant[] args)
+    {
+        return Broadcast("Add" + Type.ToString() + "Max", args);
+    }
     public static Error BroadcastAddIncome(ECurrencyType Type, params Variant[] args)
     {
         return Broadcast("Add" + Type.ToString() + "Income", args);

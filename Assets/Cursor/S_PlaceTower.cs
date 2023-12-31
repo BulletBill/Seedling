@@ -6,7 +6,7 @@ public partial class S_PlaceTower : Node, ICursorState
     [Export] public Color GoodColor = new Color(0.0f, 1.0f, 0.0f, 0.5f);
     [Export] public Color BadColor = new Color(1.0f, 0.0f, 0.0f, 0.5f);
     Cursor ParentCursor;
-    R_BuildTower TowerToBuild;
+    Data_Tower TowerToBuild;
     bool PlacementIsValid;
     MainMap CachedTileMap;
     static readonly uint GridCode = 2;
@@ -76,7 +76,7 @@ public partial class S_PlaceTower : Node, ICursorState
             ParentCursor.PlacementGhost.SelfModulate = PlacementIsValid ? GoodColor : BadColor;
         }
     }
-    public void SetTowerToBuild(R_BuildTower NewTowerToBuild)
+    public void SetTowerToBuild(Data_Tower NewTowerToBuild)
     {
         if (ParentCursor == null) return;
         if (NewTowerToBuild == null) return;

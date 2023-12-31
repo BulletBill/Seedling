@@ -10,11 +10,6 @@ public partial class C_HarvestArea : Node2D
 	int FlowIncome;
 	int BreathIncome;
 	int EnergyIncome;
-
-	C_GenerateResource SubstanceGenerate;
-	C_GenerateResource FlowGenerate;
-	C_GenerateResource BreathGenerate;
-	C_GenerateResource EnergyGenerate;
 	ProgressBar TimerBar;
 
 	// Called when the node enters the scene tree for the first time.
