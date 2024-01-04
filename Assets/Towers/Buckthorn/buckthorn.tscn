@@ -3,7 +3,6 @@
 [ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_ngel3"]
 [ext_resource type="Texture2D" uid="uid://cedcepcgtfr5w" path="res://Assets/Towers/Buckthorn/Art-Buckthorn.png" id="2_tdiny"]
 [ext_resource type="Script" path="res://Assets/Towers/Tower.cs" id="3_omh8w"]
-[ext_resource type="Resource" uid="uid://coyd0ad8jrvd7" path="res://Assets/Towers/Buckthorn/Data_Buckthorn.tres" id="4_2vv7p"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_Attack.cs" id="4_rwsa3"]
 [ext_resource type="PackedScene" uid="uid://crck6cv15vkic" path="res://Assets/Towers/Buckthorn/Projectiles/Thorn.tscn" id="5_gtcm5"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="6_bajax"]
@@ -80,7 +79,6 @@ y_sort_enabled = true
 material = SubResource("ShaderMaterial_bjj0w")
 texture = ExtResource("2_tdiny")
 script = ExtResource("3_omh8w")
-TowerData = ExtResource("4_2vv7p")
 
 [node name="Attack" type="Node2D" parent="." groups=["Attacker"]]
 script = ExtResource("4_rwsa3")

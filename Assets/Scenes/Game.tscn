@@ -16,9 +16,9 @@
 [ext_resource type="PackedScene" uid="uid://c4nme8pyly5sa" path="res://Assets/Enemies/Clod-E1/E1 Clod.tscn" id="12_ccdgc"]
 [ext_resource type="Resource" uid="uid://coyd0ad8jrvd7" path="res://Assets/Towers/Buckthorn/Data_Buckthorn.tres" id="13_lgdtf"]
 [ext_resource type="Resource" uid="uid://pqk4g5tts6in" path="res://Assets/Towers/Sun Leaf/Data_Sunleaf.tres" id="13_qekwa"]
-[ext_resource type="PackedScene" uid="uid://d2k206m54ooy6" path="res://Assets/Towers/Sapling/sapling.tscn" id="14_l7b7n"]
-[ext_resource type="PackedScene" uid="uid://cnq5verjyrwl7" path="res://Assets/Towers/Buckthorn/buckthorn.tscn" id="16_tx2rw"]
-[ext_resource type="PackedScene" uid="uid://dbr6bnc2oohvr" path="res://Assets/Towers/Sun Leaf/sunleaf.tscn" id="18_gh8sf"]
+[ext_resource type="PackedScene" uid="uid://cc014in5dphp3" path="res://Assets/Towers/Sapling/build-sapling.tscn" id="14_lyc22"]
+[ext_resource type="PackedScene" uid="uid://dwsle41sxrc0k" path="res://Assets/Towers/Buckthorn/build-buckthorn.tscn" id="16_qloi3"]
+[ext_resource type="PackedScene" uid="uid://brrad01kekp4g" path="res://Assets/Towers/Sun Leaf/build-sunleaf.tscn" id="18_wan3g"]
 [ext_resource type="PackedScene" uid="uid://ukt5pidwl63" path="res://Assets/Scenes/Interface/ContextMenu.tscn" id="19_s5hir"]
 
 [node name="Game" type="Node2D"]
@@ -74,17 +74,17 @@ position = Vector2(0, 1008)
 
 [node name="Build Sapling Button" parent="UI Canvas Layer/Control Panel" instance=ExtResource("8_7jknq")]
 position = Vector2(959, -16)
-TowerToBuild = ExtResource("14_l7b7n")
+TowerToBuild = ExtResource("14_lyc22")
 BuildParams = ExtResource("9_qaekf")
 
 [node name="Build Buckthorn" parent="UI Canvas Layer/Control Panel" instance=ExtResource("8_7jknq")]
 position = Vector2(1055, -16)
-TowerToBuild = ExtResource("16_tx2rw")
+TowerToBuild = ExtResource("16_qloi3")
 BuildParams = ExtResource("13_lgdtf")
 
 [node name="Build Sunleaf Button" parent="UI Canvas Layer/Control Panel" instance=ExtResource("8_7jknq")]
 position = Vector2(863, -16)
-TowerToBuild = ExtResource("18_gh8sf")
+TowerToBuild = ExtResource("18_wan3g")
 BuildParams = ExtResource("13_qekwa")
 
 [node name="ContextMenu" parent="UI Canvas Layer" instance=ExtResource("19_s5hir")]

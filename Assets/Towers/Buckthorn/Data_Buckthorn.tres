@@ -1,8 +1,7 @@
-[gd_resource type="Resource" load_steps=6 format=3 uid="uid://coyd0ad8jrvd7"]
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://coyd0ad8jrvd7"]
 
 [ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="1_okcfk"]
 [ext_resource type="Texture2D" uid="uid://cedcepcgtfr5w" path="res://Assets/Towers/Buckthorn/Art-Buckthorn.png" id="2_c3nqm"]
-[ext_resource type="PackedScene" uid="uid://dwsle41sxrc0k" path="res://Assets/Towers/Buckthorn/build-buckthorn.tscn" id="3_kb2b8"]
 [ext_resource type="Script" path="res://Assets/Towers/Data_Tower.cs" id="4_xuhh0"]
 
 [sub_resource type="Resource" id="Resource_4ujqw"]
@@ -16,7 +15,6 @@ Energy = 0
 [resource]
 script = ExtResource("4_xuhh0")
 PlacementSprite = ExtResource("2_c3nqm")
-TowerToBuild = ExtResource("3_kb2b8")
 TowerName = "Buckthorn"
 Description = ""
 Cost = SubResource("Resource_4ujqw")

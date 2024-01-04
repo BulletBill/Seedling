@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://blygruvq4wq11" path="res://Assets/Towers/Sun Leaf/Art-Sun Leaf.png" id="2_q21ul"]
 [ext_resource type="Script" path="res://Assets/Towers/Tower.cs" id="3_xcnlb"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="4_7gefn"]
-[ext_resource type="Resource" uid="uid://pqk4g5tts6in" path="res://Assets/Towers/Sun Leaf/Data_Sunleaf.tres" id="4_yd8io"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_HarvestArea.cs" id="6_8idby"]
 [ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Scenes/Interface/HoverArea.tscn" id="6_xv2l5"]
 [ext_resource type="Theme" uid="uid://svogtundy1nx" path="res://Assets/Art/Interface/default_theme.tres" id="8_h0t5d"]
@@ -80,7 +79,6 @@ y_sort_enabled = true
 material = SubResource("ShaderMaterial_bjj0w")
 texture = ExtResource("2_q21ul")
 script = ExtResource("3_xcnlb")
-TowerData = ExtResource("4_yd8io")
 
 [node name="AlignToMap" type="Node2D" parent="."]
 script = ExtResource("4_7gefn")

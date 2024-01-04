@@ -1,8 +1,7 @@
-[gd_resource type="Resource" load_steps=6 format=3 uid="uid://bmd4ngk8oi5f1"]
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://bmd4ngk8oi5f1"]
 
 [ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="1_2mlij"]
 [ext_resource type="Texture2D" uid="uid://brtlf65prxos0" path="res://Assets/Towers/Sapling/Art-Sapling.png" id="2_opbt8"]
-[ext_resource type="PackedScene" uid="uid://cc014in5dphp3" path="res://Assets/Towers/Sapling/build-sapling.tscn" id="3_i6sxi"]
 [ext_resource type="Script" path="res://Assets/Towers/Data_Tower.cs" id="4_qok2u"]
 
 [sub_resource type="Resource" id="Resource_4ujqw"]
@@ -16,7 +15,6 @@ Energy = 0
 [resource]
 script = ExtResource("4_qok2u")
 PlacementSprite = ExtResource("2_opbt8")
-TowerToBuild = ExtResource("3_i6sxi")
 TowerName = "Sapling"
 Description = ""
 Cost = SubResource("Resource_4ujqw")
