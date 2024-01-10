@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bo8xgep7v788l"
-path="res://.godot/imported/Spark.png-831be456cf5b4e9534429f69bd3990a9.ctex"
+uid="uid://covf7p5dnpr1k"
+path="res://.godot/imported/Tileset - Utility-export.png-4a9ec4a27c6e5342a4cb0f72c195b535.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/Towers/Spark.png"
-dest_files=["res://.godot/imported/Spark.png-831be456cf5b4e9534429f69bd3990a9.ctex"]
+source_file="res://Assets/Art/Tilesets/Tileset - Utility-export.png"
+dest_files=["res://.godot/imported/Tileset - Utility-export.png-4a9ec4a27c6e5342a4cb0f72c195b535.ctex"]
 
 [params]
 

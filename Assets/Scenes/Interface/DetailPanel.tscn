@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cjvtnmut5ak7p"]
 
 [ext_resource type="Texture2D" uid="uid://c4cqjktrt205k" path="res://Assets/Art/Interface/WindowBG.png" id="1_pk03u"]
-[ext_resource type="Texture2D" uid="uid://bo8xgep7v788l" path="res://Assets/Art/Towers/Spark.png" id="2_dmqoo"]
+[ext_resource type="Texture2D" uid="uid://bo8xgep7v788l" path="res://Assets/Art/Tilesets/Spark.png" id="2_dmqoo"]
 [ext_resource type="FontFile" uid="uid://43j2t4x0ypm3" path="res://Assets/Art/Fonts/Header_UI.tres" id="3_4fh3t"]
 
 [node name="DetailPanel" type="Node2D"]

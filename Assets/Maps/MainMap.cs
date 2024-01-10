@@ -33,6 +33,9 @@ public partial class MainMap : TileMap
 	public static readonly int Layer_Below = 2;
 	public static readonly int Layer_Outline = 3;
 
+	public static readonly String Custom_Spark = "Spark";
+	public static readonly String Custom_Grass = "Grass";
+
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _EnterTree()
@@ -106,6 +109,17 @@ public partial class MainMap : TileMap
 		}
 
 		return Terrain_Void;
+	}
+
+	public static bool TileHasFlag(Vector2I GridPosition, String CustomFlag)
+	{
+		if (MainMap.Singleton == null) return false;
+
+		if (MainMap.Singleton.GetCellTileData(Layer_Ground, GridPosition) != null)
+		{
+			return (bool)MainMap.Singleton.GetCellTileData(Layer_Ground, GridPosition).GetCustomData(CustomFlag);
+		}
+		return false;
 	}
 
 	public static ECurrencyType GetTileCurrency(Vector2I GridPosition)

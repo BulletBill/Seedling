@@ -58,7 +58,7 @@ public partial class S_PlaceTower : Node, ICursorState
         if (CachedTileMap == null) { CachedTileMap = MainMap.Singleton; return; }
 
         bool CanAfford = Player.CanAfford(TowerData.Cost);
-        bool CanPlace = MainMap.GetTileType(NewMapPosition) == MainMap.Terrain_Grass;
+        bool CanPlace = CanPlaceTile(NewMapPosition);
         bool Occupied = false;
         foreach (Node TowerNode in GetTree().GetNodesInGroup(Tower.GroupName))
         {
@@ -90,5 +90,24 @@ public partial class S_PlaceTower : Node, ICursorState
         ParentCursor.PlacementGhost.SelfModulate = PlacementIsValid ? GoodColor : BadColor;
 
         GD.Print("Placement target is " + TowerData.TowerName);
+    }
+
+    bool CanPlaceTile(Vector2I NewMapPosition)
+    {
+        if (TowerData == null) return false;
+        if (CachedTileMap == null) { CachedTileMap = MainMap.Singleton; return false; }
+
+        bool result = true;
+        if (TowerData.NeedsSpark)
+        {
+            result &= MainMap.TileHasFlag(NewMapPosition, MainMap.Custom_Spark);
+        }
+
+        if (TowerData.NeedsGrass)
+        {
+            result &= MainMap.TileHasFlag(NewMapPosition, MainMap.Custom_Grass);
+        }
+
+        return result;
     }
 }

@@ -18,6 +18,7 @@ public partial class Data_Tower : Resource
     [Export(PropertyHint.MultilineText)] public String Description { get; protected set; }
     [Export] public R_Cost Cost = new();
     [Export] public float BuildTime;
+    [Export] public bool NeedsSpark = false;
     [Export] public bool NeedsGrass = true;
     //[Export] public bool NeedsWater = false;
     //[Export] public bool NeedsSpark = false;
