@@ -19,4 +19,5 @@ TowerName = "Buckthorn"
 Description = ""
 Cost = SubResource("Resource_4ujqw")
 BuildTime = 8.0
+NeedsSpark = false
 NeedsGrass = true

@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://bqo4ffahkqb78"]
 
 [ext_resource type="Texture2D" uid="uid://c4cqjktrt205k" path="res://Assets/Art/Interface/WindowBG.png" id="1_21l8l"]
-[ext_resource type="Script" path="res://Assets/Interface/CurrencyDisplay.cs" id="1_38ygr"]
+[ext_resource type="Script" path="res://Assets/Interface/CurrencyDisplay/CurrencyDisplay.cs" id="1_38ygr"]
 [ext_resource type="Texture2D" uid="uid://1p5pgipw4fyf" path="res://Assets/Art/Icons/Lifeforce Small.png" id="2_sxneq"]
-[ext_resource type="Script" path="res://Assets/Interface/UI_CurrencyLine.cs" id="3_opgyh"]
+[ext_resource type="Script" path="res://Assets/Interface/CurrencyDisplay/CurrencyLine.cs" id="3_opgyh"]
 [ext_resource type="FontFile" uid="uid://w05srxbcg8v8" path="res://Assets/Art/Fonts/Default_UI.tres" id="3_yhh80"]
 [ext_resource type="Texture2D" uid="uid://cfgjt6q84i8j7" path="res://Assets/Art/Icons/Substance Small.png" id="4_r4qdh"]
 [ext_resource type="Texture2D" uid="uid://d2fe67br8fs2m" path="res://Assets/Art/Icons/Flow Small.png" id="5_4u7b0"]

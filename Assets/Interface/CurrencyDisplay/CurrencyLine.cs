@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class UI_CurrencyLine : Node2D
+public partial class CurrencyLine : Node2D
 {
 	[Export] public ECurrencyType CurrencyType;
 	[Export] public bool ShowMaximum = true;

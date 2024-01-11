@@ -19,4 +19,5 @@ TowerName = "Sapling"
 Description = ""
 Cost = SubResource("Resource_4ujqw")
 BuildTime = 10.0
+NeedsSpark = false
 NeedsGrass = true
