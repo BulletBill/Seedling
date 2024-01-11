@@ -87,6 +87,7 @@ MinDamage = 2
 MaxDamage = 3
 Range = 150.0
 DamageDelay = 0.25
+TargetPriority = 1
 CanChangeTarget = true
 
 [node name="AlignToMap" type="Node2D" parent="."]

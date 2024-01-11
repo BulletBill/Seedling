@@ -7,6 +7,7 @@ public partial class C_HealthPool : Node2D
     [Export] public int MaxStartingHealth = 12;
     public int StartingHealth;
     public int CurrentHealth;
+    public int PendingDamage;
     ProgressBar HealthVisual;
 
     public override void _Ready()
@@ -22,7 +23,14 @@ public partial class C_HealthPool : Node2D
 
     public void TakeDamage(int InDamage)
     {
-        CurrentHealth -= InDamage;
+        PendingDamage += InDamage;
+    }
+
+    public void RealizeDamage(int RealizedDamage)
+    {
+        PendingDamage -= RealizedDamage;
+        CurrentHealth -= RealizedDamage;
+
         if (HealthVisual != null && StartingHealth > 0)
         {
             HealthVisual.Value = CurrentHealth;
@@ -30,6 +38,11 @@ public partial class C_HealthPool : Node2D
         }
 
         if (CurrentHealth <= 0) Die();
+    }
+
+    public bool IsAlive()
+    {
+        return CurrentHealth > PendingDamage;
     }
 
     void Die()

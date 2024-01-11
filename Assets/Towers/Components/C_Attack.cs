@@ -27,7 +27,8 @@ public partial class C_Attack : Node2D
     float AttackTimer;
     Enemy CurrentTarget;
 
-    float DamageTimer;
+    float DamageTimer = 0.0f;
+    int PendingDamage = 0;
     Enemy PendingDamageTaker;
 
     public override void _Ready()
@@ -51,9 +52,13 @@ public partial class C_Attack : Node2D
             if (DamageTimer < 0.0f)
             {
                 C_HealthPool TargetHealth = PendingDamageTaker.GetNodeOrNull<C_HealthPool>("HealthPool");
-                TargetHealth.TakeDamage(Game.GetIntInRange(MinDamage, MaxDamage));
+                TargetHealth.RealizeDamage(PendingDamage);
                 PendingDamageTaker = null;
             }
+        }
+        else
+        {
+            PendingDamage = 0;
         }
     }
 
@@ -81,6 +86,7 @@ public partial class C_Attack : Node2D
             float Distance = GlobalPosition.DistanceTo(TestEnemy.GlobalPosition);
 
             if (Distance > (Range * 2.0f)) continue;
+            if (!TestEnemy.IsAlive()) continue;
 
             float Score = 0.0f;
             if (TargetPriority == ETargetPriority.ClosestToShooter)
@@ -89,7 +95,7 @@ public partial class C_Attack : Node2D
             }
             else if (TargetPriority == ETargetPriority.ClosestToFinish)
             {
-                Score = TestEnemy.DistanceToTarget;
+                Score = 10000 - TestEnemy.DistanceToTarget;
             }
             else if (TargetPriority == ETargetPriority.HighestHealth)
             {
@@ -122,9 +128,18 @@ public partial class C_Attack : Node2D
     void Fire()
     {
         if (!IsInstanceValid(CurrentTarget)) return;
+        if (PendingDamage > 0)
+        {
+            GD.PrintErr("C_Attack.Fire: Trying to fire before pending damage has been resolved!");
+            return;
+        }
         AttackTimer = AttackDelay;
         DamageTimer = DamageDelay * (GlobalPosition.DistanceTo(CurrentTarget.GlobalPosition) / Range);
         PendingDamageTaker = CurrentTarget;
+        PendingDamage = Game.GetIntInRange(MinDamage, MaxDamage);
+
+        C_HealthPool TargetHealth = PendingDamageTaker.GetNodeOrNull<C_HealthPool>("HealthPool");
+        TargetHealth.TakeDamage(PendingDamage);
 
         if (FiredProjectile != null)
         {

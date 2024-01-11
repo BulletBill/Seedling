@@ -68,10 +68,10 @@ public partial class Enemy : CharacterBody2D
 		}
 	}
 
-	void TakeDamage(int InDamage)
+	public bool IsAlive()
 	{
-		if (HealthPool == null) return;
-		HealthPool.TakeDamage(InDamage);
+		if (HealthPool == null) return false;
+		return HealthPool.IsAlive();
 	}
 
 	public int GetRemainingHealth()

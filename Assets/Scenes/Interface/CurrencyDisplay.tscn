@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://bqo4ffahkqb78"]
+[gd_scene load_steps=10 format=3 uid="uid://bqo4ffahkqb78"]
 
 [ext_resource type="Texture2D" uid="uid://c4cqjktrt205k" path="res://Assets/Art/Interface/WindowBG.png" id="1_21l8l"]
-[ext_resource type="Script" path="res://Assets/Interface/CurrencyDisplay/CurrencyDisplay.cs" id="1_38ygr"]
 [ext_resource type="Texture2D" uid="uid://1p5pgipw4fyf" path="res://Assets/Art/Icons/Lifeforce Small.png" id="2_sxneq"]
 [ext_resource type="Script" path="res://Assets/Interface/CurrencyDisplay/CurrencyLine.cs" id="3_opgyh"]
 [ext_resource type="FontFile" uid="uid://w05srxbcg8v8" path="res://Assets/Art/Fonts/Default_UI.tres" id="3_yhh80"]
@@ -13,7 +12,6 @@
 
 [node name="CurrencyDisplay" type="Node2D"]
 scale = Vector2(2, 2)
-script = ExtResource("1_38ygr")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 self_modulate = Color(1, 1, 1, 0.490196)
