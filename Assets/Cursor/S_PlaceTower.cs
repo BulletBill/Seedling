@@ -108,6 +108,8 @@ public partial class S_PlaceTower : Node, ICursorState
             result &= MainMap.TileHasFlag(NewMapPosition, MainMap.Custom_Grass);
         }
 
+        result &= MainMap.GetTileType(NewMapPosition) == MainMap.Terrain_Grass;
+
         return result;
     }
 }

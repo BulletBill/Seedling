@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cnq5verjyrwl7"]
+[gd_scene load_steps=14 format=3 uid="uid://cnq5verjyrwl7"]
 
 [ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_ngel3"]
 [ext_resource type="Texture2D" uid="uid://cedcepcgtfr5w" path="res://Assets/Towers/Buckthorn/Art-Buckthorn.png" id="2_tdiny"]

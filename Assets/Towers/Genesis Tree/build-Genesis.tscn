@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3fxnt1sq3rjq"]
+
+[ext_resource type="Script" path="res://Assets/Towers/BuildTower.cs" id="1_mvyvx"]
+[ext_resource type="PackedScene" uid="uid://bltnii6x6epdm" path="res://Assets/Towers/Genesis Tree/genesis.tscn" id="2_h5ber"]
+[ext_resource type="Texture2D" uid="uid://dg1ugbc0qnr32" path="res://Assets/Towers/Genesis Tree/Art-Build Genesis Heart.png" id="3_0qfmi"]
+[ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="4_72xy7"]
+
+[node name="Build-Genesis" type="Node2D"]
+script = ExtResource("1_mvyvx")
+TowerToBecome = ExtResource("2_h5ber")
+BuildTime = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_0qfmi")
+
+[node name="AlignToMap" type="Node2D" parent="."]
+script = ExtResource("4_72xy7")
+
+[node name="BuildBar" type="ProgressBar" parent="."]
+offset_left = -14.0
+offset_top = 8.0
+offset_right = 14.0
+offset_bottom = 14.0
+max_value = 500.0
+step = 1.0
+show_percentage = false

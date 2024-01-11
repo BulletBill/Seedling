@@ -114,12 +114,17 @@ public partial class MainMap : TileMap
 	public static bool TileHasFlag(Vector2I GridPosition, String CustomFlag)
 	{
 		if (MainMap.Singleton == null) return false;
+		bool result = false;
 
+		if (MainMap.Singleton.GetCellTileData(Layer_Below, GridPosition) != null)
+		{
+			result |= (bool)MainMap.Singleton.GetCellTileData(Layer_Ground, GridPosition).GetCustomData(CustomFlag);
+		}
 		if (MainMap.Singleton.GetCellTileData(Layer_Ground, GridPosition) != null)
 		{
-			return (bool)MainMap.Singleton.GetCellTileData(Layer_Ground, GridPosition).GetCustomData(CustomFlag);
+			result |= (bool)MainMap.Singleton.GetCellTileData(Layer_Ground, GridPosition).GetCustomData(CustomFlag);
 		}
-		return false;
+		return result;
 	}
 
 	public static ECurrencyType GetTileCurrency(Vector2I GridPosition)

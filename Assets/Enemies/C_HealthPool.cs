@@ -34,6 +34,6 @@ public partial class C_HealthPool : Node2D
 
     void Die()
     {
-        GetParent().QueueFree();
+        GetParentOrNull<Enemy>()?.Die();
     }
 }

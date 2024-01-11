@@ -153,10 +153,10 @@ material = ExtResource("3_r4kpr")
 texture = ExtResource("3_80dcy")
 
 [node name="Cost" type="RichTextLabel" parent="."]
-offset_left = -50.0
+offset_left = -56.0
 offset_top = 33.0
-offset_right = 51.0
-offset_bottom = 76.0
+offset_right = 56.0
+offset_bottom = 93.0
 bbcode_enabled = true
 text = "[center][img]res://Assets/Art/Icons/Substance Small.png[/img]40[/center]"
 scroll_active = false

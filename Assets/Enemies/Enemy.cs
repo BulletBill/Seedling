@@ -8,6 +8,7 @@ public partial class Enemy : CharacterBody2D
 	[Export] public int SpawnCost = 1;
 	[Export] public int PlayerDamage = 1;
 	[Export] public float Speed = 40.0f;
+	[Export] public R_Cost Reward = new();
 	public bool Active = false;
 	NavigationAgent2D Nav;
 	float SeekTimer;
@@ -78,5 +79,33 @@ public partial class Enemy : CharacterBody2D
 		if (HealthPool == null) return -1;
 
 		return HealthPool.CurrentHealth;
+	}
+
+	public void Die()
+	{
+		// Reward player
+		if (Reward.Substance > 0)
+		{
+			PlayerEvent.Broadcast(PlayerEvent.SignalName.AddSubstance, Reward.Substance);
+			Game.SpawnResourceNumber(GlobalPosition + new Vector2(-15, -15), Reward.Substance, ECurrencyType.Substance);
+		}
+		if (Reward.Flow > 0)
+		{
+			PlayerEvent.Broadcast(PlayerEvent.SignalName.AddFlow, Reward.Flow);
+			Game.SpawnResourceNumber(GlobalPosition + new Vector2(+15, -15), Reward.Flow, ECurrencyType.Flow);
+		}
+		if (Reward.Breath > 0)
+		{
+			PlayerEvent.Broadcast(PlayerEvent.SignalName.AddBreath, Reward.Breath);
+			Game.SpawnResourceNumber(GlobalPosition + new Vector2(-15, +15), Reward.Breath, ECurrencyType.Breath);
+		}
+		if (Reward.Energy > 0)
+		{
+			PlayerEvent.Broadcast(PlayerEvent.SignalName.AddEnergy, Reward.Energy);
+			Game.SpawnResourceNumber(GlobalPosition + new Vector2(+15, +15), Reward.Energy, ECurrencyType.Energy);
+		}
+
+		// Actually die
+		QueueFree();
 	}
 }

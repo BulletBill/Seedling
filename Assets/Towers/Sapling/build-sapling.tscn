@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cc014in5dphp3"]
 
-[ext_resource type="Script" path="res://Assets/Towers/BuildTower/BuildTower.cs" id="1_g6n32"]
+[ext_resource type="Script" path="res://Assets/Towers/BuildTower.cs" id="1_g6n32"]
 [ext_resource type="PackedScene" uid="uid://d2k206m54ooy6" path="res://Assets/Towers/Sapling/sapling.tscn" id="2_ltngr"]
 [ext_resource type="Texture2D" uid="uid://jjtyw1yuda4o" path="res://Assets/Towers/Sapling/Art-BuildSapling.png" id="3_4c6c6"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="4_o55dw"]
