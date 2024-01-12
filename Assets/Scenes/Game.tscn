@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://df7u54ytfaqgo"]
+[gd_scene load_steps=32 format=3 uid="uid://df7u54ytfaqgo"]
 
 [ext_resource type="Script" path="res://Assets/Core/Game.cs" id="1_6pfw6"]
 [ext_resource type="Script" path="res://Assets/Core/CameraController.cs" id="2_1l8qg"]
@@ -23,6 +23,9 @@
 [ext_resource type="PackedScene" uid="uid://ukt5pidwl63" path="res://Assets/Scenes/Interface/ContextMenu.tscn" id="19_s5hir"]
 [ext_resource type="PackedScene" uid="uid://b3fxnt1sq3rjq" path="res://Assets/Towers/Genesis Tree/build-Genesis.tscn" id="20_vysba"]
 [ext_resource type="Resource" uid="uid://cnxh15qnwr5eo" path="res://Assets/Towers/Genesis Tree/Data_Genesis.tres" id="21_iihs7"]
+[ext_resource type="Texture2D" uid="uid://c4cqjktrt205k" path="res://Assets/Art/Interface/WindowBG.png" id="24_07imn"]
+[ext_resource type="Script" path="res://Assets/Debug/Debug_Costs.cs" id="25_lm41f"]
+[ext_resource type="Script" path="res://Assets/Debug/Debug_Spawning.cs" id="26_gxkg1"]
 
 [sub_resource type="Animation" id="Animation_ko4m5"]
 resource_name = "MoveToRight"
@@ -182,5 +185,37 @@ BuildParams = ExtResource("21_iihs7")
 [node name="ContextMenu" parent="UI Canvas Layer" instance=ExtResource("19_s5hir")]
 position = Vector2(1369, 487)
 
+[node name="DebugPanel" type="Node2D" parent="UI Canvas Layer"]
+
+[node name="NinePatchRect" type="NinePatchRect" parent="UI Canvas Layer/DebugPanel"]
+self_modulate = Color(1, 1, 1, 0.490196)
+offset_left = 867.0
+offset_top = 24.0
+offset_right = 1056.0
+offset_bottom = 93.0
+texture = ExtResource("24_07imn")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="CostButton" type="CheckButton" parent="UI Canvas Layer/DebugPanel/NinePatchRect"]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 187.0
+offset_bottom = 30.0
+text = "Debug Costs"
+script = ExtResource("25_lm41f")
+
+[node name="SpawnButton" type="CheckButton" parent="UI Canvas Layer/DebugPanel/NinePatchRect"]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 187.0
+offset_bottom = 61.0
+text = "Disable Enemy"
+script = ExtResource("26_gxkg1")
+
 [connection signal="mouse_entered" from="UI Canvas Layer/InfoPanel/MouseArea-Left" to="UI Canvas Layer/InfoPanel" method="MoveToRight"]
 [connection signal="mouse_entered" from="UI Canvas Layer/InfoPanel/MouseArea-Right" to="UI Canvas Layer/InfoPanel" method="MoveToLeft"]
+[connection signal="pressed" from="UI Canvas Layer/DebugPanel/NinePatchRect/CostButton" to="UI Canvas Layer/DebugPanel/NinePatchRect/CostButton" method="ToggleCosts"]
+[connection signal="pressed" from="UI Canvas Layer/DebugPanel/NinePatchRect/SpawnButton" to="UI Canvas Layer/DebugPanel/NinePatchRect/SpawnButton" method="ToggleCosts"]

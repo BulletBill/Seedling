@@ -1,17 +1,83 @@
-[gd_scene load_steps=5 format=3 uid="uid://dwsle41sxrc0k"]
+[gd_scene load_steps=13 format=3 uid="uid://dwsle41sxrc0k"]
 
 [ext_resource type="Script" path="res://Assets/Towers/BuildTower.cs" id="1_jjw0f"]
+[ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_unyhk"]
 [ext_resource type="PackedScene" uid="uid://cnq5verjyrwl7" path="res://Assets/Towers/Buckthorn/buckthorn.tscn" id="2_w82q5"]
 [ext_resource type="Texture2D" uid="uid://b3ohqqlo3egwh" path="res://Assets/Towers/Buckthorn/Art-BuildBuckthorn.png" id="3_uiggv"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="4_a8ets"]
+[ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Scenes/Interface/HoverArea.tscn" id="6_py4lt"]
 
-[node name="Build-Buckthorn" type="Node2D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_68xpg"]
+shader = ExtResource("1_unyhk")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 0.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+
+[sub_resource type="Animation" id="Animation_vro8x"]
+resource_name = "Hover"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_8e3l7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_n53sj"]
+resource_name = "Unhover"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v61gj"]
+_data = {
+"Hover": SubResource("Animation_vro8x"),
+"RESET": SubResource("Animation_8e3l7"),
+"Unhover": SubResource("Animation_n53sj")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sj0cl"]
+size = Vector2(30, 31)
+
+[node name="Build-Buckthorn" type="Sprite2D" groups=["Tower"]]
+material = SubResource("ShaderMaterial_68xpg")
+texture = ExtResource("3_uiggv")
 script = ExtResource("1_jjw0f")
 TowerToBecome = ExtResource("2_w82q5")
 BuildTime = 8.0
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_uiggv")
 
 [node name="AlignToMap" type="Node2D" parent="."]
 script = ExtResource("4_a8ets")
@@ -24,3 +90,15 @@ offset_bottom = 14.0
 max_value = 500.0
 step = 1.0
 show_percentage = false
+
+[node name="HoverAnimator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_v61gj")
+}
+
+[node name="HoverArea" parent="." node_paths=PackedStringArray("ParentAnimator") instance=ExtResource("6_py4lt")]
+ParentAnimator = NodePath("../HoverAnimator")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HoverArea"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_sj0cl")

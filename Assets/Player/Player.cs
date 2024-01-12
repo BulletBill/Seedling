@@ -12,15 +12,10 @@ public partial class Player : Node2D
     public static List<Tower> DefendTargets = new();
     public static readonly float IncomeTime = 5.0f;
 
+    // DEBUG
+    public bool FreeTowers = false;
+
     // Signals
-    /*[Signal] public delegate void ResourcesChangedEventHandler();
-    [Signal] public delegate void LifeforceChangedEventHandler(int NewAmount);
-    [Signal] public delegate void SubstanceChangedEventHandler(int NewAmount);
-    [Signal] public delegate void FlowChangedEventHandler(int NewAmount);
-    [Signal] public delegate void BreathChangedEventHandler(int NewAmount);
-    [Signal] public delegate void EnergyChangedEventHandler(int NewAmount);
-    [Signal] public delegate void LivesChangedEventHandler();
-    */
     [Signal] public delegate void GrassGrownEventHandler(int Count);
 
     public Player()
@@ -70,6 +65,9 @@ public partial class Player : Node2D
     public static bool CanAfford(R_Cost Cost)
     {
         if (Singleton == null) return false;
+
+        if (Singleton.FreeTowers) return true;
+
         if (Singleton.Currencies[ECurrencyType.Lifeforce].Amount < Cost.LifeForce) return false;
         if (Singleton.Currencies[ECurrencyType.Substance].Amount < Cost.Substance) return false;
         if (Singleton.Currencies[ECurrencyType.Flow].Amount < Cost.Flow) return false;

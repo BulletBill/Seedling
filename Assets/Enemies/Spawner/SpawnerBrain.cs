@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using Godot.Collections;
+using System.Diagnostics.CodeAnalysis;
 
 public partial class SpawnerBrain : Node
 {
@@ -12,6 +13,9 @@ public partial class SpawnerBrain : Node
 
     public float BigWaveTimer { get; protected set; } = 301.0f;
     int BigWaveSpawningPool = 100;
+
+    // DEBUG
+    public bool DisableSpawns = false;
 
     public override void _Ready()
     {
@@ -27,6 +31,7 @@ public partial class SpawnerBrain : Node
 
     public override void _Process(double delta)
     {
+        if (DisableSpawns) return;
         if (BigWaveTimer > 0)
         {
             BigWaveTimer -= (float)delta;
@@ -49,6 +54,7 @@ public partial class SpawnerBrain : Node
 
     void SpawnEnemies()
     {
+        if (DisableSpawns) return;
         if (EnemiesToSpawn.Count <= 0) return;
         if (Spawners.Count <= 0) return;
 

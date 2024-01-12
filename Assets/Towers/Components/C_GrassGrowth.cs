@@ -79,11 +79,12 @@ public partial class C_GrassGrowth : Node2D
             if (TilesInRange[i].Distance <= DistanceToUse)
             {
                 // Tile might have become grass from another tower in the mean time
-                if (CachedTileMap.GetCellTileData(MainMap.Layer_Ground, TilesInRange[i].TilePosition).Terrain != MainMap.Terrain_Grass)
+                if (CachedTileMap.GetCellTileData(MainMap.Layer_Ground, TilesInRange[i].TilePosition).Terrain == MainMap.Terrain_Grass)
                 {
-                    TilesToGrow.Add(TilesInRange[i]);
+                    TilesInRange.RemoveAt(i);
+                    continue;
                 }
-                //TilesInRange.RemoveAt(i);
+                TilesToGrow.Add(TilesInRange[i]);
             }
         }
 
@@ -104,6 +105,10 @@ public partial class C_GrassGrowth : Node2D
             {
                 Player.Singleton.EmitSignal("GrassGrown", TileToGrow.Count);
             }
+        }
+        else
+        {
+            //GD.PrintErr("C_GrassGrowth.GrowGrass: Failed to create grass tile!");
         }
     }
 

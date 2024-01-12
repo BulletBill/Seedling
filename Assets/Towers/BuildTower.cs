@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class BuildTower : Node2D
+public partial class BuildTower : Tower
 {
 	[Export] public PackedScene TowerToBecome = null;
 	[Export] public double BuildTime = 1.0f;
@@ -10,6 +10,7 @@ public partial class BuildTower : Node2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		base._Ready();
 		BuildTimer = BuildTime;
 		TimerBar = GetNodeOrNull<ProgressBar>("BuildBar");
 		if (IsInstanceValid(TimerBar)) { TimerBar.MaxValue = (int)(BuildTime * 100); }

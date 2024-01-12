@@ -1,17 +1,83 @@
-[gd_scene load_steps=5 format=3 uid="uid://cc014in5dphp3"]
+[gd_scene load_steps=13 format=3 uid="uid://cc014in5dphp3"]
 
 [ext_resource type="Script" path="res://Assets/Towers/BuildTower.cs" id="1_g6n32"]
+[ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_sljl6"]
 [ext_resource type="PackedScene" uid="uid://d2k206m54ooy6" path="res://Assets/Towers/Sapling/sapling.tscn" id="2_ltngr"]
 [ext_resource type="Texture2D" uid="uid://jjtyw1yuda4o" path="res://Assets/Towers/Sapling/Art-BuildSapling.png" id="3_4c6c6"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="4_o55dw"]
+[ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Scenes/Interface/HoverArea.tscn" id="6_oslbu"]
 
-[node name="Build-Sapling" type="Node2D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rbwmu"]
+shader = ExtResource("1_sljl6")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 0.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+
+[sub_resource type="Animation" id="Animation_vro8x"]
+resource_name = "Hover"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_8e3l7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_n53sj"]
+resource_name = "Unhover"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v61gj"]
+_data = {
+"Hover": SubResource("Animation_vro8x"),
+"RESET": SubResource("Animation_8e3l7"),
+"Unhover": SubResource("Animation_n53sj")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m8f2e"]
+size = Vector2(30, 31)
+
+[node name="Build-Sapling" type="Sprite2D" groups=["Tower"]]
+material = SubResource("ShaderMaterial_rbwmu")
+texture = ExtResource("3_4c6c6")
 script = ExtResource("1_g6n32")
 TowerToBecome = ExtResource("2_ltngr")
 BuildTime = 5.0
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_4c6c6")
 
 [node name="AlignToMap" type="Node2D" parent="."]
 script = ExtResource("4_o55dw")
@@ -24,3 +90,16 @@ offset_bottom = 14.0
 max_value = 500.0
 step = 1.0
 show_percentage = false
+
+[node name="HoverAnimator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_v61gj")
+}
+autoplay = "Unhover"
+
+[node name="HoverArea" parent="." node_paths=PackedStringArray("ParentAnimator") instance=ExtResource("6_oslbu")]
+ParentAnimator = NodePath("../HoverAnimator")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HoverArea"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_m8f2e")
