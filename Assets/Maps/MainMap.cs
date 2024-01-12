@@ -118,7 +118,7 @@ public partial class MainMap : TileMap
 
 		if (MainMap.Singleton.GetCellTileData(Layer_Below, GridPosition) != null)
 		{
-			result |= (bool)MainMap.Singleton.GetCellTileData(Layer_Ground, GridPosition).GetCustomData(CustomFlag);
+			result |= (bool)MainMap.Singleton.GetCellTileData(Layer_Below, GridPosition).GetCustomData(CustomFlag);
 		}
 		if (MainMap.Singleton.GetCellTileData(Layer_Ground, GridPosition) != null)
 		{

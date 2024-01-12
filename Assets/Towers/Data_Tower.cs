@@ -18,8 +18,13 @@ public partial class Data_Tower : Resource
     [Export(PropertyHint.MultilineText)] public String Description { get; protected set; }
     [Export] public R_Cost Cost = new();
     [Export] public float BuildTime;
-    [Export] public bool NeedsSpark = false;
-    [Export] public bool NeedsGrass = true;
+    [Export] public bool NeedsSparkFlag = false;
+    [Export] public bool NeedsGrassFlag = true;
+    [Export] public bool CanBuildOnGrass = true;
+    [Export] public bool CanBuildOnDirt = false;
+    [Export] public bool CanBuildOnWater = false;
+    [Export] public bool CanBuildOnChasm = false;
+    [Export] public bool CanBuildOnStone = false;
     //[Export] public bool NeedsWater = false;
     //[Export] public bool NeedsSpark = false;
 }

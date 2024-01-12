@@ -98,17 +98,24 @@ public partial class S_PlaceTower : Node, ICursorState
         if (CachedTileMap == null) { CachedTileMap = MainMap.Singleton; return false; }
 
         bool result = true;
-        if (TowerData.NeedsSpark)
+        if (TowerData.NeedsSparkFlag)
         {
             result &= MainMap.TileHasFlag(NewMapPosition, MainMap.Custom_Spark);
         }
 
-        if (TowerData.NeedsGrass)
+        if (TowerData.NeedsGrassFlag)
         {
             result &= MainMap.TileHasFlag(NewMapPosition, MainMap.Custom_Grass);
         }
 
-        result &= MainMap.GetTileType(NewMapPosition) == MainMap.Terrain_Grass;
+        int TileType = MainMap.GetTileType(NewMapPosition);
+
+        bool MatchesTile = ((TowerData.CanBuildOnGrass && TileType == MainMap.Terrain_Grass) ||
+                            (TowerData.CanBuildOnDirt && TileType == MainMap.Terrain_Dirt) ||
+                            (TowerData.CanBuildOnStone && TileType == MainMap.Terrain_Stone) ||
+                            (TowerData.CanBuildOnWater && TileType == MainMap.Terrain_Water) ||
+                            (TowerData.CanBuildOnChasm && TileType == MainMap.Terrain_Chasm));
+        result &= MatchesTile;
 
         return result;
     }
