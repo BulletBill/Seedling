@@ -38,7 +38,7 @@ public partial class SpawnerBrain : Node
         if (DisableSpawns) return;
         if (BigWaveTimer > 0)
         {
-            BigWaveTimer -= (float)delta;
+            BigWaveTimer -= (float)delta * Game.GetSpeed();
         }
     }
 

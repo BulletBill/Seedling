@@ -45,7 +45,7 @@ public partial class C_HarvestArea : Node2D
 	{
 		if (Player.IncomeTime <= 0.0f) return;
 
-		IncomeTimer -= (float)delta;
+		IncomeTimer -= (float)delta * Game.GetSpeed();
 		if (IncomeTimer <= 0.0f)
 		{
 			IncomeTimer = Player.IncomeTime;

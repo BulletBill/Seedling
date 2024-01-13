@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bltnii6x6epdm"]
+[gd_scene load_steps=22 format=3 uid="uid://bltnii6x6epdm"]
 
 [ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_hwxa5"]
 [ext_resource type="Texture2D" uid="uid://cjl4aixbpkx80" path="res://Assets/Towers/Genesis Tree/Art-Genesis Tree.png" id="2_0hnto"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_AddResources.cs" id="6_8pluj"]
 [ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="7_equr8"]
 [ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Scenes/Interface/HoverArea.tscn" id="7_xll0q"]
+[ext_resource type="Script" path="res://Assets/Core/PausableAnimation.cs" id="9_1c162"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7wjg6"]
 shader = ExtResource("1_hwxa5")
@@ -181,3 +182,4 @@ libraries = {
 "": SubResource("AnimationLibrary_dluc5")
 }
 autoplay = "Glow"
+script = ExtResource("9_1c162")

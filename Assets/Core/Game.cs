@@ -8,11 +8,25 @@ public partial class Game : Node
     [Export] public PackedScene DamageNumberPrefab;
     public static Game Singleton { get; protected set; }
     static RandomNumberGenerator RNG = new();
+    float GameSpeed = 1.0f;
+    bool Paused = false;
 
     public override void _EnterTree()
     {
         Singleton = this;
     }
+
+    public override void _Process(double delta)
+    {
+        if (Input.IsActionJustPressed("Pause"))
+        {
+            Paused = !Paused;
+            if (Paused) GameSpeed = 0.0f;
+            if (!Paused) GameSpeed = 1.0f;
+        }
+    }
+
+    // Static functions
 
     public static int GetIntInRange(int Min, int Max)
     {
@@ -22,6 +36,12 @@ public partial class Game : Node
     public static float GetFloatInRange(float Min, float Max)
     {
         return Game.RNG.RandfRange(Min, Max);
+    }
+
+    public static float GetSpeed()
+    {
+        if (Game.Singleton == null) return 1.0f;
+        return Game.Singleton.GameSpeed;
     }
 
     public static String GetTimeFromSeconds(float InTime)

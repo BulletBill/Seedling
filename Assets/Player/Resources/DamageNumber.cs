@@ -66,7 +66,7 @@ public partial class DamageNumber : RichTextLabel
             }
         }
 
-        Velocity.Y += Gravity * (float)delta;
-        GlobalPosition += Velocity * (float)delta;
+        Velocity.Y += Gravity * (float)delta * Game.GetSpeed();
+        GlobalPosition += Velocity * (float)delta * Game.GetSpeed();
     }
 }

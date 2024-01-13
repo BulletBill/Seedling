@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b653ac6q6ipab"]
+[gd_scene load_steps=6 format=3 uid="uid://b653ac6q6ipab"]
 
 [ext_resource type="Script" path="res://Assets/Player/Resources/DamageNumber.cs" id="2"]
+[ext_resource type="Script" path="res://Assets/Core/PausableAnimation.cs" id="2_bsb7f"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "Fade"
@@ -71,3 +72,4 @@ libraries = {
 "": SubResource("AnimationLibrary_d5sbe")
 }
 autoplay = "Fade"
+script = ExtResource("2_bsb7f")

@@ -32,7 +32,7 @@ public partial class Enemy : CharacterBody2D
 	{
 		if (!Active) return;
 
-		SeekTimer -= (float)delta;
+		SeekTimer -= (float)delta * Game.GetSpeed();
 		if (SeekTimer <= 0.0f)
 		{
 			MakePath();

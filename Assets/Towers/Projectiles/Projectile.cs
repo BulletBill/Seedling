@@ -37,7 +37,7 @@ public partial class Projectile : Sprite2D
 
 		if (RemainingTime > 0.0f)
 		{
-			RemainingTime -= (float)delta;
+			RemainingTime -= (float)delta * Game.GetSpeed();
 			if (RemainingTime <= 0.0f)
 			{
 				QueueFree();

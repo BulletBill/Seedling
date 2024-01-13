@@ -27,7 +27,7 @@ public partial class BuildTower : Tower
 	{
 		if (BuildTimer > 0.0f)
 		{
-			BuildTimer -= delta;
+			BuildTimer -= delta * Game.GetSpeed();
 			if (IsInstanceValid(TimerBar))
 			{
 				TimerBar.Value = TimerBar.MaxValue - (int)((BuildTimer / BuildTime) * TimerBar.MaxValue);

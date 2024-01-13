@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b3fxnt1sq3rjq"]
+[gd_scene load_steps=18 format=3 uid="uid://b3fxnt1sq3rjq"]
 
 [ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_3pl08"]
 [ext_resource type="Script" path="res://Assets/Towers/BuildTower.cs" id="1_mvyvx"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dg1ugbc0qnr32" path="res://Assets/Towers/Genesis Tree/Art-Build Genesis Heart.png" id="3_0qfmi"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="4_72xy7"]
 [ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Scenes/Interface/HoverArea.tscn" id="6_jfvu7"]
+[ext_resource type="Script" path="res://Assets/Core/PausableAnimation.cs" id="7_y7wha"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ufgj0"]
 shader = ExtResource("1_3pl08")
@@ -161,3 +162,4 @@ libraries = {
 "": SubResource("AnimationLibrary_dluc5")
 }
 autoplay = "Glow"
+script = ExtResource("7_y7wha")
