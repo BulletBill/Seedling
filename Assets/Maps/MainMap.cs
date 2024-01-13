@@ -36,11 +36,18 @@ public partial class MainMap : TileMap
 	public static readonly String Custom_Spark = "Spark";
 	public static readonly String Custom_Grass = "Grass";
 
+	// Event bus
+	[Signal] public delegate void GrassGrownEventHandler(int Count);
+	[Signal] public delegate void AnyTileChangedEventHandler();
+
+	public MainMap()
+	{
+		Singleton = this;
+	}
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _EnterTree()
 	{
-		MainMap.Singleton = this;
 		SetLayerModulate(Layer_Outline, new Color(0.0f, 0.0f, 0.0f, 0.0f));
 	}
 
@@ -180,6 +187,24 @@ public partial class MainMap : TileMap
 		Singleton.HarvestedTileCount.Add(TileLoc, 1);
 		return GetTileCurrency(TileLoc);
 	}
+
+	// Event bus functions
+	public static bool Register(String DelegateName, Callable Receiver)
+    {
+        if (Singleton == null) return false;
+        Error Result = Singleton.Connect(DelegateName, Receiver);
+        if (Result == Error.Ok)
+        {
+            return true;
+        }
+        return false;
+    }
+
+	public static Error Broadcast(String EventName, params Variant[] args)
+    {
+        if (Singleton == null) return Error.DoesNotExist;
+        return Singleton.EmitSignal(EventName, args);
+    }
 }
 
 public class TileAtDistance

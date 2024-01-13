@@ -52,23 +52,20 @@ public partial class C_HarvestArea : Node2D
 			if (SubstanceIncome > 0)
 			{
 				PlayerEvent.Broadcast(PlayerEvent.SignalName.AddSubstance, SubstanceIncome);
-				Game.SpawnResourceNumber(ParentPositon + new Vector2(-15, -15), SubstanceIncome, ECurrencyType.Substance);
 			}
 			if (FlowIncome > 0)
 			{
 				PlayerEvent.Broadcast(PlayerEvent.SignalName.AddFlow, FlowIncome);
-				Game.SpawnResourceNumber(ParentPositon + new Vector2(+15, -15), FlowIncome, ECurrencyType.Flow);
 			}
 			if (BreathIncome > 0)
 			{
 				PlayerEvent.Broadcast(PlayerEvent.SignalName.AddBreath, BreathIncome);
-				Game.SpawnResourceNumber(ParentPositon + new Vector2(-15, +15), BreathIncome, ECurrencyType.Breath);
 			}
 			if (EnergyIncome > 0)
 			{
 				PlayerEvent.Broadcast(PlayerEvent.SignalName.AddEnergy, EnergyIncome);
-				Game.SpawnResourceNumber(ParentPositon + new Vector2(+15, +15), EnergyIncome, ECurrencyType.Energy);
 			}
+			Game.SpawnResourceCluster(ParentPositon, SubstanceIncome, FlowIncome, BreathIncome, EnergyIncome);
 		}
 
 		if (IsInstanceValid(TimerBar))

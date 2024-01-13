@@ -51,4 +51,34 @@ public partial class Game : Node
             NewNumber.AssignResource(Location, Amount, Type);
         }
     }
+
+    static readonly List<Vector2> ClusterOffsets = new() {
+        new Vector2(-15,-15),
+        new Vector2(15,-15),
+        new Vector2(-15,15),
+        new Vector2(15,15)
+    };
+    public static void SpawnResourceCluster(Vector2 Center, int Substance, int Flow, int Breath, int Energy)
+    {
+        if (Game.Singleton == null) return;
+        if (Game.Singleton.DamageNumberPrefab == null) return;
+
+        int index = 0;
+        if (Substance != 0)
+        {
+            SpawnResourceNumber(Center + ClusterOffsets[index++], Substance, ECurrencyType.Substance);
+        }
+        if (Flow != 0)
+        {
+            SpawnResourceNumber(Center + ClusterOffsets[index++], Flow, ECurrencyType.Flow);
+        }
+        if (Breath != 0)
+        {
+            SpawnResourceNumber(Center + ClusterOffsets[index++], Breath, ECurrencyType.Breath);
+        }
+        if (Energy != 0)
+        {
+            SpawnResourceNumber(Center + ClusterOffsets[index++], Energy, ECurrencyType.Energy);
+        }
+    }
 }

@@ -163,7 +163,7 @@ shape = SubResource("RectangleShape2D_1nxvs")
 position = Vector2(0, 1008)
 
 [node name="Build Sapling Button" parent="UI Canvas Layer/Control Panel" instance=ExtResource("8_7jknq")]
-position = Vector2(961, -16)
+position = Vector2(193, -16)
 TowerToBuild = ExtResource("14_lyc22")
 BuildParams = ExtResource("9_qaekf")
 
@@ -173,7 +173,7 @@ TowerToBuild = ExtResource("16_qloi3")
 BuildParams = ExtResource("13_lgdtf")
 
 [node name="Build Sunleaf Button" parent="UI Canvas Layer/Control Panel" instance=ExtResource("8_7jknq")]
-position = Vector2(865, -16)
+position = Vector2(961, -16)
 TowerToBuild = ExtResource("18_wan3g")
 BuildParams = ExtResource("13_qekwa")
 

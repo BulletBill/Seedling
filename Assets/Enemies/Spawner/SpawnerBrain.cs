@@ -17,9 +17,13 @@ public partial class SpawnerBrain : Node
     // DEBUG
     public bool DisableSpawns = false;
 
+    public override void _EnterTree()
+    {
+        MainMap.Register(MainMap.SignalName.GrassGrown, Callable.From((int n) => GrassGrown(n)));
+    }
+
     public override void _Ready()
     {
-        Player.Singleton.GrassGrown += GrassGrown;
         foreach (Node SpawnerNode in GetTree().GetNodesInGroup(EnemySpawner.Group))
         {
             if (SpawnerNode is EnemySpawner Spawner)

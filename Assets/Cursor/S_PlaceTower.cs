@@ -5,12 +5,19 @@ public partial class S_PlaceTower : Node, ICursorState
 {
     [Export] public Color GoodColor = new Color(0.0f, 1.0f, 0.0f, 0.5f);
     [Export] public Color BadColor = new Color(1.0f, 0.0f, 0.0f, 0.5f);
+    Vector2I CurrentPosition = new();
     Cursor ParentCursor;
     Data_Tower TowerData;
     PackedScene TowerToBuild;
     bool PlacementIsValid;
     MainMap CachedTileMap;
     static readonly uint GridCode = 2;
+
+    public override void _EnterTree()
+    {
+        MainMap.Register(MainMap.SignalName.AnyTileChanged, Callable.From(() => UpdateInPlace()));
+    }
+
     public override void _Ready()
     {
         ParentCursor = GetParentOrNull<Cursor>();
@@ -52,10 +59,16 @@ public partial class S_PlaceTower : Node, ICursorState
     {
 
     }
+
+    public void UpdateInPlace()
+    {
+        OnMove(CurrentPosition);
+    }
 	public void OnMove(Vector2I NewMapPosition)
     {
         if (TowerData == null) return;
         if (CachedTileMap == null) { CachedTileMap = MainMap.Singleton; return; }
+        CurrentPosition = NewMapPosition;
 
         bool CanAfford = Player.CanAfford(TowerData.Cost);
         bool CanPlace = CanPlaceTile(NewMapPosition);

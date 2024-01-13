@@ -101,9 +101,10 @@ public partial class C_GrassGrowth : Node2D
             // Modify Tilemap
             TilesInRange.Remove(TilesToGrow[GrowIndex]);
             CachedTileMap.SetCellsTerrainConnect(MainMap.Layer_Ground, TileToGrow, MainMap.TerrainSet_Default, MainMap.Terrain_Grass);
+            MainMap.Broadcast(MainMap.SignalName.AnyTileChanged);
             if (AttractEnemies)
             {
-                Player.Singleton.EmitSignal("GrassGrown", TileToGrow.Count);
+                MainMap.Broadcast(MainMap.SignalName.GrassGrown, TileToGrow.Count);
             }
         }
         else

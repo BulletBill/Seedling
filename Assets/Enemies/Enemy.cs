@@ -60,7 +60,7 @@ public partial class Enemy : CharacterBody2D
 	{
 		if (Nav == null) return;
 		if (Player.DefendTargets.Count <= 0) return;
-		Nav.TargetPosition = Player.DefendTargets[0].GlobalPosition;
+		Nav.TargetPosition = Player.DefendTargets[Game.GetIntInRange(0, Player.DefendTargets.Count - 1)].GlobalPosition;
 		TargetReachable = Nav.IsTargetReachable();
 		if (!TargetReachable)
 		{
@@ -87,23 +87,20 @@ public partial class Enemy : CharacterBody2D
 		if (Reward.Substance > 0)
 		{
 			PlayerEvent.Broadcast(PlayerEvent.SignalName.AddSubstance, Reward.Substance);
-			Game.SpawnResourceNumber(GlobalPosition + new Vector2(-15, -15), Reward.Substance, ECurrencyType.Substance);
 		}
 		if (Reward.Flow > 0)
 		{
 			PlayerEvent.Broadcast(PlayerEvent.SignalName.AddFlow, Reward.Flow);
-			Game.SpawnResourceNumber(GlobalPosition + new Vector2(+15, -15), Reward.Flow, ECurrencyType.Flow);
 		}
 		if (Reward.Breath > 0)
 		{
 			PlayerEvent.Broadcast(PlayerEvent.SignalName.AddBreath, Reward.Breath);
-			Game.SpawnResourceNumber(GlobalPosition + new Vector2(-15, +15), Reward.Breath, ECurrencyType.Breath);
 		}
 		if (Reward.Energy > 0)
 		{
 			PlayerEvent.Broadcast(PlayerEvent.SignalName.AddEnergy, Reward.Energy);
-			Game.SpawnResourceNumber(GlobalPosition + new Vector2(+15, +15), Reward.Energy, ECurrencyType.Energy);
 		}
+		Game.SpawnResourceCluster(GlobalPosition, Reward.Substance, Reward.Flow, Reward.Breath, Reward.Energy);
 
 		// Actually die
 		QueueFree();

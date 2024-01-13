@@ -15,9 +15,6 @@ public partial class Player : Node2D
     // DEBUG
     public bool FreeTowers = false;
 
-    // Signals
-    [Signal] public delegate void GrassGrownEventHandler(int Count);
-
     public Player()
     {
         Singleton = this;
