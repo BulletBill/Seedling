@@ -49,7 +49,7 @@ public partial class SpawnerBrain : Node
 
         //GD.Print("SpawnerBrain.GrassGrown: Current Pressure is " + SpawnPressure.ToString() + " Spawning pool is " + SpawningPool.ToString());
 
-        if (Game.GetFloatInRange(0.0f, 100.0f) < SpawnPressure)
+        if (MathHelper.GetFloatInRange(0.0f, 100.0f) < SpawnPressure)
         {
             SpawnEnemies();
             SpawnPressure = 0.0f;
@@ -65,8 +65,8 @@ public partial class SpawnerBrain : Node
         GD.Print("SpawnerBrain.TryToSpawn: Spawn wave!");
         while(SpawningPool > 0)
         {
-            int EnemyIndex = Game.GetIntInRange(0, EnemiesToSpawn.Count - 1);
-            int SpawnerIndex = Game.GetIntInRange(0, Spawners.Count - 1);
+            int EnemyIndex = MathHelper.GetIntInRange(0, EnemiesToSpawn.Count - 1);
+            int SpawnerIndex = MathHelper.GetIntInRange(0, Spawners.Count - 1);
             
             Enemy NewEnemy = EnemiesToSpawn[EnemyIndex].InstantiateOrNull<Enemy>();
             if(NewEnemy != null)

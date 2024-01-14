@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="Project Seedling"
-run/main_scene="res://Assets/Scenes/Game.tscn"
+run/main_scene="res://Assets/Core/Game.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-PlayerEvent="*res://Assets/Player/PlayerEvent.cs"
+EffectsManager="*res://Assets/Core/EffectsManager.cs"
+MathHelper="*res://Assets/Core/MathHelper.cs"
 
 [display]
 

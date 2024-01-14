@@ -136,7 +136,7 @@ public partial class C_Attack : Node2D
         AttackTimer = AttackDelay;
         DamageTimer = DamageDelay * (GlobalPosition.DistanceTo(CurrentTarget.GlobalPosition) / Range);
         PendingDamageTaker = CurrentTarget;
-        PendingDamage = Game.GetIntInRange(MinDamage, MaxDamage);
+        PendingDamage = MathHelper.GetIntInRange(MinDamage, MaxDamage);
 
         C_HealthPool TargetHealth = PendingDamageTaker.GetNodeOrNull<C_HealthPool>("HealthPool");
         TargetHealth.TakeDamage(PendingDamage);

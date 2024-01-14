@@ -1,10 +1,10 @@
 [gd_scene load_steps=17 format=3 uid="uid://dlgl700nd4604"]
 
-[ext_resource type="Script" path="res://Assets/Interface/BuildButton.cs" id="1_twwav"]
+[ext_resource type="Script" path="res://Assets/Interface/BuildButton/BuildButton.cs" id="1_twwav"]
 [ext_resource type="Texture2D" uid="uid://vreeyj5md8vc" path="res://Assets/Art/Towers/Sapling.png" id="3_80dcy"]
 [ext_resource type="Material" uid="uid://dijvvt5dgpnqc" path="res://Assets/Art/Shaders/OutlinedShader.tres" id="3_r4kpr"]
 [ext_resource type="Texture2D" uid="uid://dvgiwyma0xpxu" path="res://Assets/Art/Interface/CircleElement.png" id="4_ektdc"]
-[ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Scenes/Interface/HoverArea.tscn" id="5_btgfl"]
+[ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Interface/Hover Area/HoverArea.tscn" id="5_btgfl"]
 [ext_resource type="Script" path="res://Assets/Interface/CostReadout.cs" id="6_5qldg"]
 
 [sub_resource type="Animation" id="Animation_ncmxj"]

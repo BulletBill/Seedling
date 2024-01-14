@@ -1,0 +1,177 @@
+[gd_scene load_steps=23 format=3 uid="uid://mmyy6s5sben4"]
+
+[ext_resource type="Script" path="res://Assets/Interface/InfoPanel.cs" id="1_bmwr7"]
+[ext_resource type="PackedScene" uid="uid://bqo4ffahkqb78" path="res://Assets/Interface/CurrencyDisplay/CurrencyDisplay.tscn" id="2_ty7fb"]
+[ext_resource type="PackedScene" uid="uid://dynjwh5qcpo7t" path="res://Assets/Interface/ObjectiveDisplay/ObjectiveDisplay.tscn" id="3_xfso7"]
+[ext_resource type="PackedScene" uid="uid://cjvtnmut5ak7p" path="res://Assets/Interface/DetailPanel/DetailPanel.tscn" id="4_2ycw0"]
+[ext_resource type="PackedScene" uid="uid://dlgl700nd4604" path="res://Assets/Interface/BuildButton/BuildButton.tscn" id="5_e7r2h"]
+[ext_resource type="PackedScene" uid="uid://cc014in5dphp3" path="res://Assets/Towers/Sapling/build-sapling.tscn" id="6_fd616"]
+[ext_resource type="Resource" uid="uid://bmd4ngk8oi5f1" path="res://Assets/Towers/Sapling/Data_Sapling.tres" id="7_4vkru"]
+[ext_resource type="PackedScene" uid="uid://dwsle41sxrc0k" path="res://Assets/Towers/Buckthorn/build-buckthorn.tscn" id="8_e18ar"]
+[ext_resource type="Resource" uid="uid://coyd0ad8jrvd7" path="res://Assets/Towers/Buckthorn/Data_Buckthorn.tres" id="9_3m4js"]
+[ext_resource type="PackedScene" uid="uid://brrad01kekp4g" path="res://Assets/Towers/Sun Leaf/build-sunleaf.tscn" id="10_oew81"]
+[ext_resource type="Resource" uid="uid://pqk4g5tts6in" path="res://Assets/Towers/Sun Leaf/Data_Sunleaf.tres" id="11_yf2ay"]
+[ext_resource type="PackedScene" uid="uid://b3fxnt1sq3rjq" path="res://Assets/Towers/Genesis Tree/build-Genesis.tscn" id="12_42382"]
+[ext_resource type="Resource" uid="uid://cnxh15qnwr5eo" path="res://Assets/Towers/Genesis Tree/Data_Genesis.tres" id="13_vmveu"]
+[ext_resource type="PackedScene" uid="uid://ukt5pidwl63" path="res://Assets/Interface/Tower Context Menu/ContextMenu.tscn" id="14_hldsr"]
+[ext_resource type="Texture2D" uid="uid://c4cqjktrt205k" path="res://Assets/Art/Interface/WindowBG.png" id="15_he6xn"]
+[ext_resource type="Script" path="res://Assets/Debug/Debug_Costs.cs" id="16_65wxc"]
+[ext_resource type="Script" path="res://Assets/Debug/Debug_Spawning.cs" id="17_wkykc"]
+
+[sub_resource type="Animation" id="Animation_4sbol"]
+resource_name = "MoveToLeft"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.145, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1638, 0), Vector2(1940, 0), Vector2(-300, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ko4m5"]
+resource_name = "MoveToRight"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.145, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-300, 0), Vector2(1940, 0), Vector2(1638, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8fk4y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3c2l8"]
+_data = {
+"MoveToLeft": SubResource("Animation_4sbol"),
+"MoveToRight": SubResource("Animation_ko4m5"),
+"RESET": SubResource("Animation_8fk4y")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1nxvs"]
+size = Vector2(308, 1094)
+
+[node name="UI Canvas Layer" type="CanvasLayer"]
+layer = 100
+
+[node name="InfoPanel" type="Node2D" parent="."]
+script = ExtResource("1_bmwr7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="InfoPanel"]
+libraries = {
+"": SubResource("AnimationLibrary_3c2l8")
+}
+
+[node name="CurrencyDisplay" parent="InfoPanel" instance=ExtResource("2_ty7fb")]
+z_index = 10
+position = Vector2(0, 130)
+
+[node name="ObjectiveDisplay" parent="InfoPanel" instance=ExtResource("3_xfso7")]
+
+[node name="DetailPanel" parent="InfoPanel" instance=ExtResource("4_2ycw0")]
+visible = false
+position = Vector2(0, 241)
+
+[node name="MouseArea-Left" type="Area2D" parent="InfoPanel"]
+top_level = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InfoPanel/MouseArea-Left"]
+visible = false
+position = Vector2(153, 545)
+shape = SubResource("RectangleShape2D_1nxvs")
+
+[node name="MouseArea-Right" type="Area2D" parent="InfoPanel"]
+top_level = true
+position = Vector2(1482, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InfoPanel/MouseArea-Right"]
+visible = false
+position = Vector2(291, 545)
+shape = SubResource("RectangleShape2D_1nxvs")
+
+[node name="Control Panel" type="Node2D" parent="."]
+position = Vector2(0, 1008)
+
+[node name="Build Sapling Button" parent="Control Panel" instance=ExtResource("5_e7r2h")]
+position = Vector2(193, -16)
+TowerToBuild = ExtResource("6_fd616")
+BuildParams = ExtResource("7_4vkru")
+
+[node name="Build Buckthorn" parent="Control Panel" instance=ExtResource("5_e7r2h")]
+position = Vector2(1057, -16)
+TowerToBuild = ExtResource("8_e18ar")
+BuildParams = ExtResource("9_3m4js")
+
+[node name="Build Sunleaf Button" parent="Control Panel" instance=ExtResource("5_e7r2h")]
+position = Vector2(961, -16)
+TowerToBuild = ExtResource("10_oew81")
+BuildParams = ExtResource("11_yf2ay")
+
+[node name="Build Genesis Button" parent="Control Panel" instance=ExtResource("5_e7r2h")]
+position = Vector2(97, -16)
+TowerToBuild = ExtResource("12_42382")
+BuildParams = ExtResource("13_vmveu")
+
+[node name="ContextMenu" parent="." instance=ExtResource("14_hldsr")]
+position = Vector2(1369, 487)
+
+[node name="DebugPanel" type="Node2D" parent="."]
+
+[node name="NinePatchRect" type="NinePatchRect" parent="DebugPanel"]
+self_modulate = Color(1, 1, 1, 0.490196)
+offset_left = 867.0
+offset_top = 24.0
+offset_right = 1056.0
+offset_bottom = 93.0
+texture = ExtResource("15_he6xn")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="CostButton" type="CheckButton" parent="DebugPanel/NinePatchRect"]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 187.0
+offset_bottom = 30.0
+text = "Debug Costs"
+script = ExtResource("16_65wxc")
+
+[node name="SpawnButton" type="CheckButton" parent="DebugPanel/NinePatchRect"]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 187.0
+offset_bottom = 61.0
+text = "Disable Enemy"
+script = ExtResource("17_wkykc")
+
+[connection signal="mouse_entered" from="InfoPanel/MouseArea-Left" to="InfoPanel" method="MoveToRight"]
+[connection signal="mouse_entered" from="InfoPanel/MouseArea-Right" to="InfoPanel" method="MoveToLeft"]
+[connection signal="pressed" from="DebugPanel/NinePatchRect/CostButton" to="DebugPanel/NinePatchRect/CostButton" method="ToggleCosts"]
+[connection signal="pressed" from="DebugPanel/NinePatchRect/SpawnButton" to="DebugPanel/NinePatchRect/SpawnButton" method="ToggleCosts"]

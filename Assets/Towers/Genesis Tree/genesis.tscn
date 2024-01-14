@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_GrassGrowth.cs" id="5_3tnyx"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_AddResources.cs" id="6_8pluj"]
 [ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="7_equr8"]
-[ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Scenes/Interface/HoverArea.tscn" id="7_xll0q"]
+[ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Interface/Hover Area/HoverArea.tscn" id="8_0hc75"]
 [ext_resource type="Script" path="res://Assets/Core/PausableAnimation.cs" id="9_1c162"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7wjg6"]
@@ -164,7 +164,7 @@ libraries = {
 "": SubResource("AnimationLibrary_v61gj")
 }
 
-[node name="HoverArea" parent="." node_paths=PackedStringArray("ParentAnimator") instance=ExtResource("7_xll0q")]
+[node name="HoverArea" parent="." node_paths=PackedStringArray("ParentAnimator") instance=ExtResource("8_0hc75")]
 ParentAnimator = NodePath("../HoverAnimator")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HoverArea"]

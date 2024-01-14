@@ -6,10 +6,10 @@ public partial class EnemySpawner : Node2D
 {
     public static String Group = "Spawner";
     [Export] public bool Active = true;
-    [Export] public float MinSpawnTime = 0.25f;
-    [Export] public float MaxSpawnTime = 2.50f;
+    [Export] public float MinSpawnTime = 0.15f;
+    [Export] public float MaxSpawnTime = 0.50f;
     public Queue<Enemy> EnemiesToPlace = new();
-    double SpawnTimer = 2.0f;
+    double SpawnTimer = 0.5f;
 
     public override void _Ready()
     {
@@ -24,7 +24,7 @@ public partial class EnemySpawner : Node2D
             if (SpawnTimer <= 0.0f)
             {
                 SpawnEnemy();
-                SpawnTimer = Game.GetFloatInRange(MinSpawnTime, MaxSpawnTime);
+                SpawnTimer = MathHelper.GetFloatInRange(MinSpawnTime, MaxSpawnTime);
             }
         }
     }

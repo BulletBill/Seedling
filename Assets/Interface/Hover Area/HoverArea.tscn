@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bgnh626id26jp"]
 
-[ext_resource type="Script" path="res://Assets/Interface/HoverArea.cs" id="1_ow51u"]
+[ext_resource type="Script" path="res://Assets/Interface/Hover Area/HoverArea.cs" id="1_ow51u"]
 
 [node name="HoverArea" type="Area2D"]
 script = ExtResource("1_ow51u")

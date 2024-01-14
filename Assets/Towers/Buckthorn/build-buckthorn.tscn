@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cnq5verjyrwl7" path="res://Assets/Towers/Buckthorn/buckthorn.tscn" id="2_w82q5"]
 [ext_resource type="Texture2D" uid="uid://b3ohqqlo3egwh" path="res://Assets/Towers/Buckthorn/Art-BuildBuckthorn.png" id="3_uiggv"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="4_a8ets"]
-[ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Scenes/Interface/HoverArea.tscn" id="6_py4lt"]
+[ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Interface/Hover Area/HoverArea.tscn" id="6_py4lt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_68xpg"]
 shader = ExtResource("1_unyhk")

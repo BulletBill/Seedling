@@ -90,13 +90,13 @@ public partial class C_GrassGrowth : Node2D
 
         if (TilesToGrow.Count > 0)
         {
-            int GrowIndex = Game.GetIntInRange(0, TilesToGrow.Count - 1);
+            int GrowIndex = MathHelper.GetIntInRange(0, TilesToGrow.Count - 1);
             Array<Vector2I> TileToGrow = new() { TilesToGrow[GrowIndex].TilePosition };
 
             // Add resources for growing grass
             ECurrencyType AddedType = MainMap.GetTileCurrency(TileToGrow[0]);
             PlayerEvent.BroadcastAddResource(AddedType, ResourcePerTile);
-            Game.SpawnResourceNumber(CachedTileMap.ToGlobal(CachedTileMap.MapToLocal(TileToGrow[0])), ResourcePerTile, AddedType);
+            EffectsManager.SpawnResourceNumber(CachedTileMap.ToGlobal(CachedTileMap.MapToLocal(TileToGrow[0])), ResourcePerTile, AddedType);
 
             // Modify Tilemap
             TilesInRange.Remove(TilesToGrow[GrowIndex]);

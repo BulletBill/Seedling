@@ -23,6 +23,7 @@ public partial class Enemy : CharacterBody2D
 	public override void _Ready()
 	{
 		Nav = GetNodeOrNull<NavigationAgent2D>("NavigationAgent2D");
+		Nav.TargetPosition = Player.DefendTargets[MathHelper.GetIntInRange(0, Player.DefendTargets.Count - 1)].GlobalPosition;
 		HealthPool = GetNodeOrNull<C_HealthPool>("HealthPool");
 		//MakePath();
 	}
@@ -45,7 +46,7 @@ public partial class Enemy : CharacterBody2D
 		if (Nav == null) return;
 		if (!TargetReachable) return;
         Vector2 NextMove = Nav.GetNextPathPosition();
-		Velocity = (NextMove - GlobalPosition).Normalized() * Speed;
+		Velocity = (NextMove - GlobalPosition).Normalized() * (Speed * Game.GetSpeed());
 		MoveAndSlide();
 
 		DistanceToTarget = Nav.DistanceToTarget();
@@ -60,7 +61,6 @@ public partial class Enemy : CharacterBody2D
 	{
 		if (Nav == null) return;
 		if (Player.DefendTargets.Count <= 0) return;
-		Nav.TargetPosition = Player.DefendTargets[Game.GetIntInRange(0, Player.DefendTargets.Count - 1)].GlobalPosition;
 		TargetReachable = Nav.IsTargetReachable();
 		if (!TargetReachable)
 		{
@@ -100,7 +100,7 @@ public partial class Enemy : CharacterBody2D
 		{
 			PlayerEvent.Broadcast(PlayerEvent.SignalName.AddEnergy, Reward.Energy);
 		}
-		Game.SpawnResourceCluster(GlobalPosition, Reward.Substance, Reward.Flow, Reward.Breath, Reward.Energy);
+		EffectsManager.SpawnResourceCluster(GlobalPosition, Reward.Substance, Reward.Flow, Reward.Breath, Reward.Energy);
 
 		// Actually die
 		QueueFree();

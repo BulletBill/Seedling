@@ -65,7 +65,7 @@ public partial class C_HarvestArea : Node2D
 			{
 				PlayerEvent.Broadcast(PlayerEvent.SignalName.AddEnergy, EnergyIncome);
 			}
-			Game.SpawnResourceCluster(ParentPositon, SubstanceIncome, FlowIncome, BreathIncome, EnergyIncome);
+			EffectsManager.SpawnResourceCluster(ParentPositon, SubstanceIncome, FlowIncome, BreathIncome, EnergyIncome);
 		}
 
 		if (IsInstanceValid(TimerBar))

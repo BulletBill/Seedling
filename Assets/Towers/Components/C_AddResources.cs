@@ -30,7 +30,7 @@ public partial class C_AddResources : Node
         PlayerEvent.BroadcastAddResource(Type, Amount);
         if (Parent.IsNodeReady())
         {
-            Game.SpawnResourceNumber(Parent.GlobalPosition + Offset, Amount, Type);
+            EffectsManager.SpawnResourceNumber(Parent.GlobalPosition + Offset, Amount, Type);
         }
     }
 

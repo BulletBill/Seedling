@@ -15,7 +15,7 @@ public partial class WaveTimerDisplay : Node
     {
         if (IsInstanceValid(Spawner) && IsInstanceValid(Label))
         {
-            Label.Text = Game.GetTimeFromSeconds(Spawner.BigWaveTimer);
+            Label.Text = MathHelper.GetTimeFromSeconds(Spawner.BigWaveTimer);
         }
     }
 }

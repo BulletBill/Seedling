@@ -12,7 +12,7 @@ public partial class C_HealthPool : Node2D
 
     public override void _Ready()
     {
-        StartingHealth = Game.GetIntInRange(MinStartingHealth, MaxStartingHealth);
+        StartingHealth = MathHelper.GetIntInRange(MinStartingHealth, MaxStartingHealth);
         CurrentHealth = StartingHealth;
         HealthVisual = GetNodeOrNull<ProgressBar>("HealthBar");
         if (HealthVisual != null)
