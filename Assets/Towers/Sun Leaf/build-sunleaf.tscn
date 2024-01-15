@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://brrad01kekp4g"]
+[gd_scene load_steps=14 format=3 uid="uid://brrad01kekp4g"]
 
 [ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_tnjvx"]
 [ext_resource type="Script" path="res://Assets/Towers/BuildTower.cs" id="1_ypni4"]
 [ext_resource type="PackedScene" uid="uid://dbr6bnc2oohvr" path="res://Assets/Towers/Sun Leaf/sunleaf.tscn" id="2_ymfnc"]
 [ext_resource type="Texture2D" uid="uid://buxupkbpoki3h" path="res://Assets/Towers/Sun Leaf/Art-Build Sun Leaf.png" id="3_jjsab"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="4_wrxcg"]
+[ext_resource type="Resource" uid="uid://pqk4g5tts6in" path="res://Assets/Towers/Sun Leaf/Data_Sunleaf.tres" id="5_ecv8k"]
 [ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Interface/Hover Area/HoverArea.tscn" id="6_1867o"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kicor"]
@@ -78,6 +79,7 @@ texture = ExtResource("3_jjsab")
 script = ExtResource("1_ypni4")
 TowerToBecome = ExtResource("2_ymfnc")
 BuildTime = 5.0
+TowerData = ExtResource("5_ecv8k")
 
 [node name="AlignToMap" type="Node2D" parent="."]
 script = ExtResource("4_wrxcg")
@@ -101,5 +103,6 @@ autoplay = "Unhover"
 ParentAnimator = NodePath("../HoverAnimator")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HoverArea"]
+visible = false
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_eagdl")

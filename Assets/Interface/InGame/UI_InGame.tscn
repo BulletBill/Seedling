@@ -11,8 +11,8 @@
 [ext_resource type="Resource" uid="uid://coyd0ad8jrvd7" path="res://Assets/Towers/Buckthorn/Data_Buckthorn.tres" id="9_3m4js"]
 [ext_resource type="PackedScene" uid="uid://brrad01kekp4g" path="res://Assets/Towers/Sun Leaf/build-sunleaf.tscn" id="10_oew81"]
 [ext_resource type="Resource" uid="uid://pqk4g5tts6in" path="res://Assets/Towers/Sun Leaf/Data_Sunleaf.tres" id="11_yf2ay"]
-[ext_resource type="PackedScene" uid="uid://b3fxnt1sq3rjq" path="res://Assets/Towers/Genesis Tree/build-Genesis.tscn" id="12_42382"]
-[ext_resource type="Resource" uid="uid://cnxh15qnwr5eo" path="res://Assets/Towers/Genesis Tree/Data_Genesis.tres" id="13_vmveu"]
+[ext_resource type="PackedScene" uid="uid://b3fxnt1sq3rjq" path="res://Assets/Towers/Genesis Heart/build-Genesis.tscn" id="12_x0txc"]
+[ext_resource type="Resource" uid="uid://cnxh15qnwr5eo" path="res://Assets/Towers/Genesis Heart/Data_Genesis.tres" id="13_u3cdi"]
 [ext_resource type="PackedScene" uid="uid://ukt5pidwl63" path="res://Assets/Interface/Tower Context Menu/ContextMenu.tscn" id="14_hldsr"]
 [ext_resource type="Texture2D" uid="uid://c4cqjktrt205k" path="res://Assets/Art/Interface/WindowBG.png" id="15_he6xn"]
 [ext_resource type="Script" path="res://Assets/Debug/Debug_Costs.cs" id="16_65wxc"]
@@ -95,8 +95,7 @@ position = Vector2(0, 130)
 [node name="ObjectiveDisplay" parent="InfoPanel" instance=ExtResource("3_xfso7")]
 
 [node name="DetailPanel" parent="InfoPanel" instance=ExtResource("4_2ycw0")]
-visible = false
-position = Vector2(0, 241)
+position = Vector2(1, 318)
 
 [node name="MouseArea-Left" type="Area2D" parent="InfoPanel"]
 top_level = true
@@ -135,8 +134,8 @@ BuildParams = ExtResource("11_yf2ay")
 
 [node name="Build Genesis Button" parent="Control Panel" instance=ExtResource("5_e7r2h")]
 position = Vector2(97, -16)
-TowerToBuild = ExtResource("12_42382")
-BuildParams = ExtResource("13_vmveu")
+TowerToBuild = ExtResource("12_x0txc")
+BuildParams = ExtResource("13_u3cdi")
 
 [node name="ContextMenu" parent="." instance=ExtResource("14_hldsr")]
 position = Vector2(1369, 487)

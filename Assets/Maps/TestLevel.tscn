@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Assets/Maps/Level.cs" id="1_803ym"]
 [ext_resource type="TileSet" uid="uid://se8ye8sftem5" path="res://Assets/Maps/Tilesets/TileSet_Main.tres" id="1_bmc26"]
 [ext_resource type="Script" path="res://Assets/Maps/MainMap.cs" id="2_2t1dw"]
-[ext_resource type="PackedScene" uid="uid://bltnii6x6epdm" path="res://Assets/Towers/Genesis Tree/genesis.tscn" id="3_eoelo"]
+[ext_resource type="PackedScene" uid="uid://bltnii6x6epdm" path="res://Assets/Towers/Genesis Heart/genesis.tscn" id="4_bwwnp"]
 [ext_resource type="PackedScene" uid="uid://cqlpygxb75t08" path="res://Assets/Enemies/Spawner/EnemySpawner.tscn" id="4_hf66m"]
 [ext_resource type="Script" path="res://Assets/Maps/CameraController.cs" id="5_808yx"]
 [ext_resource type="PackedScene" uid="uid://2ekwlaa17gji" path="res://Assets/Cursor/cursor.tscn" id="6_rjk40"]
@@ -42,7 +42,7 @@ layer_3/tile_data = PackedInt32Array(-1, 0, 0, 65535, 0, 0, 131071, 0, 0, 196607
 script = ExtResource("2_2t1dw")
 GridColor = Color(0, 0, 0, 0.196078)
 
-[node name="Genesis" parent="TileMap" instance=ExtResource("3_eoelo")]
+[node name="Genesis" parent="TileMap" instance=ExtResource("4_bwwnp")]
 position = Vector2(688, 208)
 
 [node name="EnemySpawner" parent="TileMap" instance=ExtResource("4_hf66m")]

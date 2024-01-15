@@ -15,16 +15,28 @@ public partial class HoverArea : Area2D
     {
         Cursor.AddHoverArea(this);
         ParentAnimator?.Play("Hover");
+        
+        IHoverable HoverParent = GetParentOrNull<IHoverable>();
+        HoverParent?.OnHovered();
     }
 
     public void OnMouseExit()
     {
         Cursor.RemoveHoverArea(this);
         ParentAnimator?.Play("Unhover");
+
+        IHoverable HoverParent = GetParentOrNull<IHoverable>();
+        HoverParent?.ExitHovered();
     }
 
     public void OnClick()
     {
         EmitSignal(SignalName.Clicked);
     }
+}
+
+public interface IHoverable
+{
+    public void OnHovered();
+    public void ExitHovered();
 }

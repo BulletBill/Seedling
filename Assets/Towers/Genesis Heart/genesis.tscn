@@ -1,20 +1,39 @@
-[gd_scene load_steps=18 format=3 uid="uid://b3fxnt1sq3rjq"]
+[gd_scene load_steps=23 format=3 uid="uid://bltnii6x6epdm"]
 
-[ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_3pl08"]
-[ext_resource type="Script" path="res://Assets/Towers/BuildTower.cs" id="1_mvyvx"]
-[ext_resource type="PackedScene" uid="uid://bltnii6x6epdm" path="res://Assets/Towers/Genesis Tree/genesis.tscn" id="2_h5ber"]
-[ext_resource type="Texture2D" uid="uid://dg1ugbc0qnr32" path="res://Assets/Towers/Genesis Tree/Art-Build Genesis Heart.png" id="3_0qfmi"]
-[ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="4_72xy7"]
-[ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Interface/Hover Area/HoverArea.tscn" id="6_jfvu7"]
-[ext_resource type="Script" path="res://Assets/Core/Common/PausableAnimation.cs" id="7_y7wha"]
+[ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_qvlx0"]
+[ext_resource type="Texture2D" uid="uid://cjl4aixbpkx80" path="res://Assets/Towers/Genesis Heart/Art-Genesis Tree.png" id="2_g1gix"]
+[ext_resource type="Script" path="res://Assets/Towers/Tower.cs" id="3_r2iep"]
+[ext_resource type="Resource" uid="uid://cnxh15qnwr5eo" path="res://Assets/Towers/Genesis Heart/Data_Genesis.tres" id="4_0juh4"]
+[ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="5_ev5tl"]
+[ext_resource type="Script" path="res://Assets/Towers/Components/C_GrassGrowth.cs" id="6_08vtw"]
+[ext_resource type="Script" path="res://Assets/Towers/Components/C_AddResources.cs" id="7_q4drf"]
+[ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="8_cereb"]
+[ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Interface/Hover Area/HoverArea.tscn" id="9_mbxf4"]
+[ext_resource type="Script" path="res://Assets/Core/Common/PausableAnimation.cs" id="10_vwlp0"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ufgj0"]
-shader = ExtResource("1_3pl08")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7wjg6"]
+shader = ExtResource("1_qvlx0")
 shader_parameter/color = Color(1, 1, 1, 1)
 shader_parameter/width = 0.0
 shader_parameter/pattern = 0
 shader_parameter/inside = false
 shader_parameter/add_margins = true
+
+[sub_resource type="Resource" id="Resource_2llxm"]
+script = ExtResource("8_cereb")
+LifeForce = 5
+Substance = 0
+Flow = 0
+Breath = 0
+Energy = 0
+
+[sub_resource type="Resource" id="Resource_wt3hr"]
+script = ExtResource("8_cereb")
+LifeForce = 0
+Substance = 500
+Flow = 500
+Breath = 500
+Energy = 500
 
 [sub_resource type="Animation" id="Animation_vro8x"]
 resource_name = "Hover"
@@ -70,13 +89,13 @@ _data = {
 "Unhover": SubResource("Animation_n53sj")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uv7mt"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3lnn7"]
 size = Vector2(30, 31)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_p02gg"]
-shader = ExtResource("1_3pl08")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cgg3u"]
+shader = ExtResource("1_qvlx0")
 shader_parameter/color = Color(1, 1, 1, 0.0784314)
-shader_parameter/width = 6.0
+shader_parameter/width = 3.0
 shader_parameter/pattern = 0
 shader_parameter/inside = false
 shader_parameter/add_margins = true
@@ -119,47 +138,50 @@ _data = {
 "RESET": SubResource("Animation_nn6hq")
 }
 
-[node name="Build-Genesis" type="Sprite2D" groups=["Tower"]]
-material = SubResource("ShaderMaterial_ufgj0")
-texture = ExtResource("3_0qfmi")
-script = ExtResource("1_mvyvx")
-TowerToBecome = ExtResource("2_h5ber")
-BuildTime = 40.0
+[node name="Genesis" type="Sprite2D" groups=["Tower"]]
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_7wjg6")
+texture = ExtResource("2_g1gix")
+script = ExtResource("3_r2iep")
 IsDefendTarget = true
+TowerData = ExtResource("4_0juh4")
 
 [node name="AlignToMap" type="Node2D" parent="."]
-script = ExtResource("4_72xy7")
+y_sort_enabled = true
+script = ExtResource("5_ev5tl")
 
-[node name="BuildBar" type="ProgressBar" parent="."]
-offset_left = -14.0
-offset_top = 8.0
-offset_right = 14.0
-offset_bottom = 14.0
-max_value = 500.0
-step = 1.0
-show_percentage = false
+[node name="GrassGrowth" type="Node2D" parent="."]
+script = ExtResource("6_08vtw")
+Radius = 108.0
+GrowthInterval = 0.1
+AttractEnemies = false
+
+[node name="ResourceOnSpawn" type="Node2D" parent="."]
+script = ExtResource("7_q4drf")
+AddFlatAmount = SubResource("Resource_2llxm")
+AddMaximum = SubResource("Resource_wt3hr")
 
 [node name="HoverAnimator" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_v61gj")
 }
-autoplay = "Unhover"
 
-[node name="HoverArea" parent="." node_paths=PackedStringArray("ParentAnimator") instance=ExtResource("6_jfvu7")]
+[node name="HoverArea" parent="." node_paths=PackedStringArray("ParentAnimator") instance=ExtResource("9_mbxf4")]
 ParentAnimator = NodePath("../HoverAnimator")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HoverArea"]
+visible = false
 position = Vector2(0, -0.5)
-shape = SubResource("RectangleShape2D_uv7mt")
+shape = SubResource("RectangleShape2D_3lnn7")
 
 [node name="DuplicateSprite" type="Sprite2D" parent="."]
 z_index = -1
-material = SubResource("ShaderMaterial_p02gg")
-texture = ExtResource("3_0qfmi")
+material = SubResource("ShaderMaterial_cgg3u")
+texture = ExtResource("2_g1gix")
 
 [node name="GlowAnimator" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_dluc5")
 }
 autoplay = "Glow"
-script = ExtResource("7_y7wha")
+script = ExtResource("10_vwlp0")

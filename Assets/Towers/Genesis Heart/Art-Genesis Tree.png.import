@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dg1ugbc0qnr32"
-path="res://.godot/imported/Art-Build Genesis Heart.png-d542636235877b5ae8ec00f6da651168.ctex"
+uid="uid://cjl4aixbpkx80"
+path="res://.godot/imported/Art-Genesis Tree.png-041d7f3fa3132c7456272dc2498b0814.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Towers/Genesis Tree/Art-Build Genesis Heart.png"
-dest_files=["res://.godot/imported/Art-Build Genesis Heart.png-d542636235877b5ae8ec00f6da651168.ctex"]
+source_file="res://Assets/Towers/Genesis Heart/Art-Genesis Tree.png"
+dest_files=["res://.godot/imported/Art-Genesis Tree.png-041d7f3fa3132c7456272dc2498b0814.ctex"]
 
 [params]
 

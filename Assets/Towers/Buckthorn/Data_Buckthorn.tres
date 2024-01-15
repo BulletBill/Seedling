@@ -16,7 +16,10 @@ Energy = 0
 script = ExtResource("4_xuhh0")
 PlacementSprite = ExtResource("2_c3nqm")
 TowerName = "Buckthorn"
-Description = ""
+Description = "Fires thorns at enemies that get close.
+
+Damage:███ 
+Range: ███"
 Cost = SubResource("Resource_4ujqw")
 BuildTime = 8.0
 NeedsSparkFlag = false

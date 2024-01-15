@@ -25,6 +25,4 @@ public partial class Data_Tower : Resource
     [Export] public bool CanBuildOnWater = false;
     [Export] public bool CanBuildOnChasm = false;
     [Export] public bool CanBuildOnStone = false;
-    //[Export] public bool NeedsWater = false;
-    //[Export] public bool NeedsSpark = false;
 }

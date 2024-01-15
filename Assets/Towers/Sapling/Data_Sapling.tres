@@ -16,7 +16,8 @@ Energy = 0
 script = ExtResource("4_qok2u")
 PlacementSprite = ExtResource("2_opbt8")
 TowerName = "Sapling"
-Description = ""
+Description = "Expands grass around itself.
+Gives 2[img]res://Assets/Art/Icons/Lifeforce Small.png[/img]"
 Cost = SubResource("Resource_4ujqw")
 BuildTime = 10.0
 NeedsSparkFlag = false

@@ -49,6 +49,11 @@ public partial class PlayerEvent : Node
     [Signal] public delegate void AnyResourceChangedEventHandler();
     [Signal] public delegate void SpendResourcesEventHandler(R_Cost Cost);
 
+    // Towers
+    [Signal] public delegate void TowerFinishedEventHandler(Tower FinishedTower);
+    [Signal] public delegate void TowerHoveredEventHandler(Data_Tower HoveredTower);
+    [Signal] public delegate void TowerExitHoveredEventHandler();
+
     public PlayerEvent()
     {
         Bus = this;

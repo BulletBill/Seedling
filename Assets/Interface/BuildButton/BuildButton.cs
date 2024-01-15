@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class BuildButton : Node2D
+public partial class BuildButton : Node2D, IHoverable
 {
 	[Export] public PackedScene TowerToBuild;
 	[Export] public Data_Tower BuildParams = new();
@@ -82,4 +82,14 @@ public partial class BuildButton : Node2D
 			Anim?.Play("Success");
         }
     }
+
+	public void OnHovered()
+	{
+		PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerHovered, BuildParams);
+	}
+
+	public void ExitHovered()
+	{
+		PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerExitHovered);
+	}
 }
