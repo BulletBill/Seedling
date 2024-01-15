@@ -10,6 +10,7 @@ public partial class S_PlaceTower : Node, ICursorState
     Data_Tower TowerData;
     PackedScene TowerToBuild;
     bool PlacementIsValid;
+    bool PlacedOne = false;
     MainMap CachedTileMap;
     static readonly uint GridCode = 2;
 
@@ -22,6 +23,15 @@ public partial class S_PlaceTower : Node, ICursorState
     {
         ParentCursor = GetParentOrNull<Cursor>();
         PlacementIsValid = false;
+    }
+
+    public override void _Input(InputEvent @event)
+    {
+        if (@event.IsActionReleased("Modify") && PlacedOne)
+        {
+            PlacedOne = false;
+            Cursor.PopState();
+        }
     }
 
     // Cursor state interface
@@ -53,7 +63,16 @@ public partial class S_PlaceTower : Node, ICursorState
 
         Player.Spend(TowerData.Cost);
 
-        Cursor.PopState();
+        if (Input.IsActionPressed("Modify"))
+        {
+            PlacedOne = true;
+            PlacementIsValid = false;
+            ParentCursor.PlacementGhost.SelfModulate = BadColor;
+        }
+        else
+        {
+            Cursor.PopState();
+        }
     }
     public void OnEscape()
     {
