@@ -37,7 +37,15 @@ public partial class Player : Node2D
         PlayerEvent.Broadcast(PlayerEvent.SignalName.LivesChanged, Lives);
         if (Lives <= 0)
         {
-            GetTree().Quit();
+            Level ParentLevel = GetParentOrNull<Level>();
+            if (ParentLevel != null)
+            {
+                SceneTransition.ChangeScene(ParentLevel.ExitLevel);
+            }
+            else
+            {
+                GetTree().Quit();
+            }
         }
     }
 

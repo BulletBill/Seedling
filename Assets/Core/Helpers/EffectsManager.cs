@@ -22,7 +22,7 @@ public partial class EffectsManager : Node
         if (Singleton == null) return;
         if (Singleton.DamageNumberPrefab == null) return;
 
-        DamageNumber NewNumber = Game.Singleton.DamageNumberPrefab.InstantiateOrNull<DamageNumber>();
+        DamageNumber NewNumber = Singleton.DamageNumberPrefab.InstantiateOrNull<DamageNumber>();
         if (NewNumber != null)
         {
             MainMap.Singleton.AddChild(NewNumber);

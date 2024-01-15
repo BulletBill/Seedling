@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dg1ugbc0qnr32" path="res://Assets/Towers/Genesis Tree/Art-Build Genesis Heart.png" id="3_0qfmi"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="4_72xy7"]
 [ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Interface/Hover Area/HoverArea.tscn" id="6_jfvu7"]
-[ext_resource type="Script" path="res://Assets/Core/PausableAnimation.cs" id="7_y7wha"]
+[ext_resource type="Script" path="res://Assets/Core/Common/PausableAnimation.cs" id="7_y7wha"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ufgj0"]
 shader = ExtResource("1_3pl08")

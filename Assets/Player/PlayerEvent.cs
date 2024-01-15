@@ -51,7 +51,6 @@ public partial class PlayerEvent : Node
 
     public PlayerEvent()
     {
-        if (Bus != null) { QueueFree(); return; }
         Bus = this;
     }
 

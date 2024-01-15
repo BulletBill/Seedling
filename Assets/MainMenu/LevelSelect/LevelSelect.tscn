@@ -1,0 +1,124 @@
+[gd_scene load_steps=12 format=3 uid="uid://b7aw8rjhw3c0p"]
+
+[ext_resource type="Texture2D" uid="uid://7fhu5lxwhvq5" path="res://Assets/Art/Interface/HoverBackground.png" id="1_sm7ra"]
+[ext_resource type="Script" path="res://Assets/MainMenu/LevelSelect/LevelSelectMenu.cs" id="1_uhvr7"]
+[ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="2_dg8g0"]
+[ext_resource type="Texture2D" uid="uid://dndsm3a8u1e55" path="res://Assets/Art/Level Thumbnails/Thumbnail-Testmap.png" id="3_el50g"]
+[ext_resource type="Script" path="res://Assets/Interface/Hover Area/HoverArea.cs" id="5_sti45"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r12j0"]
+shader = ExtResource("2_dg8g0")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 0.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+
+[sub_resource type="Animation" id="Animation_s005m"]
+resource_name = "Hover"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:material:shader_parameter/width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 6.0, 2.0]
+}
+
+[sub_resource type="Animation" id="Animation_23w3p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:material:shader_parameter/width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_bnjm6"]
+resource_name = "Unhover"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:material:shader_parameter/width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_02gln"]
+_data = {
+"Hover": SubResource("Animation_s005m"),
+"RESET": SubResource("Animation_23w3p"),
+"Unhover": SubResource("Animation_bnjm6")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d2p16"]
+size = Vector2(582, 416)
+
+[node name="LevelSelect" type="Node2D"]
+script = ExtResource("1_uhvr7")
+Levels = ["TestLevel"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0.254902, 0.152941, 1)
+scale = Vector2(214.889, 121.667)
+texture = ExtResource("1_sm7ra")
+centered = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 91.0
+offset_top = 246.0
+offset_right = 271.0
+offset_bottom = 292.0
+bbcode_enabled = true
+text = "[center]TEST MAP[/center]"
+
+[node name="TestLevel" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_r12j0")
+position = Vector2(27, 29)
+scale = Vector2(0.502591, 0.504854)
+texture = ExtResource("3_el50g")
+centered = false
+
+[node name="Button" type="Button" parent="TestLevel"]
+offset_right = 1158.0
+offset_bottom = 824.0
+scale = Vector2(0.5, 0.5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TestLevel"]
+root_node = NodePath("../Button")
+libraries = {
+"": SubResource("AnimationLibrary_02gln")
+}
+autoplay = "Unhover"
+
+[node name="HoverArea" type="Area2D" parent="TestLevel" node_paths=PackedStringArray("ParentAnimator")]
+position = Vector2(1.98969, 1.98077)
+scale = Vector2(0.994845, 0.990385)
+script = ExtResource("5_sti45")
+ParentAnimator = NodePath("../AnimationPlayer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestLevel/HoverArea"]
+visible = false
+position = Vector2(289, 206)
+shape = SubResource("RectangleShape2D_d2p16")
+
+[connection signal="pressed" from="TestLevel/Button" to="." method="LoadLevel" binds= [0]]
+[connection signal="mouse_entered" from="TestLevel/HoverArea" to="TestLevel/HoverArea" method="OnMouseEnter"]
+[connection signal="mouse_exited" from="TestLevel/HoverArea" to="TestLevel/HoverArea" method="OnMouseExit"]
