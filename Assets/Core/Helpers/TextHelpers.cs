@@ -17,4 +17,9 @@ public partial class TextHelpers
     {
         return "[color=" + color.ToHtml() + "]" + text + "[/color]";
     }
+
+    public static String Center(String text)
+    {
+        return "[center]" + text + "[/center]";
+    }
 }

@@ -1,9 +1,11 @@
 using Godot;
 using System;
+using Godot.Collections;
 
 public partial class HoverArea : Area2D
 {
     [Export] public AnimationPlayer ParentAnimator { get; protected set; }
+    [Export] public Array<String> ReactStates { get; protected set; } = new();
 
     [Signal] public delegate void ClickedEventHandler();
     // Called when the node enters the scene tree for the first time.
@@ -13,6 +15,7 @@ public partial class HoverArea : Area2D
 
     public void OnMouseEnter()
     {
+        if (ReactStates.Contains(Cursor.GetStateName()) == false) return;
         Cursor.AddHoverArea(this);
         ParentAnimator?.Play("Hover");
         
@@ -22,7 +25,13 @@ public partial class HoverArea : Area2D
 
     public void OnMouseExit()
     {
+        if (ReactStates.Contains(Cursor.GetStateName()) == false) return;
+        ForceMouseExit();
         Cursor.RemoveHoverArea(this);
+    }
+
+    public void ForceMouseExit()
+    {
         ParentAnimator?.Play("Unhover");
 
         IHoverable HoverParent = GetParentOrNull<IHoverable>();

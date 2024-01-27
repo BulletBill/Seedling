@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://cnq5verjyrwl7"]
+[gd_scene load_steps=16 format=3 uid="uid://cnq5verjyrwl7"]
 
 [ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_ngel3"]
 [ext_resource type="Texture2D" uid="uid://cedcepcgtfr5w" path="res://Assets/Towers/Buckthorn/Art-Buckthorn.png" id="2_tdiny"]
 [ext_resource type="Script" path="res://Assets/Towers/Tower.cs" id="3_omh8w"]
 [ext_resource type="Resource" uid="uid://coyd0ad8jrvd7" path="res://Assets/Towers/Buckthorn/Data_Buckthorn.tres" id="4_08w0p"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_Attack.cs" id="4_rwsa3"]
+[ext_resource type="Resource" uid="uid://dr2317w84u581" path="res://Assets/Interface/Tower Context Menu/Action_Sell.tres" id="5_0f0oo"]
 [ext_resource type="PackedScene" uid="uid://crck6cv15vkic" path="res://Assets/Towers/Buckthorn/Projectiles/Thorn.tscn" id="5_gtcm5"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="6_bajax"]
 [ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Interface/Hover Area/HoverArea.tscn" id="7_nugnb"]
@@ -81,6 +82,7 @@ material = SubResource("ShaderMaterial_bjj0w")
 texture = ExtResource("2_tdiny")
 script = ExtResource("3_omh8w")
 TowerData = ExtResource("4_08w0p")
+Actions = [ExtResource("5_0f0oo")]
 
 [node name="Attack" type="Node2D" parent="." groups=["Attacker"]]
 script = ExtResource("4_rwsa3")
@@ -103,6 +105,7 @@ autoplay = "Unhover"
 
 [node name="HoverArea" parent="." node_paths=PackedStringArray("ParentAnimator") instance=ExtResource("7_nugnb")]
 ParentAnimator = NodePath("../HoverAnimator")
+ReactStates = ["Free"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HoverArea"]
 visible = false

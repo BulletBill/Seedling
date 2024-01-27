@@ -137,9 +137,6 @@ position = Vector2(97, -16)
 TowerToBuild = ExtResource("12_x0txc")
 BuildParams = ExtResource("13_u3cdi")
 
-[node name="ContextMenu" parent="." instance=ExtResource("14_hldsr")]
-position = Vector2(1369, 487)
-
 [node name="DebugPanel" type="Node2D" parent="."]
 
 [node name="NinePatchRect" type="NinePatchRect" parent="DebugPanel"]
@@ -169,6 +166,9 @@ offset_right = 187.0
 offset_bottom = 61.0
 text = "Disable Enemy"
 script = ExtResource("17_wkykc")
+
+[node name="ContextMenu" parent="." instance=ExtResource("14_hldsr")]
+position = Vector2(995, 514)
 
 [connection signal="mouse_entered" from="InfoPanel/MouseArea-Left" to="InfoPanel" method="MoveToRight"]
 [connection signal="mouse_entered" from="InfoPanel/MouseArea-Right" to="InfoPanel" method="MoveToLeft"]

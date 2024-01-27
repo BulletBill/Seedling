@@ -168,6 +168,7 @@ libraries = {
 
 [node name="HoverArea" parent="." node_paths=PackedStringArray("ParentAnimator") instance=ExtResource("9_mbxf4")]
 ParentAnimator = NodePath("../HoverAnimator")
+ReactStates = ["Free"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HoverArea"]
 visible = false
@@ -175,6 +176,7 @@ position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_3lnn7")
 
 [node name="DuplicateSprite" type="Sprite2D" parent="."]
+visible = false
 z_index = -1
 material = SubResource("ShaderMaterial_cgg3u")
 texture = ExtResource("2_g1gix")

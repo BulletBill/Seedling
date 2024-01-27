@@ -1,15 +1,6 @@
 using Godot;
 using System;
-
-public enum EBuildRequirement
-{
-    None,
-    GrassOnly,
-    Rock,
-    Water,
-    Chasm,
-    Lava,
-}
+using Godot.Collections;
 
 public partial class Data_Tower : Resource
 {

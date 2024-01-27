@@ -59,7 +59,7 @@ public partial class Cursor : Node2D
 		}
 		if (Input.IsActionJustPressed("UI_Back"))
 		{
-			PopState_Internal();
+			StateStack.Peek()?.OnEscape();
 		}
 	}
 
@@ -71,6 +71,8 @@ public partial class Cursor : Node2D
 		StateStack.Peek()?.OnDisable();
 		StateStack.Push(NewState);
 		NewState?.OnEnable();
+
+		FlushHoverList();
 
 		return NewState;
 	}
@@ -84,7 +86,18 @@ public partial class Cursor : Node2D
 		StateStack.Pop();
 		StateStack.Peek()?.OnEnable();
 
+		FlushHoverList();
+
 		return StateStack.Peek();
+	}
+
+	void FlushHoverList()
+	{
+		foreach (HoverArea hoverArea in HoverList)
+		{
+			hoverArea.ForceMouseExit();
+		}
+		HoverList.Clear();
 	}
 
 	// Static accessors
@@ -121,10 +134,18 @@ public partial class Cursor : Node2D
 		return new Vector2(Cursor.Singleton.CurrentTile.X * Cursor.Singleton.TileSize,
 						   Cursor.Singleton.CurrentTile.Y * Cursor.Singleton.TileSize);
 	}
+
+	public static String GetStateName()
+	{
+		if (Cursor.Singleton == null) return "None";
+		if (Cursor.Singleton.StateStack.Count <= 0) return "None";
+		return Cursor.Singleton.StateStack.Peek().GetName();
+	}
 }
 
 public interface ICursorState
 {
+	public String GetName();
 	public void OnEnable();
 	public void OnDisable();
 	public void OnClick();

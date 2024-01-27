@@ -1,11 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://dlgl700nd4604"]
+[gd_scene load_steps=17 format=3 uid="uid://mvcr0ikt1bf4"]
 
-[ext_resource type="Script" path="res://Assets/Interface/BuildButton/BuildButton.cs" id="1_twwav"]
-[ext_resource type="Texture2D" uid="uid://vreeyj5md8vc" path="res://Assets/Art/Towers/Sapling.png" id="3_80dcy"]
-[ext_resource type="Material" uid="uid://dijvvt5dgpnqc" path="res://Assets/Art/Shaders/OutlinedShader.tres" id="3_r4kpr"]
-[ext_resource type="Texture2D" uid="uid://dvgiwyma0xpxu" path="res://Assets/Art/Interface/CircleElement.png" id="4_ektdc"]
-[ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Interface/Hover Area/HoverArea.tscn" id="5_btgfl"]
-[ext_resource type="Script" path="res://Assets/Interface/CostReadout.cs" id="6_5qldg"]
+[ext_resource type="Script" path="res://Assets/Interface/Tower Context Menu/ActionButton.cs" id="1_q76mb"]
+[ext_resource type="Material" uid="uid://dijvvt5dgpnqc" path="res://Assets/Art/Shaders/OutlinedShader.tres" id="2_w381c"]
+[ext_resource type="Texture2D" uid="uid://dvgiwyma0xpxu" path="res://Assets/Art/Interface/CircleElement.png" id="3_r27jm"]
+[ext_resource type="Texture2D" uid="uid://302dkqm52l52" path="res://Assets/Art/Icons/Cancel.png" id="4_bid7d"]
+[ext_resource type="Script" path="res://Assets/Interface/CostReadout.cs" id="5_wclae"]
+[ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Interface/Hover Area/HoverArea.tscn" id="6_xvwcr"]
 
 [sub_resource type="Animation" id="Animation_ncmxj"]
 resource_name = "Disabled"
@@ -159,21 +159,21 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_16wea"]
 radius = 32.0156
 
-[node name="BuildButton" type="Node2D"]
-script = ExtResource("1_twwav")
+[node name="ActionButton" type="Node2D"]
+script = ExtResource("1_q76mb")
 
 [node name="Outline" type="Sprite2D" parent="."]
 self_modulate = Color(0, 0, 0, 1)
-material = ExtResource("3_r4kpr")
-texture = ExtResource("4_ektdc")
+material = ExtResource("2_w381c")
+texture = ExtResource("3_r27jm")
 
 [node name="Background" type="Sprite2D" parent="."]
 self_modulate = Color(0, 0, 0, 1)
-texture = ExtResource("4_ektdc")
+texture = ExtResource("3_r27jm")
 
-[node name="TowerSprite" type="Sprite2D" parent="."]
+[node name="Icon" type="Sprite2D" parent="."]
 z_index = 1
-texture = ExtResource("3_80dcy")
+texture = ExtResource("4_bid7d")
 
 [node name="Cost" type="RichTextLabel" parent="."]
 offset_left = -56.0
@@ -181,9 +181,8 @@ offset_top = 33.0
 offset_right = 56.0
 offset_bottom = 93.0
 bbcode_enabled = true
-text = "[center][img]res://Assets/Art/Icons/Substance Small.png[/img]40[/center]"
 scroll_active = false
-script = ExtResource("6_5qldg")
+script = ExtResource("5_wclae")
 
 [node name="Name" type="RichTextLabel" parent="."]
 offset_left = -66.0
@@ -191,7 +190,7 @@ offset_top = -54.0
 offset_right = 63.0
 offset_bottom = -33.0
 bbcode_enabled = true
-text = "[center]Build Tower[/center]
+text = "[center]Action[/center]
 "
 scroll_active = false
 
@@ -205,9 +204,9 @@ libraries = {
 "": SubResource("AnimationLibrary_65dm2")
 }
 
-[node name="HoverArea" parent="." node_paths=PackedStringArray("ParentAnimator") instance=ExtResource("5_btgfl")]
+[node name="HoverArea" parent="." node_paths=PackedStringArray("ParentAnimator") instance=ExtResource("6_xvwcr")]
 ParentAnimator = NodePath("../HoverAnimator")
-ReactStates = ["Free"]
+ReactStates = ["ContextMenu"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HoverArea"]
 visible = false

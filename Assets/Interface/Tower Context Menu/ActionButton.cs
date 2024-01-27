@@ -1,10 +1,11 @@
 using Godot;
 using System;
+using System.Globalization;
 
-public partial class BuildButton : Node2D, IHoverable
+public partial class ActionButton : Node2D, IHoverable
 {
-	[Export] public PackedScene TowerToBuild;
-	[Export] public Data_Tower BuildParams = new();
+	[Export] public int ActionIndex = 0;
+	[Export] public Data_Action ActionParams = new();
 	bool CanAfford = false;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -23,34 +24,42 @@ public partial class BuildButton : Node2D, IHoverable
 			HoverAnim?.Play("Unhover");
 		}
 
-		AssignBuildParams(BuildParams);
 		PlayerEvent.Register(PlayerEvent.SignalName.AnyResourceChanged, Callable.From(() => UpdateCosts()));
 		AnimationPlayer Anim = GetNodeOrNull<AnimationPlayer>("AnimationPlayer");
 		Anim?.Play("Disabled");
+
+		AssignActionParams(ActionParams);
 	}
 
-	public void AssignBuildParams(Data_Tower NewParams)
+	public void AssignActionParams(Data_Action NewParams)
 	{
-		if (NewParams == null) return;
-		BuildParams = NewParams;
-
-		Sprite2D TowerSprite = GetNodeOrNull<Sprite2D>("TowerSprite");
-		if (TowerSprite != null)
+		if (NewParams == null)
 		{
-			TowerSprite.Texture = BuildParams.PlacementSprite;
+			Modulate = new Color(0,0,0,0);
+			return;
+		} 
+
+		ActionParams = NewParams;
+		Modulate = new Color(1,1,1,1);
+
+		Sprite2D Icon = GetNodeOrNull<Sprite2D>("Icon");
+		if (Icon != null)
+		{
+			Icon.Texture = ActionParams.Icon;
 		}
 
 		CostReadout CostText = GetNodeOrNull<CostReadout>("Cost");
-		if (CostText != null && BuildParams != null)
+		if (CostText != null && ActionParams != null && ActionParams.ClickCost != null)
 		{
-			CostText.SetCosts(BuildParams.Cost);
+			CostText.SetCosts(ActionParams.ClickCost);
 		}
 
 		RichTextLabel NameText = GetNodeOrNull<RichTextLabel>("Name");
 		if (NameText != null)
 		{
-			NameText.Text = TextHelpers.Center(NewParams.TowerName);
+			NameText.Text = TextHelpers.Center(NewParams.DisplayName);
 		}
+		UpdateCosts();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -60,8 +69,8 @@ public partial class BuildButton : Node2D, IHoverable
 
 	public void UpdateCosts()
 	{
-		if (BuildParams == null) return;
-		bool CanAffordNow = Player.CanAfford(BuildParams.Cost);
+		if (ActionParams == null) return;
+		bool CanAffordNow = Player.CanAfford(ActionParams.ClickCost);
 		if (CanAfford == CanAffordNow) return;
 
 		AnimationPlayer Anim = GetNodeOrNull<AnimationPlayer>("AnimationPlayer");
@@ -78,25 +87,20 @@ public partial class BuildButton : Node2D, IHoverable
 
 	void OnClick()
 	{
-		if (BuildParams == null) return;
-		if (TowerToBuild == null) return;
+		ContextMenu ParentMenu = GetParentOrNull<ContextMenu>();
+		if (ParentMenu == null) return;
+		if (ParentMenu.SelectedTower == null) return;
 
-        if (CanAfford && Cursor.PushState("State_Placement") is S_PlaceTower PlacementState)
-        {
-            PlacementState.SetTowerToBuild(BuildParams, TowerToBuild);
-
-			AnimationPlayer Anim = GetNodeOrNull<AnimationPlayer>("AnimationPlayer");
-			Anim?.Play("Success");
-        }
+		ParentMenu.SelectedTower.PerformAction(ActionIndex);
     }
 
 	public void OnHovered()
 	{
-		PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerHovered, BuildParams);
+		//PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerHovered, BuildParams);
 	}
 
 	public void ExitHovered()
 	{
-		PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerExitHovered);
+		//PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerExitHovered);
 	}
 }

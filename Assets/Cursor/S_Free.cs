@@ -10,6 +10,11 @@ public partial class S_Free : Node, ICursorState
     }
 
     // Cursor state interface
+    public String GetName()
+    {
+        return "Free";
+    }
+
     public void OnEnable()
     {
         GD.Print("Cursor State changed to Free");

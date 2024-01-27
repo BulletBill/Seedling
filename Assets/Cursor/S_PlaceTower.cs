@@ -34,55 +34,16 @@ public partial class S_PlaceTower : Node, ICursorState
         }
     }
 
-    // Cursor state interface
-    public void OnEnable()
-    {
-        GD.Print("Cursor State changed to Placement");
-        CachedTileMap = MainMap.Singleton;
-        MainMap.AddOutlineActive(GridCode);
-    }
-	public void OnDisable()
-    {
-        TowerData = null;
-        PlacementIsValid = false;
-        MainMap.RemoveOutlineActive(GridCode);
-
-        if (ParentCursor == null) return;
-        ParentCursor.PlacementGhost.Visible = false;
-    }
-	public void OnClick()
-    {
-        if (PlacementIsValid == false) return;
-        if (TowerData == null) return;
-        if (TowerToBuild == null) return;
-
-        Node2D NewTower = TowerToBuild.Instantiate<Node2D>();
-        if (NewTower == null) return;
-        NewTower.GlobalPosition = Cursor.GetTilePosition();
-        MainMap.Singleton.AddChild(NewTower);
-
-        Player.Spend(TowerData.Cost);
-
-        if (Input.IsActionPressed("Modify"))
-        {
-            PlacedOne = true;
-            PlacementIsValid = false;
-            ParentCursor.PlacementGhost.SelfModulate = BadColor;
-        }
-        else
-        {
-            Cursor.PopState();
-        }
-    }
-    public void OnEscape()
-    {
-
-    }
-
     public void UpdateInPlace()
     {
         OnMove(CurrentPosition);
     }
+    
+    public String GetName()
+    {
+        return "PlaceTower";
+    }
+
 	public void OnMove(Vector2I NewMapPosition)
     {
         if (TowerData == null) return;
@@ -150,5 +111,50 @@ public partial class S_PlaceTower : Node, ICursorState
         result &= MatchesTile;
 
         return result;
+    }
+
+    // Cursor state interface
+    public void OnEnable()
+    {
+        GD.Print("Cursor State changed to Placement");
+        CachedTileMap = MainMap.Singleton;
+        MainMap.AddOutlineActive(GridCode);
+    }
+	public void OnDisable()
+    {
+        TowerData = null;
+        PlacementIsValid = false;
+        MainMap.RemoveOutlineActive(GridCode);
+
+        if (ParentCursor == null) return;
+        ParentCursor.PlacementGhost.Visible = false;
+    }
+	public void OnClick()
+    {
+        if (PlacementIsValid == false) return;
+        if (TowerData == null) return;
+        if (TowerToBuild == null) return;
+
+        Node2D NewTower = TowerToBuild.Instantiate<Node2D>();
+        if (NewTower == null) return;
+        NewTower.GlobalPosition = Cursor.GetTilePosition();
+        MainMap.Singleton.AddChild(NewTower);
+
+        Player.Spend(TowerData.Cost);
+
+        if (Input.IsActionPressed("Modify"))
+        {
+            PlacedOne = true;
+            PlacementIsValid = false;
+            ParentCursor.PlacementGhost.SelfModulate = BadColor;
+        }
+        else
+        {
+            Cursor.PopState();
+        }
+    }
+    public void OnEscape()
+    {
+        Cursor.PopState();
     }
 }

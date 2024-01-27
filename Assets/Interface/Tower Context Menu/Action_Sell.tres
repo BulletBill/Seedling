@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Data_Action" load_steps=5 format=3 uid="uid://dr2317w84u581"]
+
+[ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="1_al6ul"]
+[ext_resource type="Script" path="res://Assets/Interface/Tower Context Menu/Data_Action.cs" id="1_lkj4l"]
+[ext_resource type="Texture2D" uid="uid://dabjqho85uam6" path="res://Assets/Art/Icons/Sell.png" id="2_2fj06"]
+
+[sub_resource type="Resource" id="Resource_w783a"]
+script = ExtResource("1_al6ul")
+LifeForce = 0
+Substance = 0
+Flow = 0
+Breath = 0
+Energy = 0
+
+[resource]
+script = ExtResource("1_lkj4l")
+DisplayName = "Sell"
+ActionType = 0
+ClickCost = SubResource("Resource_w783a")
+Icon = ExtResource("2_2fj06")

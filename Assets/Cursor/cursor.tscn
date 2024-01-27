@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Assets/Cursor/Cursor.cs" id="1_85qhr"]
 [ext_resource type="Script" path="res://Assets/Cursor/S_Free.cs" id="3_wjcte"]
-[ext_resource type="Script" path="res://Assets/Cursor/S_Menu.cs" id="4_3qh70"]
+[ext_resource type="Script" path="res://Assets/Cursor/S_ContextMenu.cs" id="4_e0tsg"]
 [ext_resource type="Script" path="res://Assets/Cursor/S_PlaceTower.cs" id="4_voq7h"]
 
 [node name="Cursor" type="Node2D" node_paths=PackedStringArray("DefaultCursorState")]
@@ -20,5 +20,5 @@ script = ExtResource("3_wjcte")
 [node name="State_Placement" type="Node" parent="."]
 script = ExtResource("4_voq7h")
 
-[node name="State_Menu" type="Node" parent="."]
-script = ExtResource("4_3qh70")
+[node name="State_ContextMenu" type="Node" parent="."]
+script = ExtResource("4_e0tsg")
