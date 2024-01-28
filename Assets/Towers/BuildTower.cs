@@ -40,8 +40,7 @@ public partial class BuildTower : Tower
         		if (NewTower == null) return;
         		NewTower.Position = Position;
         		MainMap.Singleton.AddChild(NewTower);
-				//QueueFree();
-				Visible = false;
+				QueueFree();
 			}
 		}
 	}

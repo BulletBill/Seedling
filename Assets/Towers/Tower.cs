@@ -57,11 +57,13 @@ public partial class Tower : Sprite2D, IHoverable
 
 	public void PerformAction(int Index)
 	{
-		if (Index < 0 || Actions.Count >= Index) return;
+		if (Index < 0 || Index >= Actions.Count) return;
 
 		switch (Actions[Index].ActionType)
 		{
 			case EActionType.Sell:
+				PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerDeselected);
+				Cursor.PopState();
 				SellTower();
 			break;
 			case EActionType.SelfUpgrade:
@@ -81,7 +83,31 @@ public partial class Tower : Sprite2D, IHoverable
 
 	public void SellTower()
 	{
+		if (TowerData == null || TowerData.Cost == null) return;
+		R_Cost Refund = TowerData.Cost * 0.80f;
+		if (Refund.LifeForce > 0)
+		{
+			PlayerEvent.Broadcast(PlayerEvent.SignalName.AddLifeforce, Refund.LifeForce);
+		}
+		if (Refund.Substance > 0)
+		{
+			PlayerEvent.Broadcast(PlayerEvent.SignalName.AddSubstance, Refund.Substance);
+		}
+		if (Refund.Flow > 0)
+		{
+			PlayerEvent.Broadcast(PlayerEvent.SignalName.AddFlow, Refund.Flow);
+		}
+		if (Refund.Breath > 0)
+		{
+			PlayerEvent.Broadcast(PlayerEvent.SignalName.AddBreath, Refund.Breath);
+		}
+		if (Refund.Energy > 0)
+		{
+			PlayerEvent.Broadcast(PlayerEvent.SignalName.AddEnergy, Refund.Energy);
+		}
+		EffectsManager.SpawnResourceCluster(GlobalPosition, Refund.Substance, Refund.Flow, Refund.Breath, Refund.Energy);
 
+		QueueFree();
 	}
 
 	public void UpgradeTo(Tower NewTower)

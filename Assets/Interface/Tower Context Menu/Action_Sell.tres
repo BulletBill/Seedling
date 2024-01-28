@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Assets/Interface/Tower Context Menu/Data_Action.cs" id="1_lkj4l"]
 [ext_resource type="Texture2D" uid="uid://dabjqho85uam6" path="res://Assets/Art/Icons/Sell.png" id="2_2fj06"]
 
-[sub_resource type="Resource" id="Resource_w783a"]
+[sub_resource type="Resource" id="Resource_r2rgi"]
 script = ExtResource("1_al6ul")
 LifeForce = 0
 Substance = 0
@@ -15,6 +15,6 @@ Energy = 0
 [resource]
 script = ExtResource("1_lkj4l")
 DisplayName = "Sell"
-ActionType = 0
-ClickCost = SubResource("Resource_w783a")
+ActionType = 2
+ClickCost = SubResource("Resource_r2rgi")
 Icon = ExtResource("2_2fj06")

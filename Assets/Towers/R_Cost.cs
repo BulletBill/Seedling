@@ -18,4 +18,18 @@ public partial class R_Cost : Resource
         if (Type == ECurrencyType.Energy) { return TextHelpers.Icon("Energy Small") + Energy.ToString(); }
         return "";
     }
+
+    public static R_Cost operator* (R_Cost Self, float scalar)
+    {
+        R_Cost Result = new()
+        {
+            LifeForce = Self.LifeForce,
+            Substance = (int)(Self.Substance * scalar),
+            Flow = (int)(Self.Flow * scalar),
+            Breath = (int)(Self.Breath * scalar),
+            Energy = (int)(Self.Energy * scalar)
+        };
+
+        return Result;
+    }
 }

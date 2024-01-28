@@ -3,6 +3,11 @@ using System;
 
 public partial class S_ContextMenu : Node, ICursorState
 {
+	Cursor ParentCursor;
+	public override void _Ready()
+    {
+        ParentCursor = GetParentOrNull<Cursor>();
+    }
 
 	public void AssignTower(Tower NewTower)
 	{
@@ -22,7 +27,13 @@ public partial class S_ContextMenu : Node, ICursorState
 		GD.Print("Cursor State changed to Context Menu");
 	}
 	public void OnDisable() {}
-	public void OnClick() {}
+	public void OnClick()
+	{
+		if (ParentCursor == null) return;
+        if (ParentCursor.HoverList.Count <= 0) return;
+
+        ParentCursor.HoverList[0].OnClick();
+	}
 	public void OnEscape()
 	{
 		PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerDeselected);
