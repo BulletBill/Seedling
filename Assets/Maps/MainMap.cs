@@ -1,11 +1,7 @@
 using Godot;
 using GodotPlugins.Game;
 using System;
-using System.Buffers;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Diagnostics;
-using System.Globalization;
+using Godot.Collections;
 
 public partial class MainMap : TileMap
 {
@@ -16,7 +12,7 @@ public partial class MainMap : TileMap
 	public static MainMap Singleton;
 
 	// Harvested Tiles
-	Dictionary<Vector2I, int> HarvestedTileCount = new();
+	Array<Vector2I> HarvestedTiles = new();
 
 	// Terrain Index shortcuts
 	public static readonly int Terrain_Void = -1;
@@ -39,6 +35,7 @@ public partial class MainMap : TileMap
 	// Event bus
 	[Signal] public delegate void GrassGrownEventHandler(int Count);
 	[Signal] public delegate void AnyTileChangedEventHandler();
+	[Signal] public delegate void GridVisibleChangedEventHandler(bool Shown);
 
 	public MainMap()
 	{
@@ -70,12 +67,14 @@ public partial class MainMap : TileMap
 		{
 			OutlineShown = true;
 			SetLayerModulate(Layer_Outline, GridColor);
+			EmitSignal(SignalName.GridVisibleChanged, true);
 		}
 
 		if (OutlineActive <= 0 && OutlineShown)
 		{
 			OutlineShown = false;
 			SetLayerModulate(Layer_Outline, new Color(0.0f, 0.0f, 0.0f, 0.0f));
+			EmitSignal(SignalName.GridVisibleChanged, false);
 		}
 	}
 
@@ -178,14 +177,19 @@ public partial class MainMap : TileMap
 	{
 		if (Singleton == null) return ECurrencyType.None;
 
-		if (Singleton.HarvestedTileCount.ContainsKey(TileLoc))
+		if (Singleton.HarvestedTiles.Contains(TileLoc))
 		{
-			Singleton.HarvestedTileCount[TileLoc] += 1;
 			return ECurrencyType.None;
 		}
 
-		Singleton.HarvestedTileCount.Add(TileLoc, 1);
+		Singleton.HarvestedTiles.Add(TileLoc);
 		return GetTileCurrency(TileLoc);
+	}
+
+	public static void UnHarvestTile(Vector2I TileLoc)
+	{
+		if (Singleton == null) return;
+		Singleton.HarvestedTiles.Remove(TileLoc);
 	}
 
 	// Event bus functions

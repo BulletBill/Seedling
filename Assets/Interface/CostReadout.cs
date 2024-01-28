@@ -13,13 +13,37 @@ public partial class CostReadout : RichTextLabel
 
 	public void SetCosts(R_Cost Cost)
 	{
+		bool FirstResult = true;
 		Text = "";
 		Text += "[center]";
-		if (Cost.LifeForce != 0) { Text += TextHelpers.Icon("Lifeforce Small") + Cost.LifeForce.ToString() + " "; }
-		if (Cost.Substance != 0) { Text += TextHelpers.Icon("Substance Small") + Cost.Substance.ToString() + " "; }
-		if (Cost.Flow != 0) { Text += TextHelpers.Icon("Flow Small") + Cost.Flow.ToString() + " "; }
-		if (Cost.Breath != 0) { Text += TextHelpers.Icon("Breath Small") + Cost.Breath.ToString() + " "; }
-		if (Cost.Energy != 0) { Text += TextHelpers.Icon("Energy Small") + Cost.Energy.ToString() + " "; }
+		if (Cost.LifeForce != 0)
+		{
+			Text += TextHelpers.Icon("Lifeforce Small") + Cost.LifeForce.ToString();
+			FirstResult = false;
+		}
+		if (Cost.Substance != 0)
+		{
+			if (!FirstResult) { Text += " "; }
+			Text += TextHelpers.Icon("Substance Small") + Cost.Substance.ToString();
+			FirstResult = false;
+		}
+		if (Cost.Flow != 0)
+		{
+			if (!FirstResult) { Text += " "; }
+			Text += TextHelpers.Icon("Flow Small") + Cost.Flow.ToString();
+			FirstResult = false;
+		}
+		if (Cost.Breath != 0)
+		{
+			if (!FirstResult) { Text += " "; }
+			Text += TextHelpers.Icon("Breath Small") + Cost.Breath.ToString();
+			FirstResult = false;
+		}
+		if (Cost.Energy != 0)
+		{
+			if (!FirstResult) { Text += " "; }
+			Text += TextHelpers.Icon("Energy Small") + Cost.Energy.ToString();
+		}
 		Text += "[/center]";
 	}
 }

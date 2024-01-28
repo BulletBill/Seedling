@@ -1,13 +1,15 @@
-[gd_scene load_steps=15 format=3 uid="uid://dbr6bnc2oohvr"]
+[gd_scene load_steps=17 format=3 uid="uid://dbr6bnc2oohvr"]
 
 [ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_lah4t"]
 [ext_resource type="Texture2D" uid="uid://blygruvq4wq11" path="res://Assets/Towers/Sun Leaf/Art-Sun Leaf.png" id="2_q21ul"]
 [ext_resource type="Script" path="res://Assets/Towers/Tower.cs" id="3_xcnlb"]
 [ext_resource type="Resource" uid="uid://pqk4g5tts6in" path="res://Assets/Towers/Sun Leaf/Data_Sunleaf.tres" id="4_3uak5"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="4_7gefn"]
+[ext_resource type="Resource" uid="uid://dr2317w84u581" path="res://Assets/Interface/Tower Context Menu/Action_Sell.tres" id="5_lw6d3"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_HarvestArea.cs" id="6_8idby"]
 [ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Interface/Hover Area/HoverArea.tscn" id="6_xv2l5"]
 [ext_resource type="Theme" uid="uid://svogtundy1nx" path="res://Assets/Art/Interface/default_theme.tres" id="8_h0t5d"]
+[ext_resource type="Script" path="res://Assets/Interface/CostReadout.cs" id="8_o3oad"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bjj0w"]
 shader = ExtResource("1_lah4t")
@@ -81,11 +83,12 @@ material = SubResource("ShaderMaterial_bjj0w")
 texture = ExtResource("2_q21ul")
 script = ExtResource("3_xcnlb")
 TowerData = ExtResource("4_3uak5")
+Actions = [ExtResource("5_lw6d3")]
 
 [node name="AlignToMap" type="Node2D" parent="."]
 script = ExtResource("4_7gefn")
 
-[node name="HarvestArea" type="Node2D" parent="."]
+[node name="HarvestArea" type="Node2D" parent="." groups=["HarvestArea"]]
 script = ExtResource("6_8idby")
 
 [node name="TimerBar" type="ProgressBar" parent="HarvestArea"]
@@ -95,8 +98,21 @@ offset_top = -15.0
 offset_right = 42.0
 offset_bottom = -9.0
 scale = Vector2(0.5, 0.5)
+mouse_filter = 2
 theme = ExtResource("8_h0t5d")
 show_percentage = false
+
+[node name="Income" type="RichTextLabel" parent="HarvestArea"]
+offset_left = -23.0
+offset_top = -11.0
+offset_right = 69.0
+offset_bottom = 33.0
+scale = Vector2(0.5, 0.5)
+mouse_filter = 2
+bbcode_enabled = true
+text = "[center]SampleText[/center]"
+scroll_active = false
+script = ExtResource("8_o3oad")
 
 [node name="HoverAnimator" type="AnimationPlayer" parent="."]
 libraries = {

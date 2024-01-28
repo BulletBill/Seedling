@@ -9,6 +9,23 @@ public partial class R_Cost : Resource
     [Export] public int Breath;
     [Export] public int Energy;
 
+    public R_Cost()
+    {
+        LifeForce = 0;
+        Substance = 0;
+        Flow = 0;
+        Breath = 0;
+        Energy = 0;
+    }
+    public R_Cost(int lifeforce, int substance, int flow, int breath, int energy)
+    {
+        LifeForce = lifeforce;
+        Substance = substance;
+        Flow = flow;
+        Breath = breath;
+        Energy = energy;
+    }
+
     public String GetString(ECurrencyType Type)
     {
         if (Type == ECurrencyType.Lifeforce) { return TextHelpers.Icon("Lifeforce Small") + LifeForce.ToString(); }

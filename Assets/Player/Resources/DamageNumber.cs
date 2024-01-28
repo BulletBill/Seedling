@@ -29,7 +29,6 @@ public partial class DamageNumber : RichTextLabel
 
         Text = "";
         if (Centered) Text += "[center]";
-        Text += Value.ToString();
         switch (Type)
         {
             case ECurrencyType.Lifeforce:
@@ -48,6 +47,7 @@ public partial class DamageNumber : RichTextLabel
             Text += TextHelpers.Icon("Energy Small");
             break;
         }
+        Text += Value.ToString();
         if (Centered) Text += "[/center]";
     }
 

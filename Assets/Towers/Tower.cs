@@ -2,6 +2,12 @@ using Godot;
 using System;
 using Godot.Collections;
 
+public interface ITowerComponent
+{
+	void TowerReady();
+	void TowerRemoved();
+}
+
 public partial class Tower : Sprite2D, IHoverable
 {
 	[Export] public bool IsDefendTarget = false;
@@ -24,6 +30,14 @@ public partial class Tower : Sprite2D, IHoverable
 		if (hoverArea != null)
 		{
 			hoverArea.Clicked += OnClick;
+		}
+
+		foreach(Node n in GetChildren())
+		{
+			if (n is ITowerComponent towerComp)
+			{
+				towerComp.TowerReady();
+			}
 		}
 	}
 
@@ -106,6 +120,14 @@ public partial class Tower : Sprite2D, IHoverable
 			PlayerEvent.Broadcast(PlayerEvent.SignalName.AddEnergy, Refund.Energy);
 		}
 		EffectsManager.SpawnResourceCluster(GlobalPosition, Refund.Substance, Refund.Flow, Refund.Breath, Refund.Energy);
+
+		foreach(Node n in GetChildren())
+		{
+			if (n is ITowerComponent towerComp)
+			{
+				towerComp.TowerRemoved();
+			}
+		}
 
 		QueueFree();
 	}
