@@ -1,6 +1,7 @@
 using Godot;
 using Microsoft.VisualBasic;
 using System;
+using System.Linq;
 
 // For buses:
 // Establish singleton in Initializer
@@ -101,7 +102,12 @@ public partial class PlayerEvent : Node
 
     public static Error BroadcastAddResource(ECurrencyType Type, params Variant[] args)
     {
-        return Broadcast("Add" + Type.ToString(), args);
+        Error ret = Broadcast("Add" + Type.ToString(), args);
+        if (args.GetLength(0) > 0 && (int)args[0] > 0)
+        {
+            Broadcast("AnyResourceChanged");
+        }
+        return ret;
     }
     public static Error BroadcastAddMaxResource(ECurrencyType Type, params Variant[] args)
     {

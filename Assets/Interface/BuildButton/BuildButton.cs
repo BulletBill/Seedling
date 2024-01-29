@@ -6,6 +6,7 @@ public partial class BuildButton : Node2D, IHoverable
 	[Export] public PackedScene TowerToBuild;
 	[Export] public Data_Tower BuildParams = new();
 	bool CanAfford = false;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -25,8 +26,16 @@ public partial class BuildButton : Node2D, IHoverable
 
 		AssignBuildParams(BuildParams);
 		PlayerEvent.Register(PlayerEvent.SignalName.AnyResourceChanged, Callable.From(() => UpdateCosts()));
+		CanAfford = Player.CanAfford(BuildParams.Cost);
 		AnimationPlayer Anim = GetNodeOrNull<AnimationPlayer>("AnimationPlayer");
-		Anim?.Play("Disabled");
+		if (CanAfford)
+		{
+			Anim?.Play("Enabled");
+		}
+		else
+		{
+			Anim?.Play("Disabled");
+		}
 	}
 
 	public void AssignBuildParams(Data_Tower NewParams)

@@ -73,11 +73,11 @@ public partial class Player : Node2D
 
         if (Singleton.FreeTowers) return true;
 
-        if (Singleton.Currencies[ECurrencyType.Lifeforce].Amount < Cost.LifeForce) return false;
-        if (Singleton.Currencies[ECurrencyType.Substance].Amount < Cost.Substance) return false;
-        if (Singleton.Currencies[ECurrencyType.Flow].Amount < Cost.Flow) return false;
-        if (Singleton.Currencies[ECurrencyType.Breath].Amount < Cost.Breath) return false;
-        if (Singleton.Currencies[ECurrencyType.Energy].Amount < Cost.Energy) return false;
+        if (Cost.LifeForce > 0 && Singleton.Currencies[ECurrencyType.Lifeforce].Amount < Cost.LifeForce) return false;
+        if (Cost.Substance > 0 && Singleton.Currencies[ECurrencyType.Substance].Amount < Cost.Substance) return false;
+        if (Cost.Flow > 0 && Singleton.Currencies[ECurrencyType.Flow].Amount < Cost.Flow) return false;
+        if (Cost.Breath > 0 && Singleton.Currencies[ECurrencyType.Breath].Amount < Cost.Breath) return false;
+        if (Cost.Energy > 0 && Singleton.Currencies[ECurrencyType.Energy].Amount < Cost.Energy) return false;
 
         return true;
     }
