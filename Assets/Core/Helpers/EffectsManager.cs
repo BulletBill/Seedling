@@ -22,11 +22,14 @@ public partial class EffectsManager : Node
         if (Singleton == null) return;
         if (Singleton.DamageNumberPrefab == null) return;
 
-        DamageNumber NewNumber = Singleton.DamageNumberPrefab.InstantiateOrNull<DamageNumber>();
-        if (NewNumber != null)
+        if (MainMap.Singleton.IsNodeReady())
         {
-            MainMap.Singleton.AddChild(NewNumber);
-            NewNumber.AssignResource(Location, Amount, Type);
+            DamageNumber NewNumber = Singleton.DamageNumberPrefab.InstantiateOrNull<DamageNumber>();
+            if (NewNumber != null)
+            {
+                MainMap.Singleton.AddChild(NewNumber);
+                NewNumber.AssignResource(Location, Amount, Type);
+            }
         }
     }
 

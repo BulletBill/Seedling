@@ -19,7 +19,7 @@ public partial class C_HarvestArea : Node2D, ITowerComponent
     public override void _EnterTree()
     {
         MainMap.Register(MainMap.SignalName.GridVisibleChanged, Callable.From((bool b) => ShowText(b)));
-		ShowText(false);
+		ShowText(MainMap.IsOutlineActive());
     }
 
 	void ShowText(bool NewShow)

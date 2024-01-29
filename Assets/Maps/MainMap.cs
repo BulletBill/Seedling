@@ -14,9 +14,6 @@ public partial class MainMap : TileMap
 	// Tile meta
 	Array<Vector2I> HarvestedTiles = new();
 	Dictionary<Vector2I, int> GrassTiles = new();
-	//int RollingRemoveIndex = 0;
-	//float RemoveGrassTimer = 0.0f;
-	//float RemoveGrassDelay = 0.25f;
 
 	// Terrain Index shortcuts
 	public static readonly int Terrain_Void = -1;
