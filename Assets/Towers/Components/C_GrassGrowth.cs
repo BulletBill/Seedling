@@ -7,20 +7,29 @@ using System.Runtime.Intrinsics.Arm;
 using System.Reflection;
 
 [Tool]
-public partial class C_GrassGrowth : Node2D
+public partial class C_GrassGrowth : Node2D, ITowerComponent
 {
     [Export] public float Radius = 1.0f;
     [Export] public float GrowthInterval = 2.0f;
     [Export] public bool AttractEnemies = true;
     public static int ResourcePerTile = 5;
     float GrowthTimer = 0.1f;
-    List<TileAtDistance> TilesInRange = new();
+    List<TileAtDistance> TilesToGrass = new();
+    List<Vector2I> TilesInArea = new();
 
-    public override void _Ready()
+    public void TowerReady()
     {
         if (Engine.IsEditorHint()) return; // Don't run in editor
         
         GetTilesInGrowingRange();
+    }
+
+    public void TowerRemoved()
+    {
+        foreach(var tile in TilesInArea)
+        {
+            MainMap.RemoveGrassTile(tile);
+        }
     }
 
     public override void _Process(double delta)
@@ -31,7 +40,7 @@ public partial class C_GrassGrowth : Node2D
         {
             GrowthTimer -= (float)delta * Game.GetSpeed();
 
-            if (TilesInRange.Count > 0 && GrowthTimer <= 0.0f)
+            if (TilesToGrass.Count > 0 && GrowthTimer <= 0.0f)
             {
                 GrowGrass();
                 GrowthTimer = GrowthInterval;
@@ -48,68 +57,54 @@ public partial class C_GrassGrowth : Node2D
         if (ParentNode == null) return;
 
         Array<Vector2I> AllCells = CachedTileMap.GetUsedCells(MainMap.Layer_Ground);
-        TilesInRange.Clear();
+        TilesInArea.Clear();
+        TilesToGrass.Clear();
+
+        // Search all cells to find tiles in range, add non-grass tiles to grow list
         foreach(Vector2I i in AllCells)
         {
-            // Don't bother with grass tiles
-            if (CachedTileMap.GetCellTileData(MainMap.Layer_Ground, i).Terrain == MainMap.Terrain_Grass) continue;
-
             Vector2 TilePos = CachedTileMap.ToGlobal(CachedTileMap.MapToLocal(i));
             float Distance = ParentNode.GlobalPosition.DistanceTo(TilePos);
             if (Distance < (Radius * GlobalScale.X))
             {
-                TilesInRange.Add(new TileAtDistance(i, Distance));
+                TilesToGrass.Add(new TileAtDistance(i, Distance));
             }
         }
-        TilesInRange.Sort((tile1, tile2) => tile1.Distance.CompareTo(tile2.Distance));
+        TilesToGrass.Sort((tile1, tile2) => tile1.Distance.CompareTo(tile2.Distance));
     }
 
     public void GrowGrass()
     {
-        if (TilesInRange.Count <= 0) return;
+        if (TilesToGrass.Count <= 0) return;
 
         MainMap CachedTileMap = MainMap.Singleton;
         if (CachedTileMap == null) return;
 
         List<TileAtDistance> TilesToGrow = new();
-        float DistanceToUse = TilesInRange[0].Distance;
+        float DistanceToUse = TilesToGrass[0].Distance;
 
-        for(int i = TilesInRange.Count - 1; i >= 0; i--)
+        for(int i = TilesToGrass.Count - 1; i >= 0; i--)
         {
-            if (TilesInRange[i].Distance <= DistanceToUse)
+            if (TilesToGrass[i].Distance <= DistanceToUse)
             {
-                // Tile might have become grass from another tower in the mean time
-                if (CachedTileMap.GetCellTileData(MainMap.Layer_Ground, TilesInRange[i].TilePosition).Terrain == MainMap.Terrain_Grass)
-                {
-                    TilesInRange.RemoveAt(i);
-                    continue;
-                }
-                TilesToGrow.Add(TilesInRange[i]);
+                TilesToGrow.Add(TilesToGrass[i]);
             }
         }
 
         if (TilesToGrow.Count > 0)
         {
-            int GrowIndex = MathHelper.GetIntInRange(0, TilesToGrow.Count - 1);
-            Array<Vector2I> TileToGrow = new() { TilesToGrow[GrowIndex].TilePosition };
-
-            // Add resources for growing grass
-            ECurrencyType AddedType = MainMap.GetTileCurrency(TileToGrow[0]);
-            PlayerEvent.BroadcastAddResource(AddedType, ResourcePerTile);
-            EffectsManager.SpawnResourceNumber(CachedTileMap.ToGlobal(CachedTileMap.MapToLocal(TileToGrow[0])), ResourcePerTile, AddedType);
-
             // Modify Tilemap
-            TilesInRange.Remove(TilesToGrow[GrowIndex]);
-            CachedTileMap.SetCellsTerrainConnect(MainMap.Layer_Ground, TileToGrow, MainMap.TerrainSet_Default, MainMap.Terrain_Grass);
-            MainMap.Broadcast(MainMap.SignalName.AnyTileChanged);
+            foreach (TileAtDistance tile in TilesToGrow)
+            {
+                MainMap.AddGrassTile(tile.TilePosition);
+                TilesInArea.Add(tile.TilePosition);
+                TilesToGrass.Remove(tile);
+            }
+            
             if (AttractEnemies)
             {
-                MainMap.Broadcast(MainMap.SignalName.GrassGrown, TileToGrow.Count);
+                MainMap.Broadcast(MainMap.SignalName.GrassGrown, TilesToGrow.Count);
             }
-        }
-        else
-        {
-            //GD.PrintErr("C_GrassGrowth.GrowGrass: Failed to create grass tile!");
         }
     }
 

@@ -13,7 +13,6 @@ public partial class InfoPanel : Node
 
     public void MoveToLeft()
     {
-        GD.Print("InfoPanel.MoveToLeft");
         if (Anim == null) return;
         if (IsLeft) return;
         IsLeft = true;
@@ -23,7 +22,6 @@ public partial class InfoPanel : Node
 
     public void MoveToRight()
     {
-        GD.Print("InfoPanel.MoveToRight");
         if (Anim == null) return;
         if (!IsLeft) return;
         IsLeft = false;

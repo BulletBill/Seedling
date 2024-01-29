@@ -98,7 +98,7 @@ public partial class Tower : Sprite2D, IHoverable
 	public void SellTower()
 	{
 		if (TowerData == null || TowerData.Cost == null) return;
-		R_Cost Refund = TowerData.Cost * 0.80f;
+		R_Cost Refund = TowerData.Cost * 0.50f;
 		if (Refund.LifeForce > 0)
 		{
 			PlayerEvent.Broadcast(PlayerEvent.SignalName.AddLifeforce, Refund.LifeForce);

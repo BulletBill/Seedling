@@ -11,8 +11,12 @@ public partial class MainMap : TileMap
 	bool OutlineShown = false;
 	public static MainMap Singleton;
 
-	// Harvested Tiles
+	// Tile meta
 	Array<Vector2I> HarvestedTiles = new();
+	Dictionary<Vector2I, int> GrassTiles = new();
+	//int RollingRemoveIndex = 0;
+	//float RemoveGrassTimer = 0.0f;
+	//float RemoveGrassDelay = 0.25f;
 
 	// Terrain Index shortcuts
 	public static readonly int Terrain_Void = -1;
@@ -42,6 +46,11 @@ public partial class MainMap : TileMap
 		Singleton = this;
 	}
 
+	public override void _Ready()
+	{
+		EmitSignal(MainMap.SignalName.GridVisibleChanged, false);
+	}
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _EnterTree()
 	{
@@ -54,13 +63,11 @@ public partial class MainMap : TileMap
 		if (!OutlineShown && Input.IsActionJustPressed("ShowGrid"))
 		{
 			AddOutlineActive_Internal(GridCode);
-			GD.Print("MainMap._Process: ShowGrid action just pressed.");
 		}
 		
 		if (OutlineShown && Input.IsActionJustReleased("ShowGrid"))
 		{
 			RemoveOutlineActive_Internal(GridCode);
-			GD.Print("MainMap._Process: ShowGrid action just released.");
 		}
 
 		if (OutlineActive > 0 && !OutlineShown)
@@ -86,6 +93,34 @@ public partial class MainMap : TileMap
 	void RemoveOutlineActive_Internal(uint OutlineActivate)
 	{
 		OutlineActive &= ~OutlineActivate;
+	}
+
+	void AddGrassTile_Internal(Vector2I TileLoc)
+	{
+		if (GrassTiles.ContainsKey(TileLoc))
+		{
+			GrassTiles[TileLoc] += 1;
+			return;
+		}
+
+		GrassTiles.Add(TileLoc, 1);
+		Array<Vector2I> TileToGrow = new() { TileLoc };
+		SetCellsTerrainConnect(MainMap.Layer_Ground, TileToGrow, MainMap.TerrainSet_Default, MainMap.Terrain_Grass);
+        Broadcast(SignalName.AnyTileChanged);
+	}
+
+	void RemoveGrassTile_Internal(Vector2I TileLoc)
+	{
+		if (!GrassTiles.ContainsKey(TileLoc)) return;
+
+		GrassTiles[TileLoc] -= 1;
+		if (GrassTiles[TileLoc] <= 0)
+		{
+			Array<Vector2I> TileToRemove = new() { TileLoc };
+			SetCellsTerrainConnect(MainMap.Layer_Ground, TileToRemove, MainMap.TerrainSet_Default, MainMap.Terrain_Dirt);
+			Broadcast(SignalName.AnyTileChanged);
+			GrassTiles.Remove(TileLoc);
+		}
 	}
 
 	// Static accessors
@@ -190,6 +225,18 @@ public partial class MainMap : TileMap
 	{
 		if (Singleton == null) return;
 		Singleton.HarvestedTiles.Remove(TileLoc);
+	}
+
+	public static void AddGrassTile(Vector2I TileLoc)
+	{
+		if (Singleton == null) return;
+		Singleton.AddGrassTile_Internal(TileLoc);
+	}
+
+	public static void RemoveGrassTile(Vector2I TileLoc)
+	{
+		if (Singleton == null) return;
+		Singleton.RemoveGrassTile_Internal(TileLoc);
 	}
 
 	// Event bus functions

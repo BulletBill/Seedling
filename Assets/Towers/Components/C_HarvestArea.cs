@@ -16,6 +16,27 @@ public partial class C_HarvestArea : Node2D, ITowerComponent
 	ProgressBar TimerBar;
 	public static readonly String HarvestGroup = "HarvestArea";
 
+    public override void _EnterTree()
+    {
+        MainMap.Register(MainMap.SignalName.GridVisibleChanged, Callable.From((bool b) => ShowText(b)));
+		ShowText(false);
+    }
+
+	void ShowText(bool NewShow)
+	{
+		RichTextLabel IncomeNode = GetNodeOrNull<RichTextLabel>("Income");
+		if (IncomeNode != null)
+		{
+			IncomeNode.Visible = NewShow;
+		}
+
+		ProgressBar TimerBar = GetNodeOrNull<ProgressBar>("TimerBar");
+		if (TimerBar != null)
+		{
+			TimerBar.Visible = NewShow;
+		}
+	}
+
 	// Called when the node enters the scene tree for the first time.
 	public void TowerReady()
 	{

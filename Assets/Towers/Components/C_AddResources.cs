@@ -1,13 +1,13 @@
 using Godot;
 using System;
 
-public partial class C_AddResources : Node
+public partial class C_AddResources : Node, ITowerComponent
 {
     [Export] public R_Cost AddFlatAmount = new();
     [Export] public R_Cost AddMaximum = new();
     Node2D Parent;
 
-    public override void _Ready()
+    public void TowerReady()
     {
         Parent = GetParent<Node2D>();
         if (Parent == null) return;
@@ -23,6 +23,11 @@ public partial class C_AddResources : Node
         if (AddMaximum.Flow > 0) { AddResourceMax(ECurrencyType.Flow, AddMaximum.Flow); }
         if (AddMaximum.Breath > 0) { AddResourceMax(ECurrencyType.Breath, AddMaximum.Breath); }
         if (AddMaximum.Energy > 0) { AddResourceMax(ECurrencyType.Energy, AddMaximum.Energy); }
+    }
+
+    public void TowerRemoved()
+    {
+        if (AddFlatAmount.LifeForce > 0) { PlayerEvent.BroadcastAddResource(ECurrencyType.Lifeforce, -AddFlatAmount.LifeForce); }
     }
 
     void AddResource(ECurrencyType Type, int Amount, Vector2 Offset)
