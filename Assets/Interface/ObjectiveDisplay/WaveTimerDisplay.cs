@@ -3,19 +3,28 @@ using System;
 
 public partial class WaveTimerDisplay : Node
 {
-    SpawnerBrain Spawner;
-    RichTextLabel Label;
-    public override void _Ready()
+    public override void _EnterTree()
     {
-        Spawner = EnemyController.GetSpawnerBrain();
-        Label = GetNodeOrNull<RichTextLabel>("Time");
+        EnemyEvent.Register(EnemyEvent.SignalName.WaveTimerChanged, Callable.From((int r, int m) => UpdateTimer(r,m)));
+        EnemyEvent.Register(EnemyEvent.SignalName.TimedWaveCountChanged, Callable.From((int n) => UpdateWave(n)));
     }
 
-    public override void _Process(double delta)
+    public void UpdateTimer(int SecondsRemaining, int SecondsMax)
     {
-        if (IsInstanceValid(Spawner) && IsInstanceValid(Label))
+        ProgressBar Bar = GetNodeOrNull<ProgressBar>("Progress");
+        if (IsInstanceValid(Bar))
         {
-            Label.Text = MathHelper.GetTimeFromSeconds(Spawner.BigWaveTimer);
+            Bar.MaxValue = SecondsMax;
+            Bar.Value = SecondsMax - SecondsRemaining;
+        }
+    }
+
+    public void UpdateWave(int WaveCount)
+    {
+        RichTextLabel Label = GetNodeOrNull<RichTextLabel>("Wave");
+        if (IsInstanceValid(Label))
+        {
+            Label.Text = WaveCount.ToString();
         }
     }
 }

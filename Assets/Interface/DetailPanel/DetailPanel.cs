@@ -7,7 +7,6 @@ public partial class DetailPanel : Node2D
 	Sprite2D Icon;
 	RichTextLabel Header;
 	RichTextLabel Body;
-	AnimationPlayer Anim;
 
 	public override void _EnterTree()
 	{
@@ -20,21 +19,18 @@ public partial class DetailPanel : Node2D
 		Icon = GetNodeOrNull<Sprite2D>("Icon");
 		Header = GetNodeOrNull<RichTextLabel>("Header");
 		Body = GetNodeOrNull<RichTextLabel>("Body");
-		Anim = GetNodeOrNull<AnimationPlayer>("AnimationPlayer");
 	}
 
 	public void TowerHovered(Data_Tower HoveredTower)
 	{
 		if (HoveredTower == null)
 		{
-			Anim?.Play("FadeOut");
 			if (Icon != null) { Icon.Texture = null; }
 			if (Header != null) { Header.Text = ""; }
 			if (Body != null) { Body.Text = ""; }
 			return;
 		}
 		
-		Anim?.Play("FadeIn");
 		if (Icon != null) { Icon.Texture = HoveredTower.PlacementSprite; }
 		if (Header != null) { Header.Text = HoveredTower.TowerName; }
 		if (Body != null) { Body.Text = HoveredTower.Description; }
@@ -42,6 +38,5 @@ public partial class DetailPanel : Node2D
 
 	public void TowerExitHovered()
 	{
-		Anim?.Play("FadeOut");
 	}
 }

@@ -3,11 +3,13 @@ using System;
 
 public partial class Debug_Spawning : CheckButton
 {
+	bool ButtonOn = false;
 	public void ToggleCosts()
 	{
 		if (IsInstanceValid(Player.Singleton))
 		{
-			EnemyController.GetSpawnerBrain().DisableSpawns = !EnemyController.GetSpawnerBrain().DisableSpawns;
+			ButtonOn = !ButtonOn;
+			EnemyEvent.Broadcast(EnemyEvent.SignalName.SetDisableSpawns, ButtonOn);
 		}
 	}
 }

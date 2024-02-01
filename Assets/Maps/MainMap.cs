@@ -14,6 +14,7 @@ public partial class MainMap : TileMap
 	// Tile meta
 	Array<Vector2I> HarvestedTiles = new();
 	Dictionary<Vector2I, int> GrassTiles = new();
+	public int Expansion { get; protected set; } = 0;
 
 	// Terrain Index shortcuts
 	public static readonly int Terrain_Void = -1;
@@ -34,7 +35,7 @@ public partial class MainMap : TileMap
 	public static readonly String Custom_Grass = "Grass";
 
 	// Event bus
-	[Signal] public delegate void GrassGrownEventHandler(int Count);
+	[Signal] public delegate void PlayerExpandedEventHandler(int Count);
 	[Signal] public delegate void AnyTileChangedEventHandler();
 	[Signal] public delegate void GridVisibleChangedEventHandler(bool Shown);
 
@@ -104,6 +105,13 @@ public partial class MainMap : TileMap
 		Array<Vector2I> TileToGrow = new() { TileLoc };
 		SetCellsTerrainConnect(MainMap.Layer_Ground, TileToGrow, MainMap.TerrainSet_Default, MainMap.Terrain_Grass);
         Broadcast(SignalName.AnyTileChanged);
+
+		if (Expansion < GrassTiles.Count)
+		{
+			Broadcast(SignalName.PlayerExpanded, 1);
+			Expansion = GrassTiles.Count;
+			GD.Print("MainMap: Player Expansion is now " + Expansion.ToString());
+		}
 	}
 
 	void RemoveGrassTile_Internal(Vector2I TileLoc)
@@ -234,6 +242,12 @@ public partial class MainMap : TileMap
 	{
 		if (Singleton == null) return;
 		Singleton.RemoveGrassTile_Internal(TileLoc);
+	}
+
+	public static int GetPlayerExpansionLevel()
+	{
+		if (Singleton == null) return -1;
+		return Singleton.Expansion;
 	}
 
 	// Event bus functions

@@ -6,20 +6,26 @@ using System.Diagnostics.CodeAnalysis;
 
 public partial class SpawnerBrain : Node
 {
-    [Export] public Array<PackedScene> EnemiesToSpawn = new();
+    [Export] public int ExpansionPerWave { get; protected set; } = 10;
+    [Export] public int SecondsUntilNextWave { get; protected set; } = 300;
     List<EnemySpawner> Spawners = new();
-    public int SpawningPool = 0;
-    public float SpawnPressure = 0.0f;
+    
+    [Export] public Godot.Collections.Array<R_SpawnWave> ExpansionWaves = new();
+    int ExpansionIndex = 0;
+    int ExpansionRemaining = 0;
 
-    public float BigWaveTimer { get; protected set; } = 301.0f;
-    int BigWaveSpawningPool = 100;
+    [Export] public Godot.Collections.Array<R_SpawnWave> TimedWaves = new();
+    int TimedIndex = 0;
+    float BigWaveTimer = 301.0f;
+    int TimerSecondsLeft = 300;
 
     // DEBUG
     public bool DisableSpawns = false;
 
     public override void _EnterTree()
     {
-        MainMap.Register(MainMap.SignalName.GrassGrown, Callable.From((int n) => GrassGrown(n)));
+        MainMap.Register(MainMap.SignalName.PlayerExpanded, Callable.From((int n) => GrassGrown(n)));
+        EnemyEvent.Register(EnemyEvent.SignalName.SetDisableSpawns, Callable.From((bool b) => SetDisableSpawns(b)));
     }
 
     public override void _Ready()
@@ -31,6 +37,13 @@ public partial class SpawnerBrain : Node
                 Spawners.Add(Spawner);
             }
         }
+
+        ExpansionRemaining = 37 + ExpansionPerWave;
+
+        EnemyEvent.Broadcast(EnemyEvent.SignalName.WaveTimerChanged, SecondsUntilNextWave, SecondsUntilNextWave);
+        EnemyEvent.Broadcast(EnemyEvent.SignalName.PlayerExpansionChanged, ExpansionPerWave, ExpansionPerWave);
+        EnemyEvent.Broadcast(EnemyEvent.SignalName.ExpansionWaveCountChanged, ExpansionIndex + 1);
+        EnemyEvent.Broadcast(EnemyEvent.SignalName.TimedWaveCountChanged, TimedIndex + 1);
     }
 
     public override void _Process(double delta)
@@ -39,46 +52,73 @@ public partial class SpawnerBrain : Node
         if (BigWaveTimer > 0)
         {
             BigWaveTimer -= (float)delta * Game.GetSpeed();
+
+            // Broadcast when seconds left changes
+            int LastSecond = TimerSecondsLeft;
+            TimerSecondsLeft = Mathf.FloorToInt(BigWaveTimer);
+            if (LastSecond != TimerSecondsLeft)
+            {
+                EnemyEvent.Broadcast(EnemyEvent.SignalName.WaveTimerChanged, TimerSecondsLeft, SecondsUntilNextWave);
+            }
         }
     }
 
     void GrassGrown(int Count)
     {
-        SpawnPressure += 3.0f * Count;
-        SpawningPool += Count;
+        ExpansionRemaining -= Count;
 
-        //GD.Print("SpawnerBrain.GrassGrown: Current Pressure is " + SpawnPressure.ToString() + " Spawning pool is " + SpawningPool.ToString());
-
-        if (MathHelper.GetFloatInRange(0.0f, 100.0f) < SpawnPressure)
+        if (ExpansionRemaining <= 0)
         {
-            SpawnEnemies();
-            SpawnPressure = 0.0f;
+            ExpansionRemaining += ExpansionPerWave;
+            SpawnExpansionWave();
+        }
+
+        EnemyEvent.Broadcast(EnemyEvent.SignalName.PlayerExpansionChanged, ExpansionRemaining, ExpansionPerWave);
+    }
+
+    void SpawnExpansionWave()
+    {
+        int WaveIndex = Math.Min(ExpansionIndex++, ExpansionWaves.Count - 1);
+        EnemyEvent.Broadcast(EnemyEvent.SignalName.ExpansionWaveCountChanged, ExpansionIndex + 1);
+        if (ExpansionWaves.Count > 0)
+        {
+            SpawnEnemies(ExpansionWaves[WaveIndex]);
         }
     }
 
-    void SpawnEnemies()
+    void SpawnTimedWave()
+    {
+        int WaveIndex = Math.Min(TimedIndex++, TimedWaves.Count - 1);
+        EnemyEvent.Broadcast(EnemyEvent.SignalName.TimedWaveCountChanged, TimedIndex + 1);
+        if (TimedWaves.Count > 0)
+        {
+            SpawnEnemies(TimedWaves[WaveIndex]);
+        }
+    }
+
+    void SpawnEnemies(R_SpawnWave WaveData)
     {
         if (DisableSpawns) return;
-        if (EnemiesToSpawn.Count <= 0) return;
         if (Spawners.Count <= 0) return;
+        if (WaveData.SpawnCounts.Count <= 0) return;
 
         GD.Print("SpawnerBrain.TryToSpawn: Spawn wave!");
-        while(SpawningPool > 0)
+        foreach (R_SpawnCount SpawnCount in WaveData.SpawnCounts)
         {
-            int EnemyIndex = MathHelper.GetIntInRange(0, EnemiesToSpawn.Count - 1);
-            int SpawnerIndex = MathHelper.GetIntInRange(0, Spawners.Count - 1);
-            
-            Enemy NewEnemy = EnemiesToSpawn[EnemyIndex].InstantiateOrNull<Enemy>();
-            if(NewEnemy != null)
+            for (int i = 0; i < SpawnCount.Count; i++)
             {
-                Spawners[SpawnerIndex].EnemiesToPlace.Enqueue(NewEnemy);
-                SpawningPool -= Math.Max(NewEnemy.SpawnCost, 1); // Kind of failsafe
-                //GD.Print("SpawnerBrain.TryToSpawn: Spawned enemy " + NewEnemy.Name + " at spawner " + SpawnerIndex.ToString());
-            }
-            else
-            {
-                SpawningPool = 0; //Failsafe
+                Enemy NewEnemy = SpawnCount.EnemyScene.InstantiateOrNull<Enemy>();
+                if (NewEnemy != null)
+                {
+                    int SpawnerIndex = MathHelper.GetIntInRange(0, Spawners.Count - 1);
+                    Spawners[SpawnerIndex].EnemiesToPlace.Enqueue(NewEnemy);
+                }
             }
         }
+    }
+
+    public void SetDisableSpawns(bool Disabled)
+    {
+        DisableSpawns = Disabled;
     }
 }

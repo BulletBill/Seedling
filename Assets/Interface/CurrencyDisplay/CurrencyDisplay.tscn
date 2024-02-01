@@ -11,11 +11,10 @@
 [ext_resource type="Theme" uid="uid://svogtundy1nx" path="res://Assets/Art/Interface/default_theme.tres" id="10_eqccp"]
 
 [node name="CurrencyDisplay" type="Node2D"]
-scale = Vector2(2, 2)
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 self_modulate = Color(1, 1, 1, 0.490196)
-offset_right = 141.0
+offset_right = 282.0
 offset_bottom = 94.0
 texture = ExtResource("1_21l8l")
 patch_margin_left = 3

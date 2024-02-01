@@ -75,7 +75,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1nxvs"]
-size = Vector2(308, 1094)
+size = Vector2(287, 420)
 
 [node name="UI Canvas Layer" type="CanvasLayer"]
 layer = 100
@@ -90,19 +90,18 @@ libraries = {
 
 [node name="CurrencyDisplay" parent="InfoPanel" instance=ExtResource("2_ty7fb")]
 z_index = 10
-position = Vector2(0, 130)
+position = Vector2(0, 101)
 
 [node name="ObjectiveDisplay" parent="InfoPanel" instance=ExtResource("3_xfso7")]
 
 [node name="DetailPanel" parent="InfoPanel" instance=ExtResource("4_2ycw0")]
-position = Vector2(1, 318)
+position = Vector2(1, 194)
 
 [node name="MouseArea-Left" type="Area2D" parent="InfoPanel"]
 top_level = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InfoPanel/MouseArea-Left"]
-visible = false
-position = Vector2(153, 545)
+position = Vector2(139, 208)
 shape = SubResource("RectangleShape2D_1nxvs")
 
 [node name="MouseArea-Right" type="Area2D" parent="InfoPanel"]
@@ -110,8 +109,7 @@ top_level = true
 position = Vector2(1482, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InfoPanel/MouseArea-Right"]
-visible = false
-position = Vector2(291, 545)
+position = Vector2(294.5, 209)
 shape = SubResource("RectangleShape2D_1nxvs")
 
 [node name="Control Panel" type="Node2D" parent="."]

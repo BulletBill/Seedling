@@ -100,11 +100,6 @@ public partial class C_GrassGrowth : Node2D, ITowerComponent
                 TilesInArea.Add(tile.TilePosition);
                 TilesToGrass.Remove(tile);
             }
-            
-            if (AttractEnemies)
-            {
-                MainMap.Broadcast(MainMap.SignalName.GrassGrown, TilesToGrow.Count);
-            }
         }
     }
 

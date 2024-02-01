@@ -6,8 +6,8 @@ public partial class EnemySpawner : Node2D
 {
     public static String Group = "Spawner";
     [Export] public bool Active = true;
-    [Export] public float MinSpawnTime = 0.15f;
-    [Export] public float MaxSpawnTime = 0.50f;
+    [Export] public float MinSpawnTime = 0.50f;
+    [Export] public float MaxSpawnTime = 0.75f;
     public Queue<Enemy> EnemiesToPlace = new();
     double SpawnTimer = 0.5f;
 

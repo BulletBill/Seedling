@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dynjwh5qcpo7t"]
+[gd_scene load_steps=10 format=3 uid="uid://dynjwh5qcpo7t"]
 
 [ext_resource type="Texture2D" uid="uid://c4cqjktrt205k" path="res://Assets/Art/Interface/WindowBG.png" id="1_nwcce"]
 [ext_resource type="Script" path="res://Assets/Interface/ObjectiveDisplay/LifeCounter.cs" id="2_3dkid"]
@@ -7,29 +7,40 @@
 [ext_resource type="FontFile" uid="uid://w05srxbcg8v8" path="res://Assets/Art/Fonts/Default_UI.tres" id="5_37raj"]
 [ext_resource type="Script" path="res://Assets/Interface/ObjectiveDisplay/WaveTimerDisplay.cs" id="6_ldab5"]
 [ext_resource type="Texture2D" uid="uid://iinbdvqjsk7n" path="res://Assets/Art/Icons/Clock Small.png" id="7_e183j"]
+[ext_resource type="Texture2D" uid="uid://daibtvxvfuxy6" path="res://Assets/Art/Icons/Spark.png" id="8_mgmt8"]
+[ext_resource type="Script" path="res://Assets/Interface/ObjectiveDisplay/ExpansionDisplay.cs" id="8_p8dsb"]
 
 [node name="ObjectiveDisplay" type="Node2D"]
-scale = Vector2(2, 2)
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 self_modulate = Color(1, 1, 1, 0.490196)
-offset_right = 141.0
-offset_bottom = 65.0
+offset_right = 282.0
+offset_bottom = 102.0
 texture = ExtResource("1_nwcce")
 patch_margin_left = 3
 patch_margin_top = 3
 patch_margin_right = 3
 patch_margin_bottom = 3
 
+[node name="Lives Text" type="RichTextLabel" parent="."]
+offset_left = 4.0
+offset_right = 278.0
+offset_bottom = 20.0
+theme = ExtResource("3_hq4qm")
+theme_override_fonts/normal_font = ExtResource("5_37raj")
+bbcode_enabled = true
+text = "[center]Life[/center]"
+scroll_active = false
+
 [node name="Lives" type="Node2D" parent="."]
-position = Vector2(1.5, 2.5)
+position = Vector2(1.5, 17.5)
 script = ExtResource("2_3dkid")
 
 [node name="Lives Bar" type="ProgressBar" parent="Lives"]
-offset_left = 4.0
+offset_left = 45.0
 offset_top = 3.0
-offset_right = 134.0
-offset_bottom = 20.0
+offset_right = 275.0
+offset_bottom = 21.0
 theme = ExtResource("3_hq4qm")
 value = 50.0
 show_percentage = false
@@ -43,33 +54,71 @@ offset_left = 20.5
 offset_right = 88.5
 offset_bottom = 20.0
 theme_override_fonts/normal_font = ExtResource("5_37raj")
-text = "9999"
+text = "99"
+scroll_active = false
+
+[node name="Waves Text" type="RichTextLabel" parent="."]
+offset_left = 4.0
+offset_top = 38.0
+offset_right = 278.0
+offset_bottom = 58.0
+theme = ExtResource("3_hq4qm")
+theme_override_fonts/normal_font = ExtResource("5_37raj")
+bbcode_enabled = true
+text = "[center]Waves[/center]"
 scroll_active = false
 
 [node name="Timer" type="Node2D" parent="."]
-position = Vector2(0.5, 41)
+position = Vector2(0.5, 74.5)
 script = ExtResource("6_ldab5")
 
+[node name="Progress" type="ProgressBar" parent="Timer"]
+offset_left = 46.0
+offset_top = 4.0
+offset_right = 276.0
+offset_bottom = 22.0
+theme = ExtResource("3_hq4qm")
+value = 50.0
+show_percentage = false
+
 [node name="Icon" type="Sprite2D" parent="Timer"]
-position = Vector2(12, 12)
+position = Vector2(12, 13.5)
 texture = ExtResource("7_e183j")
 
-[node name="Time" type="RichTextLabel" parent="Timer"]
+[node name="Wave" type="RichTextLabel" parent="Timer"]
+offset_left = 22.0
+offset_top = 1.5
+offset_right = 90.0
+offset_bottom = 21.5
+theme = ExtResource("3_hq4qm")
+theme_override_fonts/normal_font = ExtResource("5_37raj")
+text = "99"
+scroll_active = false
+
+[node name="Expansion" type="Node2D" parent="."]
+position = Vector2(0.5, 56)
+script = ExtResource("8_p8dsb")
+
+[node name="Progress" type="ProgressBar" parent="Expansion"]
+offset_left = 46.0
+offset_top = 2.5
+offset_right = 276.0
+offset_bottom = 20.5
+theme = ExtResource("3_hq4qm")
+value = 50.0
+show_percentage = false
+
+[node name="Icon" type="Sprite2D" parent="Expansion"]
+position = Vector2(12, 12)
+scale = Vector2(0.625, 0.625)
+texture = ExtResource("8_mgmt8")
+
+[node name="Wave" type="RichTextLabel" parent="Expansion"]
 offset_left = 22.0
 offset_top = 1.0
 offset_right = 90.0
 offset_bottom = 21.0
 theme = ExtResource("3_hq4qm")
 theme_override_fonts/normal_font = ExtResource("5_37raj")
-text = "5:00"
-scroll_active = false
-
-[node name="Label" type="RichTextLabel" parent="Timer"]
-offset_left = 4.0
-offset_top = -16.5
-offset_right = 91.0
-offset_bottom = 3.5
-theme = ExtResource("3_hq4qm")
-theme_override_fonts/normal_font = ExtResource("5_37raj")
-text = "Next Wave"
+text = "99"
 scroll_active = false
