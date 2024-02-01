@@ -39,6 +39,7 @@ public partial class SpawnerBrain : Node
         }
 
         ExpansionRemaining = 37 + ExpansionPerWave;
+        BigWaveTimer = SecondsUntilNextWave;
 
         EnemyEvent.Broadcast(EnemyEvent.SignalName.WaveTimerChanged, SecondsUntilNextWave, SecondsUntilNextWave);
         EnemyEvent.Broadcast(EnemyEvent.SignalName.PlayerExpansionChanged, ExpansionPerWave, ExpansionPerWave);
@@ -59,6 +60,12 @@ public partial class SpawnerBrain : Node
             if (LastSecond != TimerSecondsLeft)
             {
                 EnemyEvent.Broadcast(EnemyEvent.SignalName.WaveTimerChanged, TimerSecondsLeft, SecondsUntilNextWave);
+            }
+
+            if (BigWaveTimer <= 0)
+            {
+                BigWaveTimer += SecondsUntilNextWave;
+                SpawnTimedWave();
             }
         }
     }
