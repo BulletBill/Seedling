@@ -56,11 +56,11 @@ _data = {
 
 [node name="DamageNumber" type="RichTextLabel"]
 z_index = 400
-offset_left = -28.0
-offset_right = 28.0
-offset_bottom = 23.0
+offset_left = -44.0
+offset_right = 44.0
+offset_bottom = 30.0
 bbcode_enabled = true
-text = "[center]999[img]res://Assets/Art/Icons/Substance Small.png[/img][/center]"
+text = "[center][img]res://Assets/Art/Icons/Substance Small.png[/img]999[/center]"
 scroll_active = false
 script = ExtResource("2")
 HorizontalVariance = 0.0

@@ -34,10 +34,10 @@ public partial class EffectsManager : Node
     }
 
     static readonly List<Vector2> ClusterOffsets = new() {
-        new Vector2(-15,-15),
-        new Vector2(15,-15),
-        new Vector2(-15,15),
-        new Vector2(15,15)
+        new Vector2(-25,-20),
+        new Vector2(25,-20),
+        new Vector2(-25,20),
+        new Vector2(25,20)
     };
     public static void SpawnResourceCluster(Vector2 Center, int Substance, int Flow, int Breath, int Energy)
     {

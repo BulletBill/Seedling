@@ -55,10 +55,11 @@ public partial class CurrencyLine : Node2D
 			if (NewMax > 0 && ShowMaximum)
 			{
 				Amount.AppendText("/" + NewMax.ToString());
-				if (NewAmount > NewMax)
-				{
-					Amount.Text = TextHelpers.Colorize(Amount.Text, DeficitColor);
-				}
+			}
+
+			if (NewMax > 0 && NewAmount >= NewMax)
+			{
+				Amount.Text = TextHelpers.Colorize(Amount.Text, ExcessColor);
 			}
 		}
 	}

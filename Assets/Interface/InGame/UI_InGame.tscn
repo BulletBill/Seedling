@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://c4cqjktrt205k" path="res://Assets/Art/Interface/WindowBG.png" id="15_he6xn"]
 [ext_resource type="Script" path="res://Assets/Debug/Debug_Costs.cs" id="16_65wxc"]
 [ext_resource type="Script" path="res://Assets/Debug/Debug_Spawning.cs" id="17_wkykc"]
+[ext_resource type="Texture2D" uid="uid://3bps8k3gh1an" path="res://Assets/Art/Interface/TestFrame.png" id="18_qastj"]
 
 [sub_resource type="Animation" id="Animation_4sbol"]
 resource_name = "MoveToLeft"
@@ -74,23 +75,8 @@ _data = {
 "RESET": SubResource("Animation_8fk4y")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1nxvs"]
-size = Vector2(287, 420)
-
 [node name="UI Canvas Layer" type="CanvasLayer"]
 layer = 100
-
-[node name="NinePatchRect" type="NinePatchRect" parent="."]
-offset_left = -1.0
-offset_top = 887.0
-offset_right = 1921.0
-offset_bottom = 1081.0
-mouse_filter = 0
-texture = ExtResource("15_he6xn")
-patch_margin_left = 3
-patch_margin_top = 3
-patch_margin_right = 3
-patch_margin_bottom = 3
 
 [node name="InfoPanel" type="Node2D" parent="."]
 script = ExtResource("1_bmwr7")
@@ -100,61 +86,52 @@ libraries = {
 "": SubResource("AnimationLibrary_3c2l8")
 }
 
+[node name="ObjectiveDisplay" parent="InfoPanel" instance=ExtResource("3_xfso7")]
+position = Vector2(1639, 951)
+
 [node name="CurrencyDisplay" parent="InfoPanel" instance=ExtResource("2_ty7fb")]
 z_index = 10
-position = Vector2(0, 101)
-
-[node name="ObjectiveDisplay" parent="InfoPanel" instance=ExtResource("3_xfso7")]
+position = Vector2(-1, 948)
 
 [node name="DetailPanel" parent="InfoPanel" instance=ExtResource("4_2ycw0")]
-position = Vector2(1, 194)
-
-[node name="MouseArea-Left" type="Area2D" parent="InfoPanel"]
-top_level = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InfoPanel/MouseArea-Left"]
-position = Vector2(139, 208)
-shape = SubResource("RectangleShape2D_1nxvs")
-
-[node name="MouseArea-Right" type="Area2D" parent="InfoPanel"]
-top_level = true
-position = Vector2(1482, 0)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InfoPanel/MouseArea-Right"]
-position = Vector2(294.5, 209)
-shape = SubResource("RectangleShape2D_1nxvs")
+visible = false
+position = Vector2(1359, 857)
 
 [node name="Control Panel" type="Node2D" parent="."]
-position = Vector2(0, 1008)
+position = Vector2(6, 1008)
+
+[node name="Build Genesis Button" parent="Control Panel" instance=ExtResource("5_e7r2h")]
+position = Vector2(195, -22)
+TowerToBuild = ExtResource("12_x0txc")
+BuildParams = ExtResource("13_u3cdi")
 
 [node name="Build Sapling Button" parent="Control Panel" instance=ExtResource("5_e7r2h")]
-position = Vector2(193, -16)
+position = Vector2(265, -22)
 TowerToBuild = ExtResource("6_fd616")
 BuildParams = ExtResource("7_4vkru")
 
 [node name="Build Buckthorn" parent="Control Panel" instance=ExtResource("5_e7r2h")]
-position = Vector2(1057, -16)
+position = Vector2(230, 35)
 TowerToBuild = ExtResource("8_e18ar")
 BuildParams = ExtResource("9_3m4js")
 
 [node name="Build Sunleaf Button" parent="Control Panel" instance=ExtResource("5_e7r2h")]
-position = Vector2(961, -16)
+position = Vector2(335, -22)
 TowerToBuild = ExtResource("10_oew81")
 BuildParams = ExtResource("11_yf2ay")
 
-[node name="Build Genesis Button" parent="Control Panel" instance=ExtResource("5_e7r2h")]
-position = Vector2(97, -16)
-TowerToBuild = ExtResource("12_x0txc")
-BuildParams = ExtResource("13_u3cdi")
-
 [node name="DebugPanel" type="Node2D" parent="."]
+position = Vector2(1801, 881)
 
 [node name="NinePatchRect" type="NinePatchRect" parent="DebugPanel"]
 self_modulate = Color(1, 1, 1, 0.490196)
-offset_left = 867.0
-offset_top = 24.0
-offset_right = 1056.0
-offset_bottom = 93.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -119.5
+offset_right = 119.5
+offset_bottom = 67.0
+grow_horizontal = 2
 texture = ExtResource("15_he6xn")
 patch_margin_left = 3
 patch_margin_top = 3
@@ -163,24 +140,36 @@ patch_margin_bottom = 3
 
 [node name="CostButton" type="CheckButton" parent="DebugPanel/NinePatchRect"]
 layout_mode = 0
-offset_top = 1.0
-offset_right = 187.0
+offset_left = 4.0
+offset_top = -1.0
+offset_right = 236.0
 offset_bottom = 30.0
 text = "Debug Costs"
 script = ExtResource("16_65wxc")
 
 [node name="SpawnButton" type="CheckButton" parent="DebugPanel/NinePatchRect"]
 layout_mode = 0
+offset_left = 4.0
 offset_top = 32.0
-offset_right = 187.0
-offset_bottom = 61.0
+offset_right = 236.0
+offset_bottom = 63.0
 text = "Disable Enemy"
 script = ExtResource("17_wkykc")
 
 [node name="ContextMenu" parent="." instance=ExtResource("14_hldsr")]
 position = Vector2(995, 514)
 
-[connection signal="mouse_entered" from="InfoPanel/MouseArea-Left" to="InfoPanel" method="MoveToRight"]
-[connection signal="mouse_entered" from="InfoPanel/MouseArea-Right" to="InfoPanel" method="MoveToLeft"]
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+z_index = -1
+offset_left = -1.0
+offset_top = 948.0
+offset_right = 1921.0
+offset_bottom = 1080.0
+texture = ExtResource("18_qastj")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
 [connection signal="pressed" from="DebugPanel/NinePatchRect/CostButton" to="DebugPanel/NinePatchRect/CostButton" method="ToggleCosts"]
 [connection signal="pressed" from="DebugPanel/NinePatchRect/SpawnButton" to="DebugPanel/NinePatchRect/SpawnButton" method="ToggleCosts"]
