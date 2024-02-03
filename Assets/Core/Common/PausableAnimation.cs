@@ -3,9 +3,16 @@ using System;
 
 public partial class PausableAnimation : AnimationPlayer
 {
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	[Export] public float SpeedVariance = 0.0f;
+	float Variance = 1.0f;
+
+	public override void _Ready()
+	{
+		Variance = 1.0f + MathHelper.GetFloatInRange(-SpeedVariance, SpeedVariance);
+	}
+
 	public override void _Process(double delta)
 	{
-		SpeedScale = Game.GetSpeed();
+		SpeedScale = Game.GetSpeed() * Variance;
 	}
 }

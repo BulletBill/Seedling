@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://tbn003ixf4wp"
-path="res://.godot/imported/xlmonoalt.ttf-f7534cfd92ba9fe2e1325e5f44748638.fontdata"
+uid="uid://bahxm155uy7lg"
+path="res://.godot/imported/FlowerFont-Regular.ttf-ca3af0d22e84327c6966704d4946e24d.fontdata"
 
 [deps]
 
-source_file="res://Assets/Art/Fonts/Font Data/xlmonoalt.ttf"
-dest_files=["res://.godot/imported/xlmonoalt.ttf-f7534cfd92ba9fe2e1325e5f44748638.fontdata"]
+source_file="res://Assets/Art/Fonts/Font Data/FlowerFont-Regular.ttf"
+dest_files=["res://.godot/imported/FlowerFont-Regular.ttf-ca3af0d22e84327c6966704d4946e24d.fontdata"]
 
 [params]
 

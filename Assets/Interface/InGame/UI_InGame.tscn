@@ -80,6 +80,18 @@ size = Vector2(287, 420)
 [node name="UI Canvas Layer" type="CanvasLayer"]
 layer = 100
 
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+offset_left = -1.0
+offset_top = 887.0
+offset_right = 1921.0
+offset_bottom = 1081.0
+mouse_filter = 0
+texture = ExtResource("15_he6xn")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
 [node name="InfoPanel" type="Node2D" parent="."]
 script = ExtResource("1_bmwr7")
 

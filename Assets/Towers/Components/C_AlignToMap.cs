@@ -11,10 +11,10 @@ public partial class C_AlignToMap : Node
     public void AlignToMap()
     {
         Node2D ParentNode = GetParentOrNull<Node2D>();
-        if (ParentNode == null) return;
+        if (!IsInstanceValid(ParentNode)) return;
 
         MainMap CachedTileMap = MainMap.Singleton;
-        if (CachedTileMap == null) return;
+        if (!IsInstanceValid(CachedTileMap)) return;
 
         Vector2I MapPosition = CachedTileMap.LocalToMap(CachedTileMap.ToLocal(ParentNode.GlobalPosition));
 		ParentNode.GlobalPosition = CachedTileMap.ToGlobal(CachedTileMap.MapToLocal(MapPosition));

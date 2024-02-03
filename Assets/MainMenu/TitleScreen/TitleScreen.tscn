@@ -1,0 +1,239 @@
+[gd_scene load_steps=17 format=3 uid="uid://b8alkvm0vwleo"]
+
+[ext_resource type="Theme" uid="uid://svogtundy1nx" path="res://Assets/Art/Interface/default_theme.tres" id="1_3on0u"]
+[ext_resource type="FontFile" uid="uid://mhs8ndik6ayd" path="res://Assets/Art/Fonts/Font Data/vanessa.ttf" id="2_f6sr5"]
+[ext_resource type="FontFile" uid="uid://o0r0v8f8m15t" path="res://Assets/Art/Fonts/Font Data/Orial_Bold.otf" id="3_ivtoi"]
+[ext_resource type="Script" path="res://Assets/MainMenu/TitleScreen/PathFollower.cs" id="4_4b3vq"]
+[ext_resource type="PackedScene" uid="uid://c4nme8pyly5sa" path="res://Assets/Enemies/Clod-E1/E1 Clod.tscn" id="5_au5vo"]
+[ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="6_18dry"]
+[ext_resource type="Script" path="res://Assets/MainMenu/LevelSelect/LevelSelectMenu.cs" id="6_klh02"]
+[ext_resource type="FontFile" uid="uid://d11gtt6p01ova" path="res://Assets/Art/Fonts/Font Data/Early GameBoy.ttf" id="7_270g8"]
+[ext_resource type="Script" path="res://Assets/Interface/Hover Area/HoverArea.cs" id="8_tir5i"]
+
+[sub_resource type="Curve2D" id="Curve2D_s46fu"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -400, 940, 0, 0, 0, 0, 2000, 940)
+}
+point_count = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mc1mt"]
+shader = ExtResource("6_18dry")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 0.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+
+[sub_resource type="Animation" id="Animation_s005m"]
+resource_name = "Hover"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:material:shader_parameter/width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 6.0, 2.0]
+}
+
+[sub_resource type="Animation" id="Animation_23w3p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:material:shader_parameter/width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_bnjm6"]
+resource_name = "Unhover"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:material:shader_parameter/width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_02gln"]
+_data = {
+"Hover": SubResource("Animation_s005m"),
+"RESET": SubResource("Animation_23w3p"),
+"Unhover": SubResource("Animation_bnjm6")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rkewy"]
+size = Vector2(582, 416)
+
+[node name="TitleScreen" type="Node2D"]
+
+[node name="DissolveRect" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+theme = ExtResource("1_3on0u")
+color = Color(0, 0.184314, 0, 1)
+
+[node name="Title" type="RichTextLabel" parent="."]
+offset_top = 316.0
+offset_right = 1918.0
+offset_bottom = 682.0
+theme = ExtResource("1_3on0u")
+theme_override_fonts/normal_font = ExtResource("2_f6sr5")
+theme_override_font_sizes/normal_font_size = 128
+bbcode_enabled = true
+text = "[center]GAME WHERE PLANTS
+FIGHT ELEMENTALS[/center]"
+
+[node name="Subtitle" type="RichTextLabel" parent="."]
+offset_left = 1235.0
+offset_top = 944.0
+offset_right = 1925.0
+offset_bottom = 1079.0
+theme = ExtResource("1_3on0u")
+theme_override_fonts/normal_font = ExtResource("3_ivtoi")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "[center]AND USE TOWERS FOR DEFENSE[/center]"
+scroll_active = false
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_s46fu")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-400, 940)
+script = ExtResource("4_4b3vq")
+
+[node name="E1Clod5" parent="Path2D/PathFollow2D" instance=ExtResource("5_au5vo")]
+position = Vector2(72.9999, 0.123467)
+scale = Vector2(2, 2)
+
+[node name="PathFollow2D5" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-400, 940)
+script = ExtResource("4_4b3vq")
+
+[node name="E1Clod4" parent="Path2D/PathFollow2D5" instance=ExtResource("5_au5vo")]
+position = Vector2(212, 0.358562)
+scale = Vector2(2, 2)
+
+[node name="PathFollow2D4" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-400, 940)
+script = ExtResource("4_4b3vq")
+
+[node name="E1Clod3" parent="Path2D/PathFollow2D4" instance=ExtResource("5_au5vo")]
+position = Vector2(269, 0.454968)
+scale = Vector2(2, 2)
+
+[node name="PathFollow2D3" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-400, 940)
+script = ExtResource("4_4b3vq")
+
+[node name="E1Clod" parent="Path2D/PathFollow2D3" instance=ExtResource("5_au5vo")]
+scale = Vector2(2, 2)
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-400, 940)
+script = ExtResource("4_4b3vq")
+
+[node name="E1Clod2" parent="Path2D/PathFollow2D2" instance=ExtResource("5_au5vo")]
+position = Vector2(370.999, 0.627483)
+scale = Vector2(2, 2)
+
+[node name="Menu" type="Node2D" parent="."]
+position = Vector2(0, 57)
+script = ExtResource("6_klh02")
+Levels = ["LevelSelect", "Quit"]
+
+[node name="Level Button" type="Sprite2D" parent="Menu"]
+material = SubResource("ShaderMaterial_mc1mt")
+position = Vector2(960, 580)
+scale = Vector2(0.502591, 0.504854)
+
+[node name="Button" type="Button" parent="Menu/Level Button"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -495.5
+offset_right = 496.5
+offset_bottom = 88.0
+grow_horizontal = 2
+theme = ExtResource("1_3on0u")
+theme_override_fonts/font = ExtResource("7_270g8")
+theme_override_font_sizes/font_size = 64
+text = "Level Select"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Menu/Level Button"]
+root_node = NodePath("../Button")
+libraries = {
+"": SubResource("AnimationLibrary_02gln")
+}
+autoplay = "Unhover"
+
+[node name="HoverArea" type="Area2D" parent="Menu/Level Button"]
+position = Vector2(1.98969, 1.98077)
+scale = Vector2(0.994845, 0.990385)
+script = ExtResource("8_tir5i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Menu/Level Button/HoverArea"]
+visible = false
+position = Vector2(289, 206)
+shape = SubResource("RectangleShape2D_rkewy")
+
+[node name="Quit" type="Sprite2D" parent="Menu"]
+material = SubResource("ShaderMaterial_mc1mt")
+position = Vector2(960, 580)
+scale = Vector2(0.502591, 0.504854)
+
+[node name="Button" type="Button" parent="Menu/Quit"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -495.933
+offset_top = 97.0578
+offset_right = 496.067
+offset_bottom = 185.058
+grow_horizontal = 2
+theme = ExtResource("1_3on0u")
+theme_override_fonts/font = ExtResource("7_270g8")
+theme_override_font_sizes/font_size = 64
+text = "QUit"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Menu/Quit"]
+root_node = NodePath("../Button")
+libraries = {
+"": SubResource("AnimationLibrary_02gln")
+}
+autoplay = "Unhover"
+
+[node name="HoverArea" type="Area2D" parent="Menu/Quit"]
+position = Vector2(1.98969, 1.98077)
+scale = Vector2(0.994845, 0.990385)
+script = ExtResource("8_tir5i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Menu/Quit/HoverArea"]
+visible = false
+position = Vector2(289, 206)
+shape = SubResource("RectangleShape2D_rkewy")
+
+[connection signal="pressed" from="Menu/Level Button/Button" to="Menu" method="LoadLevel" binds= [0]]
+[connection signal="mouse_entered" from="Menu/Level Button/HoverArea" to="Menu/Level Button/HoverArea" method="OnMouseEnter"]
+[connection signal="mouse_exited" from="Menu/Level Button/HoverArea" to="Menu/Level Button/HoverArea" method="OnMouseExit"]
+[connection signal="pressed" from="Menu/Quit/Button" to="Menu" method="LoadLevel" binds= [1]]
+[connection signal="mouse_entered" from="Menu/Quit/HoverArea" to="Menu/Quit/HoverArea" method="OnMouseEnter"]
+[connection signal="mouse_exited" from="Menu/Quit/HoverArea" to="Menu/Quit/HoverArea" method="OnMouseExit"]

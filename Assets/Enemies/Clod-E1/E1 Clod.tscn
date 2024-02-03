@@ -131,3 +131,4 @@ libraries = {
 }
 autoplay = "Brotate"
 script = ExtResource("6_fm4nr")
+SpeedVariance = 0.1

@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://b7aw8rjhw3c0p"]
+[gd_scene load_steps=15 format=3 uid="uid://b7aw8rjhw3c0p"]
 
 [ext_resource type="Texture2D" uid="uid://7fhu5lxwhvq5" path="res://Assets/Art/Interface/HoverBackground.png" id="1_sm7ra"]
 [ext_resource type="Script" path="res://Assets/MainMenu/LevelSelect/LevelSelectMenu.cs" id="1_uhvr7"]
 [ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="2_dg8g0"]
 [ext_resource type="Texture2D" uid="uid://dndsm3a8u1e55" path="res://Assets/Art/Level Thumbnails/Thumbnail-Testmap.png" id="3_el50g"]
 [ext_resource type="Script" path="res://Assets/Interface/Hover Area/HoverArea.cs" id="5_sti45"]
+[ext_resource type="FontFile" uid="uid://d11gtt6p01ova" path="res://Assets/Art/Fonts/Font Data/Early GameBoy.ttf" id="6_4b2i1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r12j0"]
 shader = ExtResource("2_dg8g0")
@@ -71,12 +72,19 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d2p16"]
 size = Vector2(582, 416)
 
+[sub_resource type="InputEventKey" id="InputEventKey_pq5x4"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_7gkd0"]
+events = [SubResource("InputEventKey_pq5x4")]
+
 [node name="LevelSelect" type="Node2D"]
 script = ExtResource("1_uhvr7")
-Levels = ["TestLevel"]
+Levels = ["TitleScreen", "TestLevel"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(0, 0.254902, 0.152941, 1)
+self_modulate = Color(0, 0.184314, 0, 1)
 scale = Vector2(214.889, 121.667)
 texture = ExtResource("1_sm7ra")
 centered = false
@@ -119,6 +127,43 @@ visible = false
 position = Vector2(289, 206)
 shape = SubResource("RectangleShape2D_d2p16")
 
-[connection signal="pressed" from="TestLevel/Button" to="." method="LoadLevel" binds= [0]]
+[node name="BackButton" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_r12j0")
+position = Vector2(1615, 855)
+scale = Vector2(0.502591, 0.504854)
+centered = false
+
+[node name="Button" type="Button" parent="BackButton"]
+offset_left = 206.928
+offset_top = 297.116
+offset_right = 580.928
+offset_bottom = 418.116
+theme_override_fonts/font = ExtResource("6_4b2i1")
+theme_override_font_sizes/font_size = 64
+shortcut = SubResource("Shortcut_7gkd0")
+text = "BACK"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BackButton"]
+root_node = NodePath("../Button")
+libraries = {
+"": SubResource("AnimationLibrary_02gln")
+}
+autoplay = "Unhover"
+
+[node name="HoverArea" type="Area2D" parent="BackButton" node_paths=PackedStringArray("ParentAnimator")]
+position = Vector2(1.98969, 1.98077)
+scale = Vector2(0.994845, 0.990385)
+script = ExtResource("5_sti45")
+ParentAnimator = NodePath("../AnimationPlayer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BackButton/HoverArea"]
+visible = false
+position = Vector2(289, 206)
+shape = SubResource("RectangleShape2D_d2p16")
+
+[connection signal="pressed" from="TestLevel/Button" to="." method="LoadLevel" binds= [1]]
 [connection signal="mouse_entered" from="TestLevel/HoverArea" to="TestLevel/HoverArea" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="TestLevel/HoverArea" to="TestLevel/HoverArea" method="OnMouseExit"]
+[connection signal="pressed" from="BackButton/Button" to="." method="LoadLevel" binds= [0]]
+[connection signal="mouse_entered" from="BackButton/HoverArea" to="BackButton/HoverArea" method="OnMouseEnter"]
+[connection signal="mouse_exited" from="BackButton/HoverArea" to="BackButton/HoverArea" method="OnMouseExit"]

@@ -23,7 +23,10 @@ public partial class Enemy : CharacterBody2D
 	public override void _Ready()
 	{
 		Nav = GetNodeOrNull<NavigationAgent2D>("NavigationAgent2D");
-		Nav.TargetPosition = Player.DefendTargets[MathHelper.GetIntInRange(0, Player.DefendTargets.Count - 1)].GlobalPosition;
+		if (Player.DefendTargets.Count > 0)
+		{
+			Nav.TargetPosition = Player.DefendTargets[MathHelper.GetIntInRange(0, Player.DefendTargets.Count - 1)].GlobalPosition;
+		}
 		HealthPool = GetNodeOrNull<C_HealthPool>("HealthPool");
 		//MakePath();
 	}

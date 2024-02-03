@@ -176,6 +176,7 @@ z_index = 1
 texture = ExtResource("3_80dcy")
 
 [node name="Cost" type="RichTextLabel" parent="."]
+visible = false
 offset_left = -56.0
 offset_top = 33.0
 offset_right = 56.0
@@ -186,6 +187,7 @@ scroll_active = false
 script = ExtResource("6_5qldg")
 
 [node name="Name" type="RichTextLabel" parent="."]
+visible = false
 offset_left = -66.0
 offset_top = -54.0
 offset_right = 63.0

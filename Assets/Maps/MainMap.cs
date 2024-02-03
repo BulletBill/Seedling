@@ -110,7 +110,6 @@ public partial class MainMap : TileMap
 		{
 			Broadcast(SignalName.PlayerExpanded, 1);
 			Expansion = GrassTiles.Count;
-			GD.Print("MainMap: Player Expansion is now " + Expansion.ToString());
 		}
 	}
 
