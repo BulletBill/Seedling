@@ -98,22 +98,22 @@ theme = ExtResource("1_3on0u")
 theme_override_fonts/normal_font = ExtResource("2_f6sr5")
 theme_override_font_sizes/normal_font_size = 128
 bbcode_enabled = true
-text = "[center]GAME WHERE PLANTS
-FIGHT ELEMENTALS[/center]"
+text = "[center]DEFEND THE BLOOM[/center]"
 
 [node name="Subtitle" type="RichTextLabel" parent="."]
 offset_left = 1235.0
-offset_top = 944.0
+offset_top = 946.0
 offset_right = 1925.0
 offset_bottom = 1079.0
 theme = ExtResource("1_3on0u")
 theme_override_fonts/normal_font = ExtResource("3_ivtoi")
 theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
-text = "[center]AND USE TOWERS FOR DEFENSE[/center]"
+text = "[center]A TOWER DEFENSE GAME[/center]"
 scroll_active = false
 
 [node name="Path2D" type="Path2D" parent="."]
+position = Vector2(6, -47)
 curve = SubResource("Curve2D_s46fu")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]

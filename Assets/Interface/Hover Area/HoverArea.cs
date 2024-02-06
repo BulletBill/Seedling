@@ -6,28 +6,41 @@ public partial class HoverArea : Area2D
 {
     [Export] public AnimationPlayer ParentAnimator { get; protected set; }
     [Export] public Array<String> ReactStates { get; protected set; } = new();
+    IHoverable HoverParent;
+    public bool Disabled { get; protected set; } = false;
+    bool Hovered = false;
 
     [Signal] public delegate void ClickedEventHandler();
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        HoverParent = GetParentOrNull<IHoverable>();
     }
 
     public void OnMouseEnter()
     {
+        Hovered = true;
         if (ReactStates.Contains(Cursor.GetStateName()) == false) return;
         Cursor.AddHoverArea(this);
-        ParentAnimator?.Play("Hover");
-        
-        IHoverable HoverParent = GetParentOrNull<IHoverable>();
+        if (!Disabled)
+        {
+            ParentAnimator?.Play("Hover");
+        }
+
         HoverParent?.OnHovered();
     }
 
     public void OnMouseExit()
     {
+        Hovered = false;
         if (ReactStates.Contains(Cursor.GetStateName()) == false) return;
-        ForceMouseExit();
         Cursor.RemoveHoverArea(this);
+        if (!Disabled)
+        {
+            ParentAnimator?.Play("Unhover");
+        }
+
+        HoverParent?.ExitHovered();
     }
 
     public void ForceMouseExit()
@@ -40,7 +53,21 @@ public partial class HoverArea : Area2D
 
     public void OnClick()
     {
+        if (Disabled) return;
         EmitSignal(SignalName.Clicked);
+    }
+
+    public void SetDisabled(bool NewDisabled)
+    {
+        Disabled = NewDisabled;
+        if (Disabled)
+        {
+            ForceMouseExit();
+        }
+        else if (Hovered)
+        {
+            OnMouseEnter();
+        }
     }
 }
 

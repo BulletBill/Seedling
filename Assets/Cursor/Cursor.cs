@@ -141,6 +141,12 @@ public partial class Cursor : Node2D
 		if (Cursor.Singleton.StateStack.Count <= 0) return "None";
 		return Cursor.Singleton.StateStack.Peek().GetName();
 	}
+
+	public static bool IsOverHoverable()
+	{
+		if (Cursor.Singleton == null) return false;
+		return Cursor.Singleton.HoverList.Count > 0;
+	}
 }
 
 public interface ICursorState

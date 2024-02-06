@@ -6,14 +6,15 @@ public partial class BuildButton : Node2D, IHoverable
 	[Export] public PackedScene TowerToBuild;
 	[Export] public Data_Tower BuildParams = new();
 	bool CanAfford = false;
+	HoverArea HoverArea;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		HoverArea hoverArea = GetNodeOrNull<HoverArea>("HoverArea");
-		if (hoverArea != null)
+		HoverArea = GetNodeOrNull<HoverArea>("HoverArea");
+		if (HoverArea != null)
 		{
-			hoverArea.Clicked += OnClick;
+			HoverArea.Clicked += OnClick;
 		}
 
 		Sprite2D Outline = GetNodeOrNull<Sprite2D>("Outline");
@@ -24,6 +25,12 @@ public partial class BuildButton : Node2D, IHoverable
 			HoverAnim?.Play("Unhover");
 		}
 
+		if (TowerToBuild == null)
+		{
+			Disable();
+			return;
+		}
+
 		AssignBuildParams(BuildParams);
 		PlayerEvent.Register(PlayerEvent.SignalName.AnyResourceChanged, Callable.From(() => UpdateCosts()));
 		CanAfford = Player.CanAfford(BuildParams.Cost);
@@ -31,17 +38,19 @@ public partial class BuildButton : Node2D, IHoverable
 		if (CanAfford)
 		{
 			Anim?.Play("Enabled");
+			HoverArea?.SetDisabled(false);
 		}
 		else
 		{
 			Anim?.Play("Disabled");
+			HoverArea?.SetDisabled(true);
 		}
 	}
 
 	public void AssignBuildParams(Data_Tower NewParams)
 	{
-		if (NewParams == null) return;
 		BuildParams = NewParams;
+		if (NewParams == null) { Disable(); return; }
 
 		Sprite2D TowerSprite = GetNodeOrNull<Sprite2D>("TowerSprite");
 		if (TowerSprite != null)
@@ -78,10 +87,12 @@ public partial class BuildButton : Node2D, IHoverable
 		if (CanAfford)
 		{
 			Anim?.Play("Enabled");
+			HoverArea?.SetDisabled(false);
 		}
 		else
 		{
 			Anim?.Play("Disabled");
+			HoverArea?.SetDisabled(true);
 		}
 	}
 
@@ -98,6 +109,19 @@ public partial class BuildButton : Node2D, IHoverable
 			Anim?.Play("Success");
         }
     }
+
+	void Disable()
+	{
+		AnimationPlayer Anim = GetNodeOrNull<AnimationPlayer>("AnimationPlayer");
+		Anim?.Play("Disabled");
+		HoverArea?.SetDisabled(true);
+
+		Sprite2D TowerSprite = GetNodeOrNull<Sprite2D>("TowerSprite");
+		if (TowerSprite != null)
+		{
+			TowerSprite.Texture = null;
+		}
+	}
 
 	public void OnHovered()
 	{

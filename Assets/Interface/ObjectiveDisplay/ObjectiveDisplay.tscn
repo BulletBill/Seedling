@@ -4,9 +4,9 @@
 [ext_resource type="Script" path="res://Assets/Interface/ObjectiveDisplay/LifeCounter.cs" id="2_3dkid"]
 [ext_resource type="Theme" uid="uid://svogtundy1nx" path="res://Assets/Art/Interface/default_theme.tres" id="3_hq4qm"]
 [ext_resource type="FontFile" uid="uid://w05srxbcg8v8" path="res://Assets/Art/Fonts/Default_UI.tres" id="5_37raj"]
+[ext_resource type="Texture2D" uid="uid://cjl4aixbpkx80" path="res://Assets/Towers/Genesis Heart/Art-Genesis Tree.png" id="5_gdvfo"]
 [ext_resource type="Script" path="res://Assets/Interface/ObjectiveDisplay/WaveTimerDisplay.cs" id="6_ldab5"]
 [ext_resource type="Texture2D" uid="uid://iinbdvqjsk7n" path="res://Assets/Art/Icons/Clock Small.png" id="7_e183j"]
-[ext_resource type="Texture2D" uid="uid://daibtvxvfuxy6" path="res://Assets/Art/Icons/Spark.png" id="8_mgmt8"]
 [ext_resource type="Script" path="res://Assets/Interface/ObjectiveDisplay/ExpansionDisplay.cs" id="8_p8dsb"]
 [ext_resource type="Texture2D" uid="uid://brtlf65prxos0" path="res://Assets/Towers/Sapling/Art-Sapling.png" id="9_gxqyu"]
 
@@ -14,7 +14,7 @@
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 offset_right = 282.0
-offset_bottom = 129.0
+offset_bottom = 192.0
 texture = ExtResource("1_fo2xk")
 patch_margin_left = 6
 patch_margin_top = 6
@@ -36,86 +36,86 @@ position = Vector2(1.5, 22.5)
 script = ExtResource("2_3dkid")
 
 [node name="Lives Bar" type="ProgressBar" parent="Lives"]
-offset_left = 53.0
-offset_top = 8.0
-offset_right = 274.0
+offset_left = 75.0
+offset_top = 9.0
+offset_right = 272.0
 offset_bottom = 26.0
 theme = ExtResource("3_hq4qm")
 value = 50.0
 show_percentage = false
 
 [node name="Icon" type="Sprite2D" parent="Lives"]
-position = Vector2(12, 17.5)
-texture = ExtResource("8_mgmt8")
+position = Vector2(22, 17.5)
+texture = ExtResource("5_gdvfo")
 
 [node name="Count" type="RichTextLabel" parent="Lives"]
-offset_left = 20.5
-offset_right = 88.5
+offset_left = 39.5
+offset_right = 107.5
 offset_bottom = 32.0
-theme_override_fonts/normal_font = ExtResource("5_37raj")
-text = "99"
-scroll_active = false
-
-[node name="Expansion" type="Node2D" parent="."]
-position = Vector2(0.5, 74)
-script = ExtResource("8_p8dsb")
-
-[node name="Progress" type="ProgressBar" parent="Expansion"]
-offset_left = 54.0
-offset_top = 5.0
-offset_right = 275.0
-offset_bottom = 23.0
-theme = ExtResource("3_hq4qm")
-value = 50.0
-show_percentage = false
-
-[node name="Icon" type="Sprite2D" parent="Expansion"]
-position = Vector2(13, 14)
-texture = ExtResource("9_gxqyu")
-
-[node name="Wave" type="RichTextLabel" parent="Expansion"]
-offset_left = 22.0
-offset_top = -4.0
-offset_right = 90.0
-offset_bottom = 28.0
-theme = ExtResource("3_hq4qm")
 theme_override_fonts/normal_font = ExtResource("5_37raj")
 text = "99"
 scroll_active = false
 
 [node name="Waves Text" type="RichTextLabel" parent="."]
 offset_left = 4.0
-offset_top = 46.0
+offset_top = 49.0
 offset_right = 278.0
-offset_bottom = 78.0
+offset_bottom = 81.0
 theme = ExtResource("3_hq4qm")
 theme_override_fonts/normal_font = ExtResource("5_37raj")
 bbcode_enabled = true
 text = "[center]Waves[/center]"
 scroll_active = false
 
+[node name="Expansion" type="Node2D" parent="."]
+position = Vector2(0.5, 79)
+script = ExtResource("8_p8dsb")
+
+[node name="Progress" type="ProgressBar" parent="Expansion"]
+offset_left = 76.0
+offset_top = 5.0
+offset_right = 273.0
+offset_bottom = 22.0
+theme = ExtResource("3_hq4qm")
+value = 50.0
+show_percentage = false
+
+[node name="Icon" type="Sprite2D" parent="Expansion"]
+position = Vector2(22, 15)
+texture = ExtResource("9_gxqyu")
+
+[node name="Wave" type="RichTextLabel" parent="Expansion"]
+offset_left = 39.5
+offset_top = -4.0
+offset_right = 107.5
+offset_bottom = 28.0
+theme = ExtResource("3_hq4qm")
+theme_override_fonts/normal_font = ExtResource("5_37raj")
+text = "99"
+scroll_active = false
+
 [node name="Timer" type="Node2D" parent="."]
-position = Vector2(0.5, 89.5)
+position = Vector2(0.5, 99.5)
 script = ExtResource("6_ldab5")
 
 [node name="Progress" type="ProgressBar" parent="Timer"]
-offset_left = 54.0
+offset_left = 76.0
 offset_top = 14.0
-offset_right = 275.0
-offset_bottom = 32.0
+offset_right = 273.0
+offset_bottom = 33.0
 theme = ExtResource("3_hq4qm")
 value = 50.0
 show_percentage = false
 
 [node name="Icon" type="Sprite2D" parent="Timer"]
-position = Vector2(13, 22.5)
+position = Vector2(22.5, 22.5)
 texture = ExtResource("7_e183j")
 
 [node name="Wave" type="RichTextLabel" parent="Timer"]
-offset_left = 22.0
-offset_top = 4.5
-offset_right = 90.0
-offset_bottom = 36.5
+offset_left = 39.5
+offset_top = 5.5
+offset_right = 107.5
+offset_bottom = 37.5
 theme = ExtResource("3_hq4qm")
 theme_override_fonts/normal_font = ExtResource("5_37raj")
 text = "99"

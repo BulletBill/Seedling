@@ -17,6 +17,7 @@ public partial class S_PlaceTower : Node, ICursorState
     public override void _EnterTree()
     {
         MainMap.Register(MainMap.SignalName.AnyTileChanged, Callable.From(() => UpdateInPlace()));
+        PlayerEvent.Register(PlayerEvent.SignalName.AnyResourceChanged, Callable.From(() => UpdateInPlace()));
     }
 
     public override void _Ready()

@@ -38,5 +38,11 @@ public partial class DetailPanel : Node2D
 
 	public void TowerExitHovered()
 	{
+		if (!Cursor.IsOverHoverable())
+		{
+			if (Icon != null) { Icon.Texture = null; }
+			if (Header != null) { Header.Text = ""; }
+			if (Body != null) { Body.Text = ""; }
+		}
 	}
 }
