@@ -3,6 +3,7 @@ using System;
 
 public partial class S_Free : Node, ICursorState
 {
+    [Export] public Godot.Collections.Array<Data_Action> ActionList = new();
     Cursor ParentCursor;
     public override void _Ready()
     {

@@ -1,16 +1,22 @@
 using Godot;
 using System;
 
-public partial class BuildButton : Node2D, IHoverable
+public partial class CommandButton : Node2D, IHoverable
 {
-	[Export] public PackedScene TowerToBuild;
-	[Export] public Data_Tower BuildParams = new();
+	[Export] public Data_Tower TowerParams = null;
+	[Export] public Data_Action ActionParams = new();
+	[Export] public String CursorState = "Free";
 	bool CanAfford = false;
 	HoverArea HoverArea;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		if (TowerParams != null)
+		{
+			ActionParams.SetFromTowerParams(TowerParams);
+		}
+
 		HoverArea = GetNodeOrNull<HoverArea>("HoverArea");
 		if (HoverArea != null)
 		{
@@ -25,15 +31,15 @@ public partial class BuildButton : Node2D, IHoverable
 			HoverAnim?.Play("Unhover");
 		}
 
-		if (TowerToBuild == null)
+		if (ActionParams.ActionType == EActionType.None)
 		{
 			Disable();
 			return;
 		}
 
-		AssignBuildParams(BuildParams);
+		AssignActionParams(ActionParams);
 		PlayerEvent.Register(PlayerEvent.SignalName.AnyResourceChanged, Callable.From(() => UpdateCosts()));
-		CanAfford = Player.CanAfford(BuildParams.Cost);
+		CanAfford = Player.CanAfford(ActionParams.ClickCost);
 		AnimationPlayer Anim = GetNodeOrNull<AnimationPlayer>("AnimationPlayer");
 		if (CanAfford)
 		{
@@ -47,27 +53,26 @@ public partial class BuildButton : Node2D, IHoverable
 		}
 	}
 
-	public void AssignBuildParams(Data_Tower NewParams)
+	public void AssignActionParams(Data_Action NewParams)
 	{
-		BuildParams = NewParams;
 		if (NewParams == null) { Disable(); return; }
 
 		Sprite2D TowerSprite = GetNodeOrNull<Sprite2D>("TowerSprite");
 		if (TowerSprite != null)
 		{
-			TowerSprite.Texture = BuildParams.PlacementSprite;
+			TowerSprite.Texture = NewParams.Icon;
 		}
 
 		CostReadout CostText = GetNodeOrNull<CostReadout>("Cost");
-		if (CostText != null && BuildParams != null)
+		if (CostText != null && ActionParams.ActionType != EActionType.None)
 		{
-			CostText.SetCosts(BuildParams.Cost);
+			CostText.SetCosts(ActionParams.ClickCost);
 		}
 
 		RichTextLabel NameText = GetNodeOrNull<RichTextLabel>("Name");
 		if (NameText != null)
 		{
-			NameText.Text = TextHelpers.Center(NewParams.TowerName);
+			NameText.Text = TextHelpers.Center(NewParams.DisplayName);
 		}
 	}
 
@@ -78,8 +83,8 @@ public partial class BuildButton : Node2D, IHoverable
 
 	public void UpdateCosts()
 	{
-		if (BuildParams == null) return;
-		bool CanAffordNow = Player.CanAfford(BuildParams.Cost);
+		if (ActionParams.ActionType == EActionType.None) return;
+		bool CanAffordNow = Player.CanAfford(ActionParams.ClickCost);
 		if (CanAfford == CanAffordNow) return;
 
 		AnimationPlayer Anim = GetNodeOrNull<AnimationPlayer>("AnimationPlayer");
@@ -98,16 +103,19 @@ public partial class BuildButton : Node2D, IHoverable
 
 	void OnClick()
 	{
-		if (BuildParams == null) return;
-		if (TowerToBuild == null) return;
+		if (ActionParams == null) return;
+		if (!CanAfford) return;
 
-        if (CanAfford && Cursor.PushState("State_Placement") is S_PlaceTower PlacementState)
-        {
-            PlacementState.SetTowerToBuild(BuildParams, TowerToBuild);
+		foreach (Node n in GetChildren())
+		{
+			if (n is IButtonAction buttonAction)
+			{
+				buttonAction?.Execute();
+			}
+		}
 
-			AnimationPlayer Anim = GetNodeOrNull<AnimationPlayer>("AnimationPlayer");
-			Anim?.Play("Success");
-        }
+		AnimationPlayer Anim = GetNodeOrNull<AnimationPlayer>("AnimationPlayer");
+		Anim?.Play("Success");
     }
 
 	void Disable()
@@ -125,11 +133,18 @@ public partial class BuildButton : Node2D, IHoverable
 
 	public void OnHovered()
 	{
-		PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerHovered, BuildParams);
+		if (ActionParams.TowerData != null)
+		PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerHovered, ActionParams.TowerData);
 	}
 
 	public void ExitHovered()
 	{
 		PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerExitHovered);
 	}
+}
+
+
+public interface IButtonAction
+{
+	public void Execute();
 }

@@ -8,6 +8,9 @@ public partial class Cursor : Node2D
 	public static Cursor Singleton;
 	Stack<ICursorState> StateStack = new();
 	[Export] public Node DefaultCursorState;
+	public static readonly String State_Free = "Free";
+	public static readonly String State_Placement = "Placement";
+	public static readonly String State_Context = "Context";
 	Vector2I CurrentTile = new();
 	int TileSize = 32;
 	float MapScale = 1.0f;

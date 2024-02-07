@@ -81,9 +81,9 @@ public partial class Tower : Sprite2D, IHoverable
 				SellTower();
 			break;
 			case EActionType.SelfUpgrade:
-				if (Actions[Index].UpgradeScene != null)
+				if (Actions[Index].TowerData != null)
 				{
-					UpgradeTo(Actions[Index].UpgradeScene.Instantiate<Tower>());
+					//UpgradeTo(Actions[Index].UpgradeScene.Instantiate<Tower>());
 				}
 			break;
 			case EActionType.StatUpgrade:

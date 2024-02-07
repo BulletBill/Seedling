@@ -22,3 +22,5 @@ script = ExtResource("4_voq7h")
 
 [node name="State_ContextMenu" type="Node" parent="."]
 script = ExtResource("4_e0tsg")
+
+[node name="State_OverlayMenu" type="Node" parent="."]

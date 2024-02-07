@@ -151,6 +151,7 @@ autoplay = "Unhover"
 ParentAnimator = NodePath("../HoverAnimator")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HoverArea"]
+visible = false
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_uv7mt")
 

@@ -1,6 +1,7 @@
 using Godot;
 using System;
 
+[GlobalClass]
 public partial class R_Cost : Resource
 {
     [Export] public int LifeForce;
