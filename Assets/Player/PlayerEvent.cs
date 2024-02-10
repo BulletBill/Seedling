@@ -52,8 +52,6 @@ public partial class PlayerEvent : Node
 
     // Towers
     [Signal] public delegate void TowerFinishedEventHandler(Tower FinishedTower);
-    //[Signal] public delegate void TowerHoveredEventHandler(Data_Tower HoveredTower);
-    //[Signal] public delegate void TowerExitHoveredEventHandler();
     [Signal] public delegate void TowerSelectedEventHandler(Tower SelectedTower);
     [Signal] public delegate void TowerDeselectedEventHandler();
 

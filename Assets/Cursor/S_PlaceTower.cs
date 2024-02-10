@@ -83,6 +83,7 @@ public partial class S_PlaceTower : Node, ICursorState
         ParentCursor.PlacementGhost.Texture = TowerData.Icon;
         ParentCursor.PlacementGhost.SelfModulate = PlacementIsValid ? GoodColor : BadColor;
 
+        Cursor.Broadcast(Cursor.SignalName.SetFixedObject, TowerData);
         GD.Print("Placement target is " + TowerData.DisplayName);
     }
 
@@ -123,6 +124,7 @@ public partial class S_PlaceTower : Node, ICursorState
     }
 	public void OnDisable()
     {
+        Cursor.Broadcast(Cursor.SignalName.ClearFixedObject);
         TowerData = null;
         PlacementIsValid = false;
         MainMap.RemoveOutlineActive(GridCode);

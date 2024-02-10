@@ -21,20 +21,20 @@ public partial class HoverArea : Area2D
     {
         Hovered = true;
         if (ReactStates.Contains(Cursor.GetCurrentState()) == false) return;
-        Cursor.AddHoverArea(this);
         if (!Disabled)
         {
             ParentAnimator?.Play("Hover");
         }
 
+        Cursor.AddHoverArea(this);
         HoverParent?.OnHovered();
     }
 
     public void OnMouseExit()
     {
         Hovered = false;
-        if (ReactStates.Contains(Cursor.GetCurrentState()) == false) return;
         Cursor.RemoveHoverArea(this);
+        if (ReactStates.Contains(Cursor.GetCurrentState()) == false) return;
         if (!Disabled)
         {
             ParentAnimator?.Play("Unhover");

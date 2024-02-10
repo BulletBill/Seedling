@@ -141,10 +141,7 @@ public partial class CommandButton : Node2D, IHoverable
 
 	public void OnHovered()
 	{
-		if (ActionParams != null)
-		{
-			Cursor.Broadcast(Cursor.SignalName.SelectableHovered, ActionParams);
-		}
+		Cursor.Broadcast(Cursor.SignalName.SelectableHovered, ActionParams);
 	}
 
 	public void ExitHovered()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://mmyy6s5sben4"]
+[gd_scene load_steps=45 format=3 uid="uid://mmyy6s5sben4"]
 
 [ext_resource type="PackedScene" uid="uid://qjqpjk4tct1" path="res://Assets/Interface/Minimap/MiniMap.tscn" id="2_drqwd"]
 [ext_resource type="PackedScene" uid="uid://bqo4ffahkqb78" path="res://Assets/Interface/CurrencyDisplay/CurrencyDisplay.tscn" id="2_ty7fb"]
@@ -17,7 +17,6 @@
 [ext_resource type="Resource" uid="uid://pqk4g5tts6in" path="res://Assets/Towers/Sun Leaf/Data_Sunleaf.tres" id="11_yf2ay"]
 [ext_resource type="PackedScene" uid="uid://b3fxnt1sq3rjq" path="res://Assets/Towers/Genesis Heart/build-Genesis.tscn" id="12_x0txc"]
 [ext_resource type="Resource" uid="uid://cnxh15qnwr5eo" path="res://Assets/Towers/Genesis Heart/Data_Genesis.tres" id="13_u3cdi"]
-[ext_resource type="PackedScene" uid="uid://ukt5pidwl63" path="res://Assets/Interface/Tower Context Menu/ContextMenu.tscn" id="14_hldsr"]
 [ext_resource type="Texture2D" uid="uid://c4cqjktrt205k" path="res://Assets/Art/Interface/WindowBG.png" id="15_he6xn"]
 [ext_resource type="Script" path="res://Assets/Debug/Debug_Costs.cs" id="16_65wxc"]
 [ext_resource type="Texture2D" uid="uid://302dkqm52l52" path="res://Assets/Art/Icons/Cancel.png" id="16_lgkim"]
@@ -382,9 +381,6 @@ offset_right = 236.0
 offset_bottom = 63.0
 text = "Disable Enemy"
 script = ExtResource("17_wkykc")
-
-[node name="ContextMenu" parent="." instance=ExtResource("14_hldsr")]
-position = Vector2(995, 514)
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 z_index = -1
