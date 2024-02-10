@@ -23,7 +23,6 @@ patch_margin_bottom = 6
 [node name="Lifeforce" type="Node2D" parent="."]
 position = Vector2(3, 0)
 script = ExtResource("3_opgyh")
-ShowMaximum = false
 
 [node name="Icon" type="Sprite2D" parent="Lifeforce"]
 position = Vector2(12.5, 18.8)

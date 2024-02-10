@@ -54,7 +54,7 @@ public partial class CurrencyLine : Node2D
 			Amount.Text = NewAmount.ToString();
 			if (NewMax > 0 && ShowMaximum)
 			{
-				Amount.AppendText("/" + NewMax.ToString());
+				Amount.Text += "/" + NewMax.ToString();
 			}
 
 			if (NewMax > 0 && NewAmount >= NewMax)

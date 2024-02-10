@@ -73,7 +73,7 @@ public partial class Player : Node2D
 
         if (Singleton.FreeTowers) return true;
 
-        if (Cost.LifeForce > 0 && Singleton.Currencies[ECurrencyType.Lifeforce].Amount < Cost.LifeForce) return false;
+        if (Cost.LifeForce > 0 && Singleton.Currencies[ECurrencyType.Lifeforce].GetSpace() < Cost.LifeForce) return false;
         if (Cost.Substance > 0 && Singleton.Currencies[ECurrencyType.Substance].Amount < Cost.Substance) return false;
         if (Cost.Flow > 0 && Singleton.Currencies[ECurrencyType.Flow].Amount < Cost.Flow) return false;
         if (Cost.Breath > 0 && Singleton.Currencies[ECurrencyType.Breath].Amount < Cost.Breath) return false;
@@ -87,7 +87,7 @@ public partial class Player : Node2D
         if (Singleton == null) return false;
         if (CanAfford(Cost) == false) return false;
 
-        Singleton.Currencies[ECurrencyType.Lifeforce].AddAmount(-1 * Cost.LifeForce);
+        Singleton.Currencies[ECurrencyType.Lifeforce].AddAmount(1 * Cost.LifeForce);
         Singleton.Currencies[ECurrencyType.Substance].AddAmount(-1 * Cost.Substance);
         Singleton.Currencies[ECurrencyType.Flow].AddAmount(-1 * Cost.Flow);
         Singleton.Currencies[ECurrencyType.Breath].AddAmount(-1 * Cost.Breath);

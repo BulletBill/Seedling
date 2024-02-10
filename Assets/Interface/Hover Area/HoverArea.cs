@@ -45,7 +45,10 @@ public partial class HoverArea : Area2D
 
     public void ForceMouseExit()
     {
-        ParentAnimator?.Play("Unhover");
+        if (!Disabled)
+        {
+            ParentAnimator?.Play("Unhover");
+        }
 
         IHoverable HoverParent = GetParentOrNull<IHoverable>();
         HoverParent?.ExitHovered();

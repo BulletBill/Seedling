@@ -21,7 +21,7 @@ shader_parameter/add_margins = true
 
 [sub_resource type="Resource" id="Resource_hscaw"]
 script = ExtResource("7_qd2t5")
-LifeForce = 2
+LifeForce = 0
 Substance = 0
 Flow = 0
 Breath = 0
@@ -29,7 +29,7 @@ Energy = 0
 
 [sub_resource type="Resource" id="Resource_pbkck"]
 script = ExtResource("7_qd2t5")
-LifeForce = 0
+LifeForce = 2
 Substance = 0
 Flow = 0
 Breath = 0

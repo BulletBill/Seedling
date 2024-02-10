@@ -69,6 +69,11 @@ public partial class Currency : Node2D
         BroadcastChange();
     }
 
+    public int GetSpace()
+    {
+        return MaximumAmount - Amount;
+    }
+
     public void AddIncome(int InIncome)
     {
         if (InIncome == 0) return;
