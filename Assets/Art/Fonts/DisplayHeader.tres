@@ -1,0 +1,7 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://5eaxn8i6ce3f"]
+
+[ext_resource type="FontFile" uid="uid://vtgmksath65v" path="res://Assets/Art/Fonts/Font Data/Orial.ttf" id="1_hbc47"]
+
+[resource]
+base_font = ExtResource("1_hbc47")
+spacing_top = -4

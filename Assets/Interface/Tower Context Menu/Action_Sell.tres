@@ -14,7 +14,8 @@ Energy = 0
 
 [resource]
 script = ExtResource("1_lkj4l")
-DisplayName = "Sell"
 ActionType = 2
 ClickCost = SubResource("Resource_r2rgi")
+DisplayName = "Sell"
 Icon = ExtResource("2_2fj06")
+Description = ""

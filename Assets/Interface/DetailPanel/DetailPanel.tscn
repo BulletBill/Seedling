@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Assets/Interface/DetailPanel/DetailPanel.cs" id="1_537m5"]
 [ext_resource type="Texture2D" uid="uid://3bps8k3gh1an" path="res://Assets/Art/Interface/TestFrame.png" id="2_cyfsk"]
-[ext_resource type="FontFile" uid="uid://43j2t4x0ypm3" path="res://Assets/Art/Fonts/Header_UI.tres" id="3_4fh3t"]
 [ext_resource type="Texture2D" uid="uid://cjl4aixbpkx80" path="res://Assets/Towers/Genesis Heart/Art-Genesis Tree.png" id="3_61gjx"]
+[ext_resource type="FontVariation" uid="uid://5eaxn8i6ce3f" path="res://Assets/Art/Fonts/DisplayHeader.tres" id="4_eadws"]
 
 [node name="DetailPanel" type="Node2D"]
 script = ExtResource("1_537m5")
@@ -23,23 +23,28 @@ texture = ExtResource("3_61gjx")
 
 [node name="Header" type="RichTextLabel" parent="."]
 offset_left = 46.0
-offset_top = 6.0
-offset_right = 239.0
-offset_bottom = 31.0
+offset_top = 4.0
+offset_right = 240.0
+offset_bottom = 29.0
 scale = Vector2(2, 2)
 mouse_filter = 2
-theme_override_fonts/normal_font = ExtResource("3_4fh3t")
+theme_override_fonts/normal_font = ExtResource("4_eadws")
+theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "Heart Bloom"
 scroll_active = false
 
 [node name="Body" type="RichTextLabel" parent="."]
-offset_left = 6.0
+offset_left = 8.0
 offset_top = 44.0
 offset_right = 430.0
-offset_bottom = 177.0
+offset_bottom = 183.0
 mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 0
+theme_override_font_sizes/normal_font_size = 18
 bbcode_enabled = true
-text = "Generates Grass and Resources. Contains general upgrades for Towers. Another line."
+text = "[img]res://Assets/Art/Icons/lifeforce small.png[/img]1 [img]res://Assets/Art/Icons/substance small.png[/img]40
+Generates Grass and Resources. Contains general upgrades for Towers.
+Another line.
+Morelines
+Yet another line"
 scroll_active = false

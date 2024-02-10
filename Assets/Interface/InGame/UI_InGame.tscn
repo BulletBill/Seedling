@@ -41,7 +41,7 @@ DisplayName = "Cancel"
 Icon = ExtResource("16_lgkim")
 Description = ""
 
-[sub_resource type="Resource" id="Resource_15yfw"]
+[sub_resource type="Resource" id="Resource_fl6vu"]
 script = ExtResource("5_h1x13")
 LifeForce = 0
 Substance = 0
@@ -52,127 +52,127 @@ Energy = 0
 [sub_resource type="Resource" id="Resource_xk3kl"]
 script = ExtResource("6_5frfn")
 ActionType = 0
-ClickCost = SubResource("Resource_15yfw")
-DisplayName = "No Name"
+ClickCost = SubResource("Resource_fl6vu")
+DisplayName = ""
 Description = ""
 
 [sub_resource type="Resource" id="Resource_8g2j8"]
 script = ExtResource("6_5frfn")
 ActionType = 0
-ClickCost = SubResource("Resource_15yfw")
-DisplayName = "No Name"
+ClickCost = SubResource("Resource_fl6vu")
+DisplayName = ""
 Description = ""
 
 [sub_resource type="Resource" id="Resource_btyo0"]
 script = ExtResource("6_5frfn")
 ActionType = 0
-ClickCost = SubResource("Resource_15yfw")
-DisplayName = "No Name"
+ClickCost = SubResource("Resource_fl6vu")
+DisplayName = ""
 Description = ""
 
 [sub_resource type="Resource" id="Resource_xodbn"]
 script = ExtResource("6_5frfn")
 ActionType = 0
-ClickCost = SubResource("Resource_15yfw")
-DisplayName = "No Name"
+ClickCost = SubResource("Resource_fl6vu")
+DisplayName = ""
 Description = ""
 
 [sub_resource type="Resource" id="Resource_5m8n6"]
 script = ExtResource("6_5frfn")
 ActionType = 0
-ClickCost = SubResource("Resource_15yfw")
-DisplayName = "No Name"
+ClickCost = SubResource("Resource_fl6vu")
+DisplayName = ""
 Description = ""
 
 [sub_resource type="Resource" id="Resource_x655m"]
 script = ExtResource("6_5frfn")
 ActionType = 0
-ClickCost = SubResource("Resource_15yfw")
-DisplayName = "No Name"
+ClickCost = SubResource("Resource_fl6vu")
+DisplayName = ""
 Description = ""
 
 [sub_resource type="Resource" id="Resource_wfhi6"]
 script = ExtResource("6_5frfn")
 ActionType = 0
-ClickCost = SubResource("Resource_15yfw")
-DisplayName = "No Name"
+ClickCost = SubResource("Resource_fl6vu")
+DisplayName = ""
 Description = ""
 
 [sub_resource type="Resource" id="Resource_6loh0"]
 script = ExtResource("6_5frfn")
 ActionType = 0
-ClickCost = SubResource("Resource_15yfw")
-DisplayName = "No Name"
+ClickCost = SubResource("Resource_fl6vu")
+DisplayName = ""
 Description = ""
 
 [sub_resource type="Resource" id="Resource_vh1g6"]
 script = ExtResource("6_5frfn")
 ActionType = 0
-ClickCost = SubResource("Resource_15yfw")
-DisplayName = "No Name"
+ClickCost = SubResource("Resource_fl6vu")
+DisplayName = ""
 Description = ""
 
 [sub_resource type="Resource" id="Resource_28i5n"]
 script = ExtResource("6_5frfn")
 ActionType = 0
-ClickCost = SubResource("Resource_15yfw")
-DisplayName = "No Name"
+ClickCost = SubResource("Resource_fl6vu")
+DisplayName = ""
 Description = ""
 
 [sub_resource type="Resource" id="Resource_cri4k"]
 script = ExtResource("6_5frfn")
 ActionType = 0
-ClickCost = SubResource("Resource_15yfw")
-DisplayName = "No Name"
+ClickCost = SubResource("Resource_fl6vu")
+DisplayName = ""
 Description = ""
 
 [sub_resource type="Resource" id="Resource_cti45"]
 script = ExtResource("6_5frfn")
 ActionType = 0
-ClickCost = SubResource("Resource_15yfw")
-DisplayName = "No Name"
+ClickCost = SubResource("Resource_fl6vu")
+DisplayName = ""
 Description = ""
 
 [sub_resource type="Resource" id="Resource_7anqk"]
 script = ExtResource("6_5frfn")
 ActionType = 0
-ClickCost = SubResource("Resource_15yfw")
-DisplayName = "No Name"
+ClickCost = SubResource("Resource_fl6vu")
+DisplayName = ""
 Description = ""
 
 [sub_resource type="Resource" id="Resource_6gocw"]
 script = ExtResource("6_5frfn")
 ActionType = 0
-ClickCost = SubResource("Resource_15yfw")
-DisplayName = "No Name"
+ClickCost = SubResource("Resource_fl6vu")
+DisplayName = ""
 Description = ""
 
 [sub_resource type="Resource" id="Resource_62bdq"]
 script = ExtResource("6_5frfn")
 ActionType = 1
-ClickCost = SubResource("Resource_15yfw")
-DisplayName = "No Name"
+ClickCost = SubResource("Resource_fl6vu")
+DisplayName = ""
 Description = ""
 
 [sub_resource type="Resource" id="Resource_k6g0y"]
 script = ExtResource("6_5frfn")
 ActionType = 1
-ClickCost = SubResource("Resource_15yfw")
-DisplayName = "No Name"
+ClickCost = SubResource("Resource_fl6vu")
+DisplayName = ""
 Description = ""
 
 [sub_resource type="Resource" id="Resource_dkaoh"]
 script = ExtResource("6_5frfn")
 ActionType = 1
-ClickCost = SubResource("Resource_15yfw")
-DisplayName = "No Name"
+ClickCost = SubResource("Resource_fl6vu")
+DisplayName = ""
 Description = ""
 
 [sub_resource type="Resource" id="Resource_psakw"]
 script = ExtResource("6_5frfn")
 ActionType = 1
-ClickCost = SubResource("Resource_15yfw")
-DisplayName = "No Name"
+ClickCost = SubResource("Resource_fl6vu")
+DisplayName = ""
 Description = ""
 
 [node name="UI Canvas Layer" type="CanvasLayer"]
@@ -342,7 +342,7 @@ position = Vector2(234, 45)
 ActionParams = SubResource("Resource_6gocw")
 
 [node name="DetailPanel" parent="." instance=ExtResource("4_2ycw0")]
-position = Vector2(825, 888)
+position = Vector2(676, 888)
 
 [node name="ObjectiveDisplay" parent="." instance=ExtResource("3_xfso7")]
 position = Vector2(1639, 888)

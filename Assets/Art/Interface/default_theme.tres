@@ -1,9 +1,8 @@
-[gd_resource type="Theme" load_steps=12 format=3 uid="uid://svogtundy1nx"]
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://svogtundy1nx"]
 
 [ext_resource type="Texture2D" uid="uid://dy8nudyd7nsh2" path="res://Assets/Art/Interface/Bar9Slice.png" id="1_7lsai"]
-[ext_resource type="FontFile" uid="uid://w05srxbcg8v8" path="res://Assets/Art/Fonts/Default_UI.tres" id="1_pgb4i"]
 [ext_resource type="Texture2D" uid="uid://7fhu5lxwhvq5" path="res://Assets/Art/Interface/HoverBackground.png" id="2_tc4ko"]
-[ext_resource type="FontFile" uid="uid://dufvvujv6wpwq" path="res://Assets/Art/Fonts/Font Data/MonospaceTypewriter.ttf" id="3_iramf"]
+[ext_resource type="FontVariation" uid="uid://y3m756nmf68t" path="res://Assets/Art/Fonts/Default.tres" id="3_wigwx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0x61l"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -39,7 +38,7 @@ texture = ExtResource("2_tc4ko")
 modulate_color = Color(0, 0.376471, 0, 1)
 
 [resource]
-default_font = ExtResource("1_pgb4i")
+default_font = ExtResource("3_wigwx")
 default_font_size = 24
 Button/styles/disabled = SubResource("StyleBoxFlat_0x61l")
 Button/styles/focus = SubResource("StyleBoxFlat_sunyv")
@@ -51,4 +50,4 @@ ProgressBar/styles/fill = SubResource("StyleBoxTexture_pepqq")
 RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
 RichTextLabel/colors/font_shadow_color = Color(0, 0, 0, 0.996078)
 RichTextLabel/constants/outline_size = 1
-RichTextLabel/fonts/normal_font = ExtResource("3_iramf")
+RichTextLabel/fonts/normal_font = ExtResource("3_wigwx")

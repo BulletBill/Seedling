@@ -1,14 +1,58 @@
-[gd_scene load_steps=10 format=3 uid="uid://dynjwh5qcpo7t"]
+[gd_scene load_steps=11 format=3 uid="uid://dynjwh5qcpo7t"]
 
 [ext_resource type="Texture2D" uid="uid://3bps8k3gh1an" path="res://Assets/Art/Interface/TestFrame.png" id="1_fo2xk"]
 [ext_resource type="Script" path="res://Assets/Interface/ObjectiveDisplay/LifeCounter.cs" id="2_3dkid"]
 [ext_resource type="Theme" uid="uid://svogtundy1nx" path="res://Assets/Art/Interface/default_theme.tres" id="3_hq4qm"]
-[ext_resource type="FontFile" uid="uid://w05srxbcg8v8" path="res://Assets/Art/Fonts/Default_UI.tres" id="5_37raj"]
+[ext_resource type="FontFile" uid="uid://dufvvujv6wpwq" path="res://Assets/Art/Fonts/Font Data/MonospaceTypewriter.ttf" id="5_buk8w"]
 [ext_resource type="Texture2D" uid="uid://cjl4aixbpkx80" path="res://Assets/Towers/Genesis Heart/Art-Genesis Tree.png" id="5_gdvfo"]
 [ext_resource type="Script" path="res://Assets/Interface/ObjectiveDisplay/WaveTimerDisplay.cs" id="6_ldab5"]
 [ext_resource type="Texture2D" uid="uid://iinbdvqjsk7n" path="res://Assets/Art/Icons/Clock Small.png" id="7_e183j"]
 [ext_resource type="Script" path="res://Assets/Interface/ObjectiveDisplay/ExpansionDisplay.cs" id="8_p8dsb"]
 [ext_resource type="Texture2D" uid="uid://brtlf65prxos0" path="res://Assets/Towers/Sapling/Art-Sapling.png" id="9_gxqyu"]
+
+[sub_resource type="FontFile" id="FontFile_kbrvm"]
+fallbacks = Array[Font]([ExtResource("5_buk8w")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/glyphs/0/advance = Vector2(0, 0)
+cache/0/16/0/glyphs/0/offset = Vector2(0, 0)
+cache/0/16/0/glyphs/0/size = Vector2(0, 0)
+cache/0/16/0/glyphs/0/uv_rect = Rect2(0, 0, 0, 0)
+cache/0/16/0/glyphs/0/texture_idx = -1
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/20/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/50/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/24/0 = Vector2(0, 0)
+cache/0/20/0/ascent = 0.0
+cache/0/20/0/descent = 0.0
+cache/0/20/0/underline_position = 0.0
+cache/0/20/0/underline_thickness = 0.0
+cache/0/20/0/scale = 1.0
+cache/0/20/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/20/0/kerning_overrides/20/0 = Vector2(0, 0)
+cache/0/20/0/kerning_overrides/50/0 = Vector2(0, 0)
+cache/0/20/0/kerning_overrides/24/0 = Vector2(0, 0)
+cache/0/50/0/ascent = 0.0
+cache/0/50/0/descent = 0.0
+cache/0/50/0/underline_position = 0.0
+cache/0/50/0/underline_thickness = 0.0
+cache/0/50/0/scale = 1.0
+cache/0/50/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/50/0/kerning_overrides/20/0 = Vector2(0, 0)
+cache/0/50/0/kerning_overrides/50/0 = Vector2(0, 0)
+cache/0/50/0/kerning_overrides/24/0 = Vector2(0, 0)
+cache/0/24/0/ascent = 0.0
+cache/0/24/0/descent = 0.0
+cache/0/24/0/underline_position = 0.0
+cache/0/24/0/underline_thickness = 0.0
+cache/0/24/0/scale = 1.0
+cache/0/24/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/24/0/kerning_overrides/20/0 = Vector2(0, 0)
+cache/0/24/0/kerning_overrides/50/0 = Vector2(0, 0)
+cache/0/24/0/kerning_overrides/24/0 = Vector2(0, 0)
 
 [node name="ObjectiveDisplay" type="Node2D"]
 
@@ -26,7 +70,6 @@ offset_left = 4.0
 offset_right = 278.0
 offset_bottom = 32.0
 theme = ExtResource("3_hq4qm")
-theme_override_fonts/normal_font = ExtResource("5_37raj")
 bbcode_enabled = true
 text = "[center]Life[/center]"
 scroll_active = false
@@ -52,7 +95,6 @@ texture = ExtResource("5_gdvfo")
 offset_left = 39.5
 offset_right = 107.5
 offset_bottom = 32.0
-theme_override_fonts/normal_font = ExtResource("5_37raj")
 text = "99"
 scroll_active = false
 
@@ -62,7 +104,7 @@ offset_top = 49.0
 offset_right = 278.0
 offset_bottom = 81.0
 theme = ExtResource("3_hq4qm")
-theme_override_fonts/normal_font = ExtResource("5_37raj")
+theme_override_fonts/normal_font = SubResource("FontFile_kbrvm")
 bbcode_enabled = true
 text = "[center]Waves[/center]"
 scroll_active = false
@@ -90,7 +132,6 @@ offset_top = -4.0
 offset_right = 107.5
 offset_bottom = 28.0
 theme = ExtResource("3_hq4qm")
-theme_override_fonts/normal_font = ExtResource("5_37raj")
 text = "99"
 scroll_active = false
 
@@ -117,6 +158,5 @@ offset_top = 5.5
 offset_right = 107.5
 offset_bottom = 37.5
 theme = ExtResource("3_hq4qm")
-theme_override_fonts/normal_font = ExtResource("5_37raj")
 text = "99"
 scroll_active = false

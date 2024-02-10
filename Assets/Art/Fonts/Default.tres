@@ -1,0 +1,6 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://y3m756nmf68t"]
+
+[ext_resource type="FontFile" uid="uid://dufvvujv6wpwq" path="res://Assets/Art/Fonts/Font Data/MonospaceTypewriter.ttf" id="1_7tbrx"]
+
+[resource]
+base_font = ExtResource("1_7tbrx")
