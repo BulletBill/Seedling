@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=5 format=3 uid="uid://coyd0ad8jrvd7"]
+[gd_resource type="Resource" script_class="Data_Tower" load_steps=5 format=3 uid="uid://coyd0ad8jrvd7"]
 
 [ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="1_okcfk"]
 [ext_resource type="Texture2D" uid="uid://cedcepcgtfr5w" path="res://Assets/Towers/Buckthorn/Art-Buckthorn.png" id="2_c3nqm"]
@@ -14,12 +14,6 @@ Energy = 0
 
 [resource]
 script = ExtResource("4_xuhh0")
-PlacementSprite = ExtResource("2_c3nqm")
-TowerName = "Buckthorn"
-Description = "Fires thorns at enemies that get close.
-
-Damage:███ 
-Range: ███"
 Cost = SubResource("Resource_4ujqw")
 BuildTime = 8.0
 NeedsSparkFlag = false
@@ -29,3 +23,6 @@ CanBuildOnDirt = false
 CanBuildOnWater = false
 CanBuildOnChasm = false
 CanBuildOnStone = false
+DisplayName = "Buckthorn"
+Icon = ExtResource("2_c3nqm")
+Description = ""

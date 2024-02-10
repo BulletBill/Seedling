@@ -12,19 +12,19 @@ public enum EActionType
 }
 
 [GlobalClass]
-public partial class Data_Action : Resource
+public partial class Data_Action : Data_Hoverable
 {
-    [Export] public String DisplayName = "No Name";
     [Export] public EActionType ActionType = EActionType.None;
     [Export] public R_Cost ClickCost = new();
-    [Export] public Texture2D Icon = null;
     [Export] public Data_Tower TowerData = null;
 
     public void SetFromTowerParams(Data_Tower TowerParams)
     {
-        DisplayName = TowerParams.TowerName;
+        DisplayName = TowerParams.DisplayName;
+        Description = TowerParams.Description;
+        Icon = TowerParams.Icon;
+
         ClickCost = TowerParams.Cost;
-        Icon = TowerParams.PlacementSprite;
         TowerData = TowerParams;
     }
 }

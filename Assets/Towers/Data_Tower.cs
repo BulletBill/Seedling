@@ -2,11 +2,9 @@ using Godot;
 using System;
 using Godot.Collections;
 
-public partial class Data_Tower : Resource
+[GlobalClass]
+public partial class Data_Tower : Data_Hoverable
 {
-    [Export] public Texture2D PlacementSprite;
-    [Export] public String TowerName;
-    [Export(PropertyHint.MultilineText)] public String Description { get; protected set; }
     [Export] public R_Cost Cost = new();
     [Export] public float BuildTime;
     [Export] public bool NeedsSparkFlag = false;

@@ -17,6 +17,8 @@ public partial class Cursor : Node2D
 
 	// Signals
 	[Signal] public delegate void AnyStateChangedEventHandler();
+	[Signal] public delegate void SelectableHoveredEventHandler(Data_Hoverable NewHoverable);
+	[Signal] public delegate void SelectableExitedEventHandler();
 
     public override void _EnterTree()
     {

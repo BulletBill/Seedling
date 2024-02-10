@@ -141,13 +141,15 @@ public partial class CommandButton : Node2D, IHoverable
 
 	public void OnHovered()
 	{
-		if (ActionParams.TowerData != null)
-		PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerHovered, ActionParams.TowerData);
+		if (ActionParams != null)
+		{
+			Cursor.Broadcast(Cursor.SignalName.SelectableHovered, ActionParams);
+		}
 	}
 
 	public void ExitHovered()
 	{
-		PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerExitHovered);
+		Cursor.Broadcast(Cursor.SignalName.SelectableExited);
 	}
 }
 

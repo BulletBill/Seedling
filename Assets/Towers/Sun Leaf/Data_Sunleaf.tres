@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=5 format=3 uid="uid://pqk4g5tts6in"]
+[gd_resource type="Resource" script_class="Data_Tower" load_steps=5 format=3 uid="uid://pqk4g5tts6in"]
 
 [ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="1_qudfg"]
 [ext_resource type="Texture2D" uid="uid://blygruvq4wq11" path="res://Assets/Towers/Sun Leaf/Art-Sun Leaf.png" id="2_8ae21"]
@@ -14,9 +14,6 @@ Energy = 0
 
 [resource]
 script = ExtResource("4_3fgbh")
-PlacementSprite = ExtResource("2_8ae21")
-TowerName = "Sunleaf"
-Description = ""
 Cost = SubResource("Resource_4ujqw")
 BuildTime = 5.0
 NeedsSparkFlag = false
@@ -26,3 +23,6 @@ CanBuildOnDirt = false
 CanBuildOnWater = true
 CanBuildOnChasm = false
 CanBuildOnStone = false
+DisplayName = "Sunleaf"
+Icon = ExtResource("2_8ae21")
+Description = ""

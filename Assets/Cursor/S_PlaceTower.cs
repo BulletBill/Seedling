@@ -80,10 +80,10 @@ public partial class S_PlaceTower : Node, ICursorState
         TowerData = NewTowerData;
         TowerToBuild = NewTowerToBuild;
         ParentCursor.PlacementGhost.Visible = true;
-        ParentCursor.PlacementGhost.Texture = TowerData.PlacementSprite;
+        ParentCursor.PlacementGhost.Texture = TowerData.Icon;
         ParentCursor.PlacementGhost.SelfModulate = PlacementIsValid ? GoodColor : BadColor;
 
-        GD.Print("Placement target is " + TowerData.TowerName);
+        GD.Print("Placement target is " + TowerData.DisplayName);
     }
 
     bool CanPlaceTile(Vector2I NewMapPosition)
@@ -132,6 +132,13 @@ public partial class S_PlaceTower : Node, ICursorState
     }
 	public void OnClick()
     {
+        if (ParentCursor == null) return;
+        if (ParentCursor.HoverList.Count > 0)
+        {
+            ParentCursor.HoverList[0].OnClick();
+            return;
+        }
+
         if (PlacementIsValid == false) return;
         if (TowerData == null) return;
         if (TowerToBuild == null) return;

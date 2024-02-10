@@ -49,12 +49,12 @@ public partial class Tower : Sprite2D, IHoverable
 
 	public void OnHovered()
 	{
-		PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerHovered, TowerData);
+		Cursor.Broadcast(Cursor.SignalName.SelectableHovered, TowerData);
 	}
 
 	public void ExitHovered()
 	{
-		PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerExitHovered);
+		Cursor.Broadcast(Cursor.SignalName.SelectableExited);
 	}
 
 	void OnClick()

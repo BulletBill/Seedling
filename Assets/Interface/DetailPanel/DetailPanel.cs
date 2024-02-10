@@ -10,8 +10,8 @@ public partial class DetailPanel : Node2D
 
 	public override void _EnterTree()
 	{
-		PlayerEvent.Register(PlayerEvent.SignalName.TowerHovered, Callable.From((Data_Tower T) => TowerHovered(T)));
-		PlayerEvent.Register(PlayerEvent.SignalName.TowerExitHovered, Callable.From(() => TowerExitHovered()));
+		Cursor.Register(Cursor.SignalName.SelectableHovered, Callable.From((Data_Hoverable T) => ObjectHovered(T)));
+		Cursor.Register(Cursor.SignalName.SelectableExited, Callable.From(() => ObjectExitHovered()));
 	}
 
 	public override void _Ready()
@@ -21,9 +21,9 @@ public partial class DetailPanel : Node2D
 		Body = GetNodeOrNull<RichTextLabel>("Body");
 	}
 
-	public void TowerHovered(Data_Tower HoveredTower)
+	public void ObjectHovered(Data_Hoverable HoveredObject)
 	{
-		if (HoveredTower == null)
+		if (HoveredObject == null)
 		{
 			if (Icon != null) { Icon.Texture = null; }
 			if (Header != null) { Header.Text = ""; }
@@ -31,12 +31,12 @@ public partial class DetailPanel : Node2D
 			return;
 		}
 		
-		if (Icon != null) { Icon.Texture = HoveredTower.PlacementSprite; }
-		if (Header != null) { Header.Text = HoveredTower.TowerName; }
-		if (Body != null) { Body.Text = HoveredTower.Description; }
+		if (Icon != null) { Icon.Texture = HoveredObject.Icon; }
+		if (Header != null) { Header.Text = HoveredObject.DisplayName; }
+		if (Body != null) { Body.Text = HoveredObject.Description; }
 	}
 
-	public void TowerExitHovered()
+	public void ObjectExitHovered()
 	{
 		if (!Cursor.IsOverHoverable())
 		{

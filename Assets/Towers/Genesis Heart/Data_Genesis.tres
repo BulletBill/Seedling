@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=5 format=3 uid="uid://cnxh15qnwr5eo"]
+[gd_resource type="Resource" script_class="Data_Tower" load_steps=5 format=3 uid="uid://cnxh15qnwr5eo"]
 
 [ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="1_ogu2s"]
 [ext_resource type="Texture2D" uid="uid://cjl4aixbpkx80" path="res://Assets/Towers/Genesis Heart/Art-Genesis Tree.png" id="2_m2rak"]
@@ -14,12 +14,6 @@ Energy = 1
 
 [resource]
 script = ExtResource("3_l8lnr")
-PlacementSprite = ExtResource("2_m2rak")
-TowerName = "Genesis Heart"
-Description = "The center of life.
-Defend this from all attackers or life will end.
-Must be built on a spark.
-Resource Storage: 500"
 Cost = SubResource("Resource_8bfvv")
 BuildTime = 60.0
 NeedsSparkFlag = true
@@ -29,3 +23,6 @@ CanBuildOnDirt = true
 CanBuildOnWater = true
 CanBuildOnChasm = true
 CanBuildOnStone = true
+DisplayName = "Heart Bloom"
+Icon = ExtResource("2_m2rak")
+Description = ""
