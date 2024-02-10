@@ -40,9 +40,9 @@ public partial class S_PlaceTower : Node, ICursorState
         OnMove(CurrentPosition);
     }
     
-    public String GetName()
+    public ECursorState GetState()
     {
-        return "PlaceTower";
+        return ECursorState.Placement;
     }
 
 	public void OnMove(Vector2I NewMapPosition)

@@ -5,7 +5,7 @@ public partial class CommandButton : Node2D, IHoverable
 {
 	[Export] public Data_Tower TowerParams = null;
 	[Export] public Data_Action ActionParams = new();
-	[Export] public String CursorState = "Free";
+	[Export] public ECursorState CursorState { get; protected set; } = ECursorState.Free;
 	bool CanAfford = false;
 	HoverArea HoverArea;
 
@@ -21,6 +21,7 @@ public partial class CommandButton : Node2D, IHoverable
 		if (HoverArea != null)
 		{
 			HoverArea.Clicked += OnClick;
+			HoverArea.AddReactState(CursorState);
 		}
 
 		Sprite2D Outline = GetNodeOrNull<Sprite2D>("Outline");
@@ -117,6 +118,13 @@ public partial class CommandButton : Node2D, IHoverable
 		AnimationPlayer Anim = GetNodeOrNull<AnimationPlayer>("AnimationPlayer");
 		Anim?.Play("Success");
     }
+
+	public void SetCursorState(ECursorState NewCursorState)
+	{
+		CursorState = NewCursorState;
+		HoverArea = GetNodeOrNull<HoverArea>("HoverArea");
+		HoverArea?.AddReactState(CursorState);
+	}
 
 	void Disable()
 	{

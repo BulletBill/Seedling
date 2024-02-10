@@ -101,6 +101,7 @@ autoplay = "Unhover"
 
 [node name="HoverArea" parent="." node_paths=PackedStringArray("ParentAnimator") instance=ExtResource("6_1867o")]
 ParentAnimator = NodePath("../HoverAnimator")
+ReactStates = [0]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HoverArea"]
 visible = false

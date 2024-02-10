@@ -120,7 +120,7 @@ libraries = {
 
 [node name="HoverArea" parent="." node_paths=PackedStringArray("ParentAnimator") instance=ExtResource("7_2eaun")]
 ParentAnimator = NodePath("../HoverAnimator")
-ReactStates = ["Free"]
+ReactStates = [0]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HoverArea"]
 visible = false

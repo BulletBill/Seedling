@@ -17,9 +17,9 @@ public partial class S_ContextMenu : Node, ICursorState
 	}
 
 	// Cursor state interface
-	public String GetName()
+	public ECursorState GetState()
 	{
-		return "ContextMenu";
+		return ECursorState.Menu_Context;
 	}
 
 	public void OnEnable()

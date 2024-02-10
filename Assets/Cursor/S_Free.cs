@@ -11,9 +11,9 @@ public partial class S_Free : Node, ICursorState
     }
 
     // Cursor state interface
-    public String GetName()
+    public ECursorState GetState()
     {
-        return "Free";
+        return ECursorState.Free;
     }
 
     public void OnEnable()

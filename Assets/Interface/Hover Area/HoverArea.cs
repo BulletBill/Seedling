@@ -5,7 +5,7 @@ using Godot.Collections;
 public partial class HoverArea : Area2D
 {
     [Export] public AnimationPlayer ParentAnimator { get; protected set; }
-    [Export] public Array<String> ReactStates { get; protected set; } = new();
+    [Export] public Array<ECursorState> ReactStates { get; protected set; } = new();
     IHoverable HoverParent;
     public bool Disabled { get; protected set; } = false;
     bool Hovered = false;
@@ -20,7 +20,7 @@ public partial class HoverArea : Area2D
     public void OnMouseEnter()
     {
         Hovered = true;
-        if (ReactStates.Contains(Cursor.GetStateName()) == false) return;
+        if (ReactStates.Contains(Cursor.GetCurrentState()) == false) return;
         Cursor.AddHoverArea(this);
         if (!Disabled)
         {
@@ -33,7 +33,7 @@ public partial class HoverArea : Area2D
     public void OnMouseExit()
     {
         Hovered = false;
-        if (ReactStates.Contains(Cursor.GetStateName()) == false) return;
+        if (ReactStates.Contains(Cursor.GetCurrentState()) == false) return;
         Cursor.RemoveHoverArea(this);
         if (!Disabled)
         {
@@ -68,6 +68,19 @@ public partial class HoverArea : Area2D
         {
             OnMouseEnter();
         }
+    }
+
+    public void AddReactState(ECursorState NewState)
+    {
+        if (ReactStates.Contains(NewState) == false)
+        {
+            ReactStates.Add(NewState);
+        }
+    }
+
+    public void RemoveReactState(ECursorState RemoveState)
+    {
+        ReactStates.Remove(RemoveState);
     }
 }
 

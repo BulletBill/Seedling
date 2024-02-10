@@ -2,20 +2,21 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Runtime.InteropServices;
 
 public partial class Cursor : Node2D
 {
 	public static Cursor Singleton;
 	Stack<ICursorState> StateStack = new();
 	[Export] public Node DefaultCursorState;
-	public static readonly String State_Free = "Free";
-	public static readonly String State_Placement = "Placement";
-	public static readonly String State_Context = "Context";
 	Vector2I CurrentTile = new();
 	int TileSize = 32;
 	float MapScale = 1.0f;
 	public Sprite2D PlacementGhost;
 	public List<HoverArea> HoverList {get; protected set;} = new();
+
+	// Signals
+	[Signal] public delegate void AnyStateChangedEventHandler();
 
     public override void _EnterTree()
     {
@@ -37,6 +38,7 @@ public partial class Cursor : Node2D
 		{
 			StateStack.Push(cursorState);
 			StateStack.Peek().OnEnable();
+			Broadcast(SignalName.AnyStateChanged);
 		}
 	}
 
@@ -77,6 +79,7 @@ public partial class Cursor : Node2D
 
 		FlushHoverList();
 
+		Broadcast(SignalName.AnyStateChanged);
 		return NewState;
 	}
 
@@ -91,6 +94,7 @@ public partial class Cursor : Node2D
 
 		FlushHoverList();
 
+		Broadcast(SignalName.AnyStateChanged);
 		return StateStack.Peek();
 	}
 
@@ -138,11 +142,11 @@ public partial class Cursor : Node2D
 						   Cursor.Singleton.CurrentTile.Y * Cursor.Singleton.TileSize);
 	}
 
-	public static String GetStateName()
+	public static ECursorState GetCurrentState()
 	{
-		if (Cursor.Singleton == null) return "None";
-		if (Cursor.Singleton.StateStack.Count <= 0) return "None";
-		return Cursor.Singleton.StateStack.Peek().GetName();
+		if (Cursor.Singleton == null) return ECursorState.Free;
+		if (Cursor.Singleton.StateStack.Count <= 0) return ECursorState.Free;
+		return Cursor.Singleton.StateStack.Peek().GetState();
 	}
 
 	public static bool IsOverHoverable()
@@ -150,14 +154,40 @@ public partial class Cursor : Node2D
 		if (Cursor.Singleton == null) return false;
 		return Cursor.Singleton.HoverList.Count > 0;
 	}
+
+	// Event bus functions
+	public static bool Register(String DelegateName, Callable Receiver)
+    {
+        if (Singleton == null) return false;
+        Error Result = Singleton.Connect(DelegateName, Receiver);
+        if (Result == Error.Ok)
+        {
+            return true;
+        }
+        return false;
+    }
+
+	public static Error Broadcast(String EventName, params Variant[] args)
+    {
+        if (Singleton == null) return Error.DoesNotExist;
+        return Singleton.EmitSignal(EventName, args);
+    }
 }
 
 public interface ICursorState
 {
-	public String GetName();
+	public ECursorState GetState();
 	public void OnEnable();
 	public void OnDisable();
 	public void OnClick();
 	public void OnEscape();
 	public void OnMove(Vector2I NewMapPosition);
+}
+
+public enum ECursorState
+{
+	Free,
+	Placement,
+	Menu_Context,
+	Menu_Pause,
 }
