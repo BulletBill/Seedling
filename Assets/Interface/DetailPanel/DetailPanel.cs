@@ -19,6 +19,7 @@ public partial class DetailPanel : Node2D
 		Icon = GetNodeOrNull<Sprite2D>("Icon");
 		Header = GetNodeOrNull<RichTextLabel>("Header");
 		Body = GetNodeOrNull<RichTextLabel>("Body");
+		ObjectExitHovered();
 	}
 
 	public void ObjectHovered(Data_Hoverable HoveredObject)

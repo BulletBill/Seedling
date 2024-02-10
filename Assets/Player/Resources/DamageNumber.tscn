@@ -59,6 +59,7 @@ z_index = 400
 offset_left = -44.0
 offset_right = 44.0
 offset_bottom = 30.0
+mouse_filter = 2
 bbcode_enabled = true
 text = "[center][img]res://Assets/Art/Icons/Substance Small.png[/img]999[/center]"
 scroll_active = false

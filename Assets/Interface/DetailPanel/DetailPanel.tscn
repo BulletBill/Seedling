@@ -42,7 +42,7 @@ offset_bottom = 183.0
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 18
 bbcode_enabled = true
-text = "[img]res://Assets/Art/Icons/lifeforce small.png[/img]1 [img]res://Assets/Art/Icons/substance small.png[/img]40
+text = "[img]res://Assets/Art/Icons/Lifeforce Small.png[/img]1 [img]res://Assets/Art/Icons/Substance Small.png[/img]40
 Generates Grass and Resources. Contains general upgrades for Towers.
 Another line.
 Morelines

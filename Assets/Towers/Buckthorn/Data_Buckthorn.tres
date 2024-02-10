@@ -25,4 +25,8 @@ CanBuildOnChasm = false
 CanBuildOnStone = false
 DisplayName = "Buckthorn"
 Icon = ExtResource("2_c3nqm")
-Description = ""
+Description = "Attacks nearby enemies
+Damage: 2-3
+Rate: 1/s
+Range: 3 Tiles
+"

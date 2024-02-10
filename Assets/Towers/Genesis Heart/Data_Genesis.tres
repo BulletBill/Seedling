@@ -25,4 +25,7 @@ CanBuildOnChasm = true
 CanBuildOnStone = true
 DisplayName = "Heart Bloom"
 Icon = ExtResource("2_m2rak")
-Description = ""
+Description = "The center of life. Defend the heart or life will be lost.
++5[img]res://Assets/Art/Icons/Lifeforce Small.png[/img] +500 Storage
++3 Grass Radius
+Harvests nearby tiles for resources."

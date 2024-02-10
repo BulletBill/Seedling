@@ -25,4 +25,6 @@ CanBuildOnChasm = false
 CanBuildOnStone = false
 DisplayName = "Sapling"
 Icon = ExtResource("2_opbt8")
-Description = ""
+Description = "Expands buildable area by growing grass. Can upgrade to provide bonuses to nearby towers.
++2[img]res://Assets/Art/Icons/Lifeforce Small.png[/img]
++3 Grass Radius"

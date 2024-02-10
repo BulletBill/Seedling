@@ -25,4 +25,5 @@ CanBuildOnChasm = false
 CanBuildOnStone = false
 DisplayName = "Sunleaf"
 Icon = ExtResource("2_8ae21")
-Description = ""
+Description = "Harvests nearby tiles for resources.
+Can be built in water."
