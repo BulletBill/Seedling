@@ -7,6 +7,7 @@ public partial class CommandButton : Node2D, IHoverable
 	[Export] public Data_Action ActionParams = new();
 	[Export] public ECursorState CursorState { get; protected set; } = ECursorState.Free;
 	bool CanAfford = false;
+	public bool Preset { get; protected set; } = false;
 	HoverArea HoverArea;
 
 	// Called when the node enters the scene tree for the first time.
@@ -37,6 +38,10 @@ public partial class CommandButton : Node2D, IHoverable
 			Disable();
 			return;
 		}
+		else
+		{
+			Preset = true;
+		}
 
 		AssignActionParams(ActionParams);
 		PlayerEvent.Register(PlayerEvent.SignalName.AnyResourceChanged, Callable.From(() => UpdateCosts()));
@@ -58,10 +63,10 @@ public partial class CommandButton : Node2D, IHoverable
 	{
 		if (NewParams == null) { Disable(); return; }
 
-		Sprite2D TowerSprite = GetNodeOrNull<Sprite2D>("TowerSprite");
-		if (TowerSprite != null)
+		Sprite2D IconSprite = GetNodeOrNull<Sprite2D>("Icon");
+		if (IconSprite != null)
 		{
-			TowerSprite.Texture = NewParams.Icon;
+			IconSprite.Texture = NewParams.Icon;
 		}
 
 		CostReadout CostText = GetNodeOrNull<CostReadout>("Cost");
@@ -132,10 +137,10 @@ public partial class CommandButton : Node2D, IHoverable
 		Anim?.Play("Disabled");
 		HoverArea?.SetDisabled(true);
 
-		Sprite2D TowerSprite = GetNodeOrNull<Sprite2D>("TowerSprite");
-		if (TowerSprite != null)
+		Sprite2D IconSprite = GetNodeOrNull<Sprite2D>("Icon");
+		if (IconSprite != null)
 		{
-			TowerSprite.Texture = null;
+			IconSprite.Texture = null;
 		}
 	}
 

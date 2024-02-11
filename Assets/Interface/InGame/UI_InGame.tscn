@@ -8,8 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://cjvtnmut5ak7p" path="res://Assets/Interface/DetailPanel/DetailPanel.tscn" id="4_2ycw0"]
 [ext_resource type="Script" path="res://Assets/Interface/CommandList/Button Actions/Action_PlaceTower.cs" id="4_xryxj"]
 [ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="5_h1x13"]
-[ext_resource type="Script" path="res://Assets/Interface/Tower Context Menu/Data_Action.cs" id="6_5frfn"]
 [ext_resource type="PackedScene" uid="uid://cc014in5dphp3" path="res://Assets/Towers/Sapling/build-sapling.tscn" id="6_fd616"]
+[ext_resource type="Script" path="res://Assets/Towers/Actions/Data_Action.cs" id="6_q1lyb"]
 [ext_resource type="Resource" uid="uid://bmd4ngk8oi5f1" path="res://Assets/Towers/Sapling/Data_Sapling.tres" id="7_4vkru"]
 [ext_resource type="PackedScene" uid="uid://dwsle41sxrc0k" path="res://Assets/Towers/Buckthorn/build-buckthorn.tscn" id="8_e18ar"]
 [ext_resource type="Resource" uid="uid://coyd0ad8jrvd7" path="res://Assets/Towers/Buckthorn/Data_Buckthorn.tres" id="9_3m4js"]
@@ -24,22 +24,6 @@
 [ext_resource type="Script" path="res://Assets/Debug/Debug_Spawning.cs" id="17_wkykc"]
 [ext_resource type="Texture2D" uid="uid://3bps8k3gh1an" path="res://Assets/Art/Interface/TestFrame.png" id="18_qastj"]
 
-[sub_resource type="Resource" id="Resource_lv1bw"]
-script = ExtResource("5_h1x13")
-LifeForce = 0
-Substance = 0
-Flow = 0
-Breath = 0
-Energy = 0
-
-[sub_resource type="Resource" id="Resource_rd0ix"]
-script = ExtResource("6_5frfn")
-ActionType = 2
-ClickCost = SubResource("Resource_lv1bw")
-DisplayName = "Cancel"
-Icon = ExtResource("16_lgkim")
-Description = ""
-
 [sub_resource type="Resource" id="Resource_fl6vu"]
 script = ExtResource("5_h1x13")
 LifeForce = 0
@@ -49,130 +33,147 @@ Breath = 0
 Energy = 0
 
 [sub_resource type="Resource" id="Resource_xk3kl"]
-script = ExtResource("6_5frfn")
+script = ExtResource("6_q1lyb")
 ActionType = 0
 ClickCost = SubResource("Resource_fl6vu")
 DisplayName = ""
 Description = ""
 
 [sub_resource type="Resource" id="Resource_8g2j8"]
-script = ExtResource("6_5frfn")
+script = ExtResource("6_q1lyb")
 ActionType = 0
 ClickCost = SubResource("Resource_fl6vu")
 DisplayName = ""
 Description = ""
 
 [sub_resource type="Resource" id="Resource_btyo0"]
-script = ExtResource("6_5frfn")
+script = ExtResource("6_q1lyb")
 ActionType = 0
 ClickCost = SubResource("Resource_fl6vu")
 DisplayName = ""
 Description = ""
 
 [sub_resource type="Resource" id="Resource_xodbn"]
-script = ExtResource("6_5frfn")
+script = ExtResource("6_q1lyb")
 ActionType = 0
 ClickCost = SubResource("Resource_fl6vu")
 DisplayName = ""
 Description = ""
 
 [sub_resource type="Resource" id="Resource_5m8n6"]
-script = ExtResource("6_5frfn")
+script = ExtResource("6_q1lyb")
 ActionType = 0
 ClickCost = SubResource("Resource_fl6vu")
 DisplayName = ""
 Description = ""
 
 [sub_resource type="Resource" id="Resource_x655m"]
-script = ExtResource("6_5frfn")
+script = ExtResource("6_q1lyb")
 ActionType = 0
 ClickCost = SubResource("Resource_fl6vu")
 DisplayName = ""
 Description = ""
 
 [sub_resource type="Resource" id="Resource_wfhi6"]
-script = ExtResource("6_5frfn")
+script = ExtResource("6_q1lyb")
 ActionType = 0
 ClickCost = SubResource("Resource_fl6vu")
 DisplayName = ""
 Description = ""
 
 [sub_resource type="Resource" id="Resource_6loh0"]
-script = ExtResource("6_5frfn")
+script = ExtResource("6_q1lyb")
 ActionType = 0
 ClickCost = SubResource("Resource_fl6vu")
 DisplayName = ""
 Description = ""
 
 [sub_resource type="Resource" id="Resource_vh1g6"]
-script = ExtResource("6_5frfn")
+script = ExtResource("6_q1lyb")
 ActionType = 0
 ClickCost = SubResource("Resource_fl6vu")
 DisplayName = ""
 Description = ""
 
 [sub_resource type="Resource" id="Resource_28i5n"]
-script = ExtResource("6_5frfn")
+script = ExtResource("6_q1lyb")
 ActionType = 0
 ClickCost = SubResource("Resource_fl6vu")
 DisplayName = ""
 Description = ""
 
 [sub_resource type="Resource" id="Resource_cri4k"]
-script = ExtResource("6_5frfn")
+script = ExtResource("6_q1lyb")
 ActionType = 0
 ClickCost = SubResource("Resource_fl6vu")
 DisplayName = ""
 Description = ""
 
 [sub_resource type="Resource" id="Resource_cti45"]
-script = ExtResource("6_5frfn")
+script = ExtResource("6_q1lyb")
 ActionType = 0
 ClickCost = SubResource("Resource_fl6vu")
 DisplayName = ""
 Description = ""
 
+[sub_resource type="Resource" id="Resource_amh2v"]
+script = ExtResource("5_h1x13")
+LifeForce = 0
+Substance = 0
+Flow = 0
+Breath = 0
+Energy = 0
+
 [sub_resource type="Resource" id="Resource_7anqk"]
-script = ExtResource("6_5frfn")
+script = ExtResource("6_q1lyb")
 ActionType = 0
-ClickCost = SubResource("Resource_fl6vu")
+ClickCost = SubResource("Resource_amh2v")
 DisplayName = ""
 Description = ""
 
 [sub_resource type="Resource" id="Resource_6gocw"]
-script = ExtResource("6_5frfn")
-ActionType = 0
+script = ExtResource("6_q1lyb")
+ActionType = 1
 ClickCost = SubResource("Resource_fl6vu")
-DisplayName = ""
-Description = ""
+DisplayName = "Cancel"
+Icon = ExtResource("16_lgkim")
+Description = "Cancel placing tower"
 
 [sub_resource type="Resource" id="Resource_62bdq"]
-script = ExtResource("6_5frfn")
+script = ExtResource("6_q1lyb")
 ActionType = 1
 ClickCost = SubResource("Resource_fl6vu")
 DisplayName = ""
 Description = ""
 
 [sub_resource type="Resource" id="Resource_k6g0y"]
-script = ExtResource("6_5frfn")
+script = ExtResource("6_q1lyb")
 ActionType = 1
 ClickCost = SubResource("Resource_fl6vu")
 DisplayName = ""
 Description = ""
 
 [sub_resource type="Resource" id="Resource_dkaoh"]
-script = ExtResource("6_5frfn")
+script = ExtResource("6_q1lyb")
 ActionType = 1
 ClickCost = SubResource("Resource_fl6vu")
 DisplayName = ""
 Description = ""
 
 [sub_resource type="Resource" id="Resource_psakw"]
-script = ExtResource("6_5frfn")
+script = ExtResource("6_q1lyb")
 ActionType = 1
 ClickCost = SubResource("Resource_fl6vu")
 DisplayName = ""
 Description = ""
+
+[sub_resource type="Resource" id="Resource_86fv1"]
+script = ExtResource("6_q1lyb")
+ActionType = 0
+ClickCost = SubResource("Resource_amh2v")
+DisplayName = ""
+Description = "
+"
 
 [node name="UI Canvas Layer" type="CanvasLayer"]
 layer = 100
@@ -191,10 +192,6 @@ RequiredState = 1
 
 [node name="Button_01" parent="State Commands - Placement" instance=ExtResource("3_0wfvo")]
 position = Vector2(-22, -83)
-ActionParams = SubResource("Resource_rd0ix")
-
-[node name="Cancel Placement" type="Node" parent="State Commands - Placement/Button_01"]
-script = ExtResource("17_krr7h")
 
 [node name="Button_02" parent="State Commands - Placement" instance=ExtResource("3_0wfvo")]
 position = Vector2(42, -83)
@@ -251,6 +248,9 @@ ActionParams = SubResource("Resource_7anqk")
 [node name="Button_15" parent="State Commands - Placement" instance=ExtResource("3_0wfvo")]
 position = Vector2(234, 45)
 ActionParams = SubResource("Resource_6gocw")
+
+[node name="Cancel Placement" type="Node" parent="State Commands - Placement/Button_15"]
+script = ExtResource("17_krr7h")
 
 [node name="State Commands - Free" type="Node2D" parent="."]
 position = Vector2(410, 1003)
@@ -338,7 +338,61 @@ ActionParams = SubResource("Resource_7anqk")
 
 [node name="Button_15" parent="State Commands - Free" instance=ExtResource("3_0wfvo")]
 position = Vector2(234, 45)
+ActionParams = SubResource("Resource_86fv1")
+
+[node name="State Commands - Tower" type="Node2D" parent="."]
+position = Vector2(410, 1003)
+script = ExtResource("3_ho7kd")
+RequiredState = 2
+
+[node name="Button_01" parent="State Commands - Tower" instance=ExtResource("3_0wfvo")]
+position = Vector2(-22, -83)
+
+[node name="Button_02" parent="State Commands - Tower" instance=ExtResource("3_0wfvo")]
+position = Vector2(42, -83)
+
+[node name="Button_03" parent="State Commands - Tower" instance=ExtResource("3_0wfvo")]
+position = Vector2(106, -83)
+
+[node name="Button_04" parent="State Commands - Tower" instance=ExtResource("3_0wfvo")]
+position = Vector2(170, -83)
+
+[node name="Button_05" parent="State Commands - Tower" instance=ExtResource("3_0wfvo")]
+position = Vector2(234, -83)
+
+[node name="Button_06" parent="State Commands - Tower" instance=ExtResource("3_0wfvo")]
+position = Vector2(-22, -19)
+
+[node name="Button_07" parent="State Commands - Tower" instance=ExtResource("3_0wfvo")]
+position = Vector2(42, -19)
+
+[node name="Button_08" parent="State Commands - Tower" instance=ExtResource("3_0wfvo")]
+position = Vector2(106, -19)
+
+[node name="Button_09" parent="State Commands - Tower" instance=ExtResource("3_0wfvo")]
+position = Vector2(170, -19)
+
+[node name="Button_10" parent="State Commands - Tower" instance=ExtResource("3_0wfvo")]
+position = Vector2(234, -19)
+
+[node name="Button_11" parent="State Commands - Tower" instance=ExtResource("3_0wfvo")]
+position = Vector2(-22, 45)
+
+[node name="Button_12" parent="State Commands - Tower" instance=ExtResource("3_0wfvo")]
+position = Vector2(42, 45)
+
+[node name="Button_13" parent="State Commands - Tower" instance=ExtResource("3_0wfvo")]
+position = Vector2(106, 45)
+
+[node name="Button_14" parent="State Commands - Tower" instance=ExtResource("3_0wfvo")]
+position = Vector2(170, 45)
+
+[node name="Button_15" parent="State Commands - Tower" instance=ExtResource("3_0wfvo")]
+position = Vector2(234, 45)
 ActionParams = SubResource("Resource_6gocw")
+
+[node name="Cancel Tower" type="Node" parent="State Commands - Tower/Button_15"]
+script = ExtResource("17_krr7h")
 
 [node name="DetailPanel" parent="." instance=ExtResource("4_2ycw0")]
 position = Vector2(676, 888)
