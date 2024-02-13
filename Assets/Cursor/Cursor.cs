@@ -21,6 +21,7 @@ public partial class Cursor : Node2D
 	[Signal] public delegate void SelectableExitedEventHandler();
 	[Signal] public delegate void SetFixedObjectEventHandler(Data_Hoverable NewFixedObject);
 	[Signal] public delegate void ClearFixedObjectEventHandler();
+	[Signal] public delegate void AnyStateActionsChangedEventHandler(Godot.Collections.Array<Data_Action> NewActions);
 
     public override void _EnterTree()
     {
@@ -159,6 +160,13 @@ public partial class Cursor : Node2D
 		return Cursor.Singleton.HoverList.Count > 0;
 	}
 
+	public static Node2D GetSelectedObject()
+	{
+		if (Cursor.Singleton == null) return null;
+		if (Cursor.Singleton.StateStack.Count <= 0) return null;
+		return Cursor.Singleton.StateStack.Peek().GetSelectedObject();
+	}
+
 	// Event bus functions
 	public static bool Register(String DelegateName, Callable Receiver)
     {
@@ -181,6 +189,7 @@ public partial class Cursor : Node2D
 public interface ICursorState
 {
 	public ECursorState GetState();
+	public Node2D GetSelectedObject();
 	public void OnEnable();
 	public void OnDisable();
 	public void OnClick();

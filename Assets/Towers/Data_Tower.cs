@@ -5,13 +5,13 @@ using Godot.Collections;
 [GlobalClass]
 public partial class Data_Tower : Data_Hoverable
 {
-    [Export] public R_Cost Cost = new();
-    [Export] public float BuildTime;
-    [Export] public bool NeedsSparkFlag = false;
-    [Export] public bool NeedsGrassFlag = true;
-    [Export] public bool CanBuildOnGrass = true;
-    [Export] public bool CanBuildOnDirt = false;
-    [Export] public bool CanBuildOnWater = false;
-    [Export] public bool CanBuildOnChasm = false;
-    [Export] public bool CanBuildOnStone = false;
+    [Export] public R_Cost Cost { get; protected set; } = new();
+    [Export] public float BuildTime { get; protected set; } = 0.0f;
+    [Export] public bool NeedsSparkFlag { get; protected set; } = false;
+    [Export] public bool NeedsGrassFlag { get; protected set; } = true;
+    [Export] public bool CanBuildOnGrass { get; protected set; } = true;
+    [Export] public bool CanBuildOnDirt { get; protected set; } = false;
+    [Export] public bool CanBuildOnWater { get; protected set; } = false;
+    [Export] public bool CanBuildOnChasm { get; protected set; } = false;
+    [Export] public bool CanBuildOnStone { get; protected set; } = false;
 }

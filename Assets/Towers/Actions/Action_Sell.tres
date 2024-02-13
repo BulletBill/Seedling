@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="Data_Action" load_steps=5 format=3 uid="uid://dr2317w84u581"]
 
 [ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="1_al6ul"]
-[ext_resource type="Script" path="res://Assets/Towers/Actions/Data_Action.cs" id="1_lkj4l"]
 [ext_resource type="Texture2D" uid="uid://dabjqho85uam6" path="res://Assets/Art/Icons/Sell.png" id="2_2fj06"]
+[ext_resource type="Script" path="res://Assets/Interface/CommandList/Data_Action.cs" id="3_cqnna"]
 
 [sub_resource type="Resource" id="Resource_r2rgi"]
 script = ExtResource("1_al6ul")
@@ -13,9 +13,10 @@ Breath = 0
 Energy = 0
 
 [resource]
-script = ExtResource("1_lkj4l")
-ActionType = 2
+script = ExtResource("3_cqnna")
+ActionType = 3
 ClickCost = SubResource("Resource_r2rgi")
+DesiredPosition = 0
 DisplayName = "Sell"
 Icon = ExtResource("2_2fj06")
-Description = ""
+Description = "Sell this tower for half of its cost."

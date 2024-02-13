@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Data_Action" load_steps=5 format=3 uid="uid://b8gy007rlkg1y"]
+
+[ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="1_loo04"]
+[ext_resource type="Texture2D" uid="uid://302dkqm52l52" path="res://Assets/Art/Icons/Cancel.png" id="2_hk7pu"]
+[ext_resource type="Script" path="res://Assets/Interface/CommandList/Data_Action.cs" id="2_u2e4f"]
+
+[sub_resource type="Resource" id="Resource_fyd0l"]
+script = ExtResource("1_loo04")
+LifeForce = 0
+Substance = 0
+Flow = 0
+Breath = 0
+Energy = 0
+
+[resource]
+script = ExtResource("2_u2e4f")
+ActionType = 2
+ClickCost = SubResource("Resource_fyd0l")
+DesiredPosition = 14
+DisplayName = "Cancel"
+Icon = ExtResource("2_hk7pu")
+Description = "Cancel placing tower"

@@ -1,49 +1,61 @@
 using Godot;
 using System;
+using Godot.Collections;
 
 public partial class CommandList : Node2D
 {
-    [Export] public ECursorState RequiredState = ECursorState.Free;
+    //[Export] public ECursorState RequiredState = ECursorState.Free;
+    public Array<CommandButton> ButtonArray = new();
+
     public override void _EnterTree()
     {
-        Visible = false;
         Cursor.Register(Cursor.SignalName.AnyStateChanged, Callable.From(() => CursorStateChanged()));
+        Cursor.Register(Cursor.SignalName.AnyStateActionsChanged, Callable.From((Array<Data_Action> a) => ApplyActionArray(a)));
+
+        foreach (Node n in GetChildren())
+        if (n is CommandButton button)
+        {
+            ButtonArray.Add(button);
+            button.SetCursorState(Cursor.GetCurrentState());
+        }
     }
 
     public override void _Ready()
     {
-        foreach (Node n in GetChildren())
-        if (n is CommandButton button)
-        {
-            button.SetCursorState(RequiredState);
-        }
+        CursorStateChanged();
     }
 
-    public void TakeCommandsFromTower(Tower SelectedTower)
+    public void ApplyActionArray(Array<Data_Action> InArray)
     {
-        if (SelectedTower == null) return;
-        if (SelectedTower.Actions.Count <= 0) return;
-
-        int ActionIndex = 0;
-        foreach (Node n in GetChildren())
-        if (n is CommandButton button)
+        // Clear the buttons first
+        foreach (CommandButton button in ButtonArray)
         {
-            if (button.ActionParams.ActionType != EActionType.None) continue;
-            if (button.Preset) continue;
+            button.AssignActionParams(null);
+        }
 
-            if (ActionIndex < SelectedTower.Actions.Count)
+        if (InArray == null || InArray.Count <= 0) return;
+
+        // Drop each action into an empty slot, starting with its desired position
+        foreach (Data_Action action in InArray)
+        {
+            int TryButtonIndex = Math.Clamp(action.DesiredPosition, 0, ButtonArray.Count -1);
+            while (!ButtonArray[TryButtonIndex].Disabled)
             {
-                button.AssignActionParams(SelectedTower.Actions[ActionIndex++]);
+                TryButtonIndex++;
+                if (TryButtonIndex == action.DesiredPosition) break;
+                if (TryButtonIndex >= ButtonArray.Count) { TryButtonIndex = 0; }
             }
-            else
-            {
-                button.AssignActionParams(null);
-            }
+
+            ButtonArray[TryButtonIndex].AssignActionParams(action);
         }
     }
 
     void CursorStateChanged()
     {
-        Visible = Cursor.GetCurrentState() == RequiredState;
+        ECursorState CurrentState = Cursor.GetCurrentState();
+        foreach (CommandButton button in ButtonArray)
+        {
+            button.SetCursorState(CurrentState);
+        }
     }
 }

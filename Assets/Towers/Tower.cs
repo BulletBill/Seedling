@@ -69,39 +69,13 @@ public partial class Tower : Sprite2D, IHoverable
         }
 	}
 
-	public void PerformAction(int Index)
-	{
-		if (Index < 0 || Index >= Actions.Count) return;
-
-		switch (Actions[Index].ActionType)
-		{
-			case EActionType.Sell:
-				PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerDeselected);
-				Cursor.PopState();
-				SellTower();
-			break;
-			case EActionType.SelfUpgrade:
-				if (Actions[Index].TowerData != null)
-				{
-					//UpgradeTo(Actions[Index].UpgradeScene.Instantiate<Tower>());
-				}
-			break;
-			case EActionType.StatUpgrade:
-			break;
-			case EActionType.Cancel:
-			break;
-			default:
-			break;
-		}
-	}
-
 	public void SellTower()
 	{
 		if (TowerData == null || TowerData.Cost == null) return;
 		R_Cost Refund = TowerData.Cost * 0.50f;
 		if (Refund.LifeForce > 0)
 		{
-			PlayerEvent.Broadcast(PlayerEvent.SignalName.AddLifeforce, Refund.LifeForce);
+			PlayerEvent.Broadcast(PlayerEvent.SignalName.AddLifeforce, -TowerData.Cost.LifeForce);
 		}
 		if (Refund.Substance > 0)
 		{

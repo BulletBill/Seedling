@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Data_Action" load_steps=6 format=3 uid="uid://dn7f316sawy36"]
+
+[ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="1_uf8x2"]
+[ext_resource type="PackedScene" uid="uid://b3fxnt1sq3rjq" path="res://Assets/Towers/Genesis Heart/build-Genesis.tscn" id="2_esfgj"]
+[ext_resource type="Resource" uid="uid://cnxh15qnwr5eo" path="res://Assets/Towers/Genesis Heart/Data_Genesis.tres" id="3_vvbum"]
+[ext_resource type="Script" path="res://Assets/Interface/CommandList/Data_Action.cs" id="4_vljeg"]
+
+[sub_resource type="Resource" id="Resource_in2d3"]
+script = ExtResource("1_uf8x2")
+LifeForce = 0
+Substance = 0
+Flow = 0
+Breath = 0
+Energy = 0
+
+[resource]
+script = ExtResource("4_vljeg")
+ActionType = 1
+ClickCost = SubResource("Resource_in2d3")
+TowerData = ExtResource("3_vvbum")
+SceneToCreate = ExtResource("2_esfgj")
+DesiredPosition = -1
+DisplayName = ""
+Description = ""

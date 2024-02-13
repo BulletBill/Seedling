@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Reflection;
 
 public partial class S_Free : Node, ICursorState
 {
@@ -19,6 +20,7 @@ public partial class S_Free : Node, ICursorState
     public void OnEnable()
     {
         GD.Print("Cursor State changed to Free");
+        Cursor.Broadcast(Cursor.SignalName.AnyStateActionsChanged, ActionList);
     }
 	public void OnDisable()
     {
@@ -37,5 +39,10 @@ public partial class S_Free : Node, ICursorState
     }
 	public void OnMove(Vector2I NewMapPosition)
     {
+    }
+
+    public Node2D GetSelectedObject()
+    {
+        return null;
     }
 }

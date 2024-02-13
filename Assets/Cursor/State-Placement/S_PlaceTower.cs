@@ -3,6 +3,7 @@ using System;
 
 public partial class S_PlaceTower : Node, ICursorState
 {
+    [Export] public Godot.Collections.Array<Data_Action> StateActions;
     [Export] public Color GoodColor = new Color(0.0f, 1.0f, 0.0f, 0.5f);
     [Export] public Color BadColor = new Color(1.0f, 0.0f, 0.0f, 0.5f);
     Vector2I CurrentPosition = new();
@@ -121,6 +122,7 @@ public partial class S_PlaceTower : Node, ICursorState
         GD.Print("Cursor State changed to Placement");
         CachedTileMap = MainMap.Singleton;
         MainMap.AddOutlineActive(GridCode);
+        Cursor.Broadcast(Cursor.SignalName.AnyStateActionsChanged, StateActions);
     }
 	public void OnDisable()
     {
@@ -166,5 +168,10 @@ public partial class S_PlaceTower : Node, ICursorState
     public void OnEscape()
     {
         Cursor.PopState();
+    }
+
+    public Node2D GetSelectedObject()
+    {
+        return null;
     }
 }
