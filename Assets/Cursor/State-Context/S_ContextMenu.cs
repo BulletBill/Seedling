@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Reflection.Metadata.Ecma335;
 
 public partial class S_ContextMenu : Node, ICursorState
 {
@@ -33,6 +34,8 @@ public partial class S_ContextMenu : Node, ICursorState
 	}
 	public void OnDisable()
 	{
+		PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerDeselected);
+		Cursor.Broadcast(Cursor.SignalName.ClearFixedObject);
 		SelectedTower = null;
 	}
 	public void OnClick()
@@ -44,7 +47,6 @@ public partial class S_ContextMenu : Node, ICursorState
 	}
 	public void OnEscape()
 	{
-		PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerDeselected);
 		Cursor.PopState();
 	}
 	public void OnMove(Vector2I NewMapPosition) {}

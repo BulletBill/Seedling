@@ -1,14 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://2ekwlaa17gji"]
+[gd_scene load_steps=11 format=3 uid="uid://2ekwlaa17gji"]
 
 [ext_resource type="Script" path="res://Assets/Cursor/Cursor.cs" id="1_85qhr"]
+[ext_resource type="Texture2D" uid="uid://b8ur2pfxi2vw" path="res://Assets/Art/Interface/TileSelector.png" id="2_0m8gg"]
 [ext_resource type="Script" path="res://Assets/Cursor/State-Free/S_Free.cs" id="2_n2asr"]
 [ext_resource type="Resource" uid="uid://dn7f316sawy36" path="res://Assets/Cursor/State-Free/Build Heart.tres" id="3_rvwyd"]
 [ext_resource type="Script" path="res://Assets/Cursor/State-Placement/S_PlaceTower.cs" id="4_34ini"]
-[ext_resource type="Script" path="res://Assets/Cursor/S_ContextMenu.cs" id="4_e0tsg"]
 [ext_resource type="Resource" uid="uid://h3y81g2jm7ou" path="res://Assets/Cursor/State-Free/Build Sapling.tres" id="4_ja3rh"]
 [ext_resource type="Resource" uid="uid://cik314dnnfc82" path="res://Assets/Cursor/State-Free/Build Sunleaf.tres" id="5_hqwj6"]
 [ext_resource type="Resource" uid="uid://b8gy007rlkg1y" path="res://Assets/Cursor/State-Placement/Cancel.tres" id="5_rcaag"]
 [ext_resource type="Resource" uid="uid://bexh0mc38bpog" path="res://Assets/Cursor/State-Free/Build Buckthorn.tres" id="6_41ie5"]
+[ext_resource type="Script" path="res://Assets/Cursor/State-Context/S_ContextMenu.cs" id="10_ducrs"]
 
 [node name="Cursor" type="Node2D" node_paths=PackedStringArray("DefaultCursorState")]
 script = ExtResource("1_85qhr")
@@ -19,6 +20,12 @@ visible = false
 z_index = 10
 offset = Vector2(16, 16)
 
+[node name="TileSelector" type="Sprite2D" parent="."]
+visible = false
+top_level = true
+z_index = 20
+texture = ExtResource("2_0m8gg")
+
 [node name="State_Free" type="Node" parent="."]
 script = ExtResource("2_n2asr")
 ActionList = [ExtResource("3_rvwyd"), ExtResource("4_ja3rh"), ExtResource("5_hqwj6"), ExtResource("6_41ie5")]
@@ -28,6 +35,6 @@ script = ExtResource("4_34ini")
 StateActions = Array[Object]([ExtResource("5_rcaag")])
 
 [node name="State_ContextMenu" type="Node" parent="."]
-script = ExtResource("4_e0tsg")
+script = ExtResource("10_ducrs")
 
 [node name="State_OverlayMenu" type="Node" parent="."]

@@ -16,6 +16,11 @@ public partial class Tower : Sprite2D, IHoverable
 	public static readonly String GroupName = "Tower";
 	public Vector2I MapPosition = new();
 
+	public override void _EnterTree()
+	{
+		PlayerEvent.Register(PlayerEvent.SignalName.TowerDeselected, Callable.From(() => Deselected()));
+	}
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -64,9 +69,21 @@ public partial class Tower : Sprite2D, IHoverable
 		if (Cursor.PushState("State_ContextMenu") is S_ContextMenu ContextState)
         {
             ContextState.AssignTower(this);
-
-			//Make tower look selected
+			Cursor.Broadcast(Cursor.SignalName.SetFixedObject, TowerData);
+			PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerSelected, this);
+			AnimationPlayer Anim = GetNodeOrNull<AnimationPlayer>("HoverAnimator");
+			Anim?.Play("Hover");
         }
+	}
+
+	void Deselected()
+	{
+		HoverArea hoverArea = GetNodeOrNull<HoverArea>("HoverArea");
+		if (hoverArea != null && !hoverArea.Hovered && Cursor.GetSelectedObject() == this)
+		{
+			AnimationPlayer Anim = GetNodeOrNull<AnimationPlayer>("HoverAnimator");
+			Anim?.Play("Unhover");
+		}
 	}
 
 	public void SellTower()

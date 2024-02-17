@@ -13,6 +13,7 @@ public partial class Cursor : Node2D
 	int TileSize = 32;
 	float MapScale = 1.0f;
 	public Sprite2D PlacementGhost;
+	public Sprite2D TileSelector;
 	public List<HoverArea> HoverList {get; protected set;} = new();
 
 	// Signals
@@ -23,16 +24,23 @@ public partial class Cursor : Node2D
 	[Signal] public delegate void ClearFixedObjectEventHandler();
 	[Signal] public delegate void AnyStateActionsChangedEventHandler(Godot.Collections.Array<Data_Action> NewActions);
 
+	public Cursor()
+	{
+		Singleton = this;
+	}
+
     public override void _EnterTree()
     {
-        Cursor.Singleton = this;
+		PlayerEvent.Register(PlayerEvent.SignalName.TowerSelected, Callable.From((Tower t) => SetTileHighlight(t)));
+		PlayerEvent.Register(PlayerEvent.SignalName.TowerDeselected, Callable.From(() => ClearTileHighlight()));
     }
-    
+
 	public override void _Ready()
 	{
 		MapScale = MainMap.Singleton.GlobalScale.X;
 		TileSize = MainMap.GetTileSize();
 		PlacementGhost = GetNodeOrNull<Sprite2D>("PlacementGhost");
+		TileSelector = GetNodeOrNull<Sprite2D>("TileSelector");
 
 		if (PlacementGhost != null)
 		{
@@ -110,6 +118,24 @@ public partial class Cursor : Node2D
 			hoverArea.ForceMouseExit();
 		}
 		HoverList.Clear();
+	}
+
+	void SetTileHighlight(Tower TargetTower)
+	{
+		if (!IsInstanceValid(TileSelector)) return;
+		if (!IsInstanceValid(TargetTower))
+		{
+			TileSelector.Visible = false;
+			return;
+		}
+		TileSelector.Visible = true;
+		TileSelector.GlobalPosition = TargetTower.GlobalPosition;
+	}
+
+	void ClearTileHighlight()
+	{
+		if (!IsInstanceValid(TileSelector)) return;
+		TileSelector.Visible = false;
 	}
 
 	// Static accessors

@@ -8,7 +8,7 @@ public partial class HoverArea : Area2D
     [Export] public Array<ECursorState> ReactStates { get; protected set; } = new();
     IHoverable HoverParent;
     public bool Disabled { get; protected set; } = false;
-    bool Hovered = false;
+    public bool Hovered { get; protected set; } = false;
 
     [Signal] public delegate void ClickedEventHandler();
     // Called when the node enters the scene tree for the first time.

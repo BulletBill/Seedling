@@ -77,7 +77,7 @@ position = Vector2(676, 888)
 position = Vector2(1639, 888)
 
 [node name="DebugPanel" type="Node2D" parent="."]
-position = Vector2(1383, 894)
+position = Vector2(1377, 819)
 
 [node name="NinePatchRect" type="NinePatchRect" parent="DebugPanel"]
 self_modulate = Color(1, 1, 1, 0.490196)
