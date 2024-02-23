@@ -20,15 +20,21 @@ public partial class HoverArea : Area2D
     public void OnMouseEnter()
     {
         Hovered = true;
+        foreach (ECursorState state in ReactStates)
+        {
+            Cursor.AddHoverArea(this, state);
+        }
+
+        Activate();
+    }
+
+    public void Activate()
+    {
         if (ReactStates.Contains(Cursor.GetCurrentState()) && !Disabled)
         {
             ParentAnimator?.Play("Hover");
         }
 
-        foreach (ECursorState state in ReactStates)
-        {
-            Cursor.AddHoverArea(this, state);
-        }
         HoverParent?.OnHovered();
     }
 
@@ -39,13 +45,21 @@ public partial class HoverArea : Area2D
         {
             Cursor.RemoveHoverArea(this, state);
         }
-        if (ReactStates.Contains(Cursor.GetCurrentState()) == false) return;
-        if (!Disabled)
-        {
-            ParentAnimator?.Play("Unhover");
-        }
 
-        HoverParent?.ExitHovered();
+        Deactivate();
+    }
+
+    public void Deactivate()
+    {
+        if (ReactStates.Contains(Cursor.GetCurrentState()))
+        {
+            if (!Disabled)
+            {
+                ParentAnimator?.Play("Unhover");
+            }
+
+            HoverParent?.ExitHovered();
+        }
     }
 
     public void ForceMouseExit()

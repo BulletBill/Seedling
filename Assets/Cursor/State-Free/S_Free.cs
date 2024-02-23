@@ -21,10 +21,11 @@ public partial class S_Free : Cursor_State
     {
         GD.Print("Cursor State changed to Free");
         Cursor.Broadcast(Cursor.SignalName.AnyStateActionsChanged, ActionList);
+        if (HoverList.Count > 0){ HoverList[0].Activate(); }
     }
 	public override void OnDisable()
     {
-
+        if (HoverList.Count > 0){ HoverList[0].Deactivate(); }
     }
     public override void OnEscape()
     {

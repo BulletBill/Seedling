@@ -123,6 +123,7 @@ public partial class S_PlaceTower : Cursor_State
         CachedTileMap = MainMap.Singleton;
         MainMap.AddOutlineActive(GridCode);
         Cursor.Broadcast(Cursor.SignalName.AnyStateActionsChanged, StateActions);
+        if (HoverList.Count > 0){ HoverList[0].Activate(); }
     }
 	public override void OnDisable()
     {
@@ -130,6 +131,7 @@ public partial class S_PlaceTower : Cursor_State
         TowerData = null;
         PlacementIsValid = false;
         MainMap.RemoveOutlineActive(GridCode);
+        if (HoverList.Count > 0){ HoverList[0].Deactivate(); }
 
         if (ParentCursor == null) return;
         ParentCursor.PlacementGhost.Visible = false;
