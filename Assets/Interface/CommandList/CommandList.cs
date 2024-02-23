@@ -9,20 +9,20 @@ public partial class CommandList : Node2D
 
     public override void _EnterTree()
     {
-        Cursor.Register(Cursor.SignalName.AnyStateChanged, Callable.From(() => CursorStateChanged()));
+        //Cursor.Register(Cursor.SignalName.AnyStateChanged, Callable.From(() => CursorStateChanged()));
         Cursor.Register(Cursor.SignalName.AnyStateActionsChanged, Callable.From((Array<Data_Action> a) => ApplyActionArray(a)));
 
         foreach (Node n in GetChildren())
         if (n is CommandButton button)
         {
             ButtonArray.Add(button);
-            button.SetCursorState(Cursor.GetCurrentState());
+            //button.SetCursorState(Cursor.GetCurrentState());
         }
     }
 
     public override void _Ready()
     {
-        CursorStateChanged();
+        //CursorStateChanged();
     }
 
     public void ApplyActionArray(Array<Data_Action> InArray)
@@ -50,12 +50,12 @@ public partial class CommandList : Node2D
         }
     }
 
-    void CursorStateChanged()
-    {
-        ECursorState CurrentState = Cursor.GetCurrentState();
-        foreach (CommandButton button in ButtonArray)
-        {
-            button.SetCursorState(CurrentState);
-        }
-    }
+    //void CursorStateChanged()
+    //{
+        //ECursorState CurrentState = Cursor.GetCurrentState();
+        //foreach (CommandButton button in ButtonArray)
+        //{
+            //button.SetCursorState(CurrentState);
+        //}
+    //}
 }

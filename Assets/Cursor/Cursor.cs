@@ -7,14 +7,15 @@ using System.Runtime.InteropServices;
 public partial class Cursor : Node2D
 {
 	public static Cursor Singleton;
-	Stack<ICursorState> StateStack = new();
+	Stack<Cursor_State> StateStack = new();
 	[Export] public Node DefaultCursorState;
 	Vector2I CurrentTile = new();
 	int TileSize = 32;
 	float MapScale = 1.0f;
 	public Sprite2D PlacementGhost;
 	public Sprite2D TileSelector;
-	public List<HoverArea> HoverList {get; protected set;} = new();
+	//public List<HoverArea> HoverList {get; protected set;} = new();
+	public Dictionary<ECursorState, Cursor_State> StateList { get; protected set; } = new();
 
 	// Signals
 	[Signal] public delegate void AnyStateChangedEventHandler();
@@ -42,12 +43,20 @@ public partial class Cursor : Node2D
 		PlacementGhost = GetNodeOrNull<Sprite2D>("PlacementGhost");
 		TileSelector = GetNodeOrNull<Sprite2D>("TileSelector");
 
+		foreach(Node n in GetChildren())
+		{
+			if (n is Cursor_State ChildState)
+			{
+				StateList.Add(ChildState.GetState(), ChildState);
+			}
+		}
+
 		if (PlacementGhost != null)
 		{
 			PlacementGhost.GlobalScale = new Vector2(MapScale, MapScale);
 		}
 
-		if (DefaultCursorState is ICursorState cursorState)
+		if (DefaultCursorState is Cursor_State cursorState)
 		{
 			StateStack.Push(cursorState);
 			StateStack.Peek().OnEnable();
@@ -81,22 +90,22 @@ public partial class Cursor : Node2D
 		}
 	}
 
-	ICursorState PushState_Internal(String StateName)
+	Cursor_State PushState_Internal(String StateName)
 	{
-		ICursorState NewState = Cursor.Singleton.GetNodeOrNull<ICursorState>(StateName);
+		Cursor_State NewState = Cursor.Singleton.GetNodeOrNull<Cursor_State>(StateName);
 		if (NewState == null) return StateStack.Count > 0 ? StateStack.Peek() : null;
 
 		StateStack.Peek()?.OnDisable();
 		StateStack.Push(NewState);
 		NewState?.OnEnable();
 
-		FlushHoverList();
+		//FlushHoverList();
 
 		Broadcast(SignalName.AnyStateChanged);
 		return NewState;
 	}
 
-	ICursorState PopState_Internal()
+	Cursor_State PopState_Internal()
 	{
 		// Don't pop last state
 		if (StateStack.Count <= 1) return StateStack.Count > 0 ? StateStack.Peek() : null;
@@ -105,12 +114,13 @@ public partial class Cursor : Node2D
 		StateStack.Pop();
 		StateStack.Peek()?.OnEnable();
 
-		FlushHoverList();
+		//FlushHoverList();
 
 		Broadcast(SignalName.AnyStateChanged);
 		return StateStack.Peek();
 	}
 
+	/*
 	void FlushHoverList()
 	{
 		foreach (HoverArea hoverArea in HoverList)
@@ -119,6 +129,7 @@ public partial class Cursor : Node2D
 		}
 		HoverList.Clear();
 	}
+	*/
 
 	void SetTileHighlight(Tower TargetTower)
 	{
@@ -139,27 +150,32 @@ public partial class Cursor : Node2D
 	}
 
 	// Static accessors
-	public static void AddHoverArea(HoverArea AddedArea)
+	public static void AddHoverArea(HoverArea AddedArea, ECursorState state)
 	{
 		if (Cursor.Singleton == null) return;
-		if (Cursor.Singleton.HoverList.Contains(AddedArea)) return;
+		if (!Cursor.Singleton.StateList.ContainsKey(state)) return;
 
-		Cursor.Singleton.HoverList.Add(AddedArea);
+		if (!Cursor.Singleton.StateList[state].HoverList.Contains(AddedArea))
+		{
+			Cursor.Singleton.StateList[state].HoverList.Add(AddedArea);
+		}
 	}
 
-	public static void RemoveHoverArea(HoverArea RemovedArea)
+	public static void RemoveHoverArea(HoverArea RemovedArea, ECursorState state)
 	{
 		if (Cursor.Singleton == null) return;
-		Cursor.Singleton.HoverList.Remove(RemovedArea);
+		if (!Cursor.Singleton.StateList.ContainsKey(state)) return;
+
+		Cursor.Singleton.StateList[state].HoverList.Remove(RemovedArea);
 	}
 
-	public static ICursorState PushState(String StateName)
+	public static Cursor_State PushState(String StateName)
 	{
 		if (Cursor.Singleton == null) return null;
 		return Cursor.Singleton.PushState_Internal(StateName);
 	}
 
-	public static ICursorState PopState()
+	public static Cursor_State PopState()
 	{
 		if (Cursor.Singleton == null) return null;
 		return Cursor.Singleton.PopState_Internal();
@@ -183,7 +199,9 @@ public partial class Cursor : Node2D
 	public static bool IsOverHoverable()
 	{
 		if (Cursor.Singleton == null) return false;
-		return Cursor.Singleton.HoverList.Count > 0;
+		if (Cursor.Singleton.StateStack.Count <= 0) return false;
+
+		return Cursor.Singleton.StateStack.Peek().HoverList.Count > 0;
 	}
 
 	public static Node2D GetSelectedObject()
@@ -210,23 +228,4 @@ public partial class Cursor : Node2D
         if (Singleton == null) return Error.DoesNotExist;
         return Singleton.EmitSignal(EventName, args);
     }
-}
-
-public interface ICursorState
-{
-	public ECursorState GetState();
-	public Node2D GetSelectedObject();
-	public void OnEnable();
-	public void OnDisable();
-	public void OnClick();
-	public void OnEscape();
-	public void OnMove(Vector2I NewMapPosition);
-}
-
-public enum ECursorState
-{
-	Free,
-	Placement,
-	Menu_Context,
-	Menu_Pause,
 }

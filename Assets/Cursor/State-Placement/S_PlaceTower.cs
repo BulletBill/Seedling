@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class S_PlaceTower : Node, ICursorState
+public partial class S_PlaceTower : Cursor_State
 {
     [Export] public Godot.Collections.Array<Data_Action> StateActions;
     [Export] public Color GoodColor = new Color(0.0f, 1.0f, 0.0f, 0.5f);
@@ -41,12 +41,12 @@ public partial class S_PlaceTower : Node, ICursorState
         OnMove(CurrentPosition);
     }
     
-    public ECursorState GetState()
+    public override ECursorState GetState()
     {
         return ECursorState.Placement;
     }
 
-	public void OnMove(Vector2I NewMapPosition)
+	public override void OnMove(Vector2I NewMapPosition)
     {
         if (TowerData == null) return;
         if (CachedTileMap == null) { CachedTileMap = MainMap.Singleton; return; }
@@ -117,14 +117,14 @@ public partial class S_PlaceTower : Node, ICursorState
     }
 
     // Cursor state interface
-    public void OnEnable()
+    public override void OnEnable()
     {
-        GD.Print("Cursor State changed to Placement");
+          
         CachedTileMap = MainMap.Singleton;
         MainMap.AddOutlineActive(GridCode);
         Cursor.Broadcast(Cursor.SignalName.AnyStateActionsChanged, StateActions);
     }
-	public void OnDisable()
+	public override void OnDisable()
     {
         Cursor.Broadcast(Cursor.SignalName.ClearFixedObject);
         TowerData = null;
@@ -134,12 +134,12 @@ public partial class S_PlaceTower : Node, ICursorState
         if (ParentCursor == null) return;
         ParentCursor.PlacementGhost.Visible = false;
     }
-	public void OnClick()
+	public override void OnClick()
     {
         if (ParentCursor == null) return;
-        if (ParentCursor.HoverList.Count > 0)
+        if (HoverList.Count > 0)
         {
-            ParentCursor.HoverList[0].OnClick();
+            HoverList[0].OnClick();
             return;
         }
 
@@ -165,12 +165,12 @@ public partial class S_PlaceTower : Node, ICursorState
             Cursor.PopState();
         }
     }
-    public void OnEscape()
+    public override void OnEscape()
     {
         Cursor.PopState();
     }
 
-    public Node2D GetSelectedObject()
+    public override Node2D GetSelectedObject()
     {
         return null;
     }
