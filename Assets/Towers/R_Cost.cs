@@ -37,6 +37,18 @@ public partial class R_Cost : Resource
         return "";
     }
 
+    public String GetFullString()
+    {
+        String ret = "";
+        if (LifeForce > 0) { ret += GetString(ECurrencyType.Lifeforce) + " "; }
+        if (Substance > 0) { ret += GetString(ECurrencyType.Substance) + " "; }
+        if (Flow > 0) { ret += GetString(ECurrencyType.Flow) + " "; }
+        if (Breath > 0) { ret += GetString(ECurrencyType.Breath) + " "; }
+        if (Energy > 0) { ret += GetString(ECurrencyType.Energy); }
+
+        return ret;
+    }
+
     public static R_Cost operator* (R_Cost Self, float scalar)
     {
         R_Cost Result = new()

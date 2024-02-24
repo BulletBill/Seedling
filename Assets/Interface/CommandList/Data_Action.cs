@@ -42,4 +42,12 @@ public partial class Data_Action : Data_Hoverable
         DisplayName = "";
         Description = "";
     }
+
+    public override string GetFullDescription()
+    {
+        String CombinedDescription = ClickCost.GetFullString() + "\n";
+        CombinedDescription += Description;
+
+        return CombinedDescription;
+    }
 }

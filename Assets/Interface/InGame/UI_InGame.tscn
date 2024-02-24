@@ -22,7 +22,7 @@ z_index = 10
 position = Vector2(191, 888)
 
 [node name="Command Buttons" type="Node2D" parent="."]
-position = Vector2(410, 1003)
+position = Vector2(847, 1003)
 script = ExtResource("3_ho7kd")
 
 [node name="Button_01" parent="Command Buttons" instance=ExtResource("3_0wfvo")]
@@ -71,7 +71,7 @@ position = Vector2(170, 45)
 position = Vector2(234, 45)
 
 [node name="DetailPanel" parent="." instance=ExtResource("4_2ycw0")]
-position = Vector2(676, 888)
+position = Vector2(356, 888)
 
 [node name="ObjectiveDisplay" parent="." instance=ExtResource("3_xfso7")]
 position = Vector2(1639, 888)

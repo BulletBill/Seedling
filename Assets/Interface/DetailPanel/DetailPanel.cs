@@ -40,7 +40,7 @@ public partial class DetailPanel : Node2D
 		
 		if (Icon != null) { Icon.Texture = HoveredObject.Icon; }
 		if (Header != null) { Header.Text = HoveredObject.DisplayName; }
-		if (Body != null) { Body.Text = HoveredObject.Description; }
+		if (Body != null) { Body.Text = HoveredObject.GetFullDescription(); }
 	}
 
 	public void ObjectExitHovered()
@@ -63,7 +63,7 @@ public partial class DetailPanel : Node2D
 
 		FixedTexture = FixedObject.Icon;
 		FixedHeader = FixedObject.DisplayName;
-		FixedBody = FixedObject.Description;
+		FixedBody = FixedObject.GetFullDescription();
 		ObjectHovered(FixedObject);
 	}
 

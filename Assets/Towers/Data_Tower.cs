@@ -14,4 +14,12 @@ public partial class Data_Tower : Data_Hoverable
     [Export] public bool CanBuildOnWater { get; protected set; } = false;
     [Export] public bool CanBuildOnChasm { get; protected set; } = false;
     [Export] public bool CanBuildOnStone { get; protected set; } = false;
+
+    public override string GetFullDescription()
+    {
+        String CombinedDescription = Cost.GetFullString() + "\n";
+        CombinedDescription += Description;
+
+        return CombinedDescription;
+    }
 }
