@@ -45,9 +45,9 @@ public partial class Data_Action : Data_Hoverable
 
     public override string GetFullDescription()
     {
-        String CombinedDescription = ClickCost.GetFullString() + "\n";
-        CombinedDescription += Description;
+        //String CombinedDescription = ClickCost.GetFullString() + "\n";
+        //CombinedDescription += Description;
 
-        return CombinedDescription;
+        return Description;
     }
 }

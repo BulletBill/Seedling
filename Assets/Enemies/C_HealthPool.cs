@@ -12,6 +12,12 @@ public partial class C_HealthPool : Node2D
 
     public override void _Ready()
     {
+        // Handled by parent Enemy object using its data
+        //CalculateHealth();
+    }
+
+    public void CalculateHealth()
+    {
         StartingHealth = MathHelper.GetIntInRange(MinStartingHealth, MaxStartingHealth);
         CurrentHealth = StartingHealth;
         HealthVisual = GetNodeOrNull<ProgressBar>("HealthBar");

@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://hsbmxmqdvdp5"]
+
+[ext_resource type="Texture2D" uid="uid://3bps8k3gh1an" path="res://Assets/Art/Interface/TestFrame.png" id="1_v3juf"]
+[ext_resource type="Script" path="res://Assets/Interface/ObjectiveDisplay/WaveTimerDisplay.cs" id="2_1bk5x"]
+[ext_resource type="PackedScene" uid="uid://dlgl700nd4604" path="res://Assets/Interface/CommandList/CommandButton.tscn" id="2_v7iqe"]
+[ext_resource type="Theme" uid="uid://svogtundy1nx" path="res://Assets/Art/Interface/default_theme.tres" id="3_qrcuc"]
+[ext_resource type="Texture2D" uid="uid://iinbdvqjsk7n" path="res://Assets/Art/Icons/Clock Small.png" id="4_svg3j"]
+
+[node name="Wave Display - Timed" type="Node2D"]
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+offset_right = 263.0
+offset_bottom = 192.0
+texture = ExtResource("1_v3juf")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="Enemy_01" parent="." instance=ExtResource("2_v7iqe")]
+position = Vector2(38, 96)
+
+[node name="Timer" type="Node2D" parent="."]
+position = Vector2(8, 37)
+script = ExtResource("2_1bk5x")
+
+[node name="Progress" type="ProgressBar" parent="Timer"]
+offset_left = 2.0
+offset_top = 3.0
+offset_right = 245.0
+offset_bottom = 22.0
+theme = ExtResource("3_qrcuc")
+value = 50.0
+show_percentage = false
+
+[node name="Icon" type="Sprite2D" parent="Timer"]
+position = Vector2(9, -16)
+texture = ExtResource("4_svg3j")
+
+[node name="Wave" type="RichTextLabel" parent="Timer"]
+offset_left = 212.0
+offset_top = -33.0
+offset_right = 280.0
+offset_bottom = -1.0
+theme = ExtResource("3_qrcuc")
+text = "99"
+scroll_active = false
+
+[node name="Lives Text" type="RichTextLabel" parent="Timer"]
+offset_left = 19.0
+offset_top = -33.0
+offset_right = 248.0
+offset_bottom = -1.0
+theme = ExtResource("3_qrcuc")
+bbcode_enabled = true
+text = "Incoming Wave"
+scroll_active = false

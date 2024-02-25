@@ -1,19 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://c4nme8pyly5sa"]
+[gd_scene load_steps=11 format=3 uid="uid://c4nme8pyly5sa"]
 
 [ext_resource type="Script" path="res://Assets/Enemies/Enemy.cs" id="1_u2htd"]
+[ext_resource type="Resource" uid="uid://by1l3gp0tkyvm" path="res://Assets/Enemies/Clod-E1/Data_Clod.tres" id="2_4y1wy"]
 [ext_resource type="Script" path="res://Assets/Enemies/C_HealthPool.cs" id="2_8wvkh"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="2_cg2eq"]
-[ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="2_u7hwy"]
 [ext_resource type="Texture2D" uid="uid://qywtdmokjhr3" path="res://Assets/Enemies/Clod-E1/Art-Clod.png" id="4_k00w4"]
 [ext_resource type="Script" path="res://Assets/Core/Common/PausableAnimation.cs" id="6_fm4nr"]
-
-[sub_resource type="Resource" id="Resource_lixvw"]
-script = ExtResource("2_u7hwy")
-LifeForce = 0
-Substance = 2
-Flow = 0
-Breath = 0
-Energy = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1e1oq"]
 radius = 14.0357
@@ -84,7 +76,7 @@ collision_layer = 0
 collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_u2htd")
-Reward = SubResource("Resource_lixvw")
+Data = ExtResource("2_4y1wy")
 
 [node name="AlignToMap" type="Node2D" parent="."]
 script = ExtResource("2_cg2eq")

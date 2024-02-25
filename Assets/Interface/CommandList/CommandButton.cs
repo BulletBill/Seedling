@@ -6,6 +6,7 @@ public partial class CommandButton : Node2D, IHoverable
 	[Export] public Data_Action ActionParams = new();
 	//[Export] public ECursorState CursorState { get; protected set; } = ECursorState.Free;
 	bool CanAfford = false;
+	bool HasCost = false;
 	bool Hovered = false;
 	public bool Disabled { get; protected set; } = true;
 	HoverArea HoverArea;
@@ -64,7 +65,7 @@ public partial class CommandButton : Node2D, IHoverable
 			IconSprite.Texture = ActionParams.Icon;
 		}
 
-		CostReadout CostText = GetNodeOrNull<CostReadout>("Cost");
+		CostReadout CostText = GetNodeOrNull<CostReadout>("Cost/Cost Text");
 		if (CostText != null && ActionParams.ActionType != EActionType.None)
 		{
 			CostText.SetCosts(ActionParams.ClickCost);
@@ -82,6 +83,7 @@ public partial class CommandButton : Node2D, IHoverable
 	void UpdateCosts(bool ForceUpdate)
 	{
 		if (ActionParams == null || ActionParams.ActionType == EActionType.None) return;
+		HasCost = !ActionParams.ClickCost.IsZero();
 		bool CanAffordNow = Player.CanAfford(ActionParams.ClickCost);
 		if (CanAfford == CanAffordNow && !ForceUpdate) return;
 
@@ -152,12 +154,26 @@ public partial class CommandButton : Node2D, IHoverable
 	{
 		Hovered = true;
 		Cursor.Broadcast(Cursor.SignalName.SelectableHovered, ActionParams);
+		if (HasCost)
+		{
+			NinePatchRect CostContainer = GetNodeOrNull<NinePatchRect>("Cost");
+			if (CostContainer != null)
+			{
+				CostContainer.Visible = true;
+			}
+		}
 	}
 
 	public void ExitHovered()
 	{
 		Hovered = false;
 		Cursor.Broadcast(Cursor.SignalName.SelectableExited);
+
+		NinePatchRect CostContainer = GetNodeOrNull<NinePatchRect>("Cost");
+		if (CostContainer != null)
+		{
+			CostContainer.Visible = false;
+		}
 	}
 
 	void Execute_BuildTower()

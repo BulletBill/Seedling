@@ -5,10 +5,11 @@ public partial class Enemy : CharacterBody2D
 {
 	public static readonly float SeekInterval = 1.0f;
 	public static readonly String EnemyGroup = "Enemy";
-	[Export] public int SpawnCost = 1;
-	[Export] public int PlayerDamage = 1;
-	[Export] public float Speed = 40.0f;
-	[Export] public R_Cost Reward = new();
+	[Export] public Data_Enemy Data = new();
+	//[Export] public int SpawnCost = 1;
+	//[Export] public int PlayerDamage = 1;
+	//[Export] public float Speed = 40.0f;
+	//[Export] public R_Cost Reward = new();
 	public bool Active = false;
 	NavigationAgent2D Nav;
 	float SeekTimer;
@@ -28,6 +29,12 @@ public partial class Enemy : CharacterBody2D
 			Nav.TargetPosition = Player.DefendTargets[MathHelper.GetIntInRange(0, Player.DefendTargets.Count - 1)].GlobalPosition;
 		}
 		HealthPool = GetNodeOrNull<C_HealthPool>("HealthPool");
+		if (HealthPool != null)
+		{
+			HealthPool.MinStartingHealth = Data.HealthRange.X;
+			HealthPool.MaxStartingHealth = Data.HealthRange.Y;
+			HealthPool.CalculateHealth();
+		}
 		//MakePath();
 	}
 
@@ -49,13 +56,13 @@ public partial class Enemy : CharacterBody2D
 		if (Nav == null) return;
 		if (!TargetReachable) return;
         Vector2 NextMove = Nav.GetNextPathPosition();
-		Velocity = (NextMove - GlobalPosition).Normalized() * (Speed * Game.GetSpeed());
+		Velocity = (NextMove - GlobalPosition).Normalized() * (Data.Speed * Game.GetSpeed());
 		MoveAndSlide();
 
 		DistanceToTarget = Nav.DistanceToTarget();
 		if (DistanceToTarget < MainMap.GetTileSize())
 		{
-			PlayerEvent.Bus.EmitSignal(PlayerEvent.SignalName.LoseLife, PlayerDamage);
+			PlayerEvent.Bus.EmitSignal(PlayerEvent.SignalName.LoseLife, Data.PlayerDamage);
 			QueueFree();
 		}
     }
@@ -87,23 +94,23 @@ public partial class Enemy : CharacterBody2D
 	public void Die()
 	{
 		// Reward player
-		if (Reward.Substance > 0)
+		if (Data.Reward.Substance > 0)
 		{
-			PlayerEvent.Broadcast(PlayerEvent.SignalName.AddSubstance, Reward.Substance);
+			PlayerEvent.Broadcast(PlayerEvent.SignalName.AddSubstance, Data.Reward.Substance);
 		}
-		if (Reward.Flow > 0)
+		if (Data.Reward.Flow > 0)
 		{
-			PlayerEvent.Broadcast(PlayerEvent.SignalName.AddFlow, Reward.Flow);
+			PlayerEvent.Broadcast(PlayerEvent.SignalName.AddFlow, Data.Reward.Flow);
 		}
-		if (Reward.Breath > 0)
+		if (Data.Reward.Breath > 0)
 		{
-			PlayerEvent.Broadcast(PlayerEvent.SignalName.AddBreath, Reward.Breath);
+			PlayerEvent.Broadcast(PlayerEvent.SignalName.AddBreath, Data.Reward.Breath);
 		}
-		if (Reward.Energy > 0)
+		if (Data.Reward.Energy > 0)
 		{
-			PlayerEvent.Broadcast(PlayerEvent.SignalName.AddEnergy, Reward.Energy);
+			PlayerEvent.Broadcast(PlayerEvent.SignalName.AddEnergy, Data.Reward.Energy);
 		}
-		EffectsManager.SpawnResourceCluster(GlobalPosition, Reward.Substance, Reward.Flow, Reward.Breath, Reward.Energy);
+		EffectsManager.SpawnResourceCluster(GlobalPosition, Data.Reward.Substance, Data.Reward.Flow, Data.Reward.Breath, Data.Reward.Energy);
 
 		// Actually die
 		QueueFree();

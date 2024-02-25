@@ -136,6 +136,7 @@ text = "99"
 scroll_active = false
 
 [node name="Timer" type="Node2D" parent="."]
+visible = false
 position = Vector2(0.5, 99.5)
 script = ExtResource("6_ldab5")
 

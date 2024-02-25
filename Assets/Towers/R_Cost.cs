@@ -49,6 +49,11 @@ public partial class R_Cost : Resource
         return ret;
     }
 
+    public bool IsZero()
+    {
+        return LifeForce == 0 && Substance == 0 && Flow == 0 && Breath == 0 && Energy == 0;
+    }
+
     public static R_Cost operator* (R_Cost Self, float scalar)
     {
         R_Cost Result = new()
