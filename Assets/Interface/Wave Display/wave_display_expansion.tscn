@@ -1,0 +1,116 @@
+[gd_scene load_steps=7 format=3 uid="uid://bwrvvfdc106m0"]
+
+[ext_resource type="Script" path="res://Assets/Interface/Wave Display/EnemyDisplayList.cs" id="1_ai6o5"]
+[ext_resource type="Texture2D" uid="uid://3bps8k3gh1an" path="res://Assets/Art/Interface/TestFrame.png" id="2_kifwm"]
+[ext_resource type="Script" path="res://Assets/Interface/ObjectiveDisplay/ExpansionDisplay.cs" id="3_sjk1i"]
+[ext_resource type="Theme" uid="uid://svogtundy1nx" path="res://Assets/Art/Interface/default_theme.tres" id="4_2uxvh"]
+[ext_resource type="Texture2D" uid="uid://brtlf65prxos0" path="res://Assets/Towers/Sapling/Art-Sapling.png" id="5_relc7"]
+[ext_resource type="PackedScene" uid="uid://dgu22bvjeyo73" path="res://Assets/Interface/Wave Display/EnemyDisplay.tscn" id="6_fn370"]
+
+[node name="Wave Display - Timed" type="Node2D"]
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+offset_right = 263.0
+offset_bottom = 192.0
+texture = ExtResource("2_kifwm")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="Timer" type="Node2D" parent="."]
+position = Vector2(8, 37)
+script = ExtResource("3_sjk1i")
+
+[node name="Progress" type="ProgressBar" parent="Timer"]
+offset_left = 2.0
+offset_top = 3.0
+offset_right = 245.0
+offset_bottom = 22.0
+mouse_filter = 2
+theme = ExtResource("4_2uxvh")
+value = 50.0
+show_percentage = false
+
+[node name="Wave" type="RichTextLabel" parent="Timer"]
+offset_left = 212.0
+offset_top = -33.0
+offset_right = 252.0
+offset_bottom = -1.0
+mouse_filter = 2
+theme = ExtResource("4_2uxvh")
+text = "99"
+scroll_active = false
+
+[node name="Icon" type="Sprite2D" parent="Timer"]
+position = Vector2(10.5, -16)
+texture = ExtResource("5_relc7")
+
+[node name="Label" type="RichTextLabel" parent="Timer"]
+offset_left = 18.5
+offset_top = -33.0
+offset_right = 247.5
+offset_bottom = -1.0
+mouse_filter = 2
+theme = ExtResource("4_2uxvh")
+bbcode_enabled = true
+text = "Attract Wave"
+scroll_active = false
+
+[node name="Incoming Enemy Display" type="Node2D" parent="."]
+script = ExtResource("1_ai6o5")
+WaveType = 2
+
+[node name="EnemyDisplay_01" parent="Incoming Enemy Display" instance=ExtResource("6_fn370")]
+position = Vector2(26, 83)
+
+[node name="EnemyDisplay_02" parent="Incoming Enemy Display" instance=ExtResource("6_fn370")]
+position = Vector2(68, 83)
+
+[node name="EnemyDisplay_03" parent="Incoming Enemy Display" instance=ExtResource("6_fn370")]
+position = Vector2(110, 83)
+
+[node name="EnemyDisplay_04" parent="Incoming Enemy Display" instance=ExtResource("6_fn370")]
+position = Vector2(152, 83)
+
+[node name="EnemyDisplay_05" parent="Incoming Enemy Display" instance=ExtResource("6_fn370")]
+position = Vector2(194, 83)
+
+[node name="EnemyDisplay_06" parent="Incoming Enemy Display" instance=ExtResource("6_fn370")]
+position = Vector2(236, 83)
+
+[node name="EnemyDisplay_07" parent="Incoming Enemy Display" instance=ExtResource("6_fn370")]
+position = Vector2(26, 125)
+
+[node name="EnemyDisplay_08" parent="Incoming Enemy Display" instance=ExtResource("6_fn370")]
+position = Vector2(68, 125)
+
+[node name="EnemyDisplay_09" parent="Incoming Enemy Display" instance=ExtResource("6_fn370")]
+position = Vector2(110, 125)
+
+[node name="EnemyDisplay_10" parent="Incoming Enemy Display" instance=ExtResource("6_fn370")]
+position = Vector2(152, 125)
+
+[node name="EnemyDisplay_11" parent="Incoming Enemy Display" instance=ExtResource("6_fn370")]
+position = Vector2(194, 125)
+
+[node name="EnemyDisplay_12" parent="Incoming Enemy Display" instance=ExtResource("6_fn370")]
+position = Vector2(236, 125)
+
+[node name="EnemyDisplay_13" parent="Incoming Enemy Display" instance=ExtResource("6_fn370")]
+position = Vector2(26, 167)
+
+[node name="EnemyDisplay_14" parent="Incoming Enemy Display" instance=ExtResource("6_fn370")]
+position = Vector2(68, 167)
+
+[node name="EnemyDisplay_15" parent="Incoming Enemy Display" instance=ExtResource("6_fn370")]
+position = Vector2(110, 167)
+
+[node name="EnemyDisplay_16" parent="Incoming Enemy Display" instance=ExtResource("6_fn370")]
+position = Vector2(152, 167)
+
+[node name="EnemyDisplay_17" parent="Incoming Enemy Display" instance=ExtResource("6_fn370")]
+position = Vector2(194, 167)
+
+[node name="EnemyDisplay_18" parent="Incoming Enemy Display" instance=ExtResource("6_fn370")]
+position = Vector2(236, 167)

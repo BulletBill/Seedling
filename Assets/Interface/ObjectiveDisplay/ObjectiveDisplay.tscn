@@ -99,6 +99,7 @@ text = "99"
 scroll_active = false
 
 [node name="Waves Text" type="RichTextLabel" parent="."]
+visible = false
 offset_left = 4.0
 offset_top = 49.0
 offset_right = 278.0
@@ -110,6 +111,7 @@ text = "[center]Waves[/center]"
 scroll_active = false
 
 [node name="Expansion" type="Node2D" parent="."]
+visible = false
 position = Vector2(0.5, 79)
 script = ExtResource("8_p8dsb")
 

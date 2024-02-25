@@ -49,6 +49,10 @@ public partial class SpawnerBrain : Node
         {
             EnemyEvent.Broadcast(EnemyEvent.SignalName.ShowNextTimedWave, TimedWaves[0]);
         }
+        if (ExpansionWaves.Count > 0)
+        {
+            EnemyEvent.Broadcast(EnemyEvent.SignalName.ShowNextExpandWave, ExpansionWaves[0]);
+        }
     }
 
     public override void _Process(double delta)

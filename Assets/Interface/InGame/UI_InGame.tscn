@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://mmyy6s5sben4"]
+[gd_scene load_steps=13 format=3 uid="uid://mmyy6s5sben4"]
 
 [ext_resource type="PackedScene" uid="uid://qjqpjk4tct1" path="res://Assets/Interface/Minimap/MiniMap.tscn" id="2_drqwd"]
 [ext_resource type="PackedScene" uid="uid://bqo4ffahkqb78" path="res://Assets/Interface/CurrencyDisplay/CurrencyDisplay.tscn" id="2_ty7fb"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dynjwh5qcpo7t" path="res://Assets/Interface/ObjectiveDisplay/ObjectiveDisplay.tscn" id="3_xfso7"]
 [ext_resource type="PackedScene" uid="uid://cjvtnmut5ak7p" path="res://Assets/Interface/DetailPanel/DetailPanel.tscn" id="4_2ycw0"]
 [ext_resource type="PackedScene" uid="uid://hsbmxmqdvdp5" path="res://Assets/Interface/Wave Display/wave_display_timed.tscn" id="7_ryy0r"]
+[ext_resource type="PackedScene" uid="uid://bwrvvfdc106m0" path="res://Assets/Interface/Wave Display/wave_display_expansion.tscn" id="8_pduqw"]
 [ext_resource type="Texture2D" uid="uid://c4cqjktrt205k" path="res://Assets/Art/Interface/WindowBG.png" id="15_he6xn"]
 [ext_resource type="Script" path="res://Assets/Debug/Debug_Costs.cs" id="16_65wxc"]
 [ext_resource type="Script" path="res://Assets/Debug/Debug_Spawning.cs" id="17_wkykc"]
@@ -80,8 +81,8 @@ position = Vector2(1113, 888)
 [node name="Wave Display - Timed" parent="." instance=ExtResource("7_ryy0r")]
 position = Vector2(1395, 888)
 
-[node name="Wave Display - Expansion" type="Node2D" parent="."]
-position = Vector2(1679, 801)
+[node name="Wave Display - Expansion" parent="." instance=ExtResource("8_pduqw")]
+position = Vector2(1658, 888)
 
 [node name="DebugPanel" type="Node2D" parent="."]
 position = Vector2(1377, 819)

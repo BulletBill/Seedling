@@ -3,8 +3,16 @@ using System;
 using Godot.Collections;
 using System.Security;
 
+public enum EWaveType
+{
+    None,
+    Timed,
+    Expansion,
+}
+
 public partial class EnemyDisplayList : Node
 {
+    [Export] public EWaveType WaveType = EWaveType.Timed;
     public Array<EnemyDisplay> EnemyDisplayArray = new();
 
     public override void _EnterTree()
@@ -17,7 +25,14 @@ public partial class EnemyDisplayList : Node
             }
         }
 
-        EnemyEvent.Register(EnemyEvent.SignalName.ShowNextTimedWave, Callable.From((R_SpawnWave sw) => ApplySpawnWave(sw)));
+        if (WaveType == EWaveType.Timed)
+        {
+            EnemyEvent.Register(EnemyEvent.SignalName.ShowNextTimedWave, Callable.From((R_SpawnWave sw) => ApplySpawnWave(sw)));
+        }
+        else if (WaveType == EWaveType.Expansion)
+        {
+            EnemyEvent.Register(EnemyEvent.SignalName.ShowNextExpandWave, Callable.From((R_SpawnWave sw) => ApplySpawnWave(sw)));
+        }
     }
 
     void ApplySpawnWave(R_SpawnWave NextWave)
