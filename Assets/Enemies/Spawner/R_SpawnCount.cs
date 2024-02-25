@@ -4,6 +4,6 @@ using System;
 [GlobalClass]
 public partial class R_SpawnCount : Resource
 {
-    [Export] public PackedScene EnemyScene;
+    [Export] public R_Spawn SpawnData;
     [Export] public int Count = 0;
 }

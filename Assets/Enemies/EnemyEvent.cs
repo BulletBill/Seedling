@@ -10,6 +10,8 @@ public partial class EnemyEvent : Node
     [Signal] public delegate void WaveTimerChangedEventHandler(int SecondsUntilNextWave, int SecondsBetweenWaves);
     [Signal] public delegate void TimedWaveCountChangedEventHandler(int WaveCount);
     [Signal] public delegate void SetDisableSpawnsEventHandler(bool Disabled);
+    [Signal] public delegate void ShowNextTimedWaveEventHandler(R_SpawnWave NextWave);
+    [Signal] public delegate void ShowNextExpandWaveEventHandler(R_SpawnWave NextWave);
 
     public EnemyEvent()
     {
@@ -20,15 +22,6 @@ public partial class EnemyEvent : Node
     {
         
     }
-
-    /*
-    public static SpawnerBrain GetSpawnerBrain()
-    {
-        if (Singleton == null) return null;
-
-        return Singleton.GetNodeOrNull<SpawnerBrain>("SpawnerBrain");
-    }
-    */
 
     // Event bus functions
 	public static bool Register(String DelegateName, Callable Receiver)

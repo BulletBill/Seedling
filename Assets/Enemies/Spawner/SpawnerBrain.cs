@@ -45,6 +45,10 @@ public partial class SpawnerBrain : Node
         EnemyEvent.Broadcast(EnemyEvent.SignalName.PlayerExpansionChanged, ExpansionPerWave, ExpansionPerWave);
         EnemyEvent.Broadcast(EnemyEvent.SignalName.ExpansionWaveCountChanged, ExpansionIndex + 1);
         EnemyEvent.Broadcast(EnemyEvent.SignalName.TimedWaveCountChanged, TimedIndex + 1);
+        if (TimedWaves.Count > 0)
+        {
+            EnemyEvent.Broadcast(EnemyEvent.SignalName.ShowNextTimedWave, TimedWaves[0]);
+        }
     }
 
     public override void _Process(double delta)
@@ -114,7 +118,7 @@ public partial class SpawnerBrain : Node
         {
             for (int i = 0; i < SpawnCount.Count; i++)
             {
-                Enemy NewEnemy = SpawnCount.EnemyScene.InstantiateOrNull<Enemy>();
+                Enemy NewEnemy = SpawnCount.SpawnData.EnemyScene.InstantiateOrNull<Enemy>();
                 if (NewEnemy != null)
                 {
                     int SpawnerIndex = MathHelper.GetIntInRange(0, Spawners.Count - 1);

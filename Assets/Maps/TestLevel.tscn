@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dobwfdwefkg46"]
+[gd_scene load_steps=28 format=3 uid="uid://dobwfdwefkg46"]
 
 [ext_resource type="Script" path="res://Assets/Maps/Level.cs" id="1_803ym"]
 [ext_resource type="TileSet" uid="uid://se8ye8sftem5" path="res://Assets/Maps/Tilesets/TileSet_Main.tres" id="1_bmc26"]
@@ -14,10 +14,11 @@
 [ext_resource type="PackedScene" uid="uid://mmyy6s5sben4" path="res://Assets/Interface/InGame/UI_InGame.tscn" id="11_g5y1k"]
 [ext_resource type="Script" path="res://Assets/Enemies/Spawner/R_SpawnCount.cs" id="12_4rsco"]
 [ext_resource type="Script" path="res://Assets/Enemies/Spawner/R_SpawnWave.cs" id="13_l00jb"]
+[ext_resource type="Resource" uid="uid://by1l3gp0tkyvm" path="res://Assets/Enemies/Clod-E1/Data_Clod.tres" id="14_qkqo1"]
+[ext_resource type="Script" path="res://Assets/Enemies/Spawner/R_Spawn.cs" id="15_t8mhi"]
 
 [sub_resource type="Resource" id="Resource_hd6js"]
 script = ExtResource("12_4rsco")
-EnemyScene = ExtResource("11_2vq5p")
 Count = 5
 
 [sub_resource type="Resource" id="Resource_21dw2"]
@@ -26,7 +27,6 @@ SpawnCounts = [SubResource("Resource_hd6js")]
 
 [sub_resource type="Resource" id="Resource_dwrwj"]
 script = ExtResource("12_4rsco")
-EnemyScene = ExtResource("11_2vq5p")
 Count = 15
 
 [sub_resource type="Resource" id="Resource_5xfte"]
@@ -35,7 +35,6 @@ SpawnCounts = [SubResource("Resource_dwrwj")]
 
 [sub_resource type="Resource" id="Resource_4r73a"]
 script = ExtResource("12_4rsco")
-EnemyScene = ExtResource("11_2vq5p")
 Count = 30
 
 [sub_resource type="Resource" id="Resource_36diy"]
@@ -44,16 +43,20 @@ SpawnCounts = [SubResource("Resource_4r73a")]
 
 [sub_resource type="Resource" id="Resource_heend"]
 script = ExtResource("12_4rsco")
-EnemyScene = ExtResource("11_2vq5p")
 Count = 50
 
 [sub_resource type="Resource" id="Resource_kmp5r"]
 script = ExtResource("13_l00jb")
 SpawnCounts = [SubResource("Resource_heend")]
 
+[sub_resource type="Resource" id="Resource_03g7l"]
+script = ExtResource("15_t8mhi")
+EnemyScene = ExtResource("11_2vq5p")
+Data = ExtResource("14_qkqo1")
+
 [sub_resource type="Resource" id="Resource_wr1pf"]
 script = ExtResource("12_4rsco")
-EnemyScene = ExtResource("11_2vq5p")
+SpawnData = SubResource("Resource_03g7l")
 Count = 30
 
 [sub_resource type="Resource" id="Resource_p1vqq"]
