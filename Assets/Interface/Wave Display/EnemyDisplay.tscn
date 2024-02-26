@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Assets/Interface/Wave Display/EnemyDisplay.cs" id="1_vfkr3"]
 [ext_resource type="Texture2D" uid="uid://7fhu5lxwhvq5" path="res://Assets/Art/Interface/HoverBackground.png" id="2_ac0eq"]
-[ext_resource type="Texture2D" uid="uid://qywtdmokjhr3" path="res://Assets/Enemies/Clod-E1/Art-Clod.png" id="3_537sv"]
+[ext_resource type="Texture2D" uid="uid://ch3t8841qamrf" path="res://Assets/Enemies/Clod-E1/Art-Claude.png" id="3_d8yxt"]
 [ext_resource type="FontFile" uid="uid://d11gtt6p01ova" path="res://Assets/Art/Fonts/Font Data/Early GameBoy.ttf" id="4_6wbcr"]
 [ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Interface/Hover Area/HoverArea.tscn" id="5_7ofob"]
 
@@ -73,7 +73,8 @@ scale = Vector2(4.44444, 4.44444)
 texture = ExtResource("2_ac0eq")
 
 [node name="Icon" type="Sprite2D" parent="."]
-texture = ExtResource("3_537sv")
+rotation = 1.5708
+texture = ExtResource("3_d8yxt")
 
 [node name="Count" type="RichTextLabel" parent="."]
 offset_left = 1.0

@@ -93,12 +93,18 @@ position = Vector2(688, 208)
 
 [node name="EnemySpawner" parent="TileMap" instance=ExtResource("4_hf66m")]
 position = Vector2(-16, 336)
+MinSpawnTime = 0.8
+MaxSpawnTime = 1.2
 
 [node name="EnemySpawner2" parent="TileMap" instance=ExtResource("4_hf66m")]
 position = Vector2(528, 560)
+MinSpawnTime = 0.8
+MaxSpawnTime = 1.2
 
 [node name="EnemySpawner3" parent="TileMap" instance=ExtResource("4_hf66m")]
 position = Vector2(272, -16)
+MinSpawnTime = 0.8
+MaxSpawnTime = 1.2
 
 [node name="Camera2D" type="Camera2D" parent="."]
 z_index = 1000

@@ -15,6 +15,8 @@ public partial class Enemy : CharacterBody2D
 	float SeekTimer;
 	bool TargetReachable;
 	C_HealthPool HealthPool;
+	Sprite2D Image;
+	Sprite2D Shadow;
 
 	// Targeting Metrics
 	public float HealthPercent { get; protected set; } = 100.0f;
@@ -35,7 +37,8 @@ public partial class Enemy : CharacterBody2D
 			HealthPool.MaxStartingHealth = Data.HealthRange.Y;
 			HealthPool.CalculateHealth();
 		}
-		//MakePath();
+		Image = GetNodeOrNull<Sprite2D>("Image");
+		Shadow = GetNodeOrNull<Sprite2D>("Shadow");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -57,7 +60,10 @@ public partial class Enemy : CharacterBody2D
 		if (!TargetReachable) return;
         Vector2 NextMove = Nav.GetNextPathPosition();
 		Velocity = (NextMove - GlobalPosition).Normalized() * (Data.Speed * Game.GetSpeed());
+		Image?.LookAt(NextMove);
+		if (Shadow != null) { Shadow.Rotation = Image.Rotation; }
 		MoveAndSlide();
+		
 
 		DistanceToTarget = Nav.DistanceToTarget();
 		if (DistanceToTarget < MainMap.GetTileSize())
