@@ -1,14 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://dynjwh5qcpo7t"]
+[gd_scene load_steps=7 format=3 uid="uid://dynjwh5qcpo7t"]
 
 [ext_resource type="Texture2D" uid="uid://3bps8k3gh1an" path="res://Assets/Art/Interface/TestFrame.png" id="1_fo2xk"]
 [ext_resource type="Script" path="res://Assets/Interface/ObjectiveDisplay/LifeCounter.cs" id="2_3dkid"]
 [ext_resource type="Theme" uid="uid://svogtundy1nx" path="res://Assets/Art/Interface/default_theme.tres" id="3_hq4qm"]
 [ext_resource type="FontFile" uid="uid://dufvvujv6wpwq" path="res://Assets/Art/Fonts/Font Data/MonospaceTypewriter.ttf" id="5_buk8w"]
 [ext_resource type="Texture2D" uid="uid://cjl4aixbpkx80" path="res://Assets/Towers/Genesis Heart/Art-Genesis Tree.png" id="5_gdvfo"]
-[ext_resource type="Script" path="res://Assets/Interface/ObjectiveDisplay/WaveTimerDisplay.cs" id="6_ldab5"]
-[ext_resource type="Texture2D" uid="uid://iinbdvqjsk7n" path="res://Assets/Art/Icons/Clock Small.png" id="7_e183j"]
-[ext_resource type="Script" path="res://Assets/Interface/ObjectiveDisplay/ExpansionDisplay.cs" id="8_p8dsb"]
-[ext_resource type="Texture2D" uid="uid://brtlf65prxos0" path="res://Assets/Towers/Sapling/Art-Sapling.png" id="9_gxqyu"]
 
 [sub_resource type="FontFile" id="FontFile_kbrvm"]
 fallbacks = Array[Font]([ExtResource("5_buk8w")])
@@ -75,7 +71,7 @@ text = "[center]Life[/center]"
 scroll_active = false
 
 [node name="Lives" type="Node2D" parent="."]
-position = Vector2(1.5, 22.5)
+position = Vector2(1.5, 24.5)
 script = ExtResource("2_3dkid")
 
 [node name="Lives Bar" type="ProgressBar" parent="Lives"]
@@ -98,68 +94,26 @@ offset_bottom = 32.0
 text = "99"
 scroll_active = false
 
-[node name="Waves Text" type="RichTextLabel" parent="."]
-visible = false
+[node name="Goals Text" type="RichTextLabel" parent="."]
 offset_left = 4.0
-offset_top = 49.0
+offset_top = 55.0
 offset_right = 278.0
-offset_bottom = 81.0
+offset_bottom = 87.0
 theme = ExtResource("3_hq4qm")
 theme_override_fonts/normal_font = SubResource("FontFile_kbrvm")
 bbcode_enabled = true
-text = "[center]Waves[/center]"
+text = "[center]Goals[/center]"
 scroll_active = false
 
-[node name="Expansion" type="Node2D" parent="."]
-visible = false
-position = Vector2(0.5, 79)
-script = ExtResource("8_p8dsb")
+[node name="Goals" type="Node2D" parent="."]
 
-[node name="Progress" type="ProgressBar" parent="Expansion"]
-offset_left = 76.0
-offset_top = 5.0
-offset_right = 273.0
-offset_bottom = 22.0
-theme = ExtResource("3_hq4qm")
-value = 50.0
-show_percentage = false
-
-[node name="Icon" type="Sprite2D" parent="Expansion"]
-position = Vector2(22, 15)
-texture = ExtResource("9_gxqyu")
-
-[node name="Wave" type="RichTextLabel" parent="Expansion"]
-offset_left = 39.5
-offset_top = -4.0
-offset_right = 107.5
-offset_bottom = 28.0
-theme = ExtResource("3_hq4qm")
-text = "99"
-scroll_active = false
-
-[node name="Timer" type="Node2D" parent="."]
-visible = false
-position = Vector2(0.5, 99.5)
-script = ExtResource("6_ldab5")
-
-[node name="Progress" type="ProgressBar" parent="Timer"]
-offset_left = 76.0
-offset_top = 14.0
-offset_right = 273.0
-offset_bottom = 33.0
-theme = ExtResource("3_hq4qm")
-value = 50.0
-show_percentage = false
-
-[node name="Icon" type="Sprite2D" parent="Timer"]
-position = Vector2(22.5, 22.5)
-texture = ExtResource("7_e183j")
-
-[node name="Wave" type="RichTextLabel" parent="Timer"]
-offset_left = 39.5
-offset_top = 5.5
-offset_right = 107.5
-offset_bottom = 37.5
-theme = ExtResource("3_hq4qm")
-text = "99"
+[node name="Count" type="RichTextLabel" parent="Goals"]
+offset_left = 11.0
+offset_top = 84.0
+offset_right = 271.0
+offset_bottom = 182.0
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "Build 1 more Heart [img]res://Assets/Towers/Genesis Heart/Art-Genesis Tree.png[/img]
+Survive the final wave."
 scroll_active = false

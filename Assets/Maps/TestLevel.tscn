@@ -119,14 +119,14 @@ z_index = 50
 
 [node name="Player" parent="." instance=ExtResource("7_pkqfd")]
 
-[node name="EnemyController" type="Node2D" parent="."]
-script = ExtResource("9_x333f")
-
-[node name="SpawnerBrain" type="Node2D" parent="EnemyController"]
+[node name="SpawnerBrain" type="Node2D" parent="."]
 script = ExtResource("9_wbj8j")
 ExpansionPerWave = 20
 SecondsUntilNextWave = 150
 ExpansionWaves = [SubResource("Resource_kmp5r"), SubResource("Resource_cj7n8")]
 TimedWaves = [SubResource("Resource_p1vqq")]
+
+[node name="Enemy Bus" type="Node2D" parent="."]
+script = ExtResource("9_x333f")
 
 [node name="UI Canvas Layer" parent="." instance=ExtResource("11_g5y1k")]

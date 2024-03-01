@@ -12,6 +12,7 @@ public partial class EnemyEvent : Node
     [Signal] public delegate void SetDisableSpawnsEventHandler(bool Disabled);
     [Signal] public delegate void ShowNextTimedWaveEventHandler(R_SpawnWave NextWave);
     [Signal] public delegate void ShowNextExpandWaveEventHandler(R_SpawnWave NextWave);
+    [Signal] public delegate void EnemyDefeatedEventHandler(Enemy DefeatedEnemy);
 
     public EnemyEvent()
     {

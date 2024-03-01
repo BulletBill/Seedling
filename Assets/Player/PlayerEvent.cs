@@ -55,6 +55,9 @@ public partial class PlayerEvent : Node
     [Signal] public delegate void TowerSelectedEventHandler(Tower SelectedTower);
     [Signal] public delegate void TowerDeselectedEventHandler();
 
+    // Objective
+    [Signal] public delegate void PrimaryObjectiveUpdatedEventHandler(int ObjectiveCount);
+
     public PlayerEvent()
     {
         Bus = this;
