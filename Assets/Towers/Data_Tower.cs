@@ -5,6 +5,7 @@ using Godot.Collections;
 [GlobalClass]
 public partial class Data_Tower : Data_Hoverable
 {
+    [Export] public String Ident;
     [Export] public R_Cost Cost { get; protected set; } = new();
     [Export] public float BuildTime { get; protected set; } = 0.0f;
     [Export] public bool NeedsSparkFlag { get; protected set; } = false;

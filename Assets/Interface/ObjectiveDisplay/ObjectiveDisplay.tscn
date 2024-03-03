@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dynjwh5qcpo7t"]
+[gd_scene load_steps=8 format=3 uid="uid://dynjwh5qcpo7t"]
 
 [ext_resource type="Texture2D" uid="uid://3bps8k3gh1an" path="res://Assets/Art/Interface/TestFrame.png" id="1_fo2xk"]
 [ext_resource type="Script" path="res://Assets/Interface/ObjectiveDisplay/LifeCounter.cs" id="2_3dkid"]
 [ext_resource type="Theme" uid="uid://svogtundy1nx" path="res://Assets/Art/Interface/default_theme.tres" id="3_hq4qm"]
 [ext_resource type="FontFile" uid="uid://dufvvujv6wpwq" path="res://Assets/Art/Fonts/Font Data/MonospaceTypewriter.ttf" id="5_buk8w"]
 [ext_resource type="Texture2D" uid="uid://cjl4aixbpkx80" path="res://Assets/Towers/Genesis Heart/Art-Genesis Tree.png" id="5_gdvfo"]
+[ext_resource type="Script" path="res://Assets/Interface/ObjectiveDisplay/ObjectiveList.cs" id="6_r7hxu"]
 
 [sub_resource type="FontFile" id="FontFile_kbrvm"]
 fallbacks = Array[Font]([ExtResource("5_buk8w")])
@@ -106,8 +107,9 @@ text = "[center]Goals[/center]"
 scroll_active = false
 
 [node name="Goals" type="Node2D" parent="."]
+script = ExtResource("6_r7hxu")
 
-[node name="Count" type="RichTextLabel" parent="Goals"]
+[node name="Text" type="RichTextLabel" parent="Goals"]
 offset_left = 11.0
 offset_top = 84.0
 offset_right = 271.0

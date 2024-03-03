@@ -14,6 +14,7 @@ Energy = 0
 
 [resource]
 script = ExtResource("4_xuhh0")
+Ident = "Buckthorn"
 Cost = SubResource("Resource_4ujqw")
 BuildTime = 8.0
 NeedsSparkFlag = false

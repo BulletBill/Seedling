@@ -1,12 +1,13 @@
 using Godot;
 using System;
+using System.Security;
 
 public partial class Objectives : Node
 {
     [Export] public int BuildHearts = 1;
-    [Export] public String HeartName = "Genesis";
+    [Export] public String HeartName = "HeartBloom";
     [Export] public int BuildSunLeaf = 0;
-    [Export] public String SunleafName = "Sunleaf";
+    [Export] public String SunleafName = "SunLeaf";
     [Export] public bool SurviveFinalWave = true;
     int HeartsBuilt = 0;
     int SunLeavesBuilt = 0;
@@ -17,17 +18,35 @@ public partial class Objectives : Node
         PlayerEvent.Register(PlayerEvent.SignalName.TowerFinished, Callable.From((Tower t) => TowerFinishedBuilding(t)));
     }
 
+    public override void _Ready()
+    {
+        PlayerEvent.Broadcast(PlayerEvent.SignalName.HeartCountUpdated, BuildHearts);
+        PlayerEvent.Broadcast(PlayerEvent.SignalName.SunleafCountUpdated, BuildSunLeaf);
+        if (SurviveFinalWave == false)
+        {
+            PlayerEvent.Broadcast(PlayerEvent.SignalName.FinalWaveSurvived);
+        }
+    }
+
     void TowerFinishedBuilding(Tower FinishedTower)
     {
         if (IsInstanceValid(FinishedTower) == false) return;
 
-        if (FinishedTower.Name == HeartName)
+        if (FinishedTower.TowerData.Ident == HeartName)
         {
-            HeartsBuilt++;
+            if (HeartsBuilt < BuildHearts)
+            {
+                HeartsBuilt++;
+            }
+            PlayerEvent.Broadcast(PlayerEvent.SignalName.HeartCountUpdated, BuildHearts - HeartsBuilt);
         }
-        else if (FinishedTower.Name == SunleafName)
+        else if (FinishedTower.TowerData.Ident == SunleafName)
         {
-            SunLeavesBuilt++;
+            if (SunLeavesBuilt < BuildSunLeaf)
+            {
+                SunLeavesBuilt++;
+            }
+            PlayerEvent.Broadcast(PlayerEvent.SignalName.SunleafCountUpdated, BuildSunLeaf - SunLeavesBuilt);
         }
 
         if (!InFinalWave)
@@ -52,6 +71,8 @@ public partial class Objectives : Node
     {
         if (GetTree().GetNodesInGroup("Enemy").Count <= 0)
         {
+            PlayerEvent.Broadcast(PlayerEvent.SignalName.FinalWaveSurvived);
+
             //Victory!
             Level ParentLevel = GetParentOrNull<Level>();
             if (ParentLevel != null)

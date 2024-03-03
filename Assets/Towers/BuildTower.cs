@@ -40,6 +40,7 @@ public partial class BuildTower : Tower
         		if (NewTower == null) return;
         		NewTower.Position = Position;
         		MainMap.Singleton.AddChild(NewTower);
+				PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerFinished, NewTower);
 				QueueFree();
 			}
 		}

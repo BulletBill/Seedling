@@ -14,6 +14,7 @@ Energy = 0
 
 [resource]
 script = ExtResource("4_qok2u")
+Ident = "Sapling"
 Cost = SubResource("Resource_4ujqw")
 BuildTime = 10.0
 NeedsSparkFlag = false

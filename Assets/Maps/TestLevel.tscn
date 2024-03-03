@@ -1,8 +1,9 @@
-[gd_scene load_steps=26 format=3 uid="uid://dobwfdwefkg46"]
+[gd_scene load_steps=27 format=3 uid="uid://dobwfdwefkg46"]
 
 [ext_resource type="Script" path="res://Assets/Maps/Level.cs" id="1_803ym"]
 [ext_resource type="TileSet" uid="uid://se8ye8sftem5" path="res://Assets/Maps/Tilesets/TileSet_Main.tres" id="1_bmc26"]
 [ext_resource type="Script" path="res://Assets/Maps/MainMap.cs" id="2_2t1dw"]
+[ext_resource type="Script" path="res://Assets/Maps/Objectives.cs" id="2_mk7dt"]
 [ext_resource type="PackedScene" uid="uid://bltnii6x6epdm" path="res://Assets/Towers/Genesis Heart/genesis.tscn" id="4_bwwnp"]
 [ext_resource type="PackedScene" uid="uid://cqlpygxb75t08" path="res://Assets/Enemies/Spawner/EnemySpawner.tscn" id="4_hf66m"]
 [ext_resource type="Script" path="res://Assets/Maps/CameraController.cs" id="5_808yx"]
@@ -63,6 +64,11 @@ SpawnCounts = [SubResource("Resource_wr1pf")]
 position = Vector2(1, 0)
 script = ExtResource("1_803ym")
 
+[node name="Objectives" type="Node2D" parent="."]
+script = ExtResource("2_mk7dt")
+BuildHearts = 5
+BuildSunLeaf = 4
+
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
 position = Vector2(2, 0)
@@ -119,14 +125,14 @@ z_index = 50
 
 [node name="Player" parent="." instance=ExtResource("7_pkqfd")]
 
+[node name="Enemy Bus" type="Node2D" parent="."]
+script = ExtResource("9_x333f")
+
 [node name="SpawnerBrain" type="Node2D" parent="."]
 script = ExtResource("9_wbj8j")
 ExpansionPerWave = 20
 SecondsUntilNextWave = 150
 ExpansionWaves = [SubResource("Resource_kmp5r"), SubResource("Resource_cj7n8")]
 TimedWaves = [SubResource("Resource_p1vqq")]
-
-[node name="Enemy Bus" type="Node2D" parent="."]
-script = ExtResource("9_x333f")
 
 [node name="UI Canvas Layer" parent="." instance=ExtResource("11_g5y1k")]

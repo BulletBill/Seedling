@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://hsbmxmqdvdp5"]
 
 [ext_resource type="Texture2D" uid="uid://3bps8k3gh1an" path="res://Assets/Art/Interface/TestFrame.png" id="1_v3juf"]
-[ext_resource type="Script" path="res://Assets/Interface/ObjectiveDisplay/WaveTimerDisplay.cs" id="2_1bk5x"]
+[ext_resource type="Script" path="res://Assets/Interface/Wave Display/WaveTimerDisplay.cs" id="2_1bk5x"]
 [ext_resource type="Theme" uid="uid://svogtundy1nx" path="res://Assets/Art/Interface/default_theme.tres" id="3_qrcuc"]
 [ext_resource type="Texture2D" uid="uid://iinbdvqjsk7n" path="res://Assets/Art/Icons/Clock Small.png" id="4_svg3j"]
 [ext_resource type="Script" path="res://Assets/Interface/Wave Display/EnemyDisplayList.cs" id="5_6lty0"]

@@ -56,7 +56,9 @@ public partial class PlayerEvent : Node
     [Signal] public delegate void TowerDeselectedEventHandler();
 
     // Objective
-    [Signal] public delegate void PrimaryObjectiveUpdatedEventHandler(int ObjectiveCount);
+    [Signal] public delegate void HeartCountUpdatedEventHandler(int HeartCount);
+    [Signal] public delegate void SunleafCountUpdatedEventHandler(int SunleafCount);
+    [Signal] public delegate void FinalWaveSurvivedEventHandler();
 
     public PlayerEvent()
     {
