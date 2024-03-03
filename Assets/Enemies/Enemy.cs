@@ -81,6 +81,7 @@ public partial class Enemy : CharacterBody2D
 		if (!TargetReachable)
 		{
 			GD.PrintErr("Enemy.MakePath: " + Name + " cannot reach the target!");
+			QueueFree();
 		}
 	}
 
@@ -117,6 +118,7 @@ public partial class Enemy : CharacterBody2D
 			PlayerEvent.Broadcast(PlayerEvent.SignalName.AddEnergy, Data.Reward.Energy);
 		}
 		EffectsManager.SpawnResourceCluster(GlobalPosition, Data.Reward.Substance, Data.Reward.Flow, Data.Reward.Breath, Data.Reward.Energy);
+		EnemyEvent.Broadcast(EnemyEvent.SignalName.EnemyDefeated, this);
 
 		// Actually die
 		QueueFree();

@@ -66,8 +66,6 @@ script = ExtResource("1_803ym")
 
 [node name="Objectives" type="Node2D" parent="."]
 script = ExtResource("2_mk7dt")
-BuildHearts = 5
-BuildSunLeaf = 4
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true

@@ -125,7 +125,7 @@ material = SubResource("ShaderMaterial_ufgj0")
 texture = ExtResource("2_typnh")
 script = ExtResource("3_fx7ei")
 TowerToBecome = ExtResource("4_l3g7m")
-BuildTime = 40.0
+BuildTime = 12.0
 IsDefendTarget = true
 TowerData = ExtResource("5_d6f8k")
 

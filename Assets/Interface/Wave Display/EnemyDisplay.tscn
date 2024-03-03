@@ -77,14 +77,15 @@ rotation = 1.5708
 texture = ExtResource("3_d8yxt")
 
 [node name="Count" type="RichTextLabel" parent="."]
-offset_left = 1.0
-offset_top = 12.0
-offset_right = 18.0
-offset_bottom = 23.0
+offset_left = -20.0
+offset_top = 11.0
+offset_right = 4.0
+offset_bottom = 22.0
 mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("4_6wbcr")
 theme_override_font_sizes/normal_font_size = 8
-text = "99"
+text = "999"
+scroll_active = false
 
 [node name="HoverAnimator" type="AnimationPlayer" parent="."]
 libraries = {

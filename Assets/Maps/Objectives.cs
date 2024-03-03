@@ -64,12 +64,15 @@ public partial class Objectives : Node
         {
             InFinalWave = true;
             EnemyEvent.Register(EnemyEvent.SignalName.EnemyDefeated, Callable.From((Enemy e) => EnemyDefeated(e)));
+            EnemyEvent.Broadcast(EnemyEvent.SignalName.StartFinalWave);
         }
     }
 
     void EnemyDefeated(Enemy DefeatedEnemy)
     {
-        if (GetTree().GetNodesInGroup("Enemy").Count <= 0)
+        int RemainingEnemies = GetTree().GetNodesInGroup("Enemy").Count - 1; // The enemy has not yet been removed
+        GD.Print("Final wave enemy defeated. " + RemainingEnemies.ToString() + " enemies remain.");
+        if (RemainingEnemies <= 0)
         {
             PlayerEvent.Broadcast(PlayerEvent.SignalName.FinalWaveSurvived);
 

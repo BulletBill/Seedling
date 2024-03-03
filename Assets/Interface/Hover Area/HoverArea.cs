@@ -17,6 +17,14 @@ public partial class HoverArea : Area2D
         HoverParent = GetParentOrNull<IHoverable>();
     }
 
+    public override void _ExitTree()
+    {
+        foreach (ECursorState state in ReactStates)
+        {
+            Cursor.RemoveHoverArea(this, state);
+        }
+    }
+
     public void OnMouseEnter()
     {
         Hovered = true;

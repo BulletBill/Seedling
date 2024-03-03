@@ -2,7 +2,6 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using Godot.Collections;
-using System.Diagnostics.CodeAnalysis;
 
 public partial class SpawnerBrain : Node
 {
@@ -10,12 +9,15 @@ public partial class SpawnerBrain : Node
     [Export] public int SecondsUntilNextWave { get; protected set; } = 300;
     List<EnemySpawner> Spawners = new();
     
+    // Expansion waves
     [Export] public Godot.Collections.Array<R_SpawnWave> ExpansionWaves = new();
     int ExpansionIndex = 0;
     int ExpansionRemaining = 0;
 
+    // Timed waves
     [Export] public Godot.Collections.Array<R_SpawnWave> TimedWaves = new();
     int TimedIndex = 0;
+    bool FinalWave = false;
     float BigWaveTimer = 301.0f;
     int TimerSecondsLeft = 300;
 
@@ -26,6 +28,7 @@ public partial class SpawnerBrain : Node
     {
         MainMap.Register(MainMap.SignalName.PlayerExpanded, Callable.From((int n) => GrassGrown(n)));
         EnemyEvent.Register(EnemyEvent.SignalName.SetDisableSpawns, Callable.From((bool b) => SetDisableSpawns(b)));
+        EnemyEvent.Register(EnemyEvent.SignalName.StartFinalWave, Callable.From(() => StartFinalWave()));
     }
 
     public override void _Ready()
@@ -58,7 +61,7 @@ public partial class SpawnerBrain : Node
     public override void _Process(double delta)
     {
         if (DisableSpawns) return;
-        if (BigWaveTimer > 0)
+        if (BigWaveTimer > 0 && !FinalWave)
         {
             BigWaveTimer -= (float)delta * Game.GetSpeed();
 
@@ -109,6 +112,12 @@ public partial class SpawnerBrain : Node
         {
             SpawnEnemies(TimedWaves[WaveIndex]);
         }
+    }
+
+    void StartFinalWave()
+    {
+        SpawnTimedWave();
+        FinalWave = true;
     }
 
     void SpawnEnemies(R_SpawnWave WaveData)

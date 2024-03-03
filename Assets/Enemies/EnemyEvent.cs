@@ -13,6 +13,7 @@ public partial class EnemyEvent : Node
     [Signal] public delegate void ShowNextTimedWaveEventHandler(R_SpawnWave NextWave);
     [Signal] public delegate void ShowNextExpandWaveEventHandler(R_SpawnWave NextWave);
     [Signal] public delegate void EnemyDefeatedEventHandler(Enemy DefeatedEnemy);
+    [Signal] public delegate void StartFinalWaveEventHandler();
 
     public EnemyEvent()
     {

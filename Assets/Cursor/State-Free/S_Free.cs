@@ -35,7 +35,11 @@ public partial class S_Free : Cursor_State
     {
         if (ParentCursor == null) return;
         if (HoverList.Count <= 0) return;
-        if (IsInstanceValid(HoverList[0]) == false) return;
+        if (IsInstanceValid(HoverList[0]) == false)
+        {
+            HoverList.RemoveAt(0);
+            return;
+        }
 
         HoverList[0].OnClick();
     }
