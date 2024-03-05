@@ -4,7 +4,6 @@ using System;
 public partial class CommandButton : Node2D, IHoverable
 {
 	[Export] public Data_Action ActionParams = new();
-	//[Export] public ECursorState CursorState { get; protected set; } = ECursorState.Free;
 	bool CanAfford = false;
 	bool HasCost = false;
 	bool Hovered = false;
@@ -25,7 +24,6 @@ public partial class CommandButton : Node2D, IHoverable
 		if (HoverArea != null)
 		{
 			HoverArea.Clicked += OnClick;
-			//HoverArea.AddReactState(CursorState);
 		}
 
 		Sprite2D Outline = GetNodeOrNull<Sprite2D>("Outline");
@@ -128,14 +126,7 @@ public partial class CommandButton : Node2D, IHoverable
 			break;
 		}
     }
-
-	//public void SetCursorState(ECursorState NewCursorState)
-	//{
-		//CursorState = NewCursorState;
-		//HoverArea = GetNodeOrNull<HoverArea>("HoverArea");
-		//HoverArea?.AddReactState(CursorState);
-	//}
-
+	
 	void Disable()
 	{
 		Disabled = true;

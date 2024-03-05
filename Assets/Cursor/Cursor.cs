@@ -14,7 +14,6 @@ public partial class Cursor : Node2D
 	float MapScale = 1.0f;
 	public Sprite2D PlacementGhost;
 	public Sprite2D TileSelector;
-	//public List<HoverArea> HoverList {get; protected set;} = new();
 	public Dictionary<ECursorState, Cursor_State> StateList { get; protected set; } = new();
 
 	// Signals
@@ -99,8 +98,6 @@ public partial class Cursor : Node2D
 		StateStack.Push(NewState);
 		NewState?.OnEnable();
 
-		//FlushHoverList();
-
 		Broadcast(SignalName.AnyStateChanged);
 		return NewState;
 	}
@@ -114,22 +111,9 @@ public partial class Cursor : Node2D
 		StateStack.Pop();
 		StateStack.Peek()?.OnEnable();
 
-		//FlushHoverList();
-
 		Broadcast(SignalName.AnyStateChanged);
 		return StateStack.Peek();
 	}
-
-	/*
-	void FlushHoverList()
-	{
-		foreach (HoverArea hoverArea in HoverList)
-		{
-			hoverArea.ForceMouseExit();
-		}
-		HoverList.Clear();
-	}
-	*/
 
 	void SetTileHighlight(Tower TargetTower)
 	{

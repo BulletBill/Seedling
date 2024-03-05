@@ -6,10 +6,6 @@ public partial class Enemy : CharacterBody2D
 	public static readonly float SeekInterval = 1.0f;
 	public static readonly String EnemyGroup = "Enemy";
 	[Export] public Data_Enemy Data = new();
-	//[Export] public int SpawnCost = 1;
-	//[Export] public int PlayerDamage = 1;
-	//[Export] public float Speed = 40.0f;
-	//[Export] public R_Cost Reward = new();
 	public bool Active = false;
 	NavigationAgent2D Nav;
 	float SeekTimer;

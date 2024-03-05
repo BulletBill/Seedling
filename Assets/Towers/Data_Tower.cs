@@ -18,9 +18,6 @@ public partial class Data_Tower : Data_Hoverable
 
     public override string GetFullDescription()
     {
-        //String CombinedDescription = Cost.GetFullString() + "\n";
-        //CombinedDescription += Description;
-
         return Description;
     }
 }
