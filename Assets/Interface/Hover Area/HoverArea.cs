@@ -84,6 +84,7 @@ public partial class HoverArea : Area2D
     public void OnClick()
     {
         if (Disabled) return;
+        if (!Visible) return;
         EmitSignal(SignalName.Clicked);
     }
 

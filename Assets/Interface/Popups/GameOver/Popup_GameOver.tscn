@@ -1,10 +1,156 @@
-[gd_scene load_steps=3 format=3 uid="uid://daydfxlvoeo01"]
+[gd_scene load_steps=16 format=3 uid="uid://daydfxlvoeo01"]
 
-[ext_resource type="Script" path="res://Assets/Interface/Popups/GameOver/UI_GameOver.cs" id="1_yx3iv"]
-[ext_resource type="Texture2D" uid="uid://c4cqjktrt205k" path="res://Assets/Art/Interface/WindowBG.png" id="2_r0s4c"]
+[ext_resource type="Texture2D" uid="uid://3bps8k3gh1an" path="res://Assets/Art/Interface/TestFrame.png" id="1_pu533"]
+[ext_resource type="FontFile" uid="uid://cfkbw345ftvm3" path="res://Assets/Art/Fonts/Font Data/Plante.ttf" id="3_ap20m"]
+[ext_resource type="Script" path="res://Assets/Interface/Popups/GameOver/Button_ChangeScene.cs" id="3_qrb4l"]
+[ext_resource type="Texture2D" uid="uid://b8f8gxftwupbw" path="res://Assets/Art/Interface/ButtonFrame.png" id="5_q5n3w"]
+[ext_resource type="Texture2D" uid="uid://7fhu5lxwhvq5" path="res://Assets/Art/Interface/HoverBackground.png" id="6_hfft1"]
+[ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Interface/Hover Area/HoverArea.tscn" id="7_obgia"]
 
-[node name="PopupGameOver" type="Node2D"]
-script = ExtResource("1_yx3iv")
+[sub_resource type="Animation" id="Animation_t0sdd"]
+resource_name = "DefeatWiggle"
+length = 0.7
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Failure:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.0349066, -0.0698132, -0.0349066, -0.0698132, -0.0698132, 0.0698132]
+}
+
+[sub_resource type="Animation" id="Animation_dd24p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Failure:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dbeq4"]
+_data = {
+"DefeatWiggle": SubResource("Animation_t0sdd"),
+"RESET": SubResource("Animation_dd24p")
+}
+
+[sub_resource type="Animation" id="Animation_igxjg"]
+resource_name = "Click"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Color(0.447059, 0.447059, 0.447059, 1), Color(0.447059, 0.447059, 0.447059, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NinePatchRect:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [3.14159, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_lktxe"]
+resource_name = "Hover"
+length = 0.05
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.901961, 0.901961, 0.901961, 1), Color(0.670588, 0.670588, 0.670588, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_d1wn5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NinePatchRect:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_nnjrn"]
+resource_name = "Unhover"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_65dm2"]
+_data = {
+"Click": SubResource("Animation_igxjg"),
+"Hover": SubResource("Animation_lktxe"),
+"RESET": SubResource("Animation_d1wn5"),
+"Unhover": SubResource("Animation_nnjrn")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2uvnr"]
+size = Vector2(112, 48)
+
+[node name="Popup_GameOver" type="Node2D"]
+
+[node name="Fullscreen" type="Sprite2D" parent="."]
+self_modulate = Color(0.180392, 0.180392, 0.180392, 0.678431)
+z_index = -1
+scale = Vector2(287.382, 200)
+texture = ExtResource("6_hfft1")
 
 [node name="Background" type="NinePatchRect" parent="."]
 anchors_preset = 8
@@ -12,39 +158,148 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -89.0
-offset_top = -40.0
-offset_right = 89.0
-offset_bottom = 40.0
+offset_left = -185.0
+offset_top = -82.0
+offset_right = 185.0
+offset_bottom = 82.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_r0s4c")
-patch_margin_left = 3
-patch_margin_top = 3
-patch_margin_right = 3
-patch_margin_bottom = 3
+texture = ExtResource("1_pu533")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-anchors_preset = 5
+[node name="Failure" type="RichTextLabel" parent="."]
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = -53.0
-offset_top = -37.0
-offset_right = 53.0
-offset_bottom = 3.0
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -75.0
+offset_right = 160.0
+offset_bottom = -8.0
 grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(160, 34)
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 0.12549, 0.286275, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 3
+theme_override_fonts/normal_font = ExtResource("3_ap20m")
+theme_override_font_sizes/normal_font_size = 64
 bbcode_enabled = true
-text = "[center] GAME OVER [/center]"
+text = "[center]FAILURE[/center]"
 scroll_active = false
 
-[node name="Restart" type="Button" parent="."]
-offset_left = -80.0
-offset_right = -7.0
-offset_bottom = 29.0
-text = "RESTART"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dbeq4")
+}
+autoplay = "DefeatWiggle"
 
-[node name="Exit" type="Button" parent="."]
-offset_left = 7.0
-offset_right = 80.0
-offset_bottom = 29.0
-text = "EXIT"
+[node name="Retry Button" type="Node2D" parent="."]
+position = Vector2(-152, 17)
+script = ExtResource("3_qrb4l")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Retry Button"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 112.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(56, 24)
+texture = ExtResource("5_q5n3w")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+metadata/_edit_use_anchors_ = true
+
+[node name="Background" type="Sprite2D" parent="Retry Button"]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(56, 24)
+scale = Vector2(11.3333, 4.22222)
+texture = ExtResource("6_hfft1")
+
+[node name="Label" type="RichTextLabel" parent="Retry Button"]
+offset_left = 5.0
+offset_top = 6.0
+offset_right = 107.0
+offset_bottom = 44.0
+mouse_filter = 2
+theme_override_constants/shadow_outline_size = 5
+bbcode_enabled = true
+text = "[center]RETRY[/center]"
+
+[node name="HoverAnimator" type="AnimationPlayer" parent="Retry Button"]
+libraries = {
+"": SubResource("AnimationLibrary_65dm2")
+}
+
+[node name="HoverArea" parent="Retry Button" node_paths=PackedStringArray("ParentAnimator") instance=ExtResource("7_obgia")]
+ParentAnimator = NodePath("../HoverAnimator")
+ReactStates = [3, 0]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Retry Button/HoverArea"]
+visible = false
+position = Vector2(56, 24)
+shape = SubResource("RectangleShape2D_2uvnr")
+
+[node name="Quit Button" type="Node2D" parent="."]
+position = Vector2(40, 17)
+script = ExtResource("3_qrb4l")
+GotoScene = "TitleScreen"
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Quit Button"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 112.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(56, 24)
+texture = ExtResource("5_q5n3w")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+metadata/_edit_use_anchors_ = true
+
+[node name="Background" type="Sprite2D" parent="Quit Button"]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(56, 24)
+scale = Vector2(11.3333, 4.22222)
+texture = ExtResource("6_hfft1")
+
+[node name="Label" type="RichTextLabel" parent="Quit Button"]
+offset_left = 5.0
+offset_top = 6.0
+offset_right = 107.0
+offset_bottom = 44.0
+mouse_filter = 2
+theme_override_constants/shadow_outline_size = 5
+bbcode_enabled = true
+text = "[center]QUIT[/center]"
+
+[node name="HoverAnimator" type="AnimationPlayer" parent="Quit Button"]
+libraries = {
+"": SubResource("AnimationLibrary_65dm2")
+}
+
+[node name="HoverArea" parent="Quit Button" node_paths=PackedStringArray("ParentAnimator") instance=ExtResource("7_obgia")]
+ParentAnimator = NodePath("../HoverAnimator")
+ReactStates = [3, 0]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Quit Button/HoverArea"]
+visible = false
+position = Vector2(56, 24)
+shape = SubResource("RectangleShape2D_2uvnr")
