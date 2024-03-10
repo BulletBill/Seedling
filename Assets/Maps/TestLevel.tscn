@@ -112,11 +112,20 @@ MaxSpawnTime = 1.2
 
 [node name="Camera2D" type="Camera2D" parent="."]
 z_index = 1000
+position = Vector2(938, 526)
 limit_left = 0
 limit_top = 0
-limit_right = 1920
-limit_bottom = 1080
+limit_right = 3840
+limit_bottom = 2090
+position_smoothing_enabled = true
+position_smoothing_speed = 4.0
+drag_left_margin = 0.0
+drag_top_margin = 0.0
+drag_right_margin = 0.0
+drag_bottom_margin = 0.0
+editor_draw_limits = true
 script = ExtResource("5_808yx")
+PanSpeed = 600.0
 
 [node name="Cursor" parent="." instance=ExtResource("6_rjk40")]
 z_index = 50

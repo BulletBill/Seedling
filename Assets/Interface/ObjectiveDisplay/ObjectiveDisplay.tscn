@@ -53,9 +53,10 @@ cache/0/24/0/kerning_overrides/24/0 = Vector2(0, 0)
 
 [node name="ObjectiveDisplay" type="Node2D"]
 
-[node name="NinePatchRect" type="NinePatchRect" parent="."]
+[node name="StopMouseBackground" type="NinePatchRect" parent="."]
 offset_right = 282.0
 offset_bottom = 192.0
+mouse_filter = 0
 texture = ExtResource("1_fo2xk")
 patch_margin_left = 6
 patch_margin_top = 6

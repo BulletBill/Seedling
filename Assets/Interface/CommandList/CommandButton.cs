@@ -80,6 +80,7 @@ public partial class CommandButton : Node2D, IHoverable
 
 	void UpdateCosts(bool ForceUpdate)
 	{
+		HasCost = false;
 		if (ActionParams == null || ActionParams.ActionType == EActionType.None) return;
 		HasCost = !ActionParams.ClickCost.IsZero();
 		bool CanAffordNow = Player.CanAfford(ActionParams.ClickCost);
@@ -130,6 +131,7 @@ public partial class CommandButton : Node2D, IHoverable
 	void Disable()
 	{
 		Disabled = true;
+		HasCost = false;
 		AnimationPlayer Anim = GetNodeOrNull<AnimationPlayer>("AnimationPlayer");
 		Anim?.Play("Disabled");
 		HoverArea?.SetDisabled(true);

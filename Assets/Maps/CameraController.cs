@@ -1,31 +1,99 @@
 using Godot;
 using System;
+using System.Net.Http.Headers;
 
 public partial class CameraController : Camera2D
 {
-	[Export] Vector2 Limits = new Vector2(0.0f, 0.0f);
-	[Export] public float MinimumZoom { get; protected set; } = 1.0f;
-	[Export] public float MaximumZoom { get; protected set; } = 2.0f;
+	[Export] public float MinimumZoom { get; protected set; } = 0.8f;
+	[Export] public float MaximumZoom { get; protected set; } = 1.0f;
+	[Export] public float ZoomSpeed { get; protected set; } = 1.5f;
 	[Export] public float PanSpeed { get; protected set; } = 250.0f;
-    public Vector2 ViewSize { get; protected set; } = new Vector2(0.0f, 0.0f);
+	[Export] public int UIPanelHeight { get; protected set; } = 192;
+    public Vector2 HalfSize { get; protected set; } = new Vector2(0.0f, 0.0f);
+	public float ScaledUIPanelHeight;
+	float CurrentZoom = 1.0f;
+	protected static CameraController Singleton;
+
+	public CameraController()
+	{
+		Singleton = this;
+	}
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		//float ViewHeight = ProjectSettings.GetSetting("display/window/size/height").ToString().ToFloat(); //GetViewport().Size.y;
-        //float ViewWidth = ProjectSettings.GetSetting("display/window/size/width").ToString().ToFloat(); //GetViewport().Size.x;
+		LimitBottom += UIPanelHeight;
+		UpdateSizes();
+	}
 
-        //ViewSize = new Vector2(ViewWidth, ViewHeight);
+	void UpdateSizes()
+	{
+		float HalfHeight = GetViewportRect().Size.Y / 2 / Zoom.X; //ProjectSettings.GetSetting("display/window/size/height").ToString().ToFloat(); //GetViewport().Size.y;
+        float HalfWidth = GetViewportRect().Size.X / 2 / Zoom.Y; //ProjectSettings.GetSetting("display/window/size/width").ToString().ToFloat(); //GetViewport().Size.x;
+
+        HalfSize = new Vector2(HalfWidth, HalfHeight);
+
+		ScaledUIPanelHeight = UIPanelHeight / Zoom.X;
+
+		float NewX = Mathf.Clamp(GlobalPosition.X, LimitLeft + HalfSize.X, LimitRight - HalfSize.X);
+		float NewY = Mathf.Clamp(GlobalPosition.Y, LimitTop + HalfSize.Y, LimitBottom - HalfSize.Y);
+		
+		GlobalPosition = new Vector2(NewX, NewY);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if (Engine.IsEditorHint()) return;
+		Vector2 Dir = new(0,0);
+		if (Input.IsActionPressed("CameraPan_Left")){ Dir.X -= 1.0f; }
+		if (Input.IsActionPressed("CameraPan_Right")){ Dir.X += 1.0f; }
+		if (Input.IsActionPressed("CameraPan_Up")){ Dir.Y -= 1.0f; }
+		if (Input.IsActionPressed("CameraPan_Down")){ Dir.Y += 1.0f; }
+
+		if (Input.IsActionJustPressed("CameraZoom_In")) { AdjustZoom(ZoomSpeed * (float)delta); }
+		if (Input.IsActionJustPressed("CameraZoom_Out")) { AdjustZoom(-ZoomSpeed * (float)delta); }
+
+		if (Dir.X != 0 || Dir.Y != 0)
+		{
+			Pan(Dir, delta);
+		}
 	}
 
-	public override void _Draw()
+	public void Pan(Vector2 Direction, double delta)
 	{
-		if (!Engine.IsEditorHint()) return;
+		float NewX = Mathf.Clamp(GlobalPosition.X + ((Direction.X * PanSpeed) * (float)delta), LimitLeft + HalfSize.X, LimitRight - HalfSize.X);
+		float NewY = Mathf.Clamp(GlobalPosition.Y + ((Direction.Y * PanSpeed) * (float)delta), LimitTop + HalfSize.Y, LimitBottom - HalfSize.Y);
+		
+		GlobalPosition = new Vector2(NewX, NewY);
+	}
+
+	public void AdjustZoom(float Delta)
+	{
+		CurrentZoom = Mathf.Clamp(CurrentZoom + Delta, MinimumZoom, MaximumZoom);
+		Zoom = new Vector2(CurrentZoom, CurrentZoom);
+		UpdateSizes();
+	}
+
+	// Static accessors
+	public static Vector2 GetPosition()
+	{
+		if (Singleton == null) return new Vector2(0,0);
+
+		return Singleton.GlobalPosition;
+	}
+
+	public static Vector2 GetMousePosition()
+	{
+		if (Singleton == null) return new Vector2(0,0);
+		Vector2 SmoothingDiff = Singleton.GetScreenCenterPosition() - Singleton.GlobalPosition;
+
+		return Singleton.GetLocalMousePosition() - SmoothingDiff;
+	}
+
+	public static bool MouseIsOverUIPanel()
+	{
+		if (Singleton == null) return false;
+
+		return GetMousePosition().Y > Singleton.HalfSize.Y - Singleton.ScaledUIPanelHeight;
 	}
 }

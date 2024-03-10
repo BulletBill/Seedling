@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://mmyy6s5sben4"]
+[gd_scene load_steps=17 format=3 uid="uid://mmyy6s5sben4"]
 
 [ext_resource type="Script" path="res://Assets/Interface/Popups/MenuEvent.cs" id="1_a4neo"]
 [ext_resource type="PackedScene" uid="uid://qjqpjk4tct1" path="res://Assets/Interface/Minimap/MiniMap.tscn" id="2_drqwd"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://daydfxlvoeo01" path="res://Assets/Interface/Popups/GameOver/Popup_GameOver.tscn" id="13_tr2ie"]
 [ext_resource type="Texture2D" uid="uid://c4cqjktrt205k" path="res://Assets/Art/Interface/WindowBG.png" id="15_he6xn"]
 [ext_resource type="Script" path="res://Assets/Debug/Debug_Costs.cs" id="16_65wxc"]
+[ext_resource type="Script" path="res://Assets/Debug/Debug_MousePos.cs" id="16_dvwgq"]
 [ext_resource type="Script" path="res://Assets/Debug/Debug_Spawning.cs" id="17_wkykc"]
 [ext_resource type="Texture2D" uid="uid://3bps8k3gh1an" path="res://Assets/Art/Interface/TestFrame.png" id="18_qastj"]
 
@@ -146,6 +147,13 @@ patch_margin_left = 6
 patch_margin_top = 6
 patch_margin_right = 6
 patch_margin_bottom = 6
+
+[node name="MousePosDebug" type="RichTextLabel" parent="."]
+offset_right = 192.0
+offset_bottom = 42.0
+bbcode_enabled = true
+text = "[center]9999, 9999[/center]"
+script = ExtResource("16_dvwgq")
 
 [connection signal="pressed" from="DebugPanel/NinePatchRect/CostButton" to="DebugPanel/NinePatchRect/CostButton" method="ToggleCosts"]
 [connection signal="pressed" from="DebugPanel/NinePatchRect/SpawnButton" to="DebugPanel/NinePatchRect/SpawnButton" method="ToggleCosts"]

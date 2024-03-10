@@ -8,9 +8,10 @@
 [node name="DetailPanel" type="Node2D"]
 script = ExtResource("1_537m5")
 
-[node name="NinePatchRect" type="NinePatchRect" parent="."]
+[node name="StopMouseBackground" type="NinePatchRect" parent="."]
 offset_right = 437.0
 offset_bottom = 192.0
+mouse_filter = 0
 texture = ExtResource("2_cyfsk")
 patch_margin_left = 6
 patch_margin_top = 6
