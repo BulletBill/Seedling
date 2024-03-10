@@ -35,7 +35,7 @@ public partial class ObjectiveList : Node2D
 		Text.Text = "";
 		if (NeedHearts > 0)
 		{
-			Text.Text += "Build " + NeedHearts.ToString() + " more Bloom Heart\n";
+			Text.Text += "Build " + NeedHearts.ToString() + " more Heart Bloom\n";
 		}
 		if (NeedLeaves > 0)
 		{

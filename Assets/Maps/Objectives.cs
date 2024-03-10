@@ -37,6 +37,7 @@ public partial class Objectives : Node
             if (HeartsBuilt < BuildHearts)
             {
                 HeartsBuilt++;
+                GD.Print("Objectives: Finished building a Heart Bloom. " + (BuildHearts - HeartsBuilt).ToString() + " needed.");
             }
             PlayerEvent.Broadcast(PlayerEvent.SignalName.HeartCountUpdated, BuildHearts - HeartsBuilt);
         }
@@ -45,6 +46,7 @@ public partial class Objectives : Node
             if (SunLeavesBuilt < BuildSunLeaf)
             {
                 SunLeavesBuilt++;
+                GD.Print("Objectives: Finished building a Sunleaf. " + (BuildSunLeaf - SunLeavesBuilt).ToString() + " needed.");
             }
             PlayerEvent.Broadcast(PlayerEvent.SignalName.SunleafCountUpdated, BuildSunLeaf - SunLeavesBuilt);
         }
@@ -77,15 +79,7 @@ public partial class Objectives : Node
             PlayerEvent.Broadcast(PlayerEvent.SignalName.FinalWaveSurvived);
 
             //Victory!
-            Level ParentLevel = GetParentOrNull<Level>();
-            if (ParentLevel != null)
-            {
-                SceneTransition.ChangeScene(ParentLevel.ExitLevel);
-            }
-            else
-            {
-                GetTree().Quit();
-            }
+            MenuEvent.Broadcast(MenuEvent.SignalName.OpenVictoryMenu);
         }
     }
 }

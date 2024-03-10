@@ -38,17 +38,6 @@ public partial class Player : Node2D
         if (Lives <= 0)
         {
             MenuEvent.Broadcast(MenuEvent.SignalName.OpenGameOverMenu);
-            /*
-            Level ParentLevel = GetParentOrNull<Level>();
-            if (ParentLevel != null)
-            {
-                SceneTransition.ChangeScene(ParentLevel.ExitLevel);
-            }
-            else
-            {
-                GetTree().Quit();
-            }
-            */
         }
     }
 

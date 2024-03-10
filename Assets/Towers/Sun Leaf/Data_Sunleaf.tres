@@ -14,7 +14,7 @@ Energy = 0
 
 [resource]
 script = ExtResource("4_3fgbh")
-Ident = ""
+Ident = "SunLeaf"
 Cost = SubResource("Resource_4ujqw")
 BuildTime = 5.0
 NeedsSparkFlag = false

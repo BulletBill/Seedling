@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://mmyy6s5sben4"]
+[gd_scene load_steps=16 format=3 uid="uid://mmyy6s5sben4"]
 
 [ext_resource type="Script" path="res://Assets/Interface/Popups/MenuEvent.cs" id="1_a4neo"]
 [ext_resource type="PackedScene" uid="uid://qjqpjk4tct1" path="res://Assets/Interface/Minimap/MiniMap.tscn" id="2_drqwd"]
 [ext_resource type="PackedScene" uid="uid://bqo4ffahkqb78" path="res://Assets/Interface/CurrencyDisplay/CurrencyDisplay.tscn" id="2_ty7fb"]
 [ext_resource type="PackedScene" uid="uid://dlgl700nd4604" path="res://Assets/Interface/CommandList/CommandButton.tscn" id="3_0wfvo"]
+[ext_resource type="PackedScene" uid="uid://v2tdu1d5c1y1" path="res://Assets/Interface/Popups/Victory/Popup_Victory.tscn" id="3_408rh"]
 [ext_resource type="Script" path="res://Assets/Interface/CommandList/CommandList.cs" id="3_ho7kd"]
 [ext_resource type="PackedScene" uid="uid://dynjwh5qcpo7t" path="res://Assets/Interface/ObjectiveDisplay/ObjectiveDisplay.tscn" id="3_xfso7"]
 [ext_resource type="PackedScene" uid="uid://cjvtnmut5ak7p" path="res://Assets/Interface/DetailPanel/DetailPanel.tscn" id="4_2ycw0"]
@@ -22,8 +23,11 @@ layer = 100
 script = ExtResource("1_a4neo")
 
 [node name="Popup_GameOver" parent="MenuManager" instance=ExtResource("13_tr2ie")]
-visible = false
 position = Vector2(-1428, 531)
+OpenPosition = Vector2(960, 540)
+
+[node name="Popup_Victory" parent="MenuManager" instance=ExtResource("3_408rh")]
+position = Vector2(-360, 420)
 OpenPosition = Vector2(960, 540)
 
 [node name="MiniMap" parent="." instance=ExtResource("2_drqwd")]

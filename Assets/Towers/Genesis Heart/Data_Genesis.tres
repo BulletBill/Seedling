@@ -14,7 +14,7 @@ Energy = 1
 
 [resource]
 script = ExtResource("3_l8lnr")
-Ident = ""
+Ident = "HeartBloom"
 Cost = SubResource("Resource_8bfvv")
 BuildTime = 60.0
 NeedsSparkFlag = false

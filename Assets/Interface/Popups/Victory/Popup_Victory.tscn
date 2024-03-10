@@ -1,0 +1,324 @@
+[gd_scene load_steps=17 format=3 uid="uid://v2tdu1d5c1y1"]
+
+[ext_resource type="Script" path="res://Assets/Interface/Popups/Victory/Popup_Victory.cs" id="1_ikvbu"]
+[ext_resource type="Texture2D" uid="uid://7fhu5lxwhvq5" path="res://Assets/Art/Interface/HoverBackground.png" id="2_vg0nu"]
+[ext_resource type="Texture2D" uid="uid://3bps8k3gh1an" path="res://Assets/Art/Interface/TestFrame.png" id="3_pea0l"]
+[ext_resource type="FontFile" uid="uid://cfkbw345ftvm3" path="res://Assets/Art/Fonts/Font Data/Plante.ttf" id="4_gqbxy"]
+[ext_resource type="Script" path="res://Assets/Interface/Popups/GameOver/Button_ChangeScene.cs" id="5_adxt1"]
+[ext_resource type="Texture2D" uid="uid://b8f8gxftwupbw" path="res://Assets/Art/Interface/ButtonFrame.png" id="6_32uod"]
+[ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Interface/Hover Area/HoverArea.tscn" id="7_600ro"]
+
+[sub_resource type="Animation" id="Animation_dd24p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Success:theme_override_colors/default_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0.658824, 0.227451, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Success:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_t0sdd"]
+resource_name = "VictorySheen"
+length = 0.7
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Success:theme_override_colors/default_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0.658824, 0.227451, 1), Color(1, 1, 1, 1), Color(0, 0.658824, 0.227451, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Success:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dbeq4"]
+_data = {
+"RESET": SubResource("Animation_dd24p"),
+"VictorySheen": SubResource("Animation_t0sdd")
+}
+
+[sub_resource type="Animation" id="Animation_igxjg"]
+resource_name = "Click"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Color(0.447059, 0.447059, 0.447059, 1), Color(0.447059, 0.447059, 0.447059, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NinePatchRect:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [3.14159, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_lktxe"]
+resource_name = "Hover"
+length = 0.05
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.901961, 0.901961, 0.901961, 1), Color(0.670588, 0.670588, 0.670588, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_d1wn5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NinePatchRect:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_nnjrn"]
+resource_name = "Unhover"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_65dm2"]
+_data = {
+"Click": SubResource("Animation_igxjg"),
+"Hover": SubResource("Animation_lktxe"),
+"RESET": SubResource("Animation_d1wn5"),
+"Unhover": SubResource("Animation_nnjrn")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2uvnr"]
+size = Vector2(112, 48)
+
+[node name="Popup_Victory" type="Node2D"]
+script = ExtResource("1_ikvbu")
+
+[node name="Background" type="NinePatchRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -185.0
+offset_top = -82.0
+offset_right = 185.0
+offset_bottom = 82.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_pea0l")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="Success" type="RichTextLabel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -75.0
+offset_right = 160.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(160, 34)
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0.658824, 0.227451, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 3
+theme_override_fonts/normal_font = ExtResource("4_gqbxy")
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[center]SUCCESS[/center]"
+scroll_active = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dbeq4")
+}
+
+[node name="Retry Button" type="Node2D" parent="."]
+position = Vector2(-152, 17)
+script = ExtResource("5_adxt1")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Retry Button"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 112.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(56, 24)
+texture = ExtResource("6_32uod")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+metadata/_edit_use_anchors_ = true
+
+[node name="Background" type="Sprite2D" parent="Retry Button"]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(56, 24)
+scale = Vector2(11.3333, 4.22222)
+texture = ExtResource("2_vg0nu")
+
+[node name="Label" type="RichTextLabel" parent="Retry Button"]
+offset_left = 5.0
+offset_top = 6.0
+offset_right = 107.0
+offset_bottom = 44.0
+mouse_filter = 2
+theme_override_constants/shadow_outline_size = 5
+bbcode_enabled = true
+text = "[center]RETRY[/center]"
+
+[node name="HoverAnimator" type="AnimationPlayer" parent="Retry Button"]
+libraries = {
+"": SubResource("AnimationLibrary_65dm2")
+}
+
+[node name="HoverArea" parent="Retry Button" node_paths=PackedStringArray("ParentAnimator") instance=ExtResource("7_600ro")]
+ParentAnimator = NodePath("../HoverAnimator")
+ReactStates = [3, 0]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Retry Button/HoverArea"]
+visible = false
+position = Vector2(56, 24)
+shape = SubResource("RectangleShape2D_2uvnr")
+
+[node name="Next Button" type="Node2D" parent="."]
+position = Vector2(40, 17)
+script = ExtResource("5_adxt1")
+GotoScene = "LevelSelect"
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Next Button"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 112.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(56, 24)
+texture = ExtResource("6_32uod")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+metadata/_edit_use_anchors_ = true
+
+[node name="Background" type="Sprite2D" parent="Next Button"]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(56, 24)
+scale = Vector2(11.3333, 4.22222)
+texture = ExtResource("2_vg0nu")
+
+[node name="Label" type="RichTextLabel" parent="Next Button"]
+offset_left = 5.0
+offset_top = 6.0
+offset_right = 107.0
+offset_bottom = 44.0
+mouse_filter = 2
+theme_override_constants/shadow_outline_size = 5
+bbcode_enabled = true
+text = "[center]NEXT[/center]"
+
+[node name="HoverAnimator" type="AnimationPlayer" parent="Next Button"]
+libraries = {
+"": SubResource("AnimationLibrary_65dm2")
+}
+
+[node name="HoverArea" parent="Next Button" node_paths=PackedStringArray("ParentAnimator") instance=ExtResource("7_600ro")]
+ParentAnimator = NodePath("../HoverAnimator")
+ReactStates = [3, 0]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Next Button/HoverArea"]
+visible = false
+position = Vector2(56, 24)
+shape = SubResource("RectangleShape2D_2uvnr")
