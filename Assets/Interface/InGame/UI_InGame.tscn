@@ -1,5 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://mmyy6s5sben4"]
+[gd_scene load_steps=15 format=3 uid="uid://mmyy6s5sben4"]
 
+[ext_resource type="Script" path="res://Assets/Interface/Popups/MenuEvent.cs" id="1_a4neo"]
 [ext_resource type="PackedScene" uid="uid://qjqpjk4tct1" path="res://Assets/Interface/Minimap/MiniMap.tscn" id="2_drqwd"]
 [ext_resource type="PackedScene" uid="uid://bqo4ffahkqb78" path="res://Assets/Interface/CurrencyDisplay/CurrencyDisplay.tscn" id="2_ty7fb"]
 [ext_resource type="PackedScene" uid="uid://dlgl700nd4604" path="res://Assets/Interface/CommandList/CommandButton.tscn" id="3_0wfvo"]
@@ -17,9 +18,13 @@
 [node name="UI Canvas Layer" type="CanvasLayer"]
 layer = 100
 
-[node name="Popup_GameOver" parent="." instance=ExtResource("13_tr2ie")]
+[node name="MenuManager" type="Node" parent="."]
+script = ExtResource("1_a4neo")
+
+[node name="Popup_GameOver" parent="MenuManager" instance=ExtResource("13_tr2ie")]
 visible = false
 position = Vector2(-1428, 531)
+OpenPosition = Vector2(960, 540)
 
 [node name="MiniMap" parent="." instance=ExtResource("2_drqwd")]
 position = Vector2(-1, 888)

@@ -39,7 +39,7 @@ public partial class C_Attack : Node2D
     {
         if (AttackTimer > 0)
         {
-            AttackTimer -= (float)delta * Game.GetSpeed();
+            AttackTimer -= (float)delta * Level.GetSpeed();
             if (AttackTimer <= 0.0f && IsInstanceValid(CurrentTarget))
             {
                 Fire();
@@ -48,7 +48,7 @@ public partial class C_Attack : Node2D
 
         if (DamageTimer > 0 && IsInstanceValid(PendingDamageTaker))
         {
-            DamageTimer -= (float)delta * Game.GetSpeed();
+            DamageTimer -= (float)delta * Level.GetSpeed();
             if (DamageTimer < 0.0f)
             {
                 C_HealthPool TargetHealth = PendingDamageTaker.GetNodeOrNull<C_HealthPool>("HealthPool");

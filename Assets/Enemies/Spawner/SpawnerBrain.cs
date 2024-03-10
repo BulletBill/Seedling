@@ -63,7 +63,7 @@ public partial class SpawnerBrain : Node
         if (DisableSpawns) return;
         if (BigWaveTimer > 0 && !FinalWave)
         {
-            BigWaveTimer -= (float)delta * Game.GetSpeed();
+            BigWaveTimer -= (float)delta * Level.GetSpeed();
 
             // Broadcast when seconds left changes
             int LastSecond = TimerSecondsLeft;

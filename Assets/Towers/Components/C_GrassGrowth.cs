@@ -38,7 +38,7 @@ public partial class C_GrassGrowth : Node2D, ITowerComponent
         
         if (GrowthTimer > 0.0f)
         {
-            GrowthTimer -= (float)delta * Game.GetSpeed();
+            GrowthTimer -= (float)delta * Level.GetSpeed();
 
             if (TilesToGrass.Count > 0 && GrowthTimer <= 0.0f)
             {

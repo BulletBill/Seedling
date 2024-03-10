@@ -1,5 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://daydfxlvoeo01"]
+[gd_scene load_steps=17 format=3 uid="uid://daydfxlvoeo01"]
 
+[ext_resource type="Script" path="res://Assets/Interface/Popups/GameOver/Popup_GameOver.cs" id="1_ovowm"]
 [ext_resource type="Texture2D" uid="uid://3bps8k3gh1an" path="res://Assets/Art/Interface/TestFrame.png" id="1_pu533"]
 [ext_resource type="FontFile" uid="uid://cfkbw345ftvm3" path="res://Assets/Art/Fonts/Font Data/Plante.ttf" id="3_ap20m"]
 [ext_resource type="Script" path="res://Assets/Interface/Popups/GameOver/Button_ChangeScene.cs" id="3_qrb4l"]
@@ -145,6 +146,7 @@ _data = {
 size = Vector2(112, 48)
 
 [node name="Popup_GameOver" type="Node2D"]
+script = ExtResource("1_ovowm")
 
 [node name="Fullscreen" type="Sprite2D" parent="."]
 self_modulate = Color(0.180392, 0.180392, 0.180392, 0.678431)
@@ -197,7 +199,6 @@ scroll_active = false
 libraries = {
 "": SubResource("AnimationLibrary_dbeq4")
 }
-autoplay = "DefeatWiggle"
 
 [node name="Retry Button" type="Node2D" parent="."]
 position = Vector2(-152, 17)

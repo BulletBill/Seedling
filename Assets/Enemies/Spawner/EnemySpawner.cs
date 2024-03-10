@@ -20,7 +20,7 @@ public partial class EnemySpawner : Node2D
     {
         if (EnemiesToPlace.Count > 0 && SpawnTimer > 0.0f)
         {
-            SpawnTimer -= delta * Game.GetSpeed();
+            SpawnTimer -= delta * Level.GetSpeed();
             if (SpawnTimer <= 0.0f)
             {
                 SpawnEnemy();

@@ -42,7 +42,7 @@ public partial class Enemy : CharacterBody2D
 	{
 		if (!Active) return;
 
-		SeekTimer -= (float)delta * Game.GetSpeed();
+		SeekTimer -= (float)delta * Level.GetSpeed();
 		if (SeekTimer <= 0.0f)
 		{
 			MakePath();
@@ -55,7 +55,7 @@ public partial class Enemy : CharacterBody2D
 		if (Nav == null) return;
 		if (!TargetReachable) return;
         Vector2 NextMove = Nav.GetNextPathPosition();
-		Velocity = (NextMove - GlobalPosition).Normalized() * (Data.Speed * Game.GetSpeed());
+		Velocity = (NextMove - GlobalPosition).Normalized() * (Data.Speed * Level.GetSpeed());
 		Image?.LookAt(NextMove);
 		if (Shadow != null) { Shadow.Rotation = Image.Rotation; }
 		MoveAndSlide();

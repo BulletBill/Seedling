@@ -13,6 +13,6 @@ public partial class PausableAnimation : AnimationPlayer
 
 	public override void _Process(double delta)
 	{
-		SpeedScale = Game.GetSpeed() * Variance;
+		SpeedScale = Level.GetSpeed() * Variance;
 	}
 }
