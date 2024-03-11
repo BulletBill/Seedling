@@ -14,9 +14,12 @@ public partial class PopupMenu : Node2D
 
 	public virtual void Open()
 	{
-		Visible = true;
-		GlobalPosition = OpenPosition;
-		Level.AddOpenMenu(this);
+		if (Cursor.PushState("State_PauseMenu") is S_PauseMenu ContextState)
+		{
+			Visible = true;
+			GlobalPosition = OpenPosition;
+			Level.AddOpenMenu(this);
+		}
 	}
 
 	public virtual void Close()

@@ -13,6 +13,7 @@ public partial class Level : Node
     bool Paused = false;
     List<PopupMenu> OpenMenus = new();
     bool SpedUp = false;
+    bool GameIsOver = false;
 
     public static Level Singleton { get; protected set; }
 
@@ -59,9 +60,16 @@ public partial class Level : Node
         Singleton.EvalutateGameSpeed();
     }
 
-    public static void GameOver()
+    public static void GameOver(String PopupResult)
     {
         if (Singleton == null) return;
-        MenuEvent.Broadcast(MenuEvent.SignalName.OpenGameOverMenu);
+        Singleton.GameIsOver = true;
+        MenuEvent.Broadcast(PopupResult);
+    }
+
+    public static bool IsGameOver()
+    {
+        if (Singleton == null) return false;
+        return Singleton.GameIsOver;
     }
 }

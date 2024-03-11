@@ -79,7 +79,7 @@ public partial class Objectives : Node
             PlayerEvent.Broadcast(PlayerEvent.SignalName.FinalWaveSurvived);
 
             //Victory!
-            MenuEvent.Broadcast(MenuEvent.SignalName.OpenVictoryMenu);
+            Level.GameOver(MenuEvent.SignalName.OpenVictoryMenu);
         }
     }
 }

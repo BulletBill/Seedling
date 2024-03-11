@@ -263,7 +263,7 @@ libraries = {
 
 [node name="HoverArea" parent="Retry Button" node_paths=PackedStringArray("ParentAnimator") instance=ExtResource("7_600ro")]
 ParentAnimator = NodePath("../HoverAnimator")
-ReactStates = [3, 0]
+ReactStates = [3]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Retry Button/HoverArea"]
 visible = false
@@ -316,7 +316,7 @@ libraries = {
 
 [node name="HoverArea" parent="Next Button" node_paths=PackedStringArray("ParentAnimator") instance=ExtResource("7_600ro")]
 ParentAnimator = NodePath("../HoverAnimator")
-ReactStates = [3, 0]
+ReactStates = [3]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Next Button/HoverArea"]
 visible = false

@@ -37,7 +37,7 @@ public partial class Player : Node2D
         PlayerEvent.Broadcast(PlayerEvent.SignalName.LivesChanged, Lives);
         if (Lives <= 0)
         {
-            MenuEvent.Broadcast(MenuEvent.SignalName.OpenGameOverMenu);
+            Level.GameOver(MenuEvent.SignalName.OpenGameOverMenu);
         }
     }
 

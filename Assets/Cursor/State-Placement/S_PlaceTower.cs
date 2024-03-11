@@ -148,10 +148,7 @@ public partial class S_PlaceTower : Cursor_State
         if (PlacementIsValid == false) return;
         if (TowerData == null) return;
         if (TowerToBuild == null) return;
-        if (CameraController.MouseIsOverUIPanel())
-        {
-            return;
-        }
+        if (CameraController.MouseIsOverUIPanel()) return;
 
         Node2D NewTower = TowerToBuild.Instantiate<Node2D>();
         if (NewTower == null) return;
