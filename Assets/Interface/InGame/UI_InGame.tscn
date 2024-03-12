@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://mmyy6s5sben4"]
+[gd_scene load_steps=18 format=3 uid="uid://mmyy6s5sben4"]
 
 [ext_resource type="Script" path="res://Assets/Interface/Popups/MenuEvent.cs" id="1_a4neo"]
 [ext_resource type="PackedScene" uid="uid://qjqpjk4tct1" path="res://Assets/Interface/Minimap/MiniMap.tscn" id="2_drqwd"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Assets/Interface/CommandList/CommandList.cs" id="3_ho7kd"]
 [ext_resource type="PackedScene" uid="uid://dynjwh5qcpo7t" path="res://Assets/Interface/ObjectiveDisplay/ObjectiveDisplay.tscn" id="3_xfso7"]
 [ext_resource type="PackedScene" uid="uid://cjvtnmut5ak7p" path="res://Assets/Interface/DetailPanel/DetailPanel.tscn" id="4_2ycw0"]
+[ext_resource type="PackedScene" uid="uid://cegvvv5hgjma6" path="res://Assets/Interface/Pause Menu/Menu_Pause.tscn" id="4_6p8rd"]
 [ext_resource type="PackedScene" uid="uid://hsbmxmqdvdp5" path="res://Assets/Interface/Wave Display/wave_display_timed.tscn" id="7_ryy0r"]
 [ext_resource type="PackedScene" uid="uid://bwrvvfdc106m0" path="res://Assets/Interface/Wave Display/wave_display_expansion.tscn" id="8_pduqw"]
 [ext_resource type="PackedScene" uid="uid://daydfxlvoeo01" path="res://Assets/Interface/Popups/GameOver/Popup_GameOver.tscn" id="13_tr2ie"]
@@ -29,6 +30,10 @@ OpenPosition = Vector2(960, 540)
 
 [node name="Popup_Victory" parent="MenuManager" instance=ExtResource("3_408rh")]
 position = Vector2(-360, 420)
+OpenPosition = Vector2(960, 540)
+
+[node name="Menu_Pause" parent="MenuManager" instance=ExtResource("4_6p8rd")]
+position = Vector2(-361, 107)
 OpenPosition = Vector2(960, 540)
 
 [node name="MiniMap" parent="." instance=ExtResource("2_drqwd")]

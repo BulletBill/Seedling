@@ -12,6 +12,7 @@ public partial class MenuEvent : Node
 
     [Signal] public delegate void OpenGameOverMenuEventHandler();
     [Signal] public delegate void OpenVictoryMenuEventHandler();
+    [Signal] public delegate void OpenPauseMenuEventHandler();
     [Signal] public delegate void CloseMenusEventHandler();
 
     public override void _Ready()

@@ -1,0 +1,235 @@
+[gd_scene load_steps=14 format=3 uid="uid://cegvvv5hgjma6"]
+
+[ext_resource type="Script" path="res://Assets/Interface/Pause Menu/Menu_Pause.cs" id="1_2nlu3"]
+[ext_resource type="Texture2D" uid="uid://7fhu5lxwhvq5" path="res://Assets/Art/Interface/HoverBackground.png" id="2_ucpsc"]
+[ext_resource type="Script" path="res://Assets/Interface/Pause Menu/Button_Resume.cs" id="3_jjc23"]
+[ext_resource type="Texture2D" uid="uid://3bps8k3gh1an" path="res://Assets/Art/Interface/TestFrame.png" id="3_psdt1"]
+[ext_resource type="Script" path="res://Assets/Interface/Popups/GameOver/Button_ChangeScene.cs" id="5_hy4qj"]
+[ext_resource type="Texture2D" uid="uid://b8f8gxftwupbw" path="res://Assets/Art/Interface/ButtonFrame.png" id="6_idrvn"]
+[ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Interface/Hover Area/HoverArea.tscn" id="7_1npv1"]
+
+[sub_resource type="Animation" id="Animation_igxjg"]
+resource_name = "Click"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Color(0.447059, 0.447059, 0.447059, 1), Color(0.447059, 0.447059, 0.447059, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NinePatchRect:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [3.14159, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_lktxe"]
+resource_name = "Hover"
+length = 0.05
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.901961, 0.901961, 0.901961, 1), Color(0.670588, 0.670588, 0.670588, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_d1wn5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NinePatchRect:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_nnjrn"]
+resource_name = "Unhover"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_65dm2"]
+_data = {
+"Click": SubResource("Animation_igxjg"),
+"Hover": SubResource("Animation_lktxe"),
+"RESET": SubResource("Animation_d1wn5"),
+"Unhover": SubResource("Animation_nnjrn")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2uvnr"]
+size = Vector2(219.5, 48)
+
+[node name="Menu_Pause" type="Node2D"]
+script = ExtResource("1_2nlu3")
+
+[node name="Background" type="NinePatchRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -113.0
+offset_top = -51.0
+offset_right = 113.0
+offset_bottom = 51.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_psdt1")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="Resume Button" type="Node2D" parent="."]
+position = Vector2(0, -24)
+script = ExtResource("3_jjc23")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Resume Button"]
+anchors_preset = -1
+anchor_left = 0.00980392
+anchor_top = 0.5
+anchor_right = 0.990196
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = -24.0
+offset_right = 110.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(110, 24)
+texture = ExtResource("6_idrvn")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+metadata/_edit_use_anchors_ = true
+
+[node name="Background" type="Sprite2D" parent="Resume Button"]
+self_modulate = Color(1, 1, 1, 0)
+scale = Vector2(23.3333, 4.22222)
+texture = ExtResource("2_ucpsc")
+
+[node name="Label" type="RichTextLabel" parent="Resume Button"]
+offset_left = -105.0
+offset_top = -19.0
+offset_right = 105.0
+offset_bottom = 19.0
+mouse_filter = 2
+theme_override_constants/shadow_outline_size = 5
+bbcode_enabled = true
+text = "[center]RESUME[/center]"
+
+[node name="HoverAnimator" type="AnimationPlayer" parent="Resume Button"]
+libraries = {
+"": SubResource("AnimationLibrary_65dm2")
+}
+
+[node name="HoverArea" parent="Resume Button" node_paths=PackedStringArray("ParentAnimator") instance=ExtResource("7_1npv1")]
+ParentAnimator = NodePath("../HoverAnimator")
+ReactStates = [3]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Resume Button/HoverArea"]
+visible = false
+shape = SubResource("RectangleShape2D_2uvnr")
+
+[node name="Quit" type="Node2D" parent="."]
+position = Vector2(0, 24)
+script = ExtResource("5_hy4qj")
+GotoScene = "LevelSelect"
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Quit"]
+anchors_preset = -1
+anchor_left = 0.00980392
+anchor_top = 0.5
+anchor_right = 0.990196
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = -24.0
+offset_right = 110.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(110, 24)
+texture = ExtResource("6_idrvn")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+metadata/_edit_use_anchors_ = true
+
+[node name="Background" type="Sprite2D" parent="Quit"]
+self_modulate = Color(1, 1, 1, 0)
+scale = Vector2(23.3333, 4.22222)
+texture = ExtResource("2_ucpsc")
+
+[node name="Label" type="RichTextLabel" parent="Quit"]
+offset_left = -105.0
+offset_top = -19.0
+offset_right = 105.0
+offset_bottom = 19.0
+mouse_filter = 2
+theme_override_constants/shadow_outline_size = 5
+bbcode_enabled = true
+text = "[center]QUIT[/center]"
+
+[node name="HoverAnimator" type="AnimationPlayer" parent="Quit"]
+libraries = {
+"": SubResource("AnimationLibrary_65dm2")
+}
+
+[node name="HoverArea" parent="Quit" node_paths=PackedStringArray("ParentAnimator") instance=ExtResource("7_1npv1")]
+ParentAnimator = NodePath("../HoverAnimator")
+ReactStates = [3]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Quit/HoverArea"]
+visible = false
+position = Vector2(-0.25, 0)
+shape = SubResource("RectangleShape2D_2uvnr")
