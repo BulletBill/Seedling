@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwepqdadvr10x"
-path="res://.godot/imported/Tileset - Grass On Dirt.png-a5bf313444d70dcea0bcc445b1a4d3ac.ctex"
+uid="uid://ciw807kc62kk2"
+path="res://.godot/imported/Tileset - Grass On Dirt.png-5861c3a33c5596c746036710544695b8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/Tilesets/Tileset - Grass On Dirt.png"
-dest_files=["res://.godot/imported/Tileset - Grass On Dirt.png-a5bf313444d70dcea0bcc445b1a4d3ac.ctex"]
+source_file="res://Assets/Art/Tilesets/Old Tilesets/Tileset - Grass On Dirt.png"
+dest_files=["res://.godot/imported/Tileset - Grass On Dirt.png-5861c3a33c5596c746036710544695b8.ctex"]
 
 [params]
 
