@@ -1,7 +1,7 @@
-[gd_resource type="TileSet" load_steps=13 format=3 uid="uid://se8ye8sftem5"]
+[gd_resource type="TileSet" load_steps=14 format=3 uid="uid://se8ye8sftem5"]
 
 [ext_resource type="Texture2D" uid="uid://cf4tbjtrs744e" path="res://Assets/Art/Tilesets/Tileset - Utility.png" id="1_nwo2i"]
-[ext_resource type="Texture2D" uid="uid://ciw807kc62kk2" path="res://Assets/Art/Tilesets/Tileset - Grass On Dirt.png" id="1_ov765"]
+[ext_resource type="Texture2D" uid="uid://cs8jkljepwdkh" path="res://Assets/Art/Tilesets/Tileset - New Grass On Dirt.png" id="2_emcvi"]
 [ext_resource type="Texture2D" uid="uid://cjyu1k3qeer28" path="res://Assets/Art/Tilesets/Tileset - Stone.png" id="2_ilikl"]
 [ext_resource type="Texture2D" uid="uid://dxpdi486cxuns" path="res://Assets/Art/Tilesets/Tileset - Water.png" id="3_yt557"]
 [ext_resource type="Texture2D" uid="uid://ca2slv0m3ouj4" path="res://Assets/Art/Tilesets/Tileset - Chasm.png" id="4_rmgnn"]
@@ -26,7 +26,7 @@ source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f2qju"]
 resource_name = "Grass On Dirt"
-texture = ExtResource("1_ov765")
+texture = ExtResource("2_emcvi")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/terrain_set = 0
@@ -655,6 +655,13 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 
 source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 0.0
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_l30tt"]
+vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 0.0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gpo5f"]
 resource_name = "Stone on Dirt"
 texture = ExtResource("2_ilikl")
@@ -1221,6 +1228,12 @@ texture_region_size = Vector2i(32, 32)
 11:3/0/terrains_peering_bit/top_left_corner = 2
 11:3/0/terrains_peering_bit/top_side = 2
 11:3/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_lh480")
+10:1/0 = 0
+10:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+10:1/0/physics_layer_0/angular_velocity = 0.0
+10:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+10:1/0/physics_layer_1/angular_velocity = 0.0
+10:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_l30tt")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d5rhk"]
 resource_name = "Water"

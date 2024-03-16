@@ -1,7 +1,5 @@
 using Godot;
 using System;
-using System.Reflection;
-using System.Xml.Xsl;
 
 public partial class S_Free : Cursor_State
 {
