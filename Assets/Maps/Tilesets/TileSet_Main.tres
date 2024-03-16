@@ -1,7 +1,7 @@
 [gd_resource type="TileSet" load_steps=14 format=3 uid="uid://se8ye8sftem5"]
 
 [ext_resource type="Texture2D" uid="uid://cf4tbjtrs744e" path="res://Assets/Art/Tilesets/Tileset - Utility.png" id="1_nwo2i"]
-[ext_resource type="Texture2D" uid="uid://cs8jkljepwdkh" path="res://Assets/Art/Tilesets/Tileset - New Grass On Dirt.png" id="2_emcvi"]
+[ext_resource type="Texture2D" uid="uid://ciw807kc62kk2" path="res://Assets/Art/Tilesets/Tileset - Grass On Dirt.png" id="1_ov765"]
 [ext_resource type="Texture2D" uid="uid://cjyu1k3qeer28" path="res://Assets/Art/Tilesets/Tileset - Stone.png" id="2_ilikl"]
 [ext_resource type="Texture2D" uid="uid://dxpdi486cxuns" path="res://Assets/Art/Tilesets/Tileset - Water.png" id="3_yt557"]
 [ext_resource type="Texture2D" uid="uid://ca2slv0m3ouj4" path="res://Assets/Art/Tilesets/Tileset - Chasm.png" id="4_rmgnn"]
@@ -26,7 +26,7 @@ source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f2qju"]
 resource_name = "Grass On Dirt"
-texture = ExtResource("2_emcvi")
+texture = ExtResource("1_ov765")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/terrain_set = 0
