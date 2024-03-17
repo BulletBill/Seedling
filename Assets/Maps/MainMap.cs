@@ -23,6 +23,8 @@ public partial class MainMap : TileMap
 	public static readonly int Terrain_Stone = 2;
 	public static readonly int Terrain_Water = 3;
 	public static readonly int Terrain_Chasm = 4;
+	public static readonly int Terrain_WetDirt = 5;
+	public static readonly int Terrain_WetGrass = 6;
 
 	public static readonly int TerrainSet_Default = 0;
 
@@ -30,9 +32,11 @@ public partial class MainMap : TileMap
 	public static readonly int Layer_Ground = 1;
 	public static readonly int Layer_Below = 2;
 	public static readonly int Layer_Outline = 3;
+	public static readonly int Layer_Water = 4;
 
 	public static readonly String Custom_Spark = "Spark";
 	public static readonly String Custom_Grass = "Grass";
+	public static readonly String Custom_Water = "Water";
 
 	// Event bus
 	[Signal] public delegate void PlayerExpandedEventHandler(int Count);
