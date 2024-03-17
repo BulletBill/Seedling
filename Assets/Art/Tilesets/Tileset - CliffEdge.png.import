@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cs8jkljepwdkh"
-path="res://.godot/imported/Tileset - New Grass On Dirt.png-439c18349cc03d784b53eabedf31f550.ctex"
+uid="uid://dp7ej1ass45qj"
+path="res://.godot/imported/Tileset - CliffEdge.png-3236467646b128a06adff650c28520d4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/Tilesets/Tileset - New Grass On Dirt.png"
-dest_files=["res://.godot/imported/Tileset - New Grass On Dirt.png-439c18349cc03d784b53eabedf31f550.ctex"]
+source_file="res://Assets/Art/Tilesets/Tileset - CliffEdge.png"
+dest_files=["res://.godot/imported/Tileset - CliffEdge.png-3236467646b128a06adff650c28520d4.ctex"]
 
 [params]
 

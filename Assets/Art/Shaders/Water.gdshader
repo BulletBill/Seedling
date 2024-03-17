@@ -12,6 +12,7 @@ uniform float light_end : hint_range(0.0, 1.0) = 0.4;
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_nearest;
 
 varying vec2 tile_center;
+varying vec2 tile_world;
 varying vec2 tile_color;
 uniform vec2 tile_size;
 
@@ -41,7 +42,7 @@ void vertex() {
     vec4 screenspace = (SCREEN_MATRIX * canvasspace);
 
     tile_center = vec2(screenspace[0], screenspace[1]);
-
+	tile_world = vec2(worldspace[0], worldspace[1]);
 
     float min1 = -1.0;
     float max1 = 1.0;

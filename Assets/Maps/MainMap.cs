@@ -107,7 +107,11 @@ public partial class MainMap : TileMap
 
 		GrassTiles.Add(TileLoc, 1);
 		Array<Vector2I> TileToGrow = new() { TileLoc };
-		SetCellsTerrainConnect(MainMap.Layer_Ground, TileToGrow, MainMap.TerrainSet_Default, MainMap.Terrain_Grass);
+		if (MainMap.Singleton.GetCellTileData(Layer_Ground, TileToGrow[0]).Terrain != MainMap.Terrain_Water)
+		{
+			SetCellsTerrainConnect(MainMap.Layer_Ground, TileToGrow, MainMap.TerrainSet_Default, MainMap.Terrain_Grass);
+		}
+		SetCellsTerrainConnect(MainMap.Layer_Below, TileToGrow, MainMap.TerrainSet_Default, MainMap.Terrain_WetGrass);
         Broadcast(SignalName.AnyTileChanged);
 
 		if (Expansion < GrassTiles.Count)
@@ -125,7 +129,11 @@ public partial class MainMap : TileMap
 		if (GrassTiles[TileLoc] <= 0)
 		{
 			Array<Vector2I> TileToRemove = new() { TileLoc };
-			SetCellsTerrainConnect(MainMap.Layer_Ground, TileToRemove, MainMap.TerrainSet_Default, MainMap.Terrain_Dirt);
+			if (MainMap.Singleton.GetCellTileData(Layer_Ground, TileToRemove[0]).Terrain != MainMap.Terrain_Water)
+			{
+				SetCellsTerrainConnect(MainMap.Layer_Ground, TileToRemove, MainMap.TerrainSet_Default, MainMap.Terrain_Dirt);
+			}
+			SetCellsTerrainConnect(MainMap.Layer_Below, TileToRemove, MainMap.TerrainSet_Default, MainMap.Terrain_WetDirt);
 			Broadcast(SignalName.AnyTileChanged);
 			GrassTiles.Remove(TileLoc);
 		}
@@ -147,10 +155,11 @@ public partial class MainMap : TileMap
 			return MainMap.Singleton.GetCellTileData(Layer_Path, GridPosition).Terrain;
 		}
 
-		if (MainMap.Singleton.GetCellTileData(Layer_Below, GridPosition) != null)
-		{
-			return MainMap.Singleton.GetCellTileData(Layer_Below, GridPosition).Terrain;
-		}
+		// Ignore the below layer, it just reflects the ground layer
+		//if (MainMap.Singleton.GetCellTileData(Layer_Below, GridPosition) != null)
+		//{
+			//return MainMap.Singleton.GetCellTileData(Layer_Below, GridPosition).Terrain;
+		//}
 
 		if (MainMap.Singleton.GetCellTileData(Layer_Ground, GridPosition) != null)
 		{
@@ -167,11 +176,13 @@ public partial class MainMap : TileMap
 
 		if (MainMap.Singleton.GetCellTileData(Layer_Below, GridPosition) != null)
 		{
-			result |= (bool)MainMap.Singleton.GetCellTileData(Layer_Below, GridPosition).GetCustomData(CustomFlag);
+			TileData BelowData = MainMap.Singleton.GetCellTileData(Layer_Below, GridPosition);
+			result |= (bool)BelowData.GetCustomData(CustomFlag);
 		}
 		if (MainMap.Singleton.GetCellTileData(Layer_Ground, GridPosition) != null)
 		{
-			result |= (bool)MainMap.Singleton.GetCellTileData(Layer_Ground, GridPosition).GetCustomData(CustomFlag);
+			TileData GroundData = MainMap.Singleton.GetCellTileData(Layer_Ground, GridPosition);
+			result |= (bool)GroundData.GetCustomData(CustomFlag);
 		}
 		return result;
 	}

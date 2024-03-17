@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxpdi486cxuns"
-path="res://.godot/imported/Tileset - Water.png-c7fa8d0544b1f54f70e441b9ce02de16.ctex"
+uid="uid://ca2slv0m3ouj4"
+path="res://.godot/imported/Tileset - Chasm.png-fa04c024c86c3128027c8d81362b60d3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/Tilesets/Tileset - Water.png"
-dest_files=["res://.godot/imported/Tileset - Water.png-c7fa8d0544b1f54f70e441b9ce02de16.ctex"]
+source_file="res://Assets/Art/Tilesets/Old Tilesets/Tileset - Chasm.png"
+dest_files=["res://.godot/imported/Tileset - Chasm.png-fa04c024c86c3128027c8d81362b60d3.ctex"]
 
 [params]
 
