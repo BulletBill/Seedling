@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwmmrok51lqas"
-path="res://.godot/imported/GrassExport.png-84819dd58b6b6fddbf0f5d16dd4efeb6.ctex"
+uid="uid://dc6p5rmu5alno"
+path="res://.godot/imported/New Stone Path.png-1460633cfa4b60992cd5d81909fc1962.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/Tilesets/Source Files/GrassExport.png"
-dest_files=["res://.godot/imported/GrassExport.png-84819dd58b6b6fddbf0f5d16dd4efeb6.ctex"]
+source_file="res://Assets/Art/Tilesets/Source Files/New Stone Path.png"
+dest_files=["res://.godot/imported/New Stone Path.png-1460633cfa4b60992cd5d81909fc1962.ctex"]
 
 [params]
 

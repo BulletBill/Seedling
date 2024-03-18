@@ -2,8 +2,8 @@
 
 [ext_resource type="Material" uid="uid://ddlld0t8q70iw" path="res://Assets/Art/Shaders/WaterShader_Modified.tres" id="1_57pk3"]
 [ext_resource type="Texture2D" uid="uid://cf4tbjtrs744e" path="res://Assets/Art/Tilesets/Tileset - Utility.png" id="1_nwo2i"]
-[ext_resource type="Texture2D" uid="uid://cjyu1k3qeer28" path="res://Assets/Art/Tilesets/Tileset - Stone.png" id="2_ilikl"]
 [ext_resource type="Texture2D" uid="uid://dwepqdadvr10x" path="res://Assets/Art/Tilesets/Tileset - Grass On Dirt.png" id="2_n73r7"]
+[ext_resource type="Texture2D" uid="uid://b55870q5ahctw" path="res://Assets/Art/Tilesets/Tileset - Path.png" id="4_f2w7h"]
 [ext_resource type="Texture2D" uid="uid://dp7ej1ass45qj" path="res://Assets/Art/Tilesets/Tileset - CliffEdge.png" id="6_5akkm"]
 [ext_resource type="Texture2D" uid="uid://plv4smhtxved" path="res://Assets/Art/Tilesets/Source Files/Grass and Dirt Alts.png" id="6_xmfjt"]
 
@@ -868,7 +868,7 @@ agent_radius = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gpo5f"]
 resource_name = "Stone on Dirt"
-texture = ExtResource("2_ilikl")
+texture = ExtResource("4_f2w7h")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/terrain_set = 0
@@ -1440,6 +1440,7 @@ texture_region_size = Vector2i(32, 32)
 10:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_l30tt")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n7lw1"]
+resource_name = "Grass and Dirt Alt"
 texture = ExtResource("6_xmfjt")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
