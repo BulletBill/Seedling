@@ -14,10 +14,10 @@ Energy = 1
 
 [resource]
 script = ExtResource("3_l8lnr")
-Ident = "HeartBloom"
+Ident = "BloomHeart"
 Cost = SubResource("Resource_8bfvv")
 BuildTime = 60.0
-NeedsSparkFlag = false
+NeedsSparkFlag = true
 NeedsGrassFlag = true
 CanBuildOnGrass = true
 CanBuildOnDirt = true
