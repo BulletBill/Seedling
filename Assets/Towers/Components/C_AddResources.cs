@@ -30,6 +30,10 @@ public partial class C_AddResources : Node, ITowerComponent
         if (AddFlatAmount.LifeForce > 0) { PlayerEvent.BroadcastAddResource(ECurrencyType.Lifeforce, -AddFlatAmount.LifeForce); }
     }
 
+    public void TowerUpdated()
+    {
+    }
+
     void AddResource(ECurrencyType Type, int Amount, Vector2 Offset)
     {
         PlayerEvent.BroadcastAddResource(Type, Amount);

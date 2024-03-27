@@ -8,6 +8,11 @@ public partial class Data_Tower : Data_Hoverable
     [Export] public String Ident;
     [Export] public R_Cost Cost { get; protected set; } = new();
     [Export] public float BuildTime { get; protected set; } = 0.0f;
+    [Export] public int MinDamage { get; protected set; } = 0;
+    [Export] public int MaxDamage { get; protected set; } = 0;
+    [Export] public float Range { get; protected set; } = 0.0f;
+    [Export] public float AreaOfEffect { get; protected set; } = 0.0f;
+    [Export] public float FireDelay { get; protected set; } = 1.0f;
     [Export] public bool NeedsSparkFlag { get; protected set; } = false;
     [Export] public bool NeedsGrassFlag { get; protected set; } = true;
     [Export] public bool CanBuildOnGrass { get; protected set; } = true;
@@ -18,6 +23,15 @@ public partial class Data_Tower : Data_Hoverable
 
     public override string GetFullDescription()
     {
-        return Description;
+        string ret = Description;
+        ret.ReplaceN("%bt", BuildTime.ToString());
+
+        ret.ReplaceN("%min", MinDamage.ToString());
+        ret.ReplaceN("%max", MaxDamage.ToString());
+        ret.ReplaceN("%rng", Range.ToString());
+        ret.ReplaceN("%aoe", AreaOfEffect.ToString());
+        ret.ReplaceN("%rof", FireDelay.ToString());
+
+        return ret;
     }
 }

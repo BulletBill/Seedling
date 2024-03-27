@@ -6,6 +6,7 @@ public interface ITowerComponent
 {
 	void TowerReady();
 	void TowerRemoved();
+	void TowerUpdated();
 }
 
 public partial class Tower : Sprite2D, IHoverable

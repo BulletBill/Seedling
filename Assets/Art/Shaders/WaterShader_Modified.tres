@@ -28,6 +28,6 @@ shader_parameter/tone_color = Color(1, 1, 1, 1)
 shader_parameter/top_color = Color(1, 1, 1, 1)
 shader_parameter/light_start = 0.55
 shader_parameter/light_end = 1.0
-shader_parameter/tile_size = Vector2(32, 32)
+shader_parameter/tile_size = Vector2(64, 32)
 shader_parameter/noise1 = SubResource("NoiseTexture2D_7jwy8")
 shader_parameter/noise2 = SubResource("NoiseTexture2D_5n48l")

@@ -11,16 +11,16 @@ public enum ETargetPriority
     LowestHealth,
 }
 
-public partial class C_Attack : Node2D
+public partial class C_Attack : Node2D, ITowerComponent
 {
     public static readonly String AttackTowerGroupName = "Attacker";
     [Export] public PackedScene FiredProjectile = null;
-    [Export] public int MinDamage = 1;
-    [Export] public int MaxDamage = 1;
-    [Export] public float AttackDelay = 1.0f;
-    [Export] public float Range = 100.0f;
-    [Export] public float DamageDelay;
-    [Export] public float AreaOfEffect;
+    [Export]public float DamageDelay; // Affects projectile speed
+    public int MinDamage = 1;
+    public int MaxDamage = 1;
+    public float AttackDelay = 1.0f;
+    public float Range = 100.0f;
+    public float AreaOfEffect;
     [Export] public ETargetPriority TargetPriority;
     [Export] bool CanChangeTarget = false;
 
@@ -31,8 +31,34 @@ public partial class C_Attack : Node2D
     int PendingDamage = 0;
     Enemy PendingDamageTaker;
 
-    public override void _Ready()
+    public void TowerReady()
     {
+        UpdateFromParentData();
+    }
+
+    public void TowerRemoved()
+    {
+
+    }
+
+    public void TowerUpdated()
+    {
+        UpdateFromParentData();
+    }
+
+    public void UpdateFromParentData()
+    {
+        if (GetParent() is Tower ParentTower)
+        {
+            if (ParentTower.TowerData != null)
+            {
+                MinDamage = ParentTower.TowerData.MinDamage;
+                MaxDamage = ParentTower.TowerData.MaxDamage;
+                AttackDelay = ParentTower.TowerData.FireDelay;
+                Range = ParentTower.TowerData.Range;
+                AreaOfEffect = ParentTower.TowerData.AreaOfEffect;
+            }
+        }
     }
 
     public override void _Process(double delta)
@@ -149,6 +175,13 @@ public partial class C_Attack : Node2D
                 AddChild(NewProjectile);
                 NewProjectile.Assign(GlobalPosition, CurrentTarget, DamageTimer);
             }
+        }
+
+        AnimationPlayer Anim = GetNodeOrNull<AnimationPlayer>("../Animator");
+        if (Anim != null)
+        {
+            Anim.SpeedScale = AttackDelay > 0.0f ? 1.0f / AttackDelay : 1.0f;
+            Anim.Play("Attack");
         }
     }
 

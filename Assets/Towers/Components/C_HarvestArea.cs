@@ -57,6 +57,10 @@ public partial class C_HarvestArea : Node2D, ITowerComponent
 		RemoveSelf();
 	}
 
+	public void  TowerUpdated()
+	{
+	}
+
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{

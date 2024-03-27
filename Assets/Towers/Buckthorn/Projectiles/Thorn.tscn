@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://Assets/Towers/Projectiles/Projectile.cs" id="1_x8bt4"]
 
 [node name="Thorn" type="Sprite2D"]
+top_level = true
 texture = ExtResource("1_awhgq")
 offset = Vector2(2.5, 0)
 script = ExtResource("1_x8bt4")

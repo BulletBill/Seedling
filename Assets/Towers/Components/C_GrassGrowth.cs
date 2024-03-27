@@ -32,6 +32,10 @@ public partial class C_GrassGrowth : Node2D, ITowerComponent
         }
     }
 
+    public void TowerUpdated()
+    {
+    }
+
     public override void _Process(double delta)
     {
         if (Engine.IsEditorHint()) return; // Don't run in editor
