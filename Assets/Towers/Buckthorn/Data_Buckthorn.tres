@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Data_Tower" load_steps=5 format=3 uid="uid://coyd0ad8jrvd7"]
 
 [ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="1_okcfk"]
-[ext_resource type="Texture2D" uid="uid://bko43lmcg7kpd" path="res://Assets/Towers/Buckthorn/Art-Buckthorn-1.png" id="2_2mecs"]
+[ext_resource type="Texture2D" uid="uid://cedcepcgtfr5w" path="res://Assets/Towers/Buckthorn/Art-Buckthorn.png" id="2_c3nqm"]
 [ext_resource type="Script" path="res://Assets/Towers/Data_Tower.cs" id="4_xuhh0"]
 
 [sub_resource type="Resource" id="Resource_4ujqw"]
@@ -30,9 +30,7 @@ CanBuildOnWater = false
 CanBuildOnChasm = false
 CanBuildOnStone = false
 DisplayName = "Buckthorn"
-Icon = ExtResource("2_2mecs")
-Description = "Attacks nearby enemies
-Damage: 2-3
-Rate: 1/s
-Range: 3 Tiles
+Icon = ExtResource("2_c3nqm")
+Description = "Damage:%min-%max Rate:%rof Range:%rng
+Attacks nearby enemies.
 "

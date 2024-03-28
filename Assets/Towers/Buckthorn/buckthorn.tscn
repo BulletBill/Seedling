@@ -1,7 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://cnq5verjyrwl7"]
+[gd_scene load_steps=22 format=3 uid="uid://cnq5verjyrwl7"]
 
 [ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_ngel3"]
-[ext_resource type="Texture2D" uid="uid://bko43lmcg7kpd" path="res://Assets/Towers/Buckthorn/Art-Buckthorn-1.png" id="2_4035h"]
+[ext_resource type="Texture2D" uid="uid://cedcepcgtfr5w" path="res://Assets/Towers/Buckthorn/Art-Buckthorn.png" id="2_tdiny"]
 [ext_resource type="Script" path="res://Assets/Towers/Tower.cs" id="3_omh8w"]
 [ext_resource type="Resource" uid="uid://coyd0ad8jrvd7" path="res://Assets/Towers/Buckthorn/Data_Buckthorn.tres" id="4_08w0p"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_Attack.cs" id="4_rwsa3"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://dr2317w84u581" path="res://Assets/Towers/Actions/Action_Sell.tres" id="5_kwmsi"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="6_bajax"]
 [ext_resource type="Resource" uid="uid://b8gy007rlkg1y" path="res://Assets/Cursor/State-Placement/Cancel.tres" id="6_ceqss"]
+[ext_resource type="Resource" uid="uid://cx5tj3ji2jabv" path="res://Assets/Towers/Buckthorn/Upgrade_Buckthorn_2.tres" id="7_2gkb0"]
 [ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Interface/Hover Area/HoverArea.tscn" id="7_nugnb"]
 [ext_resource type="Script" path="res://Assets/Core/Common/PausableAnimation.cs" id="10_m4lvt"]
 
@@ -118,10 +119,10 @@ size = Vector2(30, 31)
 z_index = 10
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_bjj0w")
-texture = ExtResource("2_4035h")
+texture = ExtResource("2_tdiny")
 script = ExtResource("3_omh8w")
 TowerData = ExtResource("4_08w0p")
-Actions = [ExtResource("5_kwmsi"), ExtResource("6_ceqss")]
+Actions = [ExtResource("5_kwmsi"), ExtResource("6_ceqss"), ExtResource("7_2gkb0")]
 
 [node name="Attack" type="Node2D" parent="." groups=["Attacker"]]
 script = ExtResource("4_rwsa3")

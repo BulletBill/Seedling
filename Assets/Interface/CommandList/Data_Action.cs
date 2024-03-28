@@ -24,7 +24,7 @@ public partial class Data_Action : Data_Hoverable
     {
         if (TowerData == null) return;
         DisplayName = TowerData.DisplayName;
-        Description = TowerData.Description;
+        Description = TowerData.GetFullDescription();
         Icon = TowerData.Icon;
 
         ClickCost = TowerData.Cost;

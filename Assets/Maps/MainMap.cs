@@ -152,18 +152,14 @@ public partial class MainMap : TileMap
 		
 		if (MainMap.Singleton.GetCellTileData(Layer_Path, GridPosition) != null)
 		{
-			return MainMap.Singleton.GetCellTileData(Layer_Path, GridPosition).Terrain;
+			int Terrain = MainMap.Singleton.GetCellTileData(Layer_Path, GridPosition).Terrain;
+			if (Terrain >= 0) { return Terrain; }
 		}
-
-		// Ignore the below layer, it just reflects the ground layer
-		//if (MainMap.Singleton.GetCellTileData(Layer_Below, GridPosition) != null)
-		//{
-			//return MainMap.Singleton.GetCellTileData(Layer_Below, GridPosition).Terrain;
-		//}
 
 		if (MainMap.Singleton.GetCellTileData(Layer_Ground, GridPosition) != null)
 		{
-			return MainMap.Singleton.GetCellTileData(Layer_Ground, GridPosition).Terrain;
+			int Terrain = MainMap.Singleton.GetCellTileData(Layer_Ground, GridPosition).Terrain;
+			if (Terrain >= 0) { return Terrain; }
 		}
 
 		return Terrain_Void;
@@ -172,19 +168,23 @@ public partial class MainMap : TileMap
 	public static bool TileHasFlag(Vector2I GridPosition, String CustomFlag)
 	{
 		if (MainMap.Singleton == null) return false;
-		bool result = false;
 
 		if (MainMap.Singleton.GetCellTileData(Layer_Below, GridPosition) != null)
 		{
 			TileData BelowData = MainMap.Singleton.GetCellTileData(Layer_Below, GridPosition);
-			result |= (bool)BelowData.GetCustomData(CustomFlag);
+			if ((bool)BelowData.GetCustomData(CustomFlag)) return true;
 		}
 		if (MainMap.Singleton.GetCellTileData(Layer_Ground, GridPosition) != null)
 		{
 			TileData GroundData = MainMap.Singleton.GetCellTileData(Layer_Ground, GridPosition);
-			result |= (bool)GroundData.GetCustomData(CustomFlag);
+			if ((bool)GroundData.GetCustomData(CustomFlag)) return true;
 		}
-		return result;
+		if (MainMap.Singleton.GetCellTileData(Layer_Path, GridPosition) != null)
+		{
+			TileData PathData = MainMap.Singleton.GetCellTileData(Layer_Path, GridPosition);
+			if ((bool)PathData.GetCustomData(CustomFlag)) return true;
+		}
+		return false;
 	}
 
 	public static ECurrencyType GetTileCurrency(Vector2I GridPosition)

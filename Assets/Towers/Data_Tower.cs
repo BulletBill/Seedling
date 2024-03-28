@@ -24,13 +24,13 @@ public partial class Data_Tower : Data_Hoverable
     public override string GetFullDescription()
     {
         string ret = Description;
-        ret.ReplaceN("%bt", BuildTime.ToString());
+        ret = ret.ReplaceN("%bt", BuildTime.ToString());
 
-        ret.ReplaceN("%min", MinDamage.ToString());
-        ret.ReplaceN("%max", MaxDamage.ToString());
-        ret.ReplaceN("%rng", Range.ToString());
-        ret.ReplaceN("%aoe", AreaOfEffect.ToString());
-        ret.ReplaceN("%rof", FireDelay.ToString());
+        ret = ret.ReplaceN("%min", MinDamage.ToString());
+        ret = ret.ReplaceN("%max", MaxDamage.ToString());
+        ret = ret.ReplaceN("%rng", Range.ToString());
+        ret = ret.ReplaceN("%aoe", AreaOfEffect.ToString());
+        ret = ret.ReplaceN("%rof", FireDelay.ToString());
 
         return ret;
     }
