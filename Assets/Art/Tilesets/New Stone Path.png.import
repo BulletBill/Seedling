@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjyu1k3qeer28"
-path="res://.godot/imported/Tileset - Stone.png-6de832dc431bd1daeadb98aa889b3e73.ctex"
+uid="uid://bphy5slyien2t"
+path="res://.godot/imported/New Stone Path.png-c522ef36a3855a198a0416fdb36ce82d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/Tilesets/Tileset - Stone.png"
-dest_files=["res://.godot/imported/Tileset - Stone.png-6de832dc431bd1daeadb98aa889b3e73.ctex"]
+source_file="res://Assets/Art/Tilesets/New Stone Path.png"
+dest_files=["res://.godot/imported/New Stone Path.png-c522ef36a3855a198a0416fdb36ce82d.ctex"]
 
 [params]
 
