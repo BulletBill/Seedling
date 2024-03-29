@@ -14,6 +14,7 @@ public partial class Tower : Sprite2D, IHoverable
 	[Export] public bool IsDefendTarget = false;
 	[Export] public Data_Tower TowerData;
 	[Export] public Array<Data_Action> Actions = new();
+	public int TowerLevel = 1;
 	public static readonly String GroupName = "Tower";
 	public Vector2I MapPosition = new();
 

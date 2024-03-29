@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=3 uid="uid://cnq5verjyrwl7"]
 
 [ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_ngel3"]
-[ext_resource type="Texture2D" uid="uid://cedcepcgtfr5w" path="res://Assets/Towers/Buckthorn/Art-Buckthorn.png" id="2_tdiny"]
+[ext_resource type="Texture2D" uid="uid://bko43lmcg7kpd" path="res://Assets/Towers/Buckthorn/Art-Buckthorn-1.png" id="2_4035h"]
 [ext_resource type="Script" path="res://Assets/Towers/Tower.cs" id="3_omh8w"]
 [ext_resource type="Resource" uid="uid://coyd0ad8jrvd7" path="res://Assets/Towers/Buckthorn/Data_Buckthorn.tres" id="4_08w0p"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_Attack.cs" id="4_rwsa3"]
@@ -119,7 +119,7 @@ size = Vector2(30, 31)
 z_index = 10
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_bjj0w")
-texture = ExtResource("2_tdiny")
+texture = ExtResource("2_4035h")
 script = ExtResource("3_omh8w")
 TowerData = ExtResource("4_08w0p")
 Actions = [ExtResource("5_kwmsi"), ExtResource("6_ceqss"), ExtResource("7_2gkb0")]
