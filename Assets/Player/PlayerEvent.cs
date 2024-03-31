@@ -53,6 +53,7 @@ public partial class PlayerEvent : Node
     // Towers
     [Signal] public delegate void TowerFinishedEventHandler(Tower FinishedTower);
     [Signal] public delegate void TowerSelectedEventHandler(Tower SelectedTower);
+    [Signal] public delegate void TowerRemovedEventHandler(Tower RemovedTower);
     [Signal] public delegate void TowerDeselectedEventHandler();
 
     // Objective

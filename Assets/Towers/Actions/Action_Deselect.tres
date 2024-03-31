@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Data_Action" load_steps=5 format=3 uid="uid://dnvyi3ug6klmx"]
+
+[ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="1_pvb52"]
+[ext_resource type="Texture2D" uid="uid://bvcdpow7u64lq" path="res://Assets/Art/Icons/Back.png" id="2_abr2d"]
+[ext_resource type="Script" path="res://Assets/Interface/CommandList/Data_Action.cs" id="3_evjlx"]
+
+[sub_resource type="Resource" id="Resource_pd2vy"]
+script = ExtResource("1_pvb52")
+LifeForce = 0
+Substance = 0
+Flow = 0
+Breath = 0
+Energy = 0
+
+[resource]
+script = ExtResource("3_evjlx")
+ActionType = 2
+ClickCost = SubResource("Resource_pd2vy")
+DesiredPosition = 14
+DisplayName = "Deselect"
+Icon = ExtResource("2_abr2d")
+Description = "Deselect this tower."

@@ -23,6 +23,7 @@ public partial class C_Attack : Node2D, ITowerComponent
     public float AreaOfEffect;
     [Export] public ETargetPriority TargetPriority;
     [Export] bool CanChangeTarget = false;
+    Tower ParentTower = null;
 
     float AttackTimer;
     Enemy CurrentTarget;
@@ -48,7 +49,8 @@ public partial class C_Attack : Node2D, ITowerComponent
 
     public void UpdateFromParentData()
     {
-        if (GetParent() is Tower ParentTower)
+        ParentTower = GetParentOrNull<Tower>();
+        if (IsInstanceValid(ParentTower))
         {
             if (ParentTower.TowerData != null)
             {
@@ -63,6 +65,11 @@ public partial class C_Attack : Node2D, ITowerComponent
 
     public override void _Process(double delta)
     {
+        if (IsInstanceValid(ParentTower) && ParentTower.Upgrading)
+        {
+            CurrentTarget = null;
+            return;
+        }
         if (AttackTimer > 0)
         {
             AttackTimer -= (float)delta * Level.GetSpeed();
@@ -90,6 +97,11 @@ public partial class C_Attack : Node2D, ITowerComponent
 
     public void SeekTarget()
     {
+        if (IsInstanceValid(ParentTower) && ParentTower.Upgrading)
+        {
+            return;
+        }
+
         if (IsInstanceValid(CurrentTarget) && !CanChangeTarget)
         {
             float Distance = GlobalPosition.DistanceTo(CurrentTarget.GlobalPosition);

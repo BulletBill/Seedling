@@ -1,6 +1,8 @@
 using Godot;
 using System;
 using Godot.Collections;
+using System.Numerics;
+using System.Reflection.Metadata.Ecma335;
 
 public interface ITowerComponent
 {
@@ -11,12 +13,22 @@ public interface ITowerComponent
 
 public partial class Tower : Sprite2D, IHoverable
 {
+	public static readonly String GroupName = "Tower";
 	[Export] public bool IsDefendTarget = false;
 	[Export] public Data_Tower TowerData;
 	[Export] public Array<Data_Action> Actions = new();
-	public int TowerLevel = 1;
-	public static readonly String GroupName = "Tower";
+	[Export] public Array<Data_Action> UpgradingActions = new();
 	public Vector2I MapPosition = new();
+	public R_Cost TotalCost = new();
+	
+	// Upgrade/Build variables
+	[Export] public PackedScene TowerToBecome = null;
+	[Export] public double BuildTime = 0.0f;
+	protected ProgressBar TimerBar;
+	protected Data_Tower UpgradeData = null;
+	public double BuildTimer { get; protected set; }
+	public bool Building { get; protected set; } = false;
+	public bool Upgrading { get; protected set; } = false;
 
 	public override void _EnterTree()
 	{
@@ -27,6 +39,26 @@ public partial class Tower : Sprite2D, IHoverable
 	public override void _Ready()
 	{
 		Material = new ShaderMaterial() { Shader = (Material as ShaderMaterial).Shader.Duplicate() as Shader };
+		TimerBar = GetNodeOrNull<ProgressBar>("BuildBar");
+
+		if (TowerData == null)
+		{
+			QueueFree();
+			return;
+		}
+
+		if (TowerToBecome != null)
+		{
+			Building = true;
+			BuildTimer = BuildTime;
+			if (IsInstanceValid(TimerBar))
+			{
+				TimerBar.Visible = true;
+				TimerBar.MaxValue = (int)(BuildTime * 100);
+			}
+		}
+		
+		TotalCost += TowerData.Cost;
 
 		if (IsDefendTarget)
 		{
@@ -44,6 +76,36 @@ public partial class Tower : Sprite2D, IHoverable
 			if (n is ITowerComponent towerComp)
 			{
 				towerComp.TowerReady();
+			}
+		}
+	}
+
+	public override void _Process(double delta)
+	{
+		if (BuildTimer > 0.0f)
+		{
+			BuildTimer -= delta * Level.GetSpeed();
+			if (IsInstanceValid(TimerBar))
+			{
+				TimerBar.Value = TimerBar.MaxValue - (int)((BuildTimer / BuildTime) * TimerBar.MaxValue);
+				//GD.Print("BuildTower._Process: Setting value to " + TimerBar.Value.ToString() + "/" + TimerBar.MaxValue.ToString());
+			}
+			
+			if (BuildTimer <= 0.0f)
+			{
+				Tower NewTower = TowerToBecome.Instantiate<Tower>();
+        		if (NewTower == null) return;
+				if (!Building)
+				{
+					NewTower.TotalCost += TotalCost;
+				}
+				// TODO: Transfer stats to new tower
+				
+        		NewTower.Position = Position;
+        		MainMap.Singleton.AddChild(NewTower);
+				PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerRemoved, this);
+				PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerFinished, NewTower);
+				QueueFree();
 			}
 		}
 	}
@@ -90,43 +152,87 @@ public partial class Tower : Sprite2D, IHoverable
 
 	public void SellTower()
 	{
-		if (TowerData == null || TowerData.Cost == null) return;
-		R_Cost Refund = TowerData.Cost * 0.50f;
-		if (Refund.LifeForce > 0)
-		{
-			PlayerEvent.Broadcast(PlayerEvent.SignalName.AddLifeforce, -TowerData.Cost.LifeForce);
-		}
-		if (Refund.Substance > 0)
-		{
-			PlayerEvent.Broadcast(PlayerEvent.SignalName.AddSubstance, Refund.Substance);
-		}
-		if (Refund.Flow > 0)
-		{
-			PlayerEvent.Broadcast(PlayerEvent.SignalName.AddFlow, Refund.Flow);
-		}
-		if (Refund.Breath > 0)
-		{
-			PlayerEvent.Broadcast(PlayerEvent.SignalName.AddBreath, Refund.Breath);
-		}
-		if (Refund.Energy > 0)
-		{
-			PlayerEvent.Broadcast(PlayerEvent.SignalName.AddEnergy, Refund.Energy);
-		}
-		EffectsManager.SpawnResourceCluster(GlobalPosition, Refund.Substance, Refund.Flow, Refund.Breath, Refund.Energy);
+		R_Cost Refund = null;
 
-		foreach(Node n in GetChildren())
+		if (Upgrading)
 		{
-			if (n is ITowerComponent towerComp)
+			Refund = UpgradeData.Cost;
+		}
+		else if (Building)
+		{
+			Refund = TotalCost;
+		}
+		else
+		{
+			Refund = TotalCost * 0.50f;
+		}
+
+		if (Refund != null)
+		{
+			if (Refund.LifeForce > 0)
 			{
-				towerComp.TowerRemoved();
+				PlayerEvent.Broadcast(PlayerEvent.SignalName.AddLifeforce, -TowerData.Cost.LifeForce);
 			}
+			if (Refund.Substance > 0)
+			{
+				PlayerEvent.Broadcast(PlayerEvent.SignalName.AddSubstance, Refund.Substance);
+			}
+			if (Refund.Flow > 0)
+			{
+				PlayerEvent.Broadcast(PlayerEvent.SignalName.AddFlow, Refund.Flow);
+			}
+			if (Refund.Breath > 0)
+			{
+				PlayerEvent.Broadcast(PlayerEvent.SignalName.AddBreath, Refund.Breath);
+			}
+			if (Refund.Energy > 0)
+			{
+				PlayerEvent.Broadcast(PlayerEvent.SignalName.AddEnergy, Refund.Energy);
+			}
+			EffectsManager.SpawnResourceCluster(GlobalPosition, Refund.Substance, Refund.Flow, Refund.Breath, Refund.Energy);
 		}
 
-		QueueFree();
+		if (!Upgrading)
+		{
+			foreach(Node n in GetChildren())
+			{
+				if (n is ITowerComponent towerComp)
+				{
+					towerComp.TowerRemoved();
+				}
+			}
+			PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerRemoved, this);
+			QueueFree();
+		}
+		else
+		{
+			Upgrading = false;
+			BuildTimer = 0.0f;
+			if (IsInstanceValid(TimerBar)) { TimerBar.Visible = false; }
+
+			AnimationPlayer Anim = GetNodeOrNull<AnimationPlayer>("Animator");
+			Anim?.Play("RESET");
+		}
 	}
 
-	public void UpgradeTo(Tower NewTower)
+	public void UpgradeTo(PackedScene NewTowerScene, Data_Tower NewUpgradeData)
 	{
+		if (NewTowerScene == null || NewUpgradeData == null) return;
 
+		UpgradeData = NewUpgradeData;
+		TowerToBecome = NewTowerScene;
+
+		Upgrading = true;
+		BuildTimer = BuildTime = UpgradeData.BuildTime;
+
+		Player.Spend(UpgradeData.Cost);
+		if (IsInstanceValid(TimerBar))
+		{
+			TimerBar.Visible = true;
+			TimerBar.MaxValue = (int)(BuildTime * 100);
+		}
+
+		AnimationPlayer Anim = GetNodeOrNull<AnimationPlayer>("Animator");
+		Anim?.Play("Upgrade");
 	}
 }

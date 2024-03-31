@@ -120,6 +120,7 @@ public partial class CommandButton : Node2D, IHoverable
 				Execute_SellTower();
 			break;
 			case EActionType.SelfUpgrade:
+				Execute_SelfUpgrade();
 			break;
 			case EActionType.StatUpgrade:
 			break;
@@ -188,6 +189,18 @@ public partial class CommandButton : Node2D, IHoverable
 			SelectedTower.SellTower();
 			PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerDeselected);
 			Cursor.PopState();
+		}
+	}
+
+	void Execute_SelfUpgrade()
+	{
+		if (Cursor.GetSelectedObject() is Tower SelectedTower)
+		{
+			if (ActionParams.SceneToCreate != null)
+			{
+				SelectedTower.UpgradeTo(ActionParams.SceneToCreate, ActionParams.TowerData);
+				Cursor.PopState();
+			}
 		}
 	}
 }

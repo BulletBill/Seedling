@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Data_Action" load_steps=5 format=3 uid="uid://c81qoyyrdxuns"]
+
+[ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="1_24dqi"]
+[ext_resource type="Texture2D" uid="uid://302dkqm52l52" path="res://Assets/Art/Icons/Cancel.png" id="2_xf74v"]
+[ext_resource type="Script" path="res://Assets/Interface/CommandList/Data_Action.cs" id="3_trtrm"]
+
+[sub_resource type="Resource" id="Resource_r2rgi"]
+script = ExtResource("1_24dqi")
+LifeForce = 0
+Substance = 0
+Flow = 0
+Breath = 0
+Energy = 0
+
+[resource]
+script = ExtResource("3_trtrm")
+ActionType = 3
+ClickCost = SubResource("Resource_r2rgi")
+DesiredPosition = 4
+DisplayName = "Cancel"
+Icon = ExtResource("2_xf74v")
+Description = "Cancel building or upgrading this tower for a full refund."

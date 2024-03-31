@@ -1,6 +1,7 @@
 shader_type canvas_item;
 
-uniform vec4 color : source_color = vec4(1.0);
+uniform vec4 outline_color : source_color = vec4(1.0);
+uniform vec4 multiply_color : source_color = vec4(1.0);
 uniform float width : hint_range(0, 10) = 0.0;
 uniform int pattern : hint_range(0, 2) = 0; // diamond, circle, square
 uniform bool inside = false;
@@ -49,14 +50,14 @@ void fragment() {
 		if (uv != clamp(uv, vec2(0.0), vec2(1.0))) {
 			COLOR.a = 0.0;
 		} else {
-			COLOR = texture(TEXTURE, uv);
+			COLOR = texture(TEXTURE, uv) * multiply_color;
 		}
 	} else {
-		COLOR = texture(TEXTURE, uv);
+		COLOR = texture(TEXTURE, uv) * multiply_color;
 	}
 	
 	if ((COLOR.a > 0.0) == inside && hasContraryNeighbour(uv, TEXTURE_PIXEL_SIZE, TEXTURE)) {
-		COLOR.rgb = inside ? mix(COLOR.rgb, color.rgb, color.a) : color.rgb;
-		COLOR.a += (1.0 - COLOR.a) * color.a;
+		COLOR.rgb = inside ? mix(COLOR.rgb, outline_color.rgb, outline_color.a) : outline_color.rgb;
+		COLOR.a += (1.0 - COLOR.a) * outline_color.a;
 	}
 }

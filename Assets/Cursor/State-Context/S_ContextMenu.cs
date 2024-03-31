@@ -7,6 +7,12 @@ public partial class S_ContextMenu : Cursor_State
 	[Export] public Godot.Collections.Array<Data_Action> StateActions;
 	Tower SelectedTower = null;
 	Cursor ParentCursor;
+
+	public override void _EnterTree()
+	{
+		PlayerEvent.Register(PlayerEvent.SignalName.TowerRemoved, Callable.From((Tower t) => OnTowerRemoved(t)));
+	}
+
 	public override void _Ready()
     {
         ParentCursor = GetParentOrNull<Cursor>();
@@ -17,7 +23,15 @@ public partial class S_ContextMenu : Cursor_State
 		SelectedTower = NewTower;
 		if (NewTower == null) return;
 
-		StateActions = NewTower.Actions;
+		if (NewTower.Upgrading)
+		{
+			StateActions = NewTower.UpgradingActions;
+		}
+		else
+		{
+			StateActions = NewTower.Actions;
+		}
+
 		PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerSelected, NewTower);
 		Cursor.Broadcast(Cursor.SignalName.AnyStateActionsChanged, StateActions);
 	}
@@ -57,5 +71,13 @@ public partial class S_ContextMenu : Cursor_State
 	public override Node2D GetSelectedObject()
 	{
 		return SelectedTower;
+	}
+
+	public void OnTowerRemoved(Tower RemovedTower)
+	{
+		if (RemovedTower == SelectedTower)
+		{
+			OnEscape();
+		}
 	}
 }

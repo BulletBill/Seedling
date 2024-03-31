@@ -67,4 +67,18 @@ public partial class R_Cost : Resource
 
         return Result;
     }
+
+    public static R_Cost operator+ (R_Cost Self, R_Cost Other)
+    {
+        R_Cost Result = new()
+        {
+            LifeForce = Self.LifeForce + Other.LifeForce,
+            Substance = Self.Substance + Other.Substance,
+            Flow = Self.Flow + Other.Flow,
+            Breath = Self.Breath + Other.Breath,
+            Energy = Self.Energy + Other.Energy
+        };
+
+        return Result;
+    }
 }
