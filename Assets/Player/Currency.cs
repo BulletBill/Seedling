@@ -46,7 +46,7 @@ public partial class Currency : Node2D
 
         int PrevAmount = Amount;
         Amount += InAmount;
-        if (MaximumAmount > 0)
+        if (MaximumAmount > 0 && CurrencyType != ECurrencyType.Lifeforce)
         {
             Amount = Math.Clamp(Amount, 0, MaximumAmount);
         }
@@ -62,7 +62,7 @@ public partial class Currency : Node2D
         if (InMax == 0) return;
         MaximumAmount += InMax;
 
-        if (MaximumAmount > 0)
+        if (MaximumAmount > 0 && CurrencyType != ECurrencyType.Lifeforce)
         {
             Amount = Math.Clamp(Amount, 0, MaximumAmount);
         }

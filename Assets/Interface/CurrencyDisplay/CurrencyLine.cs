@@ -59,7 +59,14 @@ public partial class CurrencyLine : Node2D
 
 			if (NewMax > 0 && NewAmount >= NewMax)
 			{
-				Amount.Text = TextHelpers.Colorize(Amount.Text, ExcessColor);
+				if (CurrencyType == ECurrencyType.Lifeforce)
+				{
+					Amount.Text = TextHelpers.Colorize(Amount.Text, DeficitColor);
+				}
+				else
+				{
+					Amount.Text = TextHelpers.Colorize(Amount.Text, ExcessColor);
+				}
 			}
 		}
 	}

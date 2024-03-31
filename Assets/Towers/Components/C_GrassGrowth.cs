@@ -72,6 +72,7 @@ public partial class C_GrassGrowth : Node2D, ITowerComponent
             if (Distance < (Radius * GlobalScale.X))
             {
                 TilesToGrass.Add(new TileAtDistance(i, Distance));
+                TilesInArea.Add(i);
             }
         }
         TilesToGrass.Sort((tile1, tile2) => tile1.Distance.CompareTo(tile2.Distance));
@@ -101,7 +102,6 @@ public partial class C_GrassGrowth : Node2D, ITowerComponent
             foreach (TileAtDistance tile in TilesToGrow)
             {
                 MainMap.AddGrassTile(tile.TilePosition);
-                TilesInArea.Add(tile.TilePosition);
                 TilesToGrass.Remove(tile);
             }
         }

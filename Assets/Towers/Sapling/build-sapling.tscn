@@ -1,12 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://cc014in5dphp3"]
+[gd_scene load_steps=16 format=3 uid="uid://cc014in5dphp3"]
 
 [ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_sljl6"]
-[ext_resource type="PackedScene" uid="uid://d2k206m54ooy6" path="res://Assets/Towers/Sapling/sapling.tscn" id="2_ltngr"]
 [ext_resource type="Texture2D" uid="uid://jjtyw1yuda4o" path="res://Assets/Towers/Sapling/Art-BuildSapling.png" id="3_4c6c6"]
 [ext_resource type="Script" path="res://Assets/Towers/Tower.cs" id="3_xbqns"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="4_o55dw"]
-[ext_resource type="Resource" uid="uid://bmd4ngk8oi5f1" path="res://Assets/Towers/Sapling/Data_Sapling.tres" id="5_fis1p"]
+[ext_resource type="Resource" uid="uid://bmd4ngk8oi5f1" path="res://Assets/Towers/Sapling/Data_Sapling_1.tres" id="4_r6ny2"]
+[ext_resource type="Resource" uid="uid://c81qoyyrdxuns" path="res://Assets/Towers/Actions/Action_BuildCancel.tres" id="5_323bp"]
+[ext_resource type="Resource" uid="uid://dnvyi3ug6klmx" path="res://Assets/Towers/Actions/Action_Deselect.tres" id="6_ac7ie"]
 [ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Interface/Hover Area/HoverArea.tscn" id="6_oslbu"]
+[ext_resource type="PackedScene" uid="uid://d2k206m54ooy6" path="res://Assets/Towers/Sapling/sapling-1.tscn" id="7_c7mkw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rbwmu"]
 shader = ExtResource("1_sljl6")
@@ -78,21 +80,23 @@ size = Vector2(30, 31)
 material = SubResource("ShaderMaterial_rbwmu")
 texture = ExtResource("3_4c6c6")
 script = ExtResource("3_xbqns")
-TowerData = ExtResource("5_fis1p")
-TowerToBecome = ExtResource("2_ltngr")
+TowerData = ExtResource("4_r6ny2")
+Actions = [ExtResource("5_323bp"), ExtResource("6_ac7ie")]
+TowerToBecome = ExtResource("7_c7mkw")
 BuildTime = 10.0
-
-[node name="AlignToMap" type="Node2D" parent="."]
-script = ExtResource("4_o55dw")
 
 [node name="BuildBar" type="ProgressBar" parent="."]
 offset_left = -14.0
-offset_top = 8.0
-offset_right = 14.0
-offset_bottom = 14.0
+offset_top = 11.0
+offset_right = 42.0
+offset_bottom = 17.0
+scale = Vector2(0.5, 0.5)
 max_value = 500.0
 step = 1.0
 show_percentage = false
+
+[node name="AlignToMap" type="Node2D" parent="."]
+script = ExtResource("4_o55dw")
 
 [node name="HoverAnimator" type="AnimationPlayer" parent="."]
 libraries = {
@@ -105,6 +109,5 @@ ParentAnimator = NodePath("../HoverAnimator")
 ReactStates = [0]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HoverArea"]
-visible = false
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_m8f2e")

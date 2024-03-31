@@ -1,27 +1,44 @@
-[gd_scene load_steps=24 format=3 uid="uid://cnq5verjyrwl7"]
+[gd_scene load_steps=27 format=3 uid="uid://d2k206m54ooy6"]
 
-[ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_3e1y3"]
-[ext_resource type="Texture2D" uid="uid://bko43lmcg7kpd" path="res://Assets/Towers/Buckthorn/Art-Buckthorn-1.png" id="2_1sqvy"]
-[ext_resource type="Script" path="res://Assets/Towers/Tower.cs" id="3_t1a5j"]
-[ext_resource type="Resource" uid="uid://coyd0ad8jrvd7" path="res://Assets/Towers/Buckthorn/Data_Buckthorn_1.tres" id="4_qa3uu"]
-[ext_resource type="Resource" uid="uid://dnvyi3ug6klmx" path="res://Assets/Towers/Actions/Action_Deselect.tres" id="5_4jrhu"]
-[ext_resource type="Resource" uid="uid://dr2317w84u581" path="res://Assets/Towers/Actions/Action_Sell.tres" id="5_r3a7q"]
-[ext_resource type="Resource" uid="uid://cx5tj3ji2jabv" path="res://Assets/Towers/Buckthorn/Upgrade_Buckthorn_2.tres" id="7_y4cpd"]
-[ext_resource type="Script" path="res://Assets/Towers/Components/C_Attack.cs" id="8_jd84c"]
-[ext_resource type="Resource" uid="uid://c81qoyyrdxuns" path="res://Assets/Towers/Actions/Action_BuildCancel.tres" id="8_of74t"]
-[ext_resource type="PackedScene" uid="uid://crck6cv15vkic" path="res://Assets/Towers/Buckthorn/Projectiles/Thorn.tscn" id="9_esvti"]
-[ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="10_p7snt"]
-[ext_resource type="Script" path="res://Assets/Core/Common/PausableAnimation.cs" id="11_dtjfj"]
-[ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Interface/Hover Area/HoverArea.tscn" id="12_pc5me"]
+[ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_v4ei0"]
+[ext_resource type="Texture2D" uid="uid://brtlf65prxos0" path="res://Assets/Towers/Sapling/Art-Sapling.png" id="2_0rcgi"]
+[ext_resource type="Script" path="res://Assets/Towers/Tower.cs" id="3_slgeb"]
+[ext_resource type="Resource" uid="uid://bmd4ngk8oi5f1" path="res://Assets/Towers/Sapling/Data_Sapling_1.tres" id="4_5cxxx"]
+[ext_resource type="Resource" uid="uid://dr2317w84u581" path="res://Assets/Towers/Actions/Action_Sell.tres" id="5_le6xs"]
+[ext_resource type="Resource" uid="uid://dnvyi3ug6klmx" path="res://Assets/Towers/Actions/Action_Deselect.tres" id="6_aw3lm"]
+[ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="6_ebnto"]
+[ext_resource type="Resource" uid="uid://c81qoyyrdxuns" path="res://Assets/Towers/Actions/Action_BuildCancel.tres" id="7_2u5s0"]
+[ext_resource type="Resource" uid="uid://dov60juppbyr8" path="res://Assets/Towers/Sapling/Upgrade_Sapling_2.tres" id="7_au675"]
+[ext_resource type="Script" path="res://Assets/Towers/Components/C_GrassGrowth.cs" id="7_qs3yr"]
+[ext_resource type="Script" path="res://Assets/Towers/Components/C_AddResources.cs" id="8_m2jt0"]
+[ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="9_0pc2a"]
+[ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Interface/Hover Area/HoverArea.tscn" id="10_mmhm2"]
+[ext_resource type="Script" path="res://Assets/Core/Common/PausableAnimation.cs" id="14_d1bw4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bjj0w"]
-shader = ExtResource("1_3e1y3")
+shader = ExtResource("1_v4ei0")
 shader_parameter/outline_color = Color(1, 1, 1, 1)
 shader_parameter/multiply_color = Color(1, 1, 1, 1)
 shader_parameter/width = 0.0
 shader_parameter/pattern = 0
 shader_parameter/inside = false
 shader_parameter/add_margins = true
+
+[sub_resource type="Resource" id="Resource_hscaw"]
+script = ExtResource("9_0pc2a")
+LifeForce = 0
+Substance = 0
+Flow = 0
+Breath = 0
+Energy = 0
+
+[sub_resource type="Resource" id="Resource_pbkck"]
+script = ExtResource("9_0pc2a")
+LifeForce = 1
+Substance = 0
+Flow = 0
+Breath = 0
+Energy = 0
 
 [sub_resource type="Animation" id="Animation_7dypm"]
 resource_name = "Attack"
@@ -91,6 +108,22 @@ _data = {
 "Upgrade": SubResource("Animation_csj5n")
 }
 
+[sub_resource type="Animation" id="Animation_vro8x"]
+resource_name = "Hover"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.0, 1.0]
+}
+
 [sub_resource type="Animation" id="Animation_8e3l7"]
 length = 0.001
 tracks/0/type = "value"
@@ -122,22 +155,6 @@ tracks/0/keys = {
 "values": [1.0, 0.0]
 }
 
-[sub_resource type="Animation" id="Animation_vro8x"]
-resource_name = "Hover"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/width")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [2.0, 1.0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v61gj"]
 _data = {
 "Hover": SubResource("Animation_vro8x"),
@@ -148,15 +165,15 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6l6xg"]
 size = Vector2(30, 31)
 
-[node name="Buckthorn" type="Sprite2D" groups=["Tower"]]
+[node name="Sapling-1" type="Sprite2D" groups=["Tower"]]
 z_index = 10
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_bjj0w")
-texture = ExtResource("2_1sqvy")
-script = ExtResource("3_t1a5j")
-TowerData = ExtResource("4_qa3uu")
-Actions = [ExtResource("7_y4cpd"), ExtResource("5_r3a7q"), ExtResource("5_4jrhu")]
-UpgradingActions = [ExtResource("8_of74t"), ExtResource("5_4jrhu")]
+texture = ExtResource("2_0rcgi")
+script = ExtResource("3_slgeb")
+TowerData = ExtResource("4_5cxxx")
+Actions = [ExtResource("5_le6xs"), ExtResource("6_aw3lm"), ExtResource("7_au675")]
+UpgradingActions = [ExtResource("7_2u5s0"), ExtResource("6_aw3lm")]
 
 [node name="BuildBar" type="ProgressBar" parent="."]
 visible = false
@@ -169,29 +186,31 @@ max_value = 500.0
 step = 1.0
 show_percentage = false
 
-[node name="Attack" type="Node2D" parent="." groups=["Attacker"]]
-script = ExtResource("8_jd84c")
-FiredProjectile = ExtResource("9_esvti")
-DamageDelay = 0.15
-TargetPriority = 1
-CanChangeTarget = true
-
 [node name="AlignToMap" type="Node2D" parent="."]
-script = ExtResource("10_p7snt")
+script = ExtResource("6_ebnto")
+
+[node name="GrassGrowth" type="Node2D" parent="."]
+script = ExtResource("7_qs3yr")
+Radius = 48.0
+GrowthInterval = 0.1
+
+[node name="ResourceOnSpawn" type="Node2D" parent="."]
+script = ExtResource("8_m2jt0")
+AddFlatAmount = SubResource("Resource_hscaw")
+AddMaximum = SubResource("Resource_pbkck")
 
 [node name="Animator" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_x4dt6")
 }
-script = ExtResource("11_dtjfj")
+script = ExtResource("14_d1bw4")
 
 [node name="HoverAnimator" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_v61gj")
 }
-autoplay = "Unhover"
 
-[node name="HoverArea" parent="." node_paths=PackedStringArray("ParentAnimator") instance=ExtResource("12_pc5me")]
+[node name="HoverArea" parent="." node_paths=PackedStringArray("ParentAnimator") instance=ExtResource("10_mmhm2")]
 ParentAnimator = NodePath("../HoverAnimator")
 ReactStates = [0]
 

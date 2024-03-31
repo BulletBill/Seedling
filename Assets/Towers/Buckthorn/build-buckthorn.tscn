@@ -4,10 +4,10 @@
 [ext_resource type="Script" path="res://Assets/Towers/Tower.cs" id="3_hapdb"]
 [ext_resource type="Texture2D" uid="uid://b3ohqqlo3egwh" path="res://Assets/Towers/Buckthorn/Art-BuildBuckthorn.png" id="3_uiggv"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="4_a8ets"]
+[ext_resource type="Resource" uid="uid://coyd0ad8jrvd7" path="res://Assets/Towers/Buckthorn/Data_Buckthorn_1.tres" id="4_rljx0"]
 [ext_resource type="PackedScene" uid="uid://cnq5verjyrwl7" path="res://Assets/Towers/Buckthorn/buckthorn-1.tscn" id="5_374r2"]
 [ext_resource type="Resource" uid="uid://c81qoyyrdxuns" path="res://Assets/Towers/Actions/Action_BuildCancel.tres" id="5_lel61"]
 [ext_resource type="Resource" uid="uid://dnvyi3ug6klmx" path="res://Assets/Towers/Actions/Action_Deselect.tres" id="5_nrvo0"]
-[ext_resource type="Resource" uid="uid://coyd0ad8jrvd7" path="res://Assets/Towers/Buckthorn/Data_Buckthorn.tres" id="5_soncb"]
 [ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Interface/Hover Area/HoverArea.tscn" id="6_py4lt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_68xpg"]
@@ -80,7 +80,7 @@ size = Vector2(30, 31)
 material = SubResource("ShaderMaterial_68xpg")
 texture = ExtResource("3_uiggv")
 script = ExtResource("3_hapdb")
-TowerData = ExtResource("5_soncb")
+TowerData = ExtResource("4_rljx0")
 Actions = [ExtResource("5_lel61"), ExtResource("5_nrvo0")]
 TowerToBecome = ExtResource("5_374r2")
 BuildTime = 8.0

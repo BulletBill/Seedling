@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dobwfdwefkg46"]
+[gd_scene load_steps=35 format=3 uid="uid://dobwfdwefkg46"]
 
 [ext_resource type="Script" path="res://Assets/Maps/Level.cs" id="1_803ym"]
 [ext_resource type="TileSet" uid="uid://se8ye8sftem5" path="res://Assets/Maps/Tilesets/TileSet_Main.tres" id="1_bmc26"]
@@ -8,7 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://cqlpygxb75t08" path="res://Assets/Enemies/Spawner/EnemySpawner.tscn" id="4_hf66m"]
 [ext_resource type="Script" path="res://Assets/Maps/CameraController.cs" id="5_808yx"]
 [ext_resource type="PackedScene" uid="uid://2ekwlaa17gji" path="res://Assets/Cursor/cursor.tscn" id="6_rjk40"]
+[ext_resource type="PackedScene" uid="uid://d2k206m54ooy6" path="res://Assets/Towers/Sapling/sapling-1.tscn" id="7_36g2i"]
 [ext_resource type="PackedScene" uid="uid://crks2aw8cc252" path="res://Assets/Player/player.tscn" id="7_pkqfd"]
+[ext_resource type="PackedScene" uid="uid://ty6s6r8q6ydb" path="res://Assets/Towers/Sapling/sapling-2.tscn" id="8_r8al8"]
 [ext_resource type="Script" path="res://Assets/Enemies/Spawner/SpawnerBrain.cs" id="9_wbj8j"]
 [ext_resource type="Script" path="res://Assets/Enemies/EnemyEvent.cs" id="9_x333f"]
 [ext_resource type="PackedScene" uid="uid://c4nme8pyly5sa" path="res://Assets/Enemies/Clod-E1/E1 Clod.tscn" id="11_2vq5p"]
@@ -136,6 +138,12 @@ MaxSpawnTime = 1.2
 position = Vector2(1008, -16)
 MinSpawnTime = 0.8
 MaxSpawnTime = 1.2
+
+[node name="Sapling" parent="TileMap" instance=ExtResource("7_36g2i")]
+position = Vector2(816, 880)
+
+[node name="Sapling2" parent="TileMap" instance=ExtResource("8_r8al8")]
+position = Vector2(1168, 752)
 
 [node name="Water Test" type="Sprite2D" parent="."]
 visible = false

@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Data_Tower" load_steps=5 format=3 uid="uid://bmd4ngk8oi5f1"]
+
+[ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="1_rxb5s"]
+[ext_resource type="Texture2D" uid="uid://u88sw73qd72t" path="res://Assets/Towers/Sapling/Art-Sapling-1.png" id="2_ryc2t"]
+[ext_resource type="Script" path="res://Assets/Towers/Data_Tower.cs" id="3_q8kir"]
+
+[sub_resource type="Resource" id="Resource_4ujqw"]
+script = ExtResource("1_rxb5s")
+LifeForce = 0
+Substance = 40
+Flow = 40
+Breath = 0
+Energy = 0
+
+[resource]
+script = ExtResource("3_q8kir")
+Ident = "Sapling"
+Cost = SubResource("Resource_4ujqw")
+BuildTime = 10.0
+MinDamage = 0
+MaxDamage = 0
+Range = 0.0
+AreaOfEffect = 0.0
+FireDelay = 1.0
+NeedsSparkFlag = false
+NeedsGrassFlag = true
+CanBuildOnGrass = true
+CanBuildOnDirt = false
+CanBuildOnWater = false
+CanBuildOnChasm = false
+CanBuildOnStone = false
+DisplayName = "Sapling"
+Icon = ExtResource("2_ryc2t")
+Description = "[img]res://Assets/Art/Icons/Lifeforce Small.png[/img]:1 Grass Radius:1
+Expands buildable area by growing grass. Upgrade to increase grass radius."

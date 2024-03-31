@@ -100,9 +100,17 @@ public partial class Tower : Sprite2D, IHoverable
 					NewTower.TotalCost += TotalCost;
 				}
 				// TODO: Transfer stats to new tower
-				
+
         		NewTower.Position = Position;
         		MainMap.Singleton.AddChild(NewTower);
+
+				foreach(Node n in GetChildren())
+				{
+					if (n is ITowerComponent towerComp)
+					{
+						towerComp.TowerRemoved();
+					}
+				}
 				PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerRemoved, this);
 				PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerFinished, NewTower);
 				QueueFree();
