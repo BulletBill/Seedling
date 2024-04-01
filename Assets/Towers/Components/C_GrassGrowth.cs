@@ -71,8 +71,15 @@ public partial class C_GrassGrowth : Node2D, ITowerComponent
             float Distance = ParentNode.GlobalPosition.DistanceTo(TilePos);
             if (Distance < (Radius * GlobalScale.X))
             {
-                TilesToGrass.Add(new TileAtDistance(i, Distance));
                 TilesInArea.Add(i);
+                if (MainMap.TileHasFlag(i, MainMap.Custom_Grass))
+                {
+                    MainMap.AddGrassTile(i);
+                }
+                else
+                {
+                    TilesToGrass.Add(new TileAtDistance(i, Distance));
+                }
             }
         }
         TilesToGrass.Sort((tile1, tile2) => tile1.Distance.CompareTo(tile2.Distance));
