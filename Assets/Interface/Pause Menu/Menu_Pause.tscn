@@ -116,10 +116,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -113.0
-offset_top = -51.0
-offset_right = 113.0
-offset_bottom = 51.0
+offset_left = -120.0
+offset_top = -90.0
+offset_right = 120.0
+offset_bottom = 61.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_psdt1")
@@ -129,7 +129,7 @@ patch_margin_right = 6
 patch_margin_bottom = 6
 
 [node name="Resume Button" type="Node2D" parent="."]
-position = Vector2(0, -24)
+position = Vector2(0, -28)
 script = ExtResource("3_jjc23")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Resume Button"]
@@ -166,6 +166,7 @@ mouse_filter = 2
 theme_override_constants/shadow_outline_size = 5
 bbcode_enabled = true
 text = "[center]RESUME[/center]"
+metadata/_edit_use_anchors_ = true
 
 [node name="HoverAnimator" type="AnimationPlayer" parent="Resume Button"]
 libraries = {
@@ -181,7 +182,7 @@ visible = false
 shape = SubResource("RectangleShape2D_2uvnr")
 
 [node name="Quit" type="Node2D" parent="."]
-position = Vector2(0, 24)
+position = Vector2(0, 28)
 script = ExtResource("5_hy4qj")
 GotoScene = "LevelSelect"
 
@@ -233,3 +234,12 @@ ReactStates = [3]
 visible = false
 position = Vector2(-0.25, 0)
 shape = SubResource("RectangleShape2D_2uvnr")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = -109.0
+offset_top = -87.0
+offset_right = 109.0
+offset_bottom = -57.0
+bbcode_enabled = true
+text = "[center]PAUSED[/center]"
+scroll_active = false

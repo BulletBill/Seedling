@@ -93,6 +93,7 @@ public partial class Cursor : Node2D
 	{
 		Cursor_State NewState = Cursor.Singleton.GetNodeOrNull<Cursor_State>(StateName);
 		if (NewState == null) return StateStack.Count > 0 ? StateStack.Peek() : null;
+		if (NewState == StateStack.Peek()) return StateStack.Peek();
 
 		StateStack.Peek()?.OnDisable();
 		StateStack.Push(NewState);

@@ -38,12 +38,15 @@ public partial class HoverArea : Area2D
 
     public void Activate()
     {
-        if (ReactStates.Contains(Cursor.GetCurrentState()) && !Disabled)
+        if (ReactStates.Contains(Cursor.GetCurrentState()))
         {
-            ParentAnimator?.Play("Hover");
-        }
+            HoverParent?.OnHovered();
 
-        HoverParent?.OnHovered();
+            if (!Disabled)
+            {
+                ParentAnimator?.Play("Hover");
+            }
+        }
     }
 
     public void OnMouseExit()
