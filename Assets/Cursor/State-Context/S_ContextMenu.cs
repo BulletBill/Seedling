@@ -20,6 +20,8 @@ public partial class S_ContextMenu : Cursor_State
 
 	public void AssignTower(Tower NewTower)
 	{
+		PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerDeselected);
+		Cursor.Broadcast(Cursor.SignalName.ClearFixedObject);
 		SelectedTower = NewTower;
 		if (NewTower == null) return;
 
@@ -49,7 +51,6 @@ public partial class S_ContextMenu : Cursor_State
 	}
 	public override void OnDisable()
 	{
-		if (HoverList.Count > 0){ HoverList[0].Deactivate(); }
 		PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerDeselected);
 		Cursor.Broadcast(Cursor.SignalName.ClearFixedObject);
 		SelectedTower = null;

@@ -69,6 +69,8 @@ public partial class Tower : Sprite2D, IHoverable
 		if (hoverArea != null)
 		{
 			hoverArea.Clicked += OnClick;
+			hoverArea.ReactStates.Add(ECursorState.Free);
+			hoverArea.ReactStates.Add(ECursorState.Menu_Context);
 		}
 
 		foreach(Node n in GetChildren())
@@ -150,12 +152,6 @@ public partial class Tower : Sprite2D, IHoverable
 
 	void Deselected()
 	{
-		HoverArea hoverArea = GetNodeOrNull<HoverArea>("HoverArea");
-		if (hoverArea != null && !hoverArea.Hovered && Cursor.GetSelectedObject() == this)
-		{
-			AnimationPlayer Anim = GetNodeOrNull<AnimationPlayer>("HoverAnimator");
-			Anim?.Play("Unhover");
-		}
 	}
 
 	public void SellTower()

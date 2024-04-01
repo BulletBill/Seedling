@@ -13,7 +13,8 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bjj0w"]
 shader = ExtResource("1_lah4t")
-shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/multiply_color = Color(1, 1, 1, 1)
 shader_parameter/width = 0.0
 shader_parameter/pattern = 0
 shader_parameter/inside = false
@@ -123,7 +124,6 @@ libraries = {
 
 [node name="HoverArea" parent="." node_paths=PackedStringArray("ParentAnimator") instance=ExtResource("6_xv2l5")]
 ParentAnimator = NodePath("../HoverAnimator")
-ReactStates = [0]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HoverArea"]
 visible = false

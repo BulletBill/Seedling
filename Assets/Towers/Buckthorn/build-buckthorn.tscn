@@ -105,7 +105,6 @@ libraries = {
 
 [node name="HoverArea" parent="." node_paths=PackedStringArray("ParentAnimator") instance=ExtResource("6_py4lt")]
 ParentAnimator = NodePath("../HoverAnimator")
-ReactStates = [0]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HoverArea"]
 position = Vector2(0, -0.5)
