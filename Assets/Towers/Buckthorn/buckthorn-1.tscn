@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://crck6cv15vkic" path="res://Assets/Towers/Buckthorn/Projectiles/Thorn.tscn" id="9_esvti"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="10_p7snt"]
 [ext_resource type="Script" path="res://Assets/Core/Common/PausableAnimation.cs" id="11_dtjfj"]
+[ext_resource type="Animation" uid="uid://8i3h0e1uvnfa" path="res://Assets/Towers/Animations/Anim-Upgrade.res" id="12_or04r"]
 [ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Interface/Hover Area/HoverArea.tscn" id="12_pc5me"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bjj0w"]
@@ -66,29 +67,11 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_csj5n"]
-resource_name = "Upgrade"
-length = 1.60001
-loop_mode = 1
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/multiply_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(8, 8, 8, 1), Color(1, 1, 1, 1), Color(8, 8, 8, 1), Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x4dt6"]
 _data = {
 "Attack": SubResource("Animation_7dypm"),
 "RESET": SubResource("Animation_772tj"),
-"Upgrade": SubResource("Animation_csj5n")
+"Upgrade": ExtResource("12_or04r")
 }
 
 [sub_resource type="Animation" id="Animation_vro8x"]
