@@ -10,7 +10,7 @@ LifeForce = 1
 Substance = 200
 Flow = 0
 Breath = 0
-Energy = 0
+Energy = 10
 
 [resource]
 script = ExtResource("3_l4bij")

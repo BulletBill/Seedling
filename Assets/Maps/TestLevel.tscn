@@ -160,6 +160,8 @@ drag_right_margin = 0.0
 drag_bottom_margin = 0.0
 editor_draw_limits = true
 script = ExtResource("5_808yx")
+MinimumZoom = 0.75
+ZoomSpeed = 3.0
 PanSpeed = 600.0
 
 [node name="Cursor" parent="." instance=ExtResource("6_rjk40")]

@@ -17,7 +17,6 @@ public partial class MenuEvent : Node
 
     public override void _Ready()
     {
-        
     }
 
     // Event bus functions
