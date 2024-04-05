@@ -65,7 +65,7 @@ public partial class C_Attack : Node2D, ITowerComponent
 
     public override void _Process(double delta)
     {
-        if (AttackTimer > 0 && IsInstanceValid(ParentTower) && ParentTower.Upgrading)
+        if (AttackTimer > 0 && IsInstanceValid(ParentTower) && !ParentTower.Upgrading)
         {
             AttackTimer -= (float)delta * Level.GetSpeed();
             if (AttackTimer <= 0.0f && IsInstanceValid(CurrentTarget))
