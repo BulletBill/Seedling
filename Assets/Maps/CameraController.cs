@@ -10,6 +10,7 @@ public partial class CameraController : Camera2D
 	[Export] public float PanSpeed { get; protected set; } = 250.0f;
 	[Export] public int UIPanelHeight { get; protected set; } = 192;
     public Vector2 HalfSize { get; protected set; } = new Vector2(0.0f, 0.0f);
+	int DefaultLimitBottom;
 	public float ScaledUIPanelHeight;
 	float CurrentZoom = 1.0f;
 	protected static CameraController Singleton;
@@ -22,7 +23,7 @@ public partial class CameraController : Camera2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		LimitBottom += UIPanelHeight;
+		DefaultLimitBottom = LimitBottom;
 		UpdateSizes();
 	}
 
@@ -34,6 +35,7 @@ public partial class CameraController : Camera2D
         HalfSize = new Vector2(HalfWidth, HalfHeight);
 
 		ScaledUIPanelHeight = UIPanelHeight / Zoom.X;
+		LimitBottom = DefaultLimitBottom + (int)ScaledUIPanelHeight;
 
 		float NewX = Mathf.Clamp(GlobalPosition.X, LimitLeft + HalfSize.X, LimitRight - HalfSize.X);
 		float NewY = Mathf.Clamp(GlobalPosition.Y, LimitTop + HalfSize.Y, LimitBottom - HalfSize.Y);
@@ -62,7 +64,7 @@ public partial class CameraController : Camera2D
 	public void Pan(Vector2 Direction, double delta)
 	{
 		float NewX = Mathf.Clamp(GlobalPosition.X + ((Direction.X * PanSpeed) * (float)delta), LimitLeft + HalfSize.X, LimitRight - HalfSize.X);
-		float NewY = Mathf.Clamp(GlobalPosition.Y + ((Direction.Y * PanSpeed) * (float)delta), LimitTop + HalfSize.Y, LimitBottom - HalfSize.Y);
+		float NewY = Mathf.Clamp(GlobalPosition.Y + ((Direction.Y * PanSpeed) * (float)delta), LimitTop + HalfSize.Y + UIPanelHeight, LimitBottom - HalfSize.Y);
 		
 		GlobalPosition = new Vector2(NewX, NewY);
 	}

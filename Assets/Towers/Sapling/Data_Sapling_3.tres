@@ -29,7 +29,7 @@ CanBuildOnDirt = false
 CanBuildOnWater = false
 CanBuildOnChasm = false
 CanBuildOnStone = false
-DisplayName = "Great Tree"
+DisplayName = "Tree"
 Icon = ExtResource("2_ojeln")
 Description = "[img]res://Assets/Art/Icons/Lifeforce Small.png[/img]+%max Grass Radius:%aoe	
 Expands buildable area by growing grass."
