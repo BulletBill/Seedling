@@ -26,6 +26,7 @@ public partial class MainMap : TileMap
 	public static readonly int Terrain_WetDirt = 5;
 	public static readonly int Terrain_WetGrass = 6;
 	public static readonly int Terrain_WetRocks = 7;
+	public static readonly int Terrain_Sand = 8;
 
 	public static readonly int TerrainSet_Default = 0;
 
@@ -38,6 +39,7 @@ public partial class MainMap : TileMap
 	public static readonly String Custom_Spark = "Spark";
 	public static readonly String Custom_Grass = "Grass";
 	public static readonly String Custom_Water = "Water";
+	public static readonly String Custom_CanGrowGrass = "CanGrowGrass";
 
 	// Event bus
 	[Signal] public delegate void PlayerExpandedEventHandler(int Count);
@@ -108,11 +110,11 @@ public partial class MainMap : TileMap
 
 		GrassTiles.Add(TileLoc, 1);
 		Array<Vector2I> TileToGrow = new() { TileLoc };
-		if (MainMap.Singleton.GetCellTileData(Layer_Ground, TileToGrow[0]).Terrain != MainMap.Terrain_Water)
+		if ((bool)MainMap.Singleton.GetCellTileData(Layer_Ground, TileToGrow[0]).GetCustomData(Custom_CanGrowGrass))
 		{
 			SetCellsTerrainConnect(MainMap.Layer_Ground, TileToGrow, MainMap.TerrainSet_Default, MainMap.Terrain_Grass);
 		}
-		if (MainMap.Singleton.GetCellTileData(Layer_Below, TileToGrow[0]).Terrain != MainMap.Terrain_WetRocks)
+		if ((bool)MainMap.Singleton.GetCellTileData(Layer_Below, TileToGrow[0]).GetCustomData(Custom_CanGrowGrass))
 		{
 			SetCellsTerrainConnect(MainMap.Layer_Below, TileToGrow, MainMap.TerrainSet_Default, MainMap.Terrain_WetGrass);
 		}
@@ -133,11 +135,14 @@ public partial class MainMap : TileMap
 		if (GrassTiles[TileLoc] <= 0)
 		{
 			Array<Vector2I> TileToRemove = new() { TileLoc };
-			if (MainMap.Singleton.GetCellTileData(Layer_Ground, TileToRemove[0]).Terrain != MainMap.Terrain_Water)
+			if ((bool)MainMap.Singleton.GetCellTileData(Layer_Ground, TileToRemove[0]).GetCustomData(Custom_CanGrowGrass))
 			{
 				SetCellsTerrainConnect(MainMap.Layer_Ground, TileToRemove, MainMap.TerrainSet_Default, MainMap.Terrain_Dirt);
 			}
-			SetCellsTerrainConnect(MainMap.Layer_Below, TileToRemove, MainMap.TerrainSet_Default, MainMap.Terrain_WetDirt);
+			if ((bool)MainMap.Singleton.GetCellTileData(Layer_Below, TileToRemove[0]).GetCustomData(Custom_CanGrowGrass))
+			{
+				SetCellsTerrainConnect(MainMap.Layer_Below, TileToRemove, MainMap.TerrainSet_Default, MainMap.Terrain_WetDirt);
+			}
 			Broadcast(SignalName.AnyTileChanged);
 			GrassTiles.Remove(TileLoc);
 		}
@@ -204,7 +209,7 @@ public partial class MainMap : TileMap
 		{
 			return ECurrencyType.Flow;
 		}
-		if (Type == MainMap.Terrain_Chasm)
+		if (Type == MainMap.Terrain_Chasm || Type == MainMap.Terrain_Sand)
 		{
 			return ECurrencyType.Breath;
 		}
