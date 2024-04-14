@@ -59,6 +59,7 @@ public partial class PlayerEvent : Node
     // Objective
     [Signal] public delegate void HeartCountUpdatedEventHandler(int HeartCount);
     [Signal] public delegate void SunleafCountUpdatedEventHandler(int SunleafCount);
+    [Signal] public delegate void EnemiesRemainingEventHandler(int EnemyCount);
     [Signal] public delegate void FinalWaveSurvivedEventHandler();
 
     public PlayerEvent()

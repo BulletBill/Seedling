@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dobwfdwefkg46"]
+[gd_scene load_steps=27 format=3 uid="uid://dobwfdwefkg46"]
 
 [ext_resource type="Script" path="res://Assets/Maps/Level.cs" id="1_803ym"]
 [ext_resource type="TileSet" uid="uid://se8ye8sftem5" path="res://Assets/Maps/Tilesets/TileSet_Main.tres" id="1_bmc26"]
@@ -6,40 +6,17 @@
 [ext_resource type="Script" path="res://Assets/Maps/Objectives.cs" id="2_mk7dt"]
 [ext_resource type="PackedScene" uid="uid://bltnii6x6epdm" path="res://Assets/Towers/Genesis Heart/genesis.tscn" id="4_bwwnp"]
 [ext_resource type="PackedScene" uid="uid://cqlpygxb75t08" path="res://Assets/Enemies/Spawner/EnemySpawner.tscn" id="4_hf66m"]
-[ext_resource type="Script" path="res://Assets/Maps/CameraController.cs" id="5_808yx"]
 [ext_resource type="PackedScene" uid="uid://2ekwlaa17gji" path="res://Assets/Cursor/cursor.tscn" id="6_rjk40"]
-[ext_resource type="PackedScene" uid="uid://cnq5verjyrwl7" path="res://Assets/Towers/Buckthorn/buckthorn-1.tscn" id="7_2kq1y"]
 [ext_resource type="PackedScene" uid="uid://crks2aw8cc252" path="res://Assets/Player/player.tscn" id="7_pkqfd"]
 [ext_resource type="Script" path="res://Assets/Enemies/Spawner/SpawnerBrain.cs" id="9_wbj8j"]
 [ext_resource type="Script" path="res://Assets/Enemies/EnemyEvent.cs" id="9_x333f"]
+[ext_resource type="PackedScene" uid="uid://cktc13ggtb27n" path="res://Assets/Core/MainCamera.tscn" id="10_j5uj5"]
 [ext_resource type="PackedScene" uid="uid://c4nme8pyly5sa" path="res://Assets/Enemies/Clod-E1/E1 Clod.tscn" id="11_2vq5p"]
 [ext_resource type="PackedScene" uid="uid://mmyy6s5sben4" path="res://Assets/Interface/InGame/UI_InGame.tscn" id="11_g5y1k"]
 [ext_resource type="Script" path="res://Assets/Enemies/Spawner/R_SpawnCount.cs" id="12_4rsco"]
 [ext_resource type="Script" path="res://Assets/Enemies/Spawner/R_SpawnWave.cs" id="13_l00jb"]
 [ext_resource type="Resource" uid="uid://by1l3gp0tkyvm" path="res://Assets/Enemies/Clod-E1/Data_Clod.tres" id="14_qkqo1"]
 [ext_resource type="Script" path="res://Assets/Enemies/Spawner/R_Spawn.cs" id="15_t8mhi"]
-[ext_resource type="Texture2D" uid="uid://7fhu5lxwhvq5" path="res://Assets/Art/Interface/HoverBackground.png" id="18_b3mrs"]
-[ext_resource type="Shader" path="res://Assets/Art/Shaders/Water.gdshader" id="18_ysfcm"]
-[ext_resource type="Texture2D" uid="uid://bk66kdrhoixeu" path="res://Assets/Art/Shaders/WaterNoise.tres" id="19_nko8q"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_dqr4n"]
-frequency = 0.1
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3vowu"]
-noise = SubResource("FastNoiseLite_dqr4n")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3dk7v"]
-shader = ExtResource("18_ysfcm")
-shader_parameter/scroll1 = Vector2(0.01, 0.01)
-shader_parameter/scroll2 = Vector2(-0.01, -0.01)
-shader_parameter/distortion_strength = 0.01
-shader_parameter/tone_color = Color(0.501961, 0.623529, 1, 1)
-shader_parameter/top_color = Color(1, 1, 1, 1)
-shader_parameter/light_start = 0.6
-shader_parameter/light_end = 0.7
-shader_parameter/tile_size = null
-shader_parameter/noise1 = ExtResource("19_nko8q")
-shader_parameter/noise2 = SubResource("NoiseTexture2D_3vowu")
 
 [sub_resource type="Resource" id="Resource_4wu3h"]
 script = ExtResource("15_t8mhi")
@@ -138,35 +115,7 @@ position = Vector2(1008, -16)
 MinSpawnTime = 0.8
 MaxSpawnTime = 1.2
 
-[node name="Buckthorn" parent="TileMap" instance=ExtResource("7_2kq1y")]
-position = Vector2(977.5, 1181.5)
-
-[node name="Water Test" type="Sprite2D" parent="."]
-visible = false
-z_index = -6
-material = SubResource("ShaderMaterial_3dk7v")
-position = Vector2(1152.38, 532)
-scale = Vector2(258.139, 119.944)
-texture = ExtResource("18_b3mrs")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-z_index = 1000
-position = Vector2(2016, 1696)
-limit_left = 0
-limit_top = 0
-limit_right = 3840
-limit_bottom = 2112
-position_smoothing_enabled = true
-position_smoothing_speed = 8.0
-drag_left_margin = 0.0
-drag_top_margin = 0.0
-drag_right_margin = 0.0
-drag_bottom_margin = 0.0
-editor_draw_limits = true
-script = ExtResource("5_808yx")
-MinimumZoom = 0.75
-ZoomSpeed = 3.0
-PanSpeed = 600.0
+[node name="Camera2D" parent="." instance=ExtResource("10_j5uj5")]
 
 [node name="Cursor" parent="." instance=ExtResource("6_rjk40")]
 z_index = 50

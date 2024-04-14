@@ -9,7 +9,8 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r12j0"]
 shader = ExtResource("2_dg8g0")
-shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/multiply_color = Color(1, 1, 1, 1)
 shader_parameter/width = 0.0
 shader_parameter/pattern = 0
 shader_parameter/inside = false
@@ -81,21 +82,13 @@ events = [SubResource("InputEventKey_pq5x4")]
 
 [node name="LevelSelect" type="Node2D"]
 script = ExtResource("1_uhvr7")
-Levels = ["TitleScreen", "TestLevel"]
+Levels = ["TitleScreen", "TestLevel", "E03"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 self_modulate = Color(0, 0.184314, 0, 1)
 scale = Vector2(214.889, 121.667)
 texture = ExtResource("1_sm7ra")
 centered = false
-
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = 91.0
-offset_top = 246.0
-offset_right = 271.0
-offset_bottom = 292.0
-bbcode_enabled = true
-text = "[center]TEST MAP[/center]"
 
 [node name="TestLevel" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_r12j0")
@@ -126,6 +119,54 @@ ParentAnimator = NodePath("../AnimationPlayer")
 visible = false
 position = Vector2(289, 206)
 shape = SubResource("RectangleShape2D_d2p16")
+
+[node name="TestLevelLabel" type="RichTextLabel" parent="TestLevel"]
+top_level = true
+offset_left = 28.0
+offset_top = 237.0
+offset_right = 318.0
+offset_bottom = 283.0
+bbcode_enabled = true
+text = "[center]TEST MAP[/center]"
+
+[node name="Earth_03" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_r12j0")
+position = Vector2(367, 29)
+scale = Vector2(0.502591, 0.504854)
+texture = ExtResource("3_el50g")
+centered = false
+
+[node name="Button" type="Button" parent="Earth_03"]
+offset_right = 1158.0
+offset_bottom = 824.0
+scale = Vector2(0.5, 0.5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Earth_03"]
+root_node = NodePath("../Button")
+libraries = {
+"": SubResource("AnimationLibrary_02gln")
+}
+autoplay = "Unhover"
+
+[node name="HoverArea" type="Area2D" parent="Earth_03" node_paths=PackedStringArray("ParentAnimator")]
+position = Vector2(1.98969, 1.98077)
+scale = Vector2(0.994845, 0.990385)
+script = ExtResource("5_sti45")
+ParentAnimator = NodePath("../../TestLevel/AnimationPlayer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Earth_03/HoverArea"]
+visible = false
+position = Vector2(289, 206)
+shape = SubResource("RectangleShape2D_d2p16")
+
+[node name="Earth_03Label" type="RichTextLabel" parent="Earth_03"]
+top_level = true
+offset_left = 368.0
+offset_top = 237.0
+offset_right = 658.0
+offset_bottom = 283.0
+bbcode_enabled = true
+text = "[center]Hard Problems[/center]"
 
 [node name="BackButton" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_r12j0")
@@ -164,6 +205,9 @@ shape = SubResource("RectangleShape2D_d2p16")
 [connection signal="pressed" from="TestLevel/Button" to="." method="LoadLevel" binds= [1]]
 [connection signal="mouse_entered" from="TestLevel/HoverArea" to="TestLevel/HoverArea" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="TestLevel/HoverArea" to="TestLevel/HoverArea" method="OnMouseExit"]
+[connection signal="pressed" from="Earth_03/Button" to="." method="LoadLevel" binds= [2]]
+[connection signal="mouse_entered" from="Earth_03/HoverArea" to="Earth_03/HoverArea" method="OnMouseEnter"]
+[connection signal="mouse_exited" from="Earth_03/HoverArea" to="Earth_03/HoverArea" method="OnMouseExit"]
 [connection signal="pressed" from="BackButton/Button" to="." method="LoadLevel" binds= [0]]
 [connection signal="mouse_entered" from="BackButton/HoverArea" to="BackButton/HoverArea" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="BackButton/HoverArea" to="BackButton/HoverArea" method="OnMouseExit"]

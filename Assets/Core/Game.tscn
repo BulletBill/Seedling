@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://df7u54ytfaqgo"]
+[gd_scene load_steps=12 format=3 uid="uid://df7u54ytfaqgo"]
 
 [ext_resource type="Script" path="res://Assets/Core/Game.cs" id="1_3h5cw"]
 [ext_resource type="PackedScene" uid="uid://b8alkvm0vwleo" path="res://Assets/MainMenu/TitleScreen/TitleScreen.tscn" id="2_lk3nh"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b7aw8rjhw3c0p" path="res://Assets/MainMenu/LevelSelect/LevelSelect.tscn" id="3_db6cj"]
 [ext_resource type="PackedScene" uid="uid://dobwfdwefkg46" path="res://Assets/Maps/TestLevel.tscn" id="3_k1yfu"]
 [ext_resource type="PackedScene" uid="uid://gbcg85276gnj" path="res://Assets/Core/Quit.tscn" id="5_mlhpu"]
+[ext_resource type="PackedScene" uid="uid://blhgx4ui4wyrj" path="res://Assets/Maps/Earth Story/E_03.tscn" id="6_0lvf2"]
 
 [sub_resource type="Animation" id="Animation_quu0i"]
 resource_name = "Dissolve"
@@ -79,7 +80,7 @@ _data = {
 position = Vector2(-1, 0)
 script = ExtResource("1_3h5cw")
 StartingScene = NodePath("TitleScreen")
-LevelDefMap = [ExtResource("2_lk3nh"), ExtResource("3_db6cj"), ExtResource("3_k1yfu"), ExtResource("5_mlhpu")]
+LevelDefMap = [ExtResource("2_lk3nh"), ExtResource("3_db6cj"), ExtResource("3_k1yfu"), ExtResource("5_mlhpu"), ExtResource("6_0lvf2")]
 
 [node name="Transition" type="CanvasLayer" parent="."]
 layer = 128

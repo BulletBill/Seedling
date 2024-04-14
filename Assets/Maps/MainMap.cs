@@ -25,6 +25,7 @@ public partial class MainMap : TileMap
 	public static readonly int Terrain_Chasm = 4;
 	public static readonly int Terrain_WetDirt = 5;
 	public static readonly int Terrain_WetGrass = 6;
+	public static readonly int Terrain_WetRocks = 7;
 
 	public static readonly int TerrainSet_Default = 0;
 
@@ -111,7 +112,10 @@ public partial class MainMap : TileMap
 		{
 			SetCellsTerrainConnect(MainMap.Layer_Ground, TileToGrow, MainMap.TerrainSet_Default, MainMap.Terrain_Grass);
 		}
-		SetCellsTerrainConnect(MainMap.Layer_Below, TileToGrow, MainMap.TerrainSet_Default, MainMap.Terrain_WetGrass);
+		if (MainMap.Singleton.GetCellTileData(Layer_Below, TileToGrow[0]).Terrain != MainMap.Terrain_WetRocks)
+		{
+			SetCellsTerrainConnect(MainMap.Layer_Below, TileToGrow, MainMap.TerrainSet_Default, MainMap.Terrain_WetGrass);
+		}
         Broadcast(SignalName.AnyTileChanged);
 
 		if (Expansion < GrassTiles.Count)

@@ -18,7 +18,8 @@ point_count = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mc1mt"]
 shader = ExtResource("6_18dry")
-shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/multiply_color = Color(1, 1, 1, 1)
 shader_parameter/width = 0.0
 shader_parameter/pattern = 0
 shader_parameter/inside = false
@@ -98,7 +99,7 @@ theme = ExtResource("1_3on0u")
 theme_override_fonts/normal_font = ExtResource("2_f6sr5")
 theme_override_font_sizes/normal_font_size = 128
 bbcode_enabled = true
-text = "[center]GROWING HELIX
+text = "[center]PLANT SHOOT ROCK
 TOWER DEFENSE[/center]"
 
 [node name="Subtitle" type="RichTextLabel" parent="."]

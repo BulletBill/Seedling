@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://cktc13ggtb27n"]
+
+[ext_resource type="Script" path="res://Assets/Maps/CameraController.cs" id="1_a3ebe"]
+
+[node name="Camera2D" type="Camera2D"]
+z_index = 1000
+position = Vector2(2016, 1696)
+limit_left = 0
+limit_top = 0
+limit_right = 3840
+limit_bottom = 2112
+position_smoothing_enabled = true
+position_smoothing_speed = 16.0
+drag_left_margin = 0.0
+drag_top_margin = 0.0
+drag_right_margin = 0.0
+drag_bottom_margin = 0.0
+editor_draw_limits = true
+script = ExtResource("1_a3ebe")
+MinimumZoom = 0.75
+ZoomSpeed = 3.0
+PanSpeed = 600.0
