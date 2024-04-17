@@ -89,8 +89,16 @@ public partial class CameraController : Camera2D
 		{
 			Vector2 PosDiff = MousePanStart - GetMousePosition();
 			
-			float NewX = Mathf.Clamp(CameraPanStart.X + PosDiff.X, LimitLeft + HalfSize.X, LimitRight - HalfSize.X);
-			float NewY = Mathf.Clamp(CameraPanStart.Y + PosDiff.Y, LimitTop + HalfSize.Y, LimitBottom - HalfSize.Y);
+			float NewX = GlobalPosition.X;
+			float NewY = GlobalPosition.Y;
+			if (LimitLeft + HalfSize.X < LimitRight - HalfSize.X)
+			{
+				NewX = Mathf.Clamp(CameraPanStart.X + PosDiff.X, LimitLeft + HalfSize.X, LimitRight - HalfSize.X);
+			}
+			if (LimitTop + HalfSize.Y < LimitBottom - HalfSize.Y)
+			{
+				NewY = Mathf.Clamp(CameraPanStart.Y + PosDiff.Y, LimitTop + HalfSize.Y, LimitBottom - HalfSize.Y);
+			}
 	
 			GlobalPosition = new Vector2(NewX, NewY);
 		}
