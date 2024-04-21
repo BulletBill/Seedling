@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dc6p5rmu5alno"
-path="res://.godot/imported/Stone Path.png-61857617855ce86c0f068817931d1364.ctex"
+uid="uid://buxupkbpoki3h"
+path="res://.godot/imported/Art-Build Sun Leaf.png-f723fd01497fd5e13dcd17baa1bcd775.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/Tilesets/Source Files/Stone Path.png"
-dest_files=["res://.godot/imported/Stone Path.png-61857617855ce86c0f068817931d1364.ctex"]
+source_file="res://Assets/Art/Towers/Sunleaf/Art-Build Sun Leaf.png"
+dest_files=["res://.godot/imported/Art-Build Sun Leaf.png-f723fd01497fd5e13dcd17baa1bcd775.ctex"]
 
 [params]
 

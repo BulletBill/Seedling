@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dc6p5rmu5alno"
-path="res://.godot/imported/Stone Path.png-61857617855ce86c0f068817931d1364.ctex"
+uid="uid://bko43lmcg7kpd"
+path="res://.godot/imported/Art-Buckthorn-1.png-b00ccc6c87b4bf834787037c05d6fdae.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/Tilesets/Source Files/Stone Path.png"
-dest_files=["res://.godot/imported/Stone Path.png-61857617855ce86c0f068817931d1364.ctex"]
+source_file="res://Assets/Art/Towers/Buckthorn/Art-Buckthorn-1.png"
+dest_files=["res://.godot/imported/Art-Buckthorn-1.png-b00ccc6c87b4bf834787037c05d6fdae.ctex"]
 
 [params]
 

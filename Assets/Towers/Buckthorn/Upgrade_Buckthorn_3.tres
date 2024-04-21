@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Data_Action" load_steps=7 format=3 uid="uid://c654pbma5g4f4"]
 
 [ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="1_yg8qw"]
-[ext_resource type="Texture2D" uid="uid://da3w8jclytcvs" path="res://Assets/Towers/Buckthorn/Art-Buckthorn-3.png" id="2_y87go"]
+[ext_resource type="Texture2D" path="res://Assets/Towers/Buckthorn/Art-Buckthorn-3.png" id="2_y87go"]
 [ext_resource type="PackedScene" uid="uid://b6x6a053kdsrm" path="res://Assets/Towers/Buckthorn/buckthorn-3.tscn" id="3_6udk7"]
 [ext_resource type="Resource" uid="uid://ulxlm812hshb" path="res://Assets/Towers/Buckthorn/Data_Buckthorn_3.tres" id="4_h1qw6"]
 [ext_resource type="Script" path="res://Assets/Interface/CommandList/Data_Action.cs" id="5_du8oa"]

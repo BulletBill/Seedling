@@ -3,7 +3,7 @@
 [ext_resource type="Material" uid="uid://ddlld0t8q70iw" path="res://Assets/Art/Shaders/WaterShader_Modified.tres" id="1_57pk3"]
 [ext_resource type="Texture2D" uid="uid://cf4tbjtrs744e" path="res://Assets/Art/Tilesets/Tileset - Utility.png" id="1_nwo2i"]
 [ext_resource type="Texture2D" uid="uid://dwepqdadvr10x" path="res://Assets/Art/Tilesets/Tileset - Grass On Dirt.png" id="2_n73r7"]
-[ext_resource type="Texture2D" uid="uid://bphy5slyien2t" path="res://Assets/Art/Tilesets/New Stone Path.png" id="4_cci6f"]
+[ext_resource type="Texture2D" uid="uid://bphy5slyien2t" path="res://Assets/Art/Tilesets/Stone Path.png" id="4_cci6f"]
 [ext_resource type="Texture2D" uid="uid://b1yu345vbjdm6" path="res://Assets/Art/Tilesets/Tileset - Sand.png" id="4_wie2q"]
 [ext_resource type="Texture2D" uid="uid://dp7ej1ass45qj" path="res://Assets/Art/Tilesets/Tileset - CliffEdge.png" id="6_5akkm"]
 [ext_resource type="Texture2D" uid="uid://plv4smhtxved" path="res://Assets/Art/Tilesets/Source Files/Grass and Dirt Alts.png" id="6_xmfjt"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dc6p5rmu5alno"
-path="res://.godot/imported/Stone Path.png-61857617855ce86c0f068817931d1364.ctex"
+uid="uid://ch3t8841qamrf"
+path="res://.godot/imported/Art-Claude.png-04a5be630477a9e5cd24385ba1a0a6fe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/Tilesets/Source Files/Stone Path.png"
-dest_files=["res://.godot/imported/Stone Path.png-61857617855ce86c0f068817931d1364.ctex"]
+source_file="res://Assets/Art/Enemies/Clod-E1/Art-Claude.png"
+dest_files=["res://.godot/imported/Art-Claude.png-04a5be630477a9e5cd24385ba1a0a6fe.ctex"]
 
 [params]
 

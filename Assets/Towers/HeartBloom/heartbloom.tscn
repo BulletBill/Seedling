@@ -1,0 +1,221 @@
+[gd_scene load_steps=26 format=3 uid="uid://bltnii6x6epdm"]
+
+[ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_qvlx0"]
+[ext_resource type="Texture2D" uid="uid://cjl4aixbpkx80" path="res://Assets/Art/Towers/Heart Bloom/Art-Genesis Tree.png" id="2_g1gix"]
+[ext_resource type="Script" path="res://Assets/Towers/Tower.cs" id="3_r2iep"]
+[ext_resource type="Resource" uid="uid://cnxh15qnwr5eo" path="res://Assets/Towers/HeartBloom/Data_HeartBloom.tres" id="4_0juh4"]
+[ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="5_ev5tl"]
+[ext_resource type="Script" path="res://Assets/Towers/Components/C_GrassGrowth.cs" id="6_08vtw"]
+[ext_resource type="Script" path="res://Assets/Towers/Components/C_HarvestArea.cs" id="6_wd2sv"]
+[ext_resource type="Theme" uid="uid://svogtundy1nx" path="res://Assets/Art/Interface/default_theme.tres" id="7_herpu"]
+[ext_resource type="Script" path="res://Assets/Towers/Components/C_AddResources.cs" id="7_q4drf"]
+[ext_resource type="Script" path="res://Assets/Interface/CostReadout.cs" id="8_3a8nf"]
+[ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="8_cereb"]
+[ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Interface/Hover Area/HoverArea.tscn" id="9_mbxf4"]
+[ext_resource type="Script" path="res://Assets/Core/Common/PausableAnimation.cs" id="10_vwlp0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7wjg6"]
+shader = ExtResource("1_qvlx0")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/multiply_color = Color(1, 1, 1, 1)
+shader_parameter/width = 0.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+
+[sub_resource type="Resource" id="Resource_2llxm"]
+script = ExtResource("8_cereb")
+LifeForce = 0
+Substance = 140
+Flow = 30
+Breath = 0
+Energy = 0
+
+[sub_resource type="Resource" id="Resource_wt3hr"]
+script = ExtResource("8_cereb")
+LifeForce = 5
+Substance = 500
+Flow = 500
+Breath = 500
+Energy = 500
+
+[sub_resource type="Animation" id="Animation_vro8x"]
+resource_name = "Hover"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_8e3l7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_n53sj"]
+resource_name = "Unhover"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v61gj"]
+_data = {
+"Hover": SubResource("Animation_vro8x"),
+"RESET": SubResource("Animation_8e3l7"),
+"Unhover": SubResource("Animation_n53sj")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3lnn7"]
+size = Vector2(30, 31)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cgg3u"]
+shader = ExtResource("1_qvlx0")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/multiply_color = Color(1, 1, 1, 1)
+shader_parameter/width = 3.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+
+[sub_resource type="Animation" id="Animation_8olc3"]
+resource_name = "Glow"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DuplicateSprite:material:shader_parameter/color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 0.235294), Color(1, 1, 0, 0.235294), Color(0, 1, 0, 0.235294), Color(0, 1, 1, 0.235294), Color(0, 0, 1, 0.235294), Color(1, 0, 1, 0.235294), Color(1, 0, 0, 0.235294)]
+}
+
+[sub_resource type="Animation" id="Animation_nn6hq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DuplicateSprite:material:shader_parameter/color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.0784314)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dluc5"]
+_data = {
+"Glow": SubResource("Animation_8olc3"),
+"RESET": SubResource("Animation_nn6hq")
+}
+
+[node name="Genesis" type="Sprite2D" groups=["Tower"]]
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_7wjg6")
+texture = ExtResource("2_g1gix")
+script = ExtResource("3_r2iep")
+IsDefendTarget = true
+TowerData = ExtResource("4_0juh4")
+
+[node name="AlignToMap" type="Node2D" parent="."]
+y_sort_enabled = true
+script = ExtResource("5_ev5tl")
+
+[node name="HarvestArea" type="Node2D" parent="." groups=["HarvestArea"]]
+script = ExtResource("6_wd2sv")
+
+[node name="TimerBar" type="ProgressBar" parent="HarvestArea"]
+z_index = -1
+offset_left = -14.0
+offset_top = -15.0
+offset_right = 42.0
+offset_bottom = -9.0
+scale = Vector2(0.5, 0.5)
+mouse_filter = 2
+theme = ExtResource("7_herpu")
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Income" type="RichTextLabel" parent="HarvestArea"]
+offset_left = -23.0
+offset_top = -11.0
+offset_right = 69.0
+offset_bottom = 33.0
+scale = Vector2(0.5, 0.5)
+mouse_filter = 2
+bbcode_enabled = true
+text = "[center]SampleText[/center]"
+scroll_active = false
+script = ExtResource("8_3a8nf")
+metadata/_edit_use_anchors_ = true
+
+[node name="GrassGrowth" type="Node2D" parent="."]
+script = ExtResource("6_08vtw")
+Radius = 108.0
+GrowthInterval = 0.1
+AttractEnemies = false
+
+[node name="ResourceOnSpawn" type="Node2D" parent="."]
+script = ExtResource("7_q4drf")
+AddFlatAmount = SubResource("Resource_2llxm")
+AddMaximum = SubResource("Resource_wt3hr")
+
+[node name="HoverAnimator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_v61gj")
+}
+
+[node name="HoverArea" parent="." node_paths=PackedStringArray("ParentAnimator") instance=ExtResource("9_mbxf4")]
+ParentAnimator = NodePath("../HoverAnimator")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HoverArea"]
+visible = false
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_3lnn7")
+
+[node name="DuplicateSprite" type="Sprite2D" parent="."]
+visible = false
+z_index = -1
+material = SubResource("ShaderMaterial_cgg3u")
+texture = ExtResource("2_g1gix")
+
+[node name="GlowAnimator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dluc5")
+}
+autoplay = "Glow"
+script = ExtResource("10_vwlp0")

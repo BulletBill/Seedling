@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://se8ye8sftem5" path="res://Assets/Maps/Tilesets/TileSet_Main.tres" id="1_bmc26"]
 [ext_resource type="Script" path="res://Assets/Maps/MainMap.cs" id="2_2t1dw"]
 [ext_resource type="Script" path="res://Assets/Maps/Objectives.cs" id="2_mk7dt"]
-[ext_resource type="PackedScene" uid="uid://bltnii6x6epdm" path="res://Assets/Towers/Genesis Heart/genesis.tscn" id="4_bwwnp"]
+[ext_resource type="PackedScene" path="res://Assets/Towers/Genesis Heart/genesis.tscn" id="4_bwwnp"]
 [ext_resource type="PackedScene" uid="uid://cqlpygxb75t08" path="res://Assets/Enemies/Spawner/EnemySpawner.tscn" id="4_hf66m"]
 [ext_resource type="PackedScene" uid="uid://2ekwlaa17gji" path="res://Assets/Cursor/cursor.tscn" id="6_rjk40"]
 [ext_resource type="PackedScene" uid="uid://crks2aw8cc252" path="res://Assets/Player/player.tscn" id="7_pkqfd"]
