@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_unyhk"]
 [ext_resource type="Script" path="res://Assets/Towers/Tower.cs" id="3_hapdb"]
-[ext_resource type="Texture2D" uid="uid://b3ohqqlo3egwh" path="res://Assets/Towers/Buckthorn/Art-BuildBuckthorn.png" id="3_uiggv"]
+[ext_resource type="Texture2D" uid="uid://b3ohqqlo3egwh" path="res://Assets/Art/Towers/Buckthorn/Art-BuildBuckthorn.png" id="3_uiggv"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="4_a8ets"]
 [ext_resource type="Resource" uid="uid://coyd0ad8jrvd7" path="res://Assets/Towers/Buckthorn/Data_Buckthorn_1.tres" id="4_rljx0"]
 [ext_resource type="PackedScene" uid="uid://cnq5verjyrwl7" path="res://Assets/Towers/Buckthorn/buckthorn-1.tscn" id="5_374r2"]

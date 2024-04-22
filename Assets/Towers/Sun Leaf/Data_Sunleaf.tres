@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Data_Tower" load_steps=5 format=3 uid="uid://pqk4g5tts6in"]
 
 [ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="1_qudfg"]
-[ext_resource type="Texture2D" uid="uid://blygruvq4wq11" path="res://Assets/Towers/Sun Leaf/Art-Sun Leaf.png" id="2_8ae21"]
+[ext_resource type="Texture2D" uid="uid://blygruvq4wq11" path="res://Assets/Art/Towers/Sunleaf/Art-Sun Leaf.png" id="2_8ae21"]
 [ext_resource type="Script" path="res://Assets/Towers/Data_Tower.cs" id="4_3fgbh"]
 
 [sub_resource type="Resource" id="Resource_4ujqw"]

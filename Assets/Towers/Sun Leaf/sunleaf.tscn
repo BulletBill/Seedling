@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://dbr6bnc2oohvr"]
 
 [ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_lah4t"]
-[ext_resource type="Texture2D" uid="uid://blygruvq4wq11" path="res://Assets/Towers/Sun Leaf/Art-Sun Leaf.png" id="2_q21ul"]
+[ext_resource type="Texture2D" uid="uid://blygruvq4wq11" path="res://Assets/Art/Towers/Sunleaf/Art-Sun Leaf.png" id="2_q21ul"]
 [ext_resource type="Script" path="res://Assets/Towers/Tower.cs" id="3_xcnlb"]
 [ext_resource type="Resource" uid="uid://pqk4g5tts6in" path="res://Assets/Towers/Sun Leaf/Data_Sunleaf.tres" id="4_3uak5"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="4_7gefn"]

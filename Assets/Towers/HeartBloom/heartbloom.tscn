@@ -143,7 +143,7 @@ _data = {
 "RESET": SubResource("Animation_nn6hq")
 }
 
-[node name="Genesis" type="Sprite2D" groups=["Tower"]]
+[node name="HeartBloom" type="Sprite2D" groups=["Tower"]]
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_7wjg6")
 texture = ExtResource("2_g1gix")

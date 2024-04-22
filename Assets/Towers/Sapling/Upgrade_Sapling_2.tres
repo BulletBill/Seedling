@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Data_Action" load_steps=7 format=3 uid="uid://dov60juppbyr8"]
 
 [ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="1_q3c5t"]
-[ext_resource type="Texture2D" uid="uid://se5dthfgtik" path="res://Assets/Towers/Sapling/Art-Sapling-2.png" id="2_t5oqj"]
+[ext_resource type="Texture2D" uid="uid://se5dthfgtik" path="res://Assets/Art/Towers/Sapling/Art-Sapling-2.png" id="2_t5oqj"]
 [ext_resource type="PackedScene" uid="uid://ty6s6r8q6ydb" path="res://Assets/Towers/Sapling/sapling-2.tscn" id="3_k3qgn"]
 [ext_resource type="Resource" uid="uid://bl7ydj6n61ujv" path="res://Assets/Towers/Sapling/Data_Sapling_2.tres" id="4_q65pe"]
 [ext_resource type="Script" path="res://Assets/Interface/CommandList/Data_Action.cs" id="5_5dbqv"]

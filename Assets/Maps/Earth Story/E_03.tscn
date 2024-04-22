@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Assets/Maps/Objectives.cs" id="2_lg3fp"]
 [ext_resource type="TileSet" uid="uid://se8ye8sftem5" path="res://Assets/Maps/Tilesets/TileSet_Main.tres" id="3_aj0ng"]
 [ext_resource type="Script" path="res://Assets/Maps/MainMap.cs" id="4_ver3y"]
-[ext_resource type="PackedScene" path="res://Assets/Towers/Genesis Heart/genesis.tscn" id="5_1b6vq"]
+[ext_resource type="PackedScene" uid="uid://bltnii6x6epdm" path="res://Assets/Towers/HeartBloom/heartbloom.tscn" id="6_7v5kc"]
 [ext_resource type="PackedScene" uid="uid://cqlpygxb75t08" path="res://Assets/Enemies/Spawner/EnemySpawner.tscn" id="6_hhu3t"]
 [ext_resource type="PackedScene" uid="uid://cktc13ggtb27n" path="res://Assets/Core/MainCamera.tscn" id="7_va0y5"]
 [ext_resource type="PackedScene" uid="uid://2ekwlaa17gji" path="res://Assets/Cursor/cursor.tscn" id="8_ld811"]
@@ -97,9 +97,6 @@ layer_4/tile_data = PackedInt32Array(-65504, 131072, 0, 32, 131072, 0, 65569, 13
 script = ExtResource("4_ver3y")
 GridColor = Color(0, 0, 0, 0.196078)
 
-[node name="Bloom Heart" parent="TileMap" instance=ExtResource("5_1b6vq")]
-position = Vector2(720, 336)
-
 [node name="EnemySpawner" parent="TileMap" instance=ExtResource("6_hhu3t")]
 position = Vector2(-16, 272)
 MinSpawnTime = 0.8
@@ -109,6 +106,9 @@ MaxSpawnTime = 1.2
 position = Vector2(1456, 432)
 MinSpawnTime = 0.8
 MaxSpawnTime = 1.2
+
+[node name="HeartBloom" parent="TileMap" instance=ExtResource("6_7v5kc")]
+position = Vector2(720, 336)
 
 [node name="Camera2D" parent="." instance=ExtResource("7_va0y5")]
 position = Vector2(1442, 671)

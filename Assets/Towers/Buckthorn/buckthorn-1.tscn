@@ -1,7 +1,7 @@
 [gd_scene load_steps=24 format=3 uid="uid://cnq5verjyrwl7"]
 
 [ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_3e1y3"]
-[ext_resource type="Texture2D" uid="uid://bko43lmcg7kpd" path="res://Assets/Towers/Buckthorn/Art-Buckthorn-1.png" id="2_1sqvy"]
+[ext_resource type="Texture2D" uid="uid://bko43lmcg7kpd" path="res://Assets/Art/Towers/Buckthorn/Art-Buckthorn-1.png" id="2_0or0x"]
 [ext_resource type="Script" path="res://Assets/Towers/Tower.cs" id="3_t1a5j"]
 [ext_resource type="Resource" uid="uid://coyd0ad8jrvd7" path="res://Assets/Towers/Buckthorn/Data_Buckthorn_1.tres" id="4_qa3uu"]
 [ext_resource type="Resource" uid="uid://dnvyi3ug6klmx" path="res://Assets/Towers/Actions/Action_Deselect.tres" id="5_4jrhu"]
@@ -135,7 +135,7 @@ size = Vector2(30, 31)
 z_index = 10
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_bjj0w")
-texture = ExtResource("2_1sqvy")
+texture = ExtResource("2_0or0x")
 script = ExtResource("3_t1a5j")
 TowerData = ExtResource("4_qa3uu")
 Actions = [ExtResource("7_y4cpd"), ExtResource("5_r3a7q"), ExtResource("5_4jrhu")]

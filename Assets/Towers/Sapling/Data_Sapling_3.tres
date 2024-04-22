@@ -1,7 +1,6 @@
-[gd_resource type="Resource" script_class="Data_Tower" load_steps=5 format=3 uid="uid://e67kw8ho805l"]
+[gd_resource type="Resource" script_class="Data_Tower" load_steps=4 format=3 uid="uid://e67kw8ho805l"]
 
 [ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="1_s4bnj"]
-[ext_resource type="Texture2D" path="res://Assets/Towers/Sapling/Art-Sapling-3.png" id="2_ojeln"]
 [ext_resource type="Script" path="res://Assets/Towers/Data_Tower.cs" id="3_ikek8"]
 
 [sub_resource type="Resource" id="Resource_4ujqw"]
@@ -30,6 +29,5 @@ CanBuildOnWater = false
 CanBuildOnChasm = false
 CanBuildOnStone = false
 DisplayName = "Grove Tree"
-Icon = ExtResource("2_ojeln")
 Description = "[img]res://Assets/Art/Icons/Lifeforce Small.png[/img]+%max Grass Radius:%aoe	
 Expands buildable area by growing grass."
