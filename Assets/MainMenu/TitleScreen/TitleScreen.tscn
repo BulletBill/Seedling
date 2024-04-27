@@ -4,7 +4,7 @@
 [ext_resource type="FontFile" uid="uid://mhs8ndik6ayd" path="res://Assets/Art/Fonts/Font Data/vanessa.ttf" id="2_f6sr5"]
 [ext_resource type="FontFile" uid="uid://o0r0v8f8m15t" path="res://Assets/Art/Fonts/Font Data/Orial_Bold.otf" id="3_ivtoi"]
 [ext_resource type="Script" path="res://Assets/MainMenu/TitleScreen/PathFollower.cs" id="4_4b3vq"]
-[ext_resource type="PackedScene" uid="uid://c4nme8pyly5sa" path="res://Assets/Enemies/Clod-E1/E1 Clod.tscn" id="5_au5vo"]
+[ext_resource type="PackedScene" uid="uid://c4nme8pyly5sa" path="res://Assets/Enemies/Clod-1/Clod_1.tscn" id="5_au5vo"]
 [ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="6_18dry"]
 [ext_resource type="Script" path="res://Assets/MainMenu/LevelSelect/LevelSelectMenu.cs" id="6_klh02"]
 [ext_resource type="FontFile" uid="uid://d11gtt6p01ova" path="res://Assets/Art/Fonts/Font Data/Early GameBoy.ttf" id="7_270g8"]

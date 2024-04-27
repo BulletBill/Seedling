@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Assets/Interface/DetailPanel/DetailPanel.cs" id="1_537m5"]
 [ext_resource type="Texture2D" uid="uid://3bps8k3gh1an" path="res://Assets/Art/Interface/TestFrame.png" id="2_cyfsk"]
-[ext_resource type="Texture2D" uid="uid://cjl4aixbpkx80" path="res://Assets/Towers/Genesis Heart/Art-Genesis Tree.png" id="3_61gjx"]
+[ext_resource type="Texture2D" uid="uid://cjl4aixbpkx80" path="res://Assets/Art/Towers/Heart Bloom/Art-HeartBloom.png" id="3_61gjx"]
 [ext_resource type="FontVariation" uid="uid://5eaxn8i6ce3f" path="res://Assets/Art/Fonts/DisplayHeader.tres" id="4_eadws"]
 
 [node name="DetailPanel" type="Node2D"]

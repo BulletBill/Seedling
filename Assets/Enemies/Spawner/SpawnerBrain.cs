@@ -96,21 +96,25 @@ public partial class SpawnerBrain : Node
 
     void SpawnExpansionWave()
     {
-        int WaveIndex = Math.Min(ExpansionIndex++, ExpansionWaves.Count - 1);
+        int WaveIndex = Math.Min(ExpansionIndex, ExpansionWaves.Count - 1);
+        ExpansionIndex++;
         EnemyEvent.Broadcast(EnemyEvent.SignalName.ExpansionWaveCountChanged, ExpansionIndex + 1);
         if (ExpansionWaves.Count > 0)
         {
             SpawnEnemies(ExpansionWaves[WaveIndex]);
+            EnemyEvent.Broadcast(EnemyEvent.SignalName.ShowNextExpandWave, ExpansionWaves[Math.Min(ExpansionIndex, ExpansionWaves.Count - 1)]);
         }
     }
 
     void SpawnTimedWave()
     {
-        int WaveIndex = Math.Min(TimedIndex++, TimedWaves.Count - 1);
+        int WaveIndex = Math.Min(TimedIndex, TimedWaves.Count - 1);
+        TimedIndex++;
         EnemyEvent.Broadcast(EnemyEvent.SignalName.TimedWaveCountChanged, TimedIndex + 1);
         if (TimedWaves.Count > 0)
         {
             SpawnEnemies(TimedWaves[WaveIndex]);
+            EnemyEvent.Broadcast(EnemyEvent.SignalName.ShowNextTimedWave, TimedWaves[Math.Min(TimedIndex, TimedWaves.Count - 1)]);
         }
     }
 

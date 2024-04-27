@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://blhgx4ui4wyrj"]
+[gd_scene load_steps=43 format=3 uid="uid://blhgx4ui4wyrj"]
 
 [ext_resource type="Script" path="res://Assets/Maps/Level.cs" id="1_k62xb"]
 [ext_resource type="Script" path="res://Assets/Maps/Objectives.cs" id="2_lg3fp"]
@@ -11,12 +11,16 @@
 [ext_resource type="PackedScene" uid="uid://crks2aw8cc252" path="res://Assets/Player/player.tscn" id="9_ajefw"]
 [ext_resource type="Script" path="res://Assets/Enemies/EnemyEvent.cs" id="10_kohlc"]
 [ext_resource type="Script" path="res://Assets/Enemies/Spawner/SpawnerBrain.cs" id="11_pc6et"]
-[ext_resource type="Resource" uid="uid://by1l3gp0tkyvm" path="res://Assets/Enemies/Clod-E1/Data_Clod.tres" id="12_j4xsr"]
-[ext_resource type="PackedScene" uid="uid://c4nme8pyly5sa" path="res://Assets/Enemies/Clod-E1/E1 Clod.tscn" id="13_hlo4u"]
+[ext_resource type="Resource" uid="uid://by1l3gp0tkyvm" path="res://Assets/Enemies/Clod-1/Data_Clod_1.tres" id="12_j4xsr"]
+[ext_resource type="PackedScene" uid="uid://c4nme8pyly5sa" path="res://Assets/Enemies/Clod-1/Clod_1.tscn" id="13_hlo4u"]
 [ext_resource type="Script" path="res://Assets/Enemies/Spawner/R_Spawn.cs" id="14_scv3i"]
 [ext_resource type="Script" path="res://Assets/Enemies/Spawner/R_SpawnCount.cs" id="15_f4f1c"]
 [ext_resource type="Script" path="res://Assets/Enemies/Spawner/R_SpawnWave.cs" id="16_xv63c"]
+[ext_resource type="Resource" uid="uid://chbnq31sf5y1p" path="res://Assets/Enemies/Clod-2/Data_Clod_2.tres" id="17_20fgp"]
 [ext_resource type="PackedScene" uid="uid://mmyy6s5sben4" path="res://Assets/Interface/InGame/UI_InGame.tscn" id="17_wdj8r"]
+[ext_resource type="PackedScene" uid="uid://b35skdgsbuiug" path="res://Assets/Enemies/Clod-2/Clod_2.tscn" id="18_wsoua"]
+[ext_resource type="Resource" uid="uid://bubcwmernk2og" path="res://Assets/Enemies/Clod-3/Data_Clod_3.tres" id="19_mwkrl"]
+[ext_resource type="PackedScene" uid="uid://do2ujpuhrqh55" path="res://Assets/Enemies/Clod-3/Clod_3.tscn" id="20_h8xde"]
 
 [sub_resource type="Resource" id="Resource_4wu3h"]
 script = ExtResource("14_scv3i")
@@ -54,11 +58,69 @@ Data = ExtResource("12_j4xsr")
 [sub_resource type="Resource" id="Resource_wr1pf"]
 script = ExtResource("15_f4f1c")
 SpawnData = SubResource("Resource_03g7l")
-Count = 30
+Count = 16
 
 [sub_resource type="Resource" id="Resource_p1vqq"]
 script = ExtResource("16_xv63c")
 SpawnCounts = [SubResource("Resource_wr1pf")]
+
+[sub_resource type="Resource" id="Resource_rgg5k"]
+script = ExtResource("14_scv3i")
+EnemyScene = ExtResource("13_hlo4u")
+Data = ExtResource("12_j4xsr")
+
+[sub_resource type="Resource" id="Resource_x1uia"]
+script = ExtResource("15_f4f1c")
+SpawnData = SubResource("Resource_rgg5k")
+Count = 20
+
+[sub_resource type="Resource" id="Resource_5fi3r"]
+script = ExtResource("14_scv3i")
+EnemyScene = ExtResource("18_wsoua")
+Data = ExtResource("17_20fgp")
+
+[sub_resource type="Resource" id="Resource_nb61u"]
+script = ExtResource("15_f4f1c")
+SpawnData = SubResource("Resource_5fi3r")
+Count = 4
+
+[sub_resource type="Resource" id="Resource_oiu1y"]
+script = ExtResource("16_xv63c")
+SpawnCounts = [SubResource("Resource_x1uia"), SubResource("Resource_nb61u")]
+
+[sub_resource type="Resource" id="Resource_kjljd"]
+script = ExtResource("14_scv3i")
+EnemyScene = ExtResource("13_hlo4u")
+Data = ExtResource("12_j4xsr")
+
+[sub_resource type="Resource" id="Resource_td5j5"]
+script = ExtResource("15_f4f1c")
+SpawnData = SubResource("Resource_kjljd")
+Count = 25
+
+[sub_resource type="Resource" id="Resource_vdrnn"]
+script = ExtResource("14_scv3i")
+EnemyScene = ExtResource("18_wsoua")
+Data = ExtResource("17_20fgp")
+
+[sub_resource type="Resource" id="Resource_mokv2"]
+script = ExtResource("15_f4f1c")
+SpawnData = SubResource("Resource_vdrnn")
+Count = 10
+
+[sub_resource type="Resource" id="Resource_0q7h3"]
+script = ExtResource("14_scv3i")
+EnemyScene = ExtResource("20_h8xde")
+Data = ExtResource("19_mwkrl")
+
+[sub_resource type="Resource" id="Resource_i6btd"]
+script = ExtResource("15_f4f1c")
+SpawnData = SubResource("Resource_0q7h3")
+Count = 5
+
+[sub_resource type="Resource" id="Resource_eac1m"]
+script = ExtResource("16_xv63c")
+SpawnCounts = [SubResource("Resource_td5j5"), SubResource("Resource_mokv2"), SubResource("Resource_i6btd")]
 
 [node name="E03" type="Node2D"]
 script = ExtResource("1_k62xb")
@@ -129,6 +191,6 @@ script = ExtResource("11_pc6et")
 ExpansionPerWave = 20
 SecondsUntilNextWave = 150
 ExpansionWaves = [SubResource("Resource_kmp5r"), SubResource("Resource_cj7n8")]
-TimedWaves = [SubResource("Resource_p1vqq")]
+TimedWaves = [SubResource("Resource_p1vqq"), SubResource("Resource_oiu1y"), SubResource("Resource_eac1m")]
 
 [node name="UI Canvas Layer" parent="." instance=ExtResource("17_wdj8r")]

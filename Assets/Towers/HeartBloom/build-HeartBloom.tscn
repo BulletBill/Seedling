@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=3 uid="uid://b3fxnt1sq3rjq"]
 
 [ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_6e13c"]
-[ext_resource type="Texture2D" uid="uid://dg1ugbc0qnr32" path="res://Assets/Art/Towers/Heart Bloom/Art-Build Genesis Heart.png" id="2_typnh"]
+[ext_resource type="Texture2D" uid="uid://dg1ugbc0qnr32" path="res://Assets/Art/Towers/Heart Bloom/Art-Build HeartBloom.png" id="2_od7bj"]
 [ext_resource type="Script" path="res://Assets/Towers/Tower.cs" id="3_47a4l"]
 [ext_resource type="PackedScene" uid="uid://bltnii6x6epdm" path="res://Assets/Towers/HeartBloom/heartbloom.tscn" id="4_l3g7m"]
 [ext_resource type="Resource" uid="uid://cnxh15qnwr5eo" path="res://Assets/Towers/HeartBloom/Data_HeartBloom.tres" id="5_d6f8k"]
@@ -124,7 +124,7 @@ _data = {
 
 [node name="Build-Genesis" type="Sprite2D" groups=["Tower"]]
 material = SubResource("ShaderMaterial_ufgj0")
-texture = ExtResource("2_typnh")
+texture = ExtResource("2_od7bj")
 script = ExtResource("3_47a4l")
 IsDefendTarget = true
 TowerData = ExtResource("5_d6f8k")
@@ -160,7 +160,7 @@ shape = SubResource("RectangleShape2D_uv7mt")
 [node name="DuplicateSprite" type="Sprite2D" parent="."]
 z_index = -1
 material = SubResource("ShaderMaterial_p02gg")
-texture = ExtResource("2_typnh")
+texture = ExtResource("2_od7bj")
 
 [node name="GlowAnimator" type="AnimationPlayer" parent="."]
 libraries = {

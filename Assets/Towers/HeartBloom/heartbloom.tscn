@@ -1,7 +1,7 @@
 [gd_scene load_steps=26 format=3 uid="uid://bltnii6x6epdm"]
 
 [ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_qvlx0"]
-[ext_resource type="Texture2D" uid="uid://cjl4aixbpkx80" path="res://Assets/Art/Towers/Heart Bloom/Art-Genesis Tree.png" id="2_g1gix"]
+[ext_resource type="Texture2D" uid="uid://cjl4aixbpkx80" path="res://Assets/Art/Towers/Heart Bloom/Art-HeartBloom.png" id="2_xhf6y"]
 [ext_resource type="Script" path="res://Assets/Towers/Tower.cs" id="3_r2iep"]
 [ext_resource type="Resource" uid="uid://cnxh15qnwr5eo" path="res://Assets/Towers/HeartBloom/Data_HeartBloom.tres" id="4_0juh4"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="5_ev5tl"]
@@ -146,7 +146,7 @@ _data = {
 [node name="HeartBloom" type="Sprite2D" groups=["Tower"]]
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_7wjg6")
-texture = ExtResource("2_g1gix")
+texture = ExtResource("2_xhf6y")
 script = ExtResource("3_r2iep")
 IsDefendTarget = true
 TowerData = ExtResource("4_0juh4")
@@ -211,7 +211,7 @@ shape = SubResource("RectangleShape2D_3lnn7")
 visible = false
 z_index = -1
 material = SubResource("ShaderMaterial_cgg3u")
-texture = ExtResource("2_g1gix")
+texture = ExtResource("2_xhf6y")
 
 [node name="GlowAnimator" type="AnimationPlayer" parent="."]
 libraries = {

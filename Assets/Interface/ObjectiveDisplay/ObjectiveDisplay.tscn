@@ -4,11 +4,14 @@
 [ext_resource type="Script" path="res://Assets/Interface/ObjectiveDisplay/LifeCounter.cs" id="2_3dkid"]
 [ext_resource type="Theme" uid="uid://svogtundy1nx" path="res://Assets/Art/Interface/default_theme.tres" id="3_hq4qm"]
 [ext_resource type="FontFile" uid="uid://dufvvujv6wpwq" path="res://Assets/Art/Fonts/Font Data/MonospaceTypewriter.ttf" id="5_buk8w"]
-[ext_resource type="Texture2D" uid="uid://cjl4aixbpkx80" path="res://Assets/Towers/Genesis Heart/Art-Genesis Tree.png" id="5_gdvfo"]
+[ext_resource type="Texture2D" uid="uid://cjl4aixbpkx80" path="res://Assets/Art/Towers/Heart Bloom/Art-HeartBloom.png" id="5_gdvfo"]
 [ext_resource type="Script" path="res://Assets/Interface/ObjectiveDisplay/ObjectiveList.cs" id="6_r7hxu"]
 
 [sub_resource type="FontFile" id="FontFile_kbrvm"]
 fallbacks = Array[Font]([ExtResource("5_buk8w")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -117,6 +120,6 @@ offset_right = 271.0
 offset_bottom = 182.0
 theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
-text = "Build 1 more Heart [img]res://Assets/Towers/Genesis Heart/Art-Genesis Tree.png[/img]
+text = "Build 1 more Heart [img]res://Assets/Art/Towers/Heart Bloom/Art-HeartBloom.png[/img]
 Survive the final wave."
 scroll_active = false

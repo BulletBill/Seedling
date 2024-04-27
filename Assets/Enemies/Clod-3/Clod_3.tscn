@@ -1,11 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://c4nme8pyly5sa"]
+[gd_scene load_steps=12 format=3 uid="uid://do2ujpuhrqh55"]
 
-[ext_resource type="Script" path="res://Assets/Enemies/Enemy.cs" id="1_u2htd"]
-[ext_resource type="Resource" uid="uid://by1l3gp0tkyvm" path="res://Assets/Enemies/Clod-E1/Data_Clod.tres" id="2_4y1wy"]
-[ext_resource type="Script" path="res://Assets/Enemies/C_HealthPool.cs" id="2_8wvkh"]
-[ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="2_cg2eq"]
-[ext_resource type="Texture2D" uid="uid://ch3t8841qamrf" path="res://Assets/Enemies/Clod-E1/Art-Claude.png" id="5_w6my8"]
-[ext_resource type="Script" path="res://Assets/Core/Common/PausableAnimation.cs" id="6_fm4nr"]
+[ext_resource type="Script" path="res://Assets/Enemies/Enemy.cs" id="1_i44ps"]
+[ext_resource type="Resource" uid="uid://bubcwmernk2og" path="res://Assets/Enemies/Clod-3/Data_Clod_3.tres" id="2_v41h5"]
+[ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="3_4ydn0"]
+[ext_resource type="Script" path="res://Assets/Enemies/C_HealthPool.cs" id="4_np21p"]
+[ext_resource type="Texture2D" uid="uid://uodu5xemtxn8" path="res://Assets/Art/Enemies/Clod-E1/Art-Claude-Chunky.png" id="5_36r56"]
+[ext_resource type="Script" path="res://Assets/Core/Common/PausableAnimation.cs" id="6_wruwy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1e1oq"]
 radius = 14.0357
@@ -150,18 +150,18 @@ _data = {
 "Walk": SubResource("Animation_rb05d")
 }
 
-[node name="E1Clod" type="CharacterBody2D" groups=["Enemy"]]
+[node name="E3Clod" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 0
 collision_mask = 0
 motion_mode = 1
-script = ExtResource("1_u2htd")
-Data = ExtResource("2_4y1wy")
+script = ExtResource("1_i44ps")
+Data = ExtResource("2_v41h5")
 
 [node name="AlignToMap" type="Node2D" parent="."]
-script = ExtResource("2_cg2eq")
+script = ExtResource("3_4ydn0")
 
 [node name="HealthPool" type="Node2D" parent="."]
-script = ExtResource("2_8wvkh")
+script = ExtResource("4_np21p")
 MinStartingHealth = 12
 MaxStartingHealth = 20
 
@@ -178,14 +178,14 @@ value = 100.0
 show_percentage = false
 
 [node name="Image" type="Sprite2D" parent="."]
-texture = ExtResource("5_w6my8")
+texture = ExtResource("5_36r56")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 self_modulate = Color(0, 0, 0, 0.392157)
 z_index = -1
 position = Vector2(0, 2.81015)
 scale = Vector2(0.936715, 0.936715)
-texture = ExtResource("5_w6my8")
+texture = ExtResource("5_36r56")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -200,5 +200,5 @@ libraries = {
 "": SubResource("AnimationLibrary_o0jnh")
 }
 autoplay = "Walk"
-script = ExtResource("6_fm4nr")
+script = ExtResource("6_wruwy")
 SpeedVariance = 0.1

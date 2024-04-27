@@ -7,6 +7,7 @@ public partial class Enemy : CharacterBody2D
 	public static readonly String EnemyGroup = "Enemy";
 	[Export] public Data_Enemy Data = new();
 	public bool Active = false;
+	float SpeedVariance = 1.0f;
 	NavigationAgent2D Nav;
 	float SeekTimer;
 	bool TargetReachable;
@@ -35,6 +36,7 @@ public partial class Enemy : CharacterBody2D
 		}
 		Image = GetNodeOrNull<Sprite2D>("Image");
 		Shadow = GetNodeOrNull<Sprite2D>("Shadow");
+		SpeedVariance = MathHelper.GetFloatInRange(0.95f, 1.05f);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -55,7 +57,7 @@ public partial class Enemy : CharacterBody2D
 		if (Nav == null) return;
 		if (!TargetReachable) return;
         Vector2 NextMove = Nav.GetNextPathPosition();
-		Velocity = (NextMove - GlobalPosition).Normalized() * (Data.Speed * Level.GetSpeed());
+		Velocity = (NextMove - GlobalPosition).Normalized() * (Data.Speed * Level.GetSpeed() * SpeedVariance);
 		Image?.LookAt(NextMove);
 		if (Shadow != null) { Shadow.Rotation = Image.Rotation; }
 		MoveAndSlide();

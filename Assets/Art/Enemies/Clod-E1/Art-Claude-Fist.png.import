@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjl4aixbpkx80"
-path="res://.godot/imported/Art-Genesis Tree.png-fbc6d57828d7796e60c77d65a1bece07.ctex"
+uid="uid://ccave7qq5xjcg"
+path="res://.godot/imported/Art-Claude-Fist.png-4f1e5050789fc028851cfa13f0aa4a1a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/Towers/Heart Bloom/Art-Genesis Tree.png"
-dest_files=["res://.godot/imported/Art-Genesis Tree.png-fbc6d57828d7796e60c77d65a1bece07.ctex"]
+source_file="res://Assets/Art/Enemies/Clod-E1/Art-Claude-Fist.png"
+dest_files=["res://.godot/imported/Art-Claude-Fist.png-4f1e5050789fc028851cfa13f0aa4a1a.ctex"]
 
 [params]
 

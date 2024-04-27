@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dg1ugbc0qnr32"
-path="res://.godot/imported/Art-Build Genesis Heart.png-ceaa9418eddfb7e8a981272ee6189598.ctex"
+uid="uid://uodu5xemtxn8"
+path="res://.godot/imported/Art-Claude-Chunky.png-91beaffa666064f3a155ede1d1bb4a6b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/Towers/Heart Bloom/Art-Build Genesis Heart.png"
-dest_files=["res://.godot/imported/Art-Build Genesis Heart.png-ceaa9418eddfb7e8a981272ee6189598.ctex"]
+source_file="res://Assets/Art/Enemies/Clod-E1/Art-Claude-Chunky.png"
+dest_files=["res://.godot/imported/Art-Claude-Chunky.png-91beaffa666064f3a155ede1d1bb4a6b.ctex"]
 
 [params]
 
