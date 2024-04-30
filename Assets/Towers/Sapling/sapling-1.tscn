@@ -1,7 +1,7 @@
 [gd_scene load_steps=27 format=3 uid="uid://d2k206m54ooy6"]
 
 [ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_v4ei0"]
-[ext_resource type="Texture2D" uid="uid://brtlf65prxos0" path="res://Assets/Towers/Sapling/Art-Sapling.png" id="2_0rcgi"]
+[ext_resource type="Texture2D" uid="uid://brtlf65prxos0" path="res://Assets/Art/Towers/Sapling/Art-Sapling.png" id="2_0rcgi"]
 [ext_resource type="Script" path="res://Assets/Towers/Tower.cs" id="3_slgeb"]
 [ext_resource type="Resource" uid="uid://bmd4ngk8oi5f1" path="res://Assets/Towers/Sapling/Data_Sapling_1.tres" id="4_5cxxx"]
 [ext_resource type="Resource" uid="uid://dr2317w84u581" path="res://Assets/Towers/Actions/Action_Sell.tres" id="5_le6xs"]
@@ -34,7 +34,7 @@ Energy = 0
 
 [sub_resource type="Resource" id="Resource_pbkck"]
 script = ExtResource("9_0pc2a")
-LifeForce = 1
+LifeForce = 0
 Substance = 0
 Flow = 0
 Breath = 0

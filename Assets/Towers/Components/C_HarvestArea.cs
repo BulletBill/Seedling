@@ -97,10 +97,10 @@ public partial class C_HarvestArea : Node2D, ITowerComponent
 
 	void CalculateIncome()
 	{
-		int AddedSubstance = 0;
-		int AddedFlow = 0;
-		int AddedBreath = 0;
-		int AddedEnergy = 0;
+		float AddedSubstance = 0;
+		float AddedFlow = 0;
+		float AddedBreath = 0;
+		float AddedEnergy = 0;
 		for (int x = -1 * Range; x <= Range; x++)
 		{
 			for (int y = -1 * Range; y <= Range; y++)
@@ -120,10 +120,10 @@ public partial class C_HarvestArea : Node2D, ITowerComponent
 			}
 		}
 
-		if (AddedSubstance > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Substance, AddedSubstance); }
-		if (AddedFlow > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Flow, AddedFlow); }
-		if (AddedBreath > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Breath, AddedBreath); }
-		if (AddedEnergy > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Energy, AddedEnergy); }
+		if (AddedSubstance > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Substance, AddedSubstance / Player.IncomeTime); }
+		if (AddedFlow > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Flow, AddedFlow / Player.IncomeTime); }
+		if (AddedBreath > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Breath, AddedBreath / Player.IncomeTime); }
+		if (AddedEnergy > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Energy, AddedEnergy / Player.IncomeTime); }
 
 		CostReadout IncomeText = GetNodeOrNull<CostReadout>("Income");
 		if (IsInstanceValid(IncomeText))

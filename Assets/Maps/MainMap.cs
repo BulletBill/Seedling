@@ -6,6 +6,9 @@ using Godot.Collections;
 public partial class MainMap : TileMap
 {
 	[Export] public Color GridColor;
+	[Export] public ECurrencyType ResourcePerGrass = ECurrencyType.Lifeforce;
+	[Export] public int AmountPerGrass = 1;
+	[Export] public bool AddToMaximum = true;
 	static readonly uint GridCode = 1;
 	uint OutlineActive = 0;
 	bool OutlineShown = false;
@@ -119,6 +122,7 @@ public partial class MainMap : TileMap
 			SetCellsTerrainConnect(MainMap.Layer_Below, TileToGrow, MainMap.TerrainSet_Default, MainMap.Terrain_WetGrass);
 		}
         Broadcast(SignalName.AnyTileChanged);
+		AddGrassResource(1 * AmountPerGrass);
 
 		if (Expansion < GrassTiles.Count)
 		{
@@ -144,7 +148,20 @@ public partial class MainMap : TileMap
 				SetCellsTerrainConnect(MainMap.Layer_Below, TileToRemove, MainMap.TerrainSet_Default, MainMap.Terrain_WetDirt);
 			}
 			Broadcast(SignalName.AnyTileChanged);
+			AddGrassResource(-1 * AmountPerGrass);
 			GrassTiles.Remove(TileLoc);
+		}
+	}
+
+	void AddGrassResource(int Amount)
+	{
+		if (AddToMaximum)
+		{
+			PlayerEvent.BroadcastAddMaxResource(ResourcePerGrass, Amount);
+		}
+		else
+		{
+			PlayerEvent.BroadcastAddResource(ResourcePerGrass, Amount);
 		}
 	}
 

@@ -22,7 +22,7 @@ public partial class Currency : Node2D
     [Export] public bool ShowBar;
     public int Amount { get; protected set; }
     public int MaximumAmount { get; protected set; }
-    public int Income { get; protected set; }
+    public float Income { get; protected set; } // Per second
     public override void _EnterTree()
     {
         if (GetParentOrNull<Player>() is Player PlayerParent)
@@ -32,7 +32,7 @@ public partial class Currency : Node2D
 
         PlayerEvent.RegisterResourceAdd(CurrencyType, Callable.From((int n) => AddAmount(n)));
         PlayerEvent.RegisterResourceAddMax(CurrencyType, Callable.From((int n) => AddMax(n)));
-        PlayerEvent.RegisterResourceAddIncome(CurrencyType, Callable.From((int n) => AddIncome(n)));
+        PlayerEvent.RegisterResourceAddIncome(CurrencyType, Callable.From((float f) => AddIncome(f)));
     }
 
     public override void _Ready()
@@ -74,11 +74,11 @@ public partial class Currency : Node2D
         return MaximumAmount - Amount;
     }
 
-    public void AddIncome(int InIncome)
+    public void AddIncome(float InIncome)
     {
         if (InIncome == 0) return;
         
-        Income = Mathf.CeilToInt(Income + InIncome);
+        Income += InIncome;
         PlayerEvent.Broadcast(CurrencyType.ToString() + "IncomeChanged", Income);
         PlayerEvent.Broadcast(PlayerEvent.SignalName.AnyResourceChanged);
     }

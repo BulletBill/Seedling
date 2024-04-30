@@ -12,7 +12,6 @@ public partial class C_GrassGrowth : Node2D, ITowerComponent
     [Export] public float Radius = 1.0f;
     [Export] public float GrowthInterval = 2.0f;
     [Export] public bool AttractEnemies = true;
-    public static int ResourcePerTile = 5;
     float GrowthTimer = 0.1f;
     List<TileAtDistance> TilesToGrass = new();
     List<Vector2I> TilesInArea = new();

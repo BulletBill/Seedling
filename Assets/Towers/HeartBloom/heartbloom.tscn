@@ -26,14 +26,14 @@ shader_parameter/add_margins = true
 [sub_resource type="Resource" id="Resource_2llxm"]
 script = ExtResource("8_cereb")
 LifeForce = 0
-Substance = 140
-Flow = 30
+Substance = 150
+Flow = 0
 Breath = 0
 Energy = 0
 
 [sub_resource type="Resource" id="Resource_wt3hr"]
 script = ExtResource("8_cereb")
-LifeForce = 5
+LifeForce = 0
 Substance = 500
 Flow = 500
 Breath = 500

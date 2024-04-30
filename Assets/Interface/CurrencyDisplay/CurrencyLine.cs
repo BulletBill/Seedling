@@ -16,7 +16,7 @@ public partial class CurrencyLine : Node2D
     public override void _EnterTree()
     {
 		PlayerEvent.RegisterResourceChanged(CurrencyType, Callable.From((int n, int m) => CurrencyUpdate(n,m)));
-		PlayerEvent.RegisterResourceIncome(CurrencyType, Callable.From((int n) => IncomeUpdate(n)));
+		PlayerEvent.RegisterResourceIncome(CurrencyType, Callable.From((float f) => IncomeUpdate(f)));
     }
 
 	public override void _Ready()
@@ -29,7 +29,7 @@ public partial class CurrencyLine : Node2D
 		IncomeUpdate(Player.GetCurrentIncome(CurrencyType));
 	}
 
-	void IncomeUpdate(int NewIncome)
+	void IncomeUpdate(float NewIncome)
 	{
 		if (Income != null)
 		{
@@ -39,11 +39,11 @@ public partial class CurrencyLine : Node2D
 			}
 			else if (NewIncome > 0)
 			{
-				Income.Text = TextHelpers.Colorize("+" + NewIncome.ToString(), ExcessColor);
+				Income.Text = TextHelpers.Colorize("+" + NewIncome.ToString("F1"), ExcessColor);
 			}
 			else if (NewIncome < 0)
 			{
-				Income.Text = TextHelpers.Colorize("-" + NewIncome.ToString(), DeficitColor);
+				Income.Text = TextHelpers.Colorize("-" + NewIncome.ToString("F1"), DeficitColor);
 			}
 		}
 	}

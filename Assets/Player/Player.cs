@@ -53,7 +53,7 @@ public partial class Player : Node2D
         if (Singleton == null) return 0;
         return Singleton.Currencies[Type].MaximumAmount;
     }
-    public static int GetCurrentIncome(ECurrencyType Type)
+    public static float GetCurrentIncome(ECurrencyType Type)
     {
         if (Singleton == null) return 0;
         return Singleton.Currencies[Type].Income;
