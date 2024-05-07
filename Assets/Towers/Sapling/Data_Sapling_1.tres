@@ -6,8 +6,8 @@
 
 [sub_resource type="Resource" id="Resource_4ujqw"]
 script = ExtResource("1_rxb5s")
-LifeForce = 20
-Substance = 100
+LifeForce = 0
+Substance = 50
 Flow = 0
 Breath = 0
 Energy = 0

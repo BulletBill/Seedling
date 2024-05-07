@@ -135,10 +135,10 @@ public partial class C_HarvestArea : Node2D, ITowerComponent
 
 	void RemoveSelf()
 	{
-		if (SubstanceIncome > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Substance, -SubstanceIncome); }
-		if (FlowIncome > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Flow, -FlowIncome); }
-		if (BreathIncome > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Breath, -BreathIncome); }
-		if (EnergyIncome > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Energy, -EnergyIncome); }
+		if (SubstanceIncome > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Substance, -(SubstanceIncome / Player.IncomeTime)); }
+		if (FlowIncome > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Flow, -(FlowIncome / Player.IncomeTime)); }
+		if (BreathIncome > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Breath, -(BreathIncome / Player.IncomeTime)); }
+		if (EnergyIncome > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Energy, -(EnergyIncome / Player.IncomeTime)); }
 
 		foreach (Vector2I clearTile in HarvestedPositions)
 		{
