@@ -20,7 +20,7 @@ public partial class C_Attack : Node2D, ITowerComponent
     public int MaxDamage = 1;
     public float AttackDelay = 1.0f;
     public float Range = 100.0f;
-    public float AreaOfEffect;
+    public float AreaOfEffect = 0.0f;
     [Export] public ETargetPriority TargetPriority;
     [Export] bool CanChangeTarget = false;
     Tower ParentTower = null;

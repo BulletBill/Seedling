@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="Data_Action" load_steps=6 format=3 uid="uid://bexh0mc38bpog"]
 
 [ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="1_5ipg4"]
-[ext_resource type="PackedScene" uid="uid://dwsle41sxrc0k" path="res://Assets/Towers/Buckthorn/build-buckthorn.tscn" id="2_6ijxq"]
-[ext_resource type="Resource" uid="uid://coyd0ad8jrvd7" path="res://Assets/Towers/Buckthorn/Data_Buckthorn_1.tres" id="3_4vl8b"]
+[ext_resource type="PackedScene" uid="uid://dgep650rfs5bh" path="res://Assets/Towers/MorningStar/build-morningstar.tscn" id="2_r5vyx"]
+[ext_resource type="Resource" uid="uid://drymylmtnicu" path="res://Assets/Towers/MorningStar/Data_MorningStar_1.tres" id="3_xhkf2"]
 [ext_resource type="Script" path="res://Assets/Interface/CommandList/Data_Action.cs" id="4_a1ya0"]
 
 [sub_resource type="Resource" id="Resource_fyd0l"]
@@ -17,8 +17,8 @@ Energy = 0
 script = ExtResource("4_a1ya0")
 ActionType = 1
 ClickCost = SubResource("Resource_fyd0l")
-TowerData = ExtResource("3_4vl8b")
-SceneToCreate = ExtResource("2_6ijxq")
-DesiredPosition = 5
+TowerData = ExtResource("3_xhkf2")
+SceneToCreate = ExtResource("2_r5vyx")
+DesiredPosition = 6
 DisplayName = ""
 Description = ""

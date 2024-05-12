@@ -93,7 +93,7 @@ public partial class Tower : Sprite2D, IHoverable
 				//GD.Print("BuildTower._Process: Setting value to " + TimerBar.Value.ToString() + "/" + TimerBar.MaxValue.ToString());
 			}
 			
-			if (BuildTimer <= 0.0f)
+			if (BuildTimer <= 0.0f || Player.Singleton.FreeTowers)
 			{
 				Tower NewTower = TowerToBecome.Instantiate<Tower>();
         		if (NewTower == null) return;

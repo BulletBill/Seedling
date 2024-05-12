@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://2ekwlaa17gji"]
+[gd_scene load_steps=13 format=3 uid="uid://2ekwlaa17gji"]
 
 [ext_resource type="Script" path="res://Assets/Cursor/Cursor.cs" id="1_85qhr"]
 [ext_resource type="Texture2D" uid="uid://b8ur2pfxi2vw" path="res://Assets/Art/Interface/TileSelector.png" id="2_0m8gg"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://cik314dnnfc82" path="res://Assets/Cursor/State-Free/Build Sunleaf.tres" id="5_hqwj6"]
 [ext_resource type="Resource" uid="uid://b8gy007rlkg1y" path="res://Assets/Cursor/State-Placement/Cancel.tres" id="5_rcaag"]
 [ext_resource type="Resource" uid="uid://bexh0mc38bpog" path="res://Assets/Cursor/State-Free/Build Buckthorn.tres" id="6_41ie5"]
+[ext_resource type="Resource" uid="uid://c7mji5t6pm5jh" path="res://Assets/Cursor/State-Free/Build MorningStar.tres" id="8_enstx"]
 [ext_resource type="Script" path="res://Assets/Cursor/State-Context/S_ContextMenu.cs" id="10_ducrs"]
 [ext_resource type="Script" path="res://Assets/Cursor/State-PauseMenu/S_PauseMenu.cs" id="11_3xv00"]
 
@@ -29,7 +30,7 @@ texture = ExtResource("2_0m8gg")
 
 [node name="State_Free" type="Node" parent="."]
 script = ExtResource("2_n2asr")
-ActionList = [ExtResource("3_rvwyd"), ExtResource("4_ja3rh"), ExtResource("5_hqwj6"), ExtResource("6_41ie5")]
+ActionList = [ExtResource("3_rvwyd"), ExtResource("4_ja3rh"), ExtResource("5_hqwj6"), ExtResource("6_41ie5"), ExtResource("8_enstx")]
 
 [node name="State_Placement" type="Node" parent="."]
 script = ExtResource("4_34ini")
