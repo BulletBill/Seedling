@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccave7qq5xjcg"
-path="res://.godot/imported/Art-Claude-Fist.png-4f1e5050789fc028851cfa13f0aa4a1a.ctex"
+uid="uid://bs4d7ejfnb8iq"
+path="res://.godot/imported/Art-Quartz.png-54a858b999a05b8595b35442682f2da6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/Enemies/Clod-E1/Art-Claude-Fist.png"
-dest_files=["res://.godot/imported/Art-Claude-Fist.png-4f1e5050789fc028851cfa13f0aa4a1a.ctex"]
+source_file="res://Assets/Art/Enemies/Crystal/Art-Quartz.png"
+dest_files=["res://.godot/imported/Art-Quartz.png-54a858b999a05b8595b35442682f2da6.ctex"]
 
 [params]
 

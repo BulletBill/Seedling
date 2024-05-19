@@ -1,22 +1,22 @@
-[gd_scene load_steps=24 format=3 uid="uid://blr8v2q51ewvh"]
+[gd_scene load_steps=24 format=3 uid="uid://doefb00yisk50"]
 
-[ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_15gnl"]
-[ext_resource type="Texture2D" uid="uid://ce37lkdce5wmh" path="res://Assets/Art/Towers/MorningStar/Art-MorningStar-1.png" id="2_2gsiu"]
-[ext_resource type="Script" path="res://Assets/Towers/Tower.cs" id="3_8jkjh"]
-[ext_resource type="Resource" uid="uid://drymylmtnicu" path="res://Assets/Towers/MorningStar/Data_MorningStar_1.tres" id="4_cjlrj"]
-[ext_resource type="Resource" uid="uid://dr2317w84u581" path="res://Assets/Towers/Actions/Action_Sell.tres" id="6_cj27v"]
-[ext_resource type="Resource" uid="uid://dnvyi3ug6klmx" path="res://Assets/Towers/Actions/Action_Deselect.tres" id="7_iwghy"]
-[ext_resource type="Resource" uid="uid://b2tlsdctk3apk" path="res://Assets/Towers/MorningStar/Upgrade_MorningStar_2.tres" id="7_wdxje"]
-[ext_resource type="Resource" uid="uid://c81qoyyrdxuns" path="res://Assets/Towers/Actions/Action_BuildCancel.tres" id="8_kduox"]
-[ext_resource type="PackedScene" uid="uid://bd2lvtlkweaqj" path="res://Assets/Towers/MorningStar/Projectiles/Seedpod.tscn" id="9_fihyy"]
-[ext_resource type="Script" path="res://Assets/Towers/Components/C_Attack.cs" id="9_weghh"]
-[ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="11_wcknl"]
-[ext_resource type="Animation" uid="uid://8i3h0e1uvnfa" path="res://Assets/Towers/Animations/Anim-Upgrade.res" id="12_0cicy"]
-[ext_resource type="Script" path="res://Assets/Core/Common/PausableAnimation.cs" id="13_825ka"]
-[ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Interface/Hover Area/HoverArea.tscn" id="14_ol5i1"]
+[ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_fbd2j"]
+[ext_resource type="Texture2D" uid="uid://6ojbdq07wu5n" path="res://Assets/Art/Towers/MorningStar/Art-MorningStar-2.png" id="2_5w6gj"]
+[ext_resource type="Script" path="res://Assets/Towers/Tower.cs" id="3_vu0l8"]
+[ext_resource type="Resource" uid="uid://dmp6dn14gk3lq" path="res://Assets/Towers/MorningStar/Data_MorningStar_2.tres" id="4_y2idj"]
+[ext_resource type="Resource" uid="uid://dr2317w84u581" path="res://Assets/Towers/Actions/Action_Sell.tres" id="5_58cal"]
+[ext_resource type="Resource" uid="uid://dnvyi3ug6klmx" path="res://Assets/Towers/Actions/Action_Deselect.tres" id="6_r25yy"]
+[ext_resource type="Resource" uid="uid://c81qoyyrdxuns" path="res://Assets/Towers/Actions/Action_BuildCancel.tres" id="7_26gee"]
+[ext_resource type="Resource" uid="uid://qgwixu55adgw" path="res://Assets/Towers/MorningStar/Upgrade_MorningStar_3.tres" id="7_w4vwx"]
+[ext_resource type="Script" path="res://Assets/Towers/Components/C_Attack.cs" id="8_oackd"]
+[ext_resource type="PackedScene" uid="uid://bd2lvtlkweaqj" path="res://Assets/Towers/MorningStar/Projectiles/Seedpod.tscn" id="9_f8x75"]
+[ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="10_qqqhg"]
+[ext_resource type="Animation" uid="uid://8i3h0e1uvnfa" path="res://Assets/Towers/Animations/Anim-Upgrade.res" id="11_ck53e"]
+[ext_resource type="Script" path="res://Assets/Core/Common/PausableAnimation.cs" id="12_y6un4"]
+[ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Interface/Hover Area/HoverArea.tscn" id="13_yc616"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bjj0w"]
-shader = ExtResource("1_15gnl")
+shader = ExtResource("1_fbd2j")
 shader_parameter/outline_color = Color(1, 1, 1, 1)
 shader_parameter/multiply_color = Color(1, 1, 1, 1)
 shader_parameter/width = 0.0
@@ -71,7 +71,7 @@ tracks/1/keys = {
 _data = {
 "Attack": SubResource("Animation_7dypm"),
 "RESET": SubResource("Animation_772tj"),
-"Upgrade": ExtResource("12_0cicy")
+"Upgrade": ExtResource("11_ck53e")
 }
 
 [sub_resource type="Animation" id="Animation_vro8x"]
@@ -131,15 +131,15 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6l6xg"]
 size = Vector2(30, 31)
 
-[node name="Morningstar" type="Sprite2D" groups=["Tower"]]
+[node name="Morningstar II" type="Sprite2D" groups=["Tower"]]
 z_index = 10
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_bjj0w")
-texture = ExtResource("2_2gsiu")
-script = ExtResource("3_8jkjh")
-TowerData = ExtResource("4_cjlrj")
-Actions = [ExtResource("6_cj27v"), ExtResource("7_iwghy"), ExtResource("7_wdxje")]
-UpgradingActions = [ExtResource("8_kduox"), ExtResource("7_iwghy")]
+texture = ExtResource("2_5w6gj")
+script = ExtResource("3_vu0l8")
+TowerData = ExtResource("4_y2idj")
+Actions = [ExtResource("5_58cal"), ExtResource("6_r25yy"), ExtResource("7_w4vwx")]
+UpgradingActions = [ExtResource("7_26gee"), ExtResource("6_r25yy")]
 
 [node name="BuildBar" type="ProgressBar" parent="."]
 visible = false
@@ -153,20 +153,20 @@ step = 1.0
 show_percentage = false
 
 [node name="Attack" type="Node2D" parent="." groups=["Attacker"]]
-script = ExtResource("9_weghh")
-FiredProjectile = ExtResource("9_fihyy")
+script = ExtResource("8_oackd")
+FiredProjectile = ExtResource("9_f8x75")
 DamageDelay = 0.2
 TargetPriority = 1
 CanChangeTarget = true
 
 [node name="AlignToMap" type="Node2D" parent="."]
-script = ExtResource("11_wcknl")
+script = ExtResource("10_qqqhg")
 
 [node name="Animator" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_x4dt6")
 }
-script = ExtResource("13_825ka")
+script = ExtResource("12_y6un4")
 
 [node name="HoverAnimator" type="AnimationPlayer" parent="."]
 libraries = {
@@ -174,7 +174,7 @@ libraries = {
 }
 autoplay = "Unhover"
 
-[node name="HoverArea" parent="." node_paths=PackedStringArray("ParentAnimator") instance=ExtResource("14_ol5i1")]
+[node name="HoverArea" parent="." node_paths=PackedStringArray("ParentAnimator") instance=ExtResource("13_yc616")]
 ParentAnimator = NodePath("../HoverAnimator")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HoverArea"]

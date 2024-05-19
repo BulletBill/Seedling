@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bh1b344tvyn2a"
-path="res://.godot/imported/Art-Claude-Smol.png-6039e912b5ac9a071034f29ac8673343.ctex"
+uid="uid://qywtdmokjhr3"
+path="res://.godot/imported/Art-Clod.png-6afd7b2e83511551a9773eabfd2c543e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/Enemies/Clod-E1/Art-Claude-Smol.png"
-dest_files=["res://.godot/imported/Art-Claude-Smol.png-6039e912b5ac9a071034f29ac8673343.ctex"]
+source_file="res://Assets/Art/Enemies/Clod/Art-Clod.png"
+dest_files=["res://.godot/imported/Art-Clod.png-6afd7b2e83511551a9773eabfd2c543e.ctex"]
 
 [params]
 

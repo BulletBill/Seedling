@@ -81,6 +81,8 @@ public partial class C_Attack : Node2D, ITowerComponent
             {
                 C_HealthPool TargetHealth = PendingDamageTaker.GetNodeOrNull<C_HealthPool>("HealthPool");
                 TargetHealth.RealizeDamage(PendingDamage);
+                if (AreaOfEffect > 1) { HitArea(); }
+
                 PendingDamageTaker = null;
             }
         }
@@ -172,7 +174,7 @@ public partial class C_Attack : Node2D, ITowerComponent
         PendingDamage = MathHelper.GetIntInRange(MinDamage, MaxDamage);
 
         C_HealthPool TargetHealth = PendingDamageTaker.GetNodeOrNull<C_HealthPool>("HealthPool");
-        TargetHealth.TakeDamage(PendingDamage);
+        PendingDamage = TargetHealth.TakeDamage(PendingDamage);
 
         if (FiredProjectile != null)
         {
@@ -189,6 +191,26 @@ public partial class C_Attack : Node2D, ITowerComponent
         {
             Anim.SpeedScale = AttackDelay > 0.0f ? 1.0f / AttackDelay : 1.0f;
             Anim.Play("Attack");
+        }
+    }
+
+    void HitArea()
+    {
+        if (PendingDamageTaker == null) return;
+
+        foreach(Node EnemyNode in GetTree().GetNodesInGroup(Enemy.EnemyGroup))
+        {
+            if (EnemyNode is not Enemy AreaEnemy) continue;
+            if (AreaEnemy == PendingDamageTaker) continue;
+
+            float Distance = PendingDamageTaker.GlobalPosition.DistanceTo(AreaEnemy.GlobalPosition);
+            if (Distance > AreaOfEffect) continue;
+
+            C_HealthPool AreaHealth = AreaEnemy.GetNodeOrNull<C_HealthPool>("HealthPool");
+            if (AreaHealth != null)
+            {
+                AreaHealth.TakeDamageImmediate(MathHelper.GetIntInRange(MinDamage, MaxDamage));
+            }
         }
     }
 

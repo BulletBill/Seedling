@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="Data_Tower" load_steps=5 format=3 uid="uid://dmp6dn14gk3lq"]
+
+[ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="1_mrij2"]
+[ext_resource type="Texture2D" uid="uid://ce37lkdce5wmh" path="res://Assets/Art/Towers/MorningStar/Art-MorningStar-1.png" id="2_vn4fq"]
+[ext_resource type="Script" path="res://Assets/Towers/Data_Tower.cs" id="3_lixh4"]
+
+[sub_resource type="Resource" id="Resource_4ujqw"]
+script = ExtResource("1_mrij2")
+LifeForce = 0
+Substance = 240
+Flow = 0
+Breath = 0
+Energy = 0
+
+[resource]
+script = ExtResource("3_lixh4")
+Ident = "MorningStar"
+Cost = SubResource("Resource_4ujqw")
+BuildTime = 8.0
+MinDamage = 6
+MaxDamage = 10
+Range = 180.0
+AreaOfEffect = 40.0
+FireDelay = 2.0
+NeedsSparkFlag = false
+NeedsGrassFlag = true
+CanBuildOnGrass = true
+CanBuildOnDirt = false
+CanBuildOnWater = false
+CanBuildOnChasm = false
+CanBuildOnStone = false
+DisplayName = "MorningStar II"
+Icon = ExtResource("2_vn4fq")
+Description = "Damage:%min-%max Rate:%rof Range:%rng Area:%aoe
+Attacks groups of enemies with an exploding projectile
+"

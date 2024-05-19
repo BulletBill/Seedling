@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://uodu5xemtxn8"
-path="res://.godot/imported/Art-Claude-Chunky.png-91beaffa666064f3a155ede1d1bb4a6b.ctex"
+uid="uid://bh1b344tvyn2a"
+path="res://.godot/imported/Art-Claude-Smol.png-f1317e3bbc97ddf031fcf2d3877ac729.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/Enemies/Clod-E1/Art-Claude-Chunky.png"
-dest_files=["res://.godot/imported/Art-Claude-Chunky.png-91beaffa666064f3a155ede1d1bb4a6b.ctex"]
+source_file="res://Assets/Art/Enemies/Clod/Art-Claude-Smol.png"
+dest_files=["res://.godot/imported/Art-Claude-Smol.png-f1317e3bbc97ddf031fcf2d3877ac729.ctex"]
 
 [params]
 

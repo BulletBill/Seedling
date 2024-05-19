@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qywtdmokjhr3"
-path="res://.godot/imported/Art-Clod.png-195e7ec43fd25bc88d2bb531aaf48b4e.ctex"
+uid="uid://dwxxxpy5kxjpk"
+path="res://.godot/imported/Art-Clump.png-76352dc8aff0d970b2b961a3a9e482f6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/Enemies/Clod-E1/Art-Clod.png"
-dest_files=["res://.godot/imported/Art-Clod.png-195e7ec43fd25bc88d2bb531aaf48b4e.ctex"]
+source_file="res://Assets/Art/Enemies/Clump/Art-Clump.png"
+dest_files=["res://.godot/imported/Art-Clump.png-76352dc8aff0d970b2b961a3a9e482f6.ctex"]
 
 [params]
 

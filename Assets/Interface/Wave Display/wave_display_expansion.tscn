@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://3bps8k3gh1an" path="res://Assets/Art/Interface/TestFrame.png" id="2_kifwm"]
 [ext_resource type="Script" path="res://Assets/Interface/Wave Display/ExpansionDisplay.cs" id="3_sjk1i"]
 [ext_resource type="Theme" uid="uid://svogtundy1nx" path="res://Assets/Art/Interface/default_theme.tres" id="4_2uxvh"]
-[ext_resource type="Texture2D" uid="uid://brtlf65prxos0" path="res://Assets/Towers/Sapling/Art-Sapling.png" id="5_relc7"]
+[ext_resource type="Texture2D" uid="uid://brtlf65prxos0" path="res://Assets/Art/Towers/Sapling/Art-Sapling.png" id="5_relc7"]
 [ext_resource type="PackedScene" uid="uid://dgu22bvjeyo73" path="res://Assets/Interface/Wave Display/EnemyDisplay.tscn" id="6_fn370"]
 
 [node name="Wave Display - Timed" type="Node2D"]
@@ -19,6 +19,7 @@ patch_margin_right = 6
 patch_margin_bottom = 6
 
 [node name="Timer" type="Node2D" parent="."]
+visible = false
 position = Vector2(8, 37)
 script = ExtResource("3_sjk1i")
 
@@ -58,6 +59,7 @@ text = "Attract Wave"
 scroll_active = false
 
 [node name="Incoming Enemy Display" type="Node2D" parent="."]
+visible = false
 script = ExtResource("1_ai6o5")
 WaveType = 2
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ch3t8841qamrf"
-path="res://.godot/imported/Art-Claude.png-04a5be630477a9e5cd24385ba1a0a6fe.ctex"
+uid="uid://brvmys3dsgnme"
+path="res://.godot/imported/Art-Ore.png-14ad6b1334d18cc201650dcf2115e0d3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/Enemies/Clod-E1/Art-Claude.png"
-dest_files=["res://.godot/imported/Art-Claude.png-04a5be630477a9e5cd24385ba1a0a6fe.ctex"]
+source_file="res://Assets/Art/Enemies/Metal/Art-Ore.png"
+dest_files=["res://.godot/imported/Art-Ore.png-14ad6b1334d18cc201650dcf2115e0d3.ctex"]
 
 [params]
 

@@ -5,6 +5,7 @@ public partial class C_HealthPool : Node2D
 {
     [Export] public int MinStartingHealth = 10;
     [Export] public int MaxStartingHealth = 12;
+    [Export] public int Armor = 0;
     public int StartingHealth;
     public int CurrentHealth;
     public int PendingDamage;
@@ -27,9 +28,17 @@ public partial class C_HealthPool : Node2D
         }
     }
 
-    public void TakeDamage(int InDamage)
+    public int TakeDamage(int InDamage)
     {
-        PendingDamage += InDamage;
+        int DamageTaken = Math.Clamp(InDamage - Armor, 1, InDamage);
+        PendingDamage += DamageTaken;
+        return DamageTaken;
+    }
+
+    public void TakeDamageImmediate(int InDamage)
+    {
+        int DamageTaken = TakeDamage(InDamage);
+        RealizeDamage(DamageTaken);
     }
 
     public void RealizeDamage(int RealizedDamage)
