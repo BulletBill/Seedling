@@ -4,7 +4,9 @@ using System;
 [GlobalClass]
 public partial class Data_Enemy : Data_Hoverable
 {
+    [Export] public PackedScene SceneFile;
     [Export] public int SpawnCost { get; protected set; }
+    [Export] public int SpawnWeight { get; protected set; }
     [Export] public int PlayerDamage { get; protected set; }
     [Export] public float Speed { get; protected set; }
     [Export] public R_Cost Reward { get; protected set; }
@@ -17,5 +19,16 @@ public partial class Data_Enemy : Data_Hoverable
         CombinedDescription += Description;
 
         return CombinedDescription;
+    }
+
+    public Enemy Spawn()
+    {
+        Enemy NewEnemy = SceneFile.InstantiateOrNull<Enemy>();
+        if (IsInstanceValid(NewEnemy))
+        {
+            NewEnemy.Data = this;
+        }
+
+        return NewEnemy;
     }
 }

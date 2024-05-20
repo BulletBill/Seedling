@@ -19,7 +19,6 @@ patch_margin_right = 6
 patch_margin_bottom = 6
 
 [node name="Timer" type="Node2D" parent="."]
-visible = false
 position = Vector2(8, 37)
 script = ExtResource("3_sjk1i")
 
@@ -59,7 +58,6 @@ text = "Attract Wave"
 scroll_active = false
 
 [node name="Incoming Enemy Display" type="Node2D" parent="."]
-visible = false
 script = ExtResource("1_ai6o5")
 WaveType = 2
 

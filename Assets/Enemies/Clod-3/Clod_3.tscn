@@ -1,10 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://do2ujpuhrqh55"]
+[gd_scene load_steps=11 format=3 uid="uid://do2ujpuhrqh55"]
 
 [ext_resource type="Script" path="res://Assets/Enemies/Enemy.cs" id="1_i44ps"]
-[ext_resource type="Resource" uid="uid://bubcwmernk2og" path="res://Assets/Enemies/Clod-3/Data_Clod_3.tres" id="2_v41h5"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="3_4ydn0"]
 [ext_resource type="Script" path="res://Assets/Enemies/C_HealthPool.cs" id="4_np21p"]
-[ext_resource type="Texture2D" uid="uid://uodu5xemtxn8" path="res://Assets/Art/Enemies/Clod-E1/Art-Claude-Chunky.png" id="5_36r56"]
+[ext_resource type="Texture2D" uid="uid://uodu5xemtxn8" path="res://Assets/Art/Enemies/Clod/Art-Claude-Chunky.png" id="5_36r56"]
 [ext_resource type="Script" path="res://Assets/Core/Common/PausableAnimation.cs" id="6_wruwy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1e1oq"]
@@ -155,14 +154,12 @@ collision_layer = 0
 collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_i44ps")
-Data = ExtResource("2_v41h5")
 
 [node name="AlignToMap" type="Node2D" parent="."]
 script = ExtResource("3_4ydn0")
 
 [node name="HealthPool" type="Node2D" parent="."]
 script = ExtResource("4_np21p")
-MinStartingHealth = 12
 MaxStartingHealth = 20
 
 [node name="HealthBar" type="ProgressBar" parent="HealthPool"]

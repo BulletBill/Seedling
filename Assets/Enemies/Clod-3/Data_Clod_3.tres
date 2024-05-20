@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="Data_Enemy" load_steps=5 format=3 uid="uid://bubcwmernk2og"]
+[gd_resource type="Resource" script_class="Data_Enemy" load_steps=6 format=3 uid="uid://bubcwmernk2og"]
 
-[ext_resource type="Texture2D" uid="uid://uodu5xemtxn8" path="res://Assets/Art/Enemies/Clod-E1/Art-Claude-Chunky.png" id="1_metpq"]
+[ext_resource type="Texture2D" uid="uid://uodu5xemtxn8" path="res://Assets/Art/Enemies/Clod/Art-Claude-Chunky.png" id="1_metpq"]
 [ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="2_2ty76"]
+[ext_resource type="PackedScene" uid="uid://do2ujpuhrqh55" path="res://Assets/Enemies/Clod-3/Clod_3.tscn" id="3_5oi8b"]
 [ext_resource type="Script" path="res://Assets/Enemies/Data_Enemy.cs" id="3_h27fm"]
 
 [sub_resource type="Resource" id="Resource_us4jb"]
@@ -14,7 +15,9 @@ Energy = 2
 
 [resource]
 script = ExtResource("3_h27fm")
+SceneFile = ExtResource("3_5oi8b")
 SpawnCost = 4
+SpawnWeight = 5
 PlayerDamage = 1
 Speed = 40.0
 Reward = SubResource("Resource_us4jb")

@@ -10,9 +10,19 @@ public partial class MathHelper : Node
         return RNG.RandiRange(Min, Max);
     }
 
+    public static int GetIntInRange(Vector2I Range)
+    {
+        return RNG.RandiRange(Range.X, Range.Y);
+    }
+
     public static float GetFloatInRange(float Min, float Max)
     {
         return RNG.RandfRange(Min, Max);
+    }
+    
+    public static float GetFloatInRange(Vector2 Range)
+    {
+        return RNG.RandfRange(Range.X, Range.Y);
     }
 
     public static String GetTimeFromSeconds(float InTime)

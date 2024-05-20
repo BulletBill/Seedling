@@ -5,7 +5,7 @@ public partial class Enemy : CharacterBody2D
 {
 	public static readonly float SeekInterval = 1.0f;
 	public static readonly String EnemyGroup = "Enemy";
-	[Export] public Data_Enemy Data = new();
+	public Data_Enemy Data;
 	public bool Active = false;
 	float SpeedVariance = 1.0f;
 	NavigationAgent2D Nav;
@@ -28,7 +28,7 @@ public partial class Enemy : CharacterBody2D
 			Nav.TargetPosition = Player.DefendTargets[MathHelper.GetIntInRange(0, Player.DefendTargets.Count - 1)].GlobalPosition;
 		}
 		HealthPool = GetNodeOrNull<C_HealthPool>("HealthPool");
-		if (HealthPool != null)
+		if (HealthPool != null && Data != null)
 		{
 			HealthPool.MinStartingHealth = Data.HealthRange.X;
 			HealthPool.MaxStartingHealth = Data.HealthRange.Y;

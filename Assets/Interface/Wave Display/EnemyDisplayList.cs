@@ -42,9 +42,9 @@ public partial class EnemyDisplayList : Node
         {
             if (NextWave.SpawnCounts.Count > i)
             {
-                if (NextWave.SpawnCounts[i].SpawnData != null)
+                if (NextWave.SpawnCounts[i].Data != null)
                 {
-                    display.AssignEnemyParams(NextWave.SpawnCounts[i].SpawnData.Data, NextWave.SpawnCounts[i].Count);
+                    display.AssignEnemyParams(NextWave.SpawnCounts[i].Data, NextWave.SpawnCounts[i].Count);
                     i++;
                     continue;
                 }
