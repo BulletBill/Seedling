@@ -11,25 +11,25 @@
 [ext_resource type="PackedScene" uid="uid://crks2aw8cc252" path="res://Assets/Player/player.tscn" id="9_ajefw"]
 [ext_resource type="Script" path="res://Assets/Enemies/EnemyEvent.cs" id="10_kohlc"]
 [ext_resource type="Script" path="res://Assets/Enemies/Spawner/SpawnerBrain.cs" id="11_pc6et"]
-[ext_resource type="Resource" uid="uid://by1l3gp0tkyvm" path="res://Assets/Enemies/Clod-1/Data_Clod_1.tres" id="12_j4xsr"]
+[ext_resource type="Resource" uid="uid://by1l3gp0tkyvm" path="res://Assets/Enemies/Earth/Clod/Data_Clod_1.tres" id="12_m2d05"]
+[ext_resource type="Resource" uid="uid://chbnq31sf5y1p" path="res://Assets/Enemies/Earth/Clod/Data_Clod_2.tres" id="14_ux0fc"]
+[ext_resource type="Resource" uid="uid://bubcwmernk2og" path="res://Assets/Enemies/Earth/Clod/Data_Clod_3.tres" id="15_a74p8"]
 [ext_resource type="Script" path="res://Assets/Enemies/Spawner/R_SpawnCount.cs" id="15_f4f1c"]
-[ext_resource type="Resource" uid="uid://chbnq31sf5y1p" path="res://Assets/Enemies/Clod-2/Data_Clod_2.tres" id="17_20fgp"]
 [ext_resource type="PackedScene" uid="uid://mmyy6s5sben4" path="res://Assets/Interface/InGame/UI_InGame.tscn" id="17_wdj8r"]
-[ext_resource type="Resource" uid="uid://bubcwmernk2og" path="res://Assets/Enemies/Clod-3/Data_Clod_3.tres" id="19_mwkrl"]
 
 [sub_resource type="Resource" id="Resource_n6mny"]
 script = ExtResource("15_f4f1c")
-Data = ExtResource("12_j4xsr")
+Data = ExtResource("12_m2d05")
 WaveRange = Vector2i(1, 6)
 
 [sub_resource type="Resource" id="Resource_p0xm3"]
 script = ExtResource("15_f4f1c")
-Data = ExtResource("17_20fgp")
+Data = ExtResource("14_ux0fc")
 WaveRange = Vector2i(2, 8)
 
 [sub_resource type="Resource" id="Resource_fa520"]
 script = ExtResource("15_f4f1c")
-Data = ExtResource("19_mwkrl")
+Data = ExtResource("15_a74p8")
 WaveRange = Vector2i(6, -1)
 
 [node name="E03" type="Node2D"]

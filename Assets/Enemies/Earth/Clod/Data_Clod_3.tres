@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://uodu5xemtxn8" path="res://Assets/Art/Enemies/Clod/Art-Claude-Chunky.png" id="1_metpq"]
 [ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="2_2ty76"]
-[ext_resource type="PackedScene" uid="uid://do2ujpuhrqh55" path="res://Assets/Enemies/Clod-3/Clod_3.tscn" id="3_5oi8b"]
+[ext_resource type="PackedScene" uid="uid://do2ujpuhrqh55" path="res://Assets/Enemies/Earth/Clod/Clod_3.tscn" id="3_5oi8b"]
 [ext_resource type="Script" path="res://Assets/Enemies/Data_Enemy.cs" id="3_h27fm"]
 
 [sub_resource type="Resource" id="Resource_us4jb"]
