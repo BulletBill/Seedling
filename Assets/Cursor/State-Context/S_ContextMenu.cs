@@ -46,7 +46,7 @@ public partial class S_ContextMenu : Cursor_State
 
 	public override void OnEnable()
 	{
-		GD.Print("Cursor State changed to Context Menu");
+		Game.Log(LogCategory.Cursor, "Cursor State changed to Context Menu");
 		if (HoverList.Count > 0){ HoverList[0].Activate(); }
 	}
 	public override void OnDisable()

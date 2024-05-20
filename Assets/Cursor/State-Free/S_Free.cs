@@ -18,7 +18,7 @@ public partial class S_Free : Cursor_State
 
     public override void OnEnable()
     {
-        GD.Print("Cursor State changed to Free");
+        Game.Log(LogCategory.Cursor, "Cursor State changed to Free");
         Cursor.Broadcast(Cursor.SignalName.AnyStateActionsChanged, ActionList);
         if (HoverList.Count > 0){ HoverList[0].Activate(); }
     }

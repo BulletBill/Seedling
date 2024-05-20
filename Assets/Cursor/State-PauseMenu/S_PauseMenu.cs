@@ -18,7 +18,7 @@ public partial class S_PauseMenu : Cursor_State
 
 	public override void OnEnable()
 	{
-		GD.Print("Cursor State changed to Pause Menu");
+		Game.Log(LogCategory.Cursor, "Cursor State changed to Pause Menu");
 		if (HoverList.Count > 0) { HoverList[0].Activate(); }
 	}
 	public override void OnDisable()

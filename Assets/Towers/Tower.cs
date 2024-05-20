@@ -90,7 +90,6 @@ public partial class Tower : Sprite2D, IHoverable
 			if (IsInstanceValid(TimerBar))
 			{
 				TimerBar.Value = TimerBar.MaxValue - (int)((BuildTimer / BuildTime) * TimerBar.MaxValue);
-				//GD.Print("BuildTower._Process: Setting value to " + TimerBar.Value.ToString() + "/" + TimerBar.MaxValue.ToString());
 			}
 			
 			if (BuildTimer <= 0.0f || Player.Singleton.FreeTowers)
@@ -101,7 +100,6 @@ public partial class Tower : Sprite2D, IHoverable
 				{
 					NewTower.TotalCost += TotalCost;
 				}
-				// TODO: Transfer stats to new tower
 
         		NewTower.Position = Position;
         		MainMap.Singleton.AddChild(NewTower);

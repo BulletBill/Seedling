@@ -78,7 +78,7 @@ public partial class Enemy : CharacterBody2D
 		TargetReachable = Nav.IsTargetReachable();
 		if (!TargetReachable)
 		{
-			GD.PrintErr("Enemy.MakePath: " + Name + " cannot reach the target!");
+			Game.LogError(LogCategory.Enemy, "Enemy.MakePath: " + Name + " cannot reach the target!");
 			QueueFree();
 		}
 	}

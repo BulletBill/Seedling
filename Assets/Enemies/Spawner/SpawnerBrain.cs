@@ -59,11 +59,11 @@ public partial class SpawnerBrain : Node
         EnemyEvent.Broadcast(EnemyEvent.SignalName.ExpansionWaveCountChanged, ExpansionLevel);
         EnemyEvent.Broadcast(EnemyEvent.SignalName.TimedWaveCountChanged, WaveCount);
 
-        GD.Print("SpawnerBrain._Ready: Calculating timed spawn " + WaveCount.ToString());
+        Game.Log(LogCategory.EnemySpawner, "Calculating timed spawn " + WaveCount.ToString() + " with a pool of " + ((int)TimedSpawningPool).ToString());
         CalculateNextWave(NextTimedWave, WaveCount, (int)TimedSpawningPool);
         EnemyEvent.Broadcast(EnemyEvent.SignalName.ShowNextTimedWave, NextTimedWave);
 
-        GD.Print("SpawnerBrain._Ready: Calculating expansion spawn " + ExpansionLevel.ToString());
+        Game.Log(LogCategory.EnemySpawner, "Calculating expansion spawn " + ExpansionLevel.ToString() + " with a pool of " + ((int)ExpansionSpawningPool).ToString());
         CalculateNextWave(NextExpansionWave, (int)ExpansionLevel, (int)ExpansionSpawningPool);
         EnemyEvent.Broadcast(EnemyEvent.SignalName.ShowNextExpandWave, NextExpansionWave);
     }
@@ -111,7 +111,7 @@ public partial class SpawnerBrain : Node
         ExpansionLevel++;
         int SpawningPool = Mathf.FloorToInt(ExpansionSpawningPool * Math.Pow(ExpansionPoolMultiplier, ExpansionLevel));
 
-        GD.Print("SpawnerBrain.SpawnExpansionWave: Calculating expansion spawn " + ExpansionLevel.ToString());
+        Game.Log(LogCategory.EnemySpawner, "Calculating expansion spawn " + ExpansionLevel.ToString() + " with a pool of " + ((int)ExpansionSpawningPool).ToString());
         CalculateNextWave(NextExpansionWave, (int)ExpansionLevel, SpawningPool);
 
         EnemyEvent.Broadcast(EnemyEvent.SignalName.ExpansionWaveCountChanged, ExpansionLevel);
@@ -125,7 +125,7 @@ public partial class SpawnerBrain : Node
         WaveCount++;
         int SpawningPool = Mathf.FloorToInt(TimedSpawningPool * Math.Pow(SuccessPoolMultiplier, WaveCount));
         
-        GD.Print("SpawnerBrain.SpawnTimedWave: Calculating timed spawn " + WaveCount.ToString());
+        Game.Log(LogCategory.EnemySpawner, "Calculating timed spawn " + WaveCount.ToString() + " with a pool of " + ((int)TimedSpawningPool).ToString());
         CalculateNextWave(NextTimedWave, WaveCount, SpawningPool);
 
         EnemyEvent.Broadcast(EnemyEvent.SignalName.TimedWaveCountChanged, WaveCount);
@@ -144,7 +144,7 @@ public partial class SpawnerBrain : Node
         if (Spawners.Count <= 0) return;
         if (WaveData.SpawnCounts.Count <= 0) return;
 
-        GD.Print("SpawnerBrain.SpawnEnemies: Spawn wave!");
+        Game.Log(LogCategory.EnemySpawner, "Spawn wave!");
 
         int SpawnerIndex = MathHelper.GetIntInRange(0, Spawners.Count - 1);
         foreach (R_SpawnCount SpawnCount in WaveData.SpawnCounts)
@@ -169,7 +169,7 @@ public partial class SpawnerBrain : Node
         {
             if (spawnCount.WaveRange.Y == 0)
             {
-                GD.PrintErr("SpawnerBrain.CalculateNextWave: " + spawnCount.Data.DisplayName + " has a max wave of 0!");
+                Game.LogError(LogCategory.EnemySpawner, spawnCount.Data.DisplayName + " has a max wave of 0!");
                 continue;
             }
             if (Level >= spawnCount.WaveRange.X && (Level <= spawnCount.WaveRange.Y || spawnCount.WaveRange.Y < 0))
@@ -193,7 +193,7 @@ public partial class SpawnerBrain : Node
                         spawnCount.Count++;
                         SpawningPool -= spawnCount.Data.SpawnCost;
                         Sum = 0;
-                        GD.Print("SpawnerBrain.CalculateNextWave: Adding" + spawnCount.Data.DisplayName + " to next wave. " + SpawningPool.ToString() + " spawn cost remains.");
+                        Game.Log(LogCategory.EnemySpawner, "Adding" + spawnCount.Data.DisplayName + " to next wave. " + SpawningPool.ToString() + " spawn cost remains.");
                         break;
                     }
 
@@ -202,7 +202,7 @@ public partial class SpawnerBrain : Node
 
                 if (Sum > 0)
                 {
-                    GD.PrintErr("SpawnerBrain.CalculateNextWave: Failed to add enemy to spawn count");
+                    Game.LogError(LogCategory.EnemySpawner, "Failed to add enemy to spawn count!");
                     SpawningPool--;
                 }
             }

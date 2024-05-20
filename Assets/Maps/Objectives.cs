@@ -37,7 +37,7 @@ public partial class Objectives : Node
             if (HeartsBuilt < BuildHearts)
             {
                 HeartsBuilt++;
-                GD.Print("Objectives: Finished building a Heart Bloom. " + (BuildHearts - HeartsBuilt).ToString() + " needed.");
+                Game.Log(LogCategory.Objectives, "Finished building a Heart Bloom. " + (BuildHearts - HeartsBuilt).ToString() + " needed.");
             }
             PlayerEvent.Broadcast(PlayerEvent.SignalName.HeartCountUpdated, BuildHearts - HeartsBuilt);
         }
@@ -46,7 +46,7 @@ public partial class Objectives : Node
             if (SunLeavesBuilt < BuildSunLeaf)
             {
                 SunLeavesBuilt++;
-                GD.Print("Objectives: Finished building a Sunleaf. " + (BuildSunLeaf - SunLeavesBuilt).ToString() + " needed.");
+                Game.Log(LogCategory.Objectives, "Finished building a Sunleaf. " + (BuildSunLeaf - SunLeavesBuilt).ToString() + " needed.");
             }
             PlayerEvent.Broadcast(PlayerEvent.SignalName.SunleafCountUpdated, BuildSunLeaf - SunLeavesBuilt);
         }
@@ -73,7 +73,7 @@ public partial class Objectives : Node
     void EnemyDefeated(Enemy DefeatedEnemy)
     {
         int RemainingEnemies = GetTree().GetNodesInGroup("Enemy").Count - 1; // The enemy has not yet been removed
-        GD.Print("Final wave enemy defeated. " + RemainingEnemies.ToString() + " enemies remain.");
+        Game.Log(LogCategory.Objectives, "Final wave enemy defeated. " + RemainingEnemies.ToString() + " enemies remain.");
         if (RemainingEnemies <= 0)
         {
             PlayerEvent.Broadcast(PlayerEvent.SignalName.FinalWaveSurvived);

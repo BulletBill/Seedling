@@ -150,7 +150,7 @@ public partial class C_Attack : Node2D, ITowerComponent
 
         if (IsInstanceValid(NewTarget) && NewTarget != CurrentTarget)
         {
-            //GD.Print(Name + " C_Attack.SeekTarget: New target is " + NewTarget.Name);
+            Game.Log(LogCategory.Tower, Name + ": new target is " + NewTarget.Name);
             CurrentTarget = NewTarget;
         }
 
@@ -165,7 +165,7 @@ public partial class C_Attack : Node2D, ITowerComponent
         if (!IsInstanceValid(CurrentTarget)) return;
         if (PendingDamage > 0)
         {
-            GD.PrintErr("C_Attack.Fire: Trying to fire before pending damage has been resolved!");
+            Game.LogError(LogCategory.Tower, "Trying to fire before pending damage has been resolved!");
             return;
         }
         AttackTimer = AttackDelay;

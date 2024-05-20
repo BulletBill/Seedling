@@ -14,7 +14,7 @@ public partial class SceneTransition : CanvasLayer
 	{
 		if (Singleton != null)
 		{
-			GD.PrintErr("SceneTransition: Singleton already exists!");
+			Game.LogError(LogCategory.Core, "SceneTransition: Singleton already exists!");
 			Singleton.QueueFree();
 		}
 		Singleton = this;

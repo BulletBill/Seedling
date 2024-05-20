@@ -85,7 +85,7 @@ public partial class S_PlaceTower : Cursor_State
         ParentCursor.PlacementGhost.SelfModulate = PlacementIsValid ? GoodColor : BadColor;
 
         Cursor.Broadcast(Cursor.SignalName.SetFixedObject, TowerData);
-        GD.Print("Placement target is " + TowerData.DisplayName);
+        Game.Log(LogCategory.Cursor, "Placement target is " + TowerData.DisplayName);
     }
 
     bool CanPlaceTile(Vector2I NewMapPosition)
