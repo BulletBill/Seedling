@@ -26,10 +26,12 @@ public partial class MathHelper : Node
         return RNG.RandfRange(Range.X, Range.Y);
     }
 
-    public static void PositionOffset(Godot.Vector2 Start, float AngleRads, float Distance)
+    public static Godot.Vector2 PositionOffset(Godot.Vector2 Start, float AngleRads, float Distance)
     {
-        Start.X = Start.X + Distance * Mathf.Cos(AngleRads);
-        Start.Y = Start.Y + Distance * Mathf.Sin(AngleRads);
+        Godot.Vector2 ret = Start;
+        ret.X = Start.X + Distance * Mathf.Cos(AngleRads);
+        ret.Y = Start.Y + Distance * Mathf.Sin(AngleRads);
+        return ret;
     }
 
     public static String GetTimeFromSeconds(float InTime)
