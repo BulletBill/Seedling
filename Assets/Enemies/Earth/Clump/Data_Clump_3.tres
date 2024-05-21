@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Data_Enemy" load_steps=6 format=3 uid="uid://yt1mcfdhcrm2"]
+
+[ext_resource type="Texture2D" uid="uid://dwxxxpy5kxjpk" path="res://Assets/Art/Enemies/Clump/Art-Clump.png" id="1_h64wk"]
+[ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="2_wxkya"]
+[ext_resource type="PackedScene" uid="uid://cmgxvg5rolgcq" path="res://Assets/Enemies/Earth/Clump/Clump_3.tscn" id="3_ppbj8"]
+[ext_resource type="Script" path="res://Assets/Enemies/Data_Enemy.cs" id="4_gn3pv"]
+
+[sub_resource type="Resource" id="Resource_us4jb"]
+script = ExtResource("2_wxkya")
+LifeForce = 0
+Substance = 2
+Flow = 0
+Breath = 0
+Energy = 2
+
+[resource]
+script = ExtResource("4_gn3pv")
+SceneFile = ExtResource("3_ppbj8")
+SpawnCost = 5
+SpawnWeight = 5
+PlayerDamage = 5
+Speed = 25.0
+Reward = SubResource("Resource_us4jb")
+HealthRange = Vector2i(400, 480)
+DisplayName = "Clump III"
+Icon = ExtResource("1_h64wk")
+Description = "A solid clump of dirt. It's still angry.
+Breaks into smaller enemies when defeated."
