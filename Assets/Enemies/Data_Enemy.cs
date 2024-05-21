@@ -26,7 +26,7 @@ public partial class Data_Enemy : Data_Hoverable
         Enemy NewEnemy = SceneFile.InstantiateOrNull<Enemy>();
         if (IsInstanceValid(NewEnemy))
         {
-            NewEnemy.Data = this;
+            NewEnemy.SetData(this);
         }
 
         return NewEnemy;

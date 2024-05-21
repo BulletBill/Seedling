@@ -1,7 +1,8 @@
 using Godot;
 using System;
+using System.ComponentModel;
 
-public partial class C_HealthPool : Node2D
+public partial class C_HealthPool : EnemyComponent
 {
     [Export] public int MinStartingHealth = 10;
     [Export] public int MaxStartingHealth = 12;
@@ -11,10 +12,13 @@ public partial class C_HealthPool : Node2D
     public int PendingDamage;
     ProgressBar HealthVisual;
 
-    public override void _Ready()
+    public override void OnDataSet(Data_Enemy NewData)
     {
-        // Handled by parent Enemy object using its data
-        //CalculateHealth();
+		if (NewData == null) return;
+		
+		MinStartingHealth = NewData.HealthRange.X;
+		MaxStartingHealth = NewData.HealthRange.Y;
+		CalculateHealth();
     }
 
     public void CalculateHealth()

@@ -207,6 +207,15 @@ public partial class SpawnerBrain : Node
                 }
             }
         }
+
+        // Remove 0 count spawns
+        for (int i = Wave.SpawnCounts.Count - 1; i >= 0; i--)
+        {
+            if (Wave.SpawnCounts[i].Count <= 0)
+            {
+                Wave.SpawnCounts.RemoveAt(i);
+            }
+        }
     }
 
     public void SetDisableSpawns(bool Disabled)

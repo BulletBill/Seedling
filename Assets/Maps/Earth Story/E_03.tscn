@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://blhgx4ui4wyrj"]
+[gd_scene load_steps=22 format=3 uid="uid://blhgx4ui4wyrj"]
 
 [ext_resource type="Script" path="res://Assets/Maps/Level.cs" id="1_k62xb"]
 [ext_resource type="Script" path="res://Assets/Maps/Objectives.cs" id="2_lg3fp"]
@@ -11,26 +11,32 @@
 [ext_resource type="PackedScene" uid="uid://crks2aw8cc252" path="res://Assets/Player/player.tscn" id="9_ajefw"]
 [ext_resource type="Script" path="res://Assets/Enemies/EnemyEvent.cs" id="10_kohlc"]
 [ext_resource type="Script" path="res://Assets/Enemies/Spawner/SpawnerBrain.cs" id="11_pc6et"]
-[ext_resource type="Resource" uid="uid://by1l3gp0tkyvm" path="res://Assets/Enemies/Earth/Clod/Data_Clod_1.tres" id="12_m2d05"]
-[ext_resource type="Resource" uid="uid://chbnq31sf5y1p" path="res://Assets/Enemies/Earth/Clod/Data_Clod_2.tres" id="14_ux0fc"]
-[ext_resource type="Resource" uid="uid://bubcwmernk2og" path="res://Assets/Enemies/Earth/Clod/Data_Clod_3.tres" id="15_a74p8"]
+[ext_resource type="Resource" uid="uid://by1l3gp0tkyvm" path="res://Assets/Enemies/Earth/Clod/Data_Clod_1.tres" id="12_oywwk"]
+[ext_resource type="Resource" uid="uid://chbnq31sf5y1p" path="res://Assets/Enemies/Earth/Clod/Data_Clod_2.tres" id="14_f2t8q"]
 [ext_resource type="Script" path="res://Assets/Enemies/Spawner/R_SpawnCount.cs" id="15_f4f1c"]
+[ext_resource type="Resource" uid="uid://bubcwmernk2og" path="res://Assets/Enemies/Earth/Clod/Data_Clod_3.tres" id="15_kjiqt"]
+[ext_resource type="Resource" uid="uid://blqipraiag7jj" path="res://Assets/Enemies/Earth/Clump/Data_Clump_1.tres" id="16_mui0k"]
 [ext_resource type="PackedScene" uid="uid://mmyy6s5sben4" path="res://Assets/Interface/InGame/UI_InGame.tscn" id="17_wdj8r"]
 
 [sub_resource type="Resource" id="Resource_n6mny"]
 script = ExtResource("15_f4f1c")
-Data = ExtResource("12_m2d05")
+Data = ExtResource("12_oywwk")
 WaveRange = Vector2i(1, 6)
 
 [sub_resource type="Resource" id="Resource_p0xm3"]
 script = ExtResource("15_f4f1c")
-Data = ExtResource("14_ux0fc")
+Data = ExtResource("14_f2t8q")
 WaveRange = Vector2i(2, 8)
 
 [sub_resource type="Resource" id="Resource_fa520"]
 script = ExtResource("15_f4f1c")
-Data = ExtResource("15_a74p8")
+Data = ExtResource("15_kjiqt")
 WaveRange = Vector2i(6, -1)
+
+[sub_resource type="Resource" id="Resource_mn0qb"]
+script = ExtResource("15_f4f1c")
+Data = ExtResource("16_mui0k")
+WaveRange = Vector2i(1, -1)
 
 [node name="E03" type="Node2D"]
 script = ExtResource("1_k62xb")
@@ -97,7 +103,7 @@ script = ExtResource("10_kohlc")
 
 [node name="SpawnerBrain" type="Node2D" parent="."]
 script = ExtResource("11_pc6et")
-PossibleSpawns = [SubResource("Resource_n6mny"), SubResource("Resource_p0xm3"), SubResource("Resource_fa520")]
+PossibleSpawns = [SubResource("Resource_n6mny"), SubResource("Resource_p0xm3"), SubResource("Resource_fa520"), SubResource("Resource_mn0qb")]
 SecondsUntilNextWave = 150
 
 [node name="UI Canvas Layer" parent="." instance=ExtResource("17_wdj8r")]

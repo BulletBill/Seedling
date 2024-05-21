@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Numerics;
 
 public partial class MathHelper : Node
 {
@@ -20,9 +21,15 @@ public partial class MathHelper : Node
         return RNG.RandfRange(Min, Max);
     }
     
-    public static float GetFloatInRange(Vector2 Range)
+    public static float GetFloatInRange(Godot.Vector2 Range)
     {
         return RNG.RandfRange(Range.X, Range.Y);
+    }
+
+    public static void PositionOffset(Godot.Vector2 Start, float AngleRads, float Distance)
+    {
+        Start.X = Start.X + Distance * Mathf.Cos(AngleRads);
+        Start.Y = Start.Y + Distance * Mathf.Sin(AngleRads);
     }
 
     public static String GetTimeFromSeconds(float InTime)
