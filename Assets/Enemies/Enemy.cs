@@ -39,6 +39,7 @@ public partial class Enemy : CharacterBody2D
 		{
 			Nav.TargetPosition = Player.DefendTargets[MathHelper.GetIntInRange(0, Player.DefendTargets.Count - 1)].GlobalPosition;
 		}
+		HealthPool = GetNodeOrNull<C_HealthPool>("HealthPool");
 		Image = GetNodeOrNull<Sprite2D>("Image");
 		Shadow = GetNodeOrNull<Sprite2D>("Shadow");
 		SpeedVariance = MathHelper.GetFloatInRange(0.95f, 1.05f);

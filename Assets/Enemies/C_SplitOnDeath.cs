@@ -23,6 +23,7 @@ public partial class C_SplitOnDeath : EnemyComponent
 			MainMap.Singleton.AddChild(newEnemy);
 			newEnemy.GlobalPosition = ParentEnemy.GlobalPosition;
 			MathHelper.PositionOffset(newEnemy.GlobalPosition, MathHelper.GetFloatInRange(0, (float)Math.PI * 2.0f), SpawnDistance);
+			newEnemy.Active = true;
 		}
     }
 }
