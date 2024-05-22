@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://blhgx4ui4wyrj"]
+[gd_scene load_steps=38 format=3 uid="uid://blhgx4ui4wyrj"]
 
 [ext_resource type="Script" path="res://Assets/Maps/Level.cs" id="1_k62xb"]
 [ext_resource type="Script" path="res://Assets/Maps/Objectives.cs" id="2_lg3fp"]
@@ -19,6 +19,12 @@
 [ext_resource type="Resource" uid="uid://biqug4fcrpbac" path="res://Assets/Enemies/Earth/Clump/Data_Clump_2.tres" id="17_60cxm"]
 [ext_resource type="PackedScene" uid="uid://mmyy6s5sben4" path="res://Assets/Interface/InGame/UI_InGame.tscn" id="17_wdj8r"]
 [ext_resource type="Resource" uid="uid://yt1mcfdhcrm2" path="res://Assets/Enemies/Earth/Clump/Data_Clump_3.tres" id="18_b1yiq"]
+[ext_resource type="Resource" uid="uid://tf64xtdn2fay" path="res://Assets/Enemies/Earth/Stone/Data_Stone_1.tres" id="19_dwpah"]
+[ext_resource type="Resource" uid="uid://bme500plmvojf" path="res://Assets/Enemies/Earth/Stone/Data_Stone_2.tres" id="20_auet6"]
+[ext_resource type="Resource" uid="uid://nj6iqksgp0e6" path="res://Assets/Enemies/Earth/Stone/Data_Stone_3.tres" id="21_nq2nj"]
+[ext_resource type="Resource" uid="uid://bxmjcnx3fx8es" path="res://Assets/Enemies/Earth/Marble/Data_Marble_1.tres" id="22_qr582"]
+[ext_resource type="Resource" uid="uid://dhgu4ua416jtl" path="res://Assets/Enemies/Earth/Marble/Data_Marble_2.tres" id="23_iyvi2"]
+[ext_resource type="Resource" uid="uid://mixp0yajjcbt" path="res://Assets/Enemies/Earth/Marble/Data_Marble_3.tres" id="24_kdhw3"]
 
 [sub_resource type="Resource" id="Resource_n6mny"]
 script = ExtResource("15_f4f1c")
@@ -49,6 +55,36 @@ WaveRange = Vector2i(5, 11)
 script = ExtResource("15_f4f1c")
 Data = ExtResource("18_b1yiq")
 WaveRange = Vector2i(7, -1)
+
+[sub_resource type="Resource" id="Resource_yi2py"]
+script = ExtResource("15_f4f1c")
+Data = ExtResource("19_dwpah")
+WaveRange = Vector2i(4, 10)
+
+[sub_resource type="Resource" id="Resource_su3xq"]
+script = ExtResource("15_f4f1c")
+Data = ExtResource("20_auet6")
+WaveRange = Vector2i(6, 12)
+
+[sub_resource type="Resource" id="Resource_q4q3t"]
+script = ExtResource("15_f4f1c")
+Data = ExtResource("21_nq2nj")
+WaveRange = Vector2i(8, -1)
+
+[sub_resource type="Resource" id="Resource_pks8j"]
+script = ExtResource("15_f4f1c")
+Data = ExtResource("22_qr582")
+WaveRange = Vector2i(1, -1)
+
+[sub_resource type="Resource" id="Resource_cbvoq"]
+script = ExtResource("15_f4f1c")
+Data = ExtResource("23_iyvi2")
+WaveRange = Vector2i(1, -1)
+
+[sub_resource type="Resource" id="Resource_bwv4m"]
+script = ExtResource("15_f4f1c")
+Data = ExtResource("24_kdhw3")
+WaveRange = Vector2i(1, -1)
 
 [node name="E03" type="Node2D"]
 script = ExtResource("1_k62xb")
@@ -115,7 +151,7 @@ script = ExtResource("10_kohlc")
 
 [node name="SpawnerBrain" type="Node2D" parent="."]
 script = ExtResource("11_pc6et")
-PossibleSpawns = [SubResource("Resource_n6mny"), SubResource("Resource_p0xm3"), SubResource("Resource_fa520"), SubResource("Resource_mn0qb"), SubResource("Resource_neals"), SubResource("Resource_quamf")]
+PossibleSpawns = [SubResource("Resource_n6mny"), SubResource("Resource_p0xm3"), SubResource("Resource_fa520"), SubResource("Resource_mn0qb"), SubResource("Resource_neals"), SubResource("Resource_quamf"), SubResource("Resource_yi2py"), SubResource("Resource_su3xq"), SubResource("Resource_q4q3t"), SubResource("Resource_pks8j"), SubResource("Resource_cbvoq"), SubResource("Resource_bwv4m")]
 SecondsUntilNextWave = 150
 
 [node name="UI Canvas Layer" parent="." instance=ExtResource("17_wdj8r")]

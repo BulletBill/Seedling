@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Data_Enemy" load_steps=6 format=3 uid="uid://mixp0yajjcbt"]
+
+[ext_resource type="Texture2D" uid="uid://cqjtln2ttn7g1" path="res://Assets/Art/Enemies/Marble/Art-Shooter.png" id="1_lkpgi"]
+[ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="2_p426p"]
+[ext_resource type="PackedScene" uid="uid://bl3d32gsun4n6" path="res://Assets/Enemies/Earth/Marble/Marble_3.tscn" id="3_khv25"]
+[ext_resource type="Script" path="res://Assets/Enemies/Data_Enemy.cs" id="4_ows6q"]
+
+[sub_resource type="Resource" id="Resource_us4jb"]
+script = ExtResource("2_p426p")
+LifeForce = 0
+Substance = 2
+Flow = 0
+Breath = 0
+Energy = 2
+
+[resource]
+script = ExtResource("4_ows6q")
+SceneFile = ExtResource("3_khv25")
+SpawnCost = 8
+SpawnWeight = 4
+PlayerDamage = 1
+Speed = 70.0
+Reward = SubResource("Resource_us4jb")
+HealthRange = Vector2i(120, 144)
+DisplayName = "Shooter III"
+Icon = ExtResource("1_lkpgi")
+Description = "A huge rock to knock around the others."

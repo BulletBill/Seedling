@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Data_Enemy" load_steps=6 format=3 uid="uid://bxmjcnx3fx8es"]
+
+[ext_resource type="Texture2D" uid="uid://dn8xh7rl50l8o" path="res://Assets/Art/Enemies/Marble/Art-Marble-Smol.png" id="1_21v3f"]
+[ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="2_xxwrt"]
+[ext_resource type="PackedScene" uid="uid://dwtfql3pnqlrv" path="res://Assets/Enemies/Earth/Marble/Marble_1.tscn" id="3_q3vu8"]
+[ext_resource type="Script" path="res://Assets/Enemies/Data_Enemy.cs" id="4_fas7d"]
+
+[sub_resource type="Resource" id="Resource_us4jb"]
+script = ExtResource("2_xxwrt")
+LifeForce = 0
+Substance = 2
+Flow = 0
+Breath = 0
+Energy = 2
+
+[resource]
+script = ExtResource("4_fas7d")
+SceneFile = ExtResource("3_q3vu8")
+SpawnCost = 2
+SpawnWeight = 16
+PlayerDamage = 1
+Speed = 70.0
+Reward = SubResource("Resource_us4jb")
+HealthRange = Vector2i(30, 38)
+DisplayName = "Marble I"
+Icon = ExtResource("1_21v3f")
+Description = "A smooth rock with a fast roll."

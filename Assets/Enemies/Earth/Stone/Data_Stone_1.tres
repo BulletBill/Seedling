@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Data_Enemy" load_steps=6 format=3 uid="uid://tf64xtdn2fay"]
+
+[ext_resource type="Texture2D" uid="uid://vvlddevmkuo2" path="res://Assets/Art/Enemies/Stone/Art-Pebble.png" id="1_brrf0"]
+[ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="2_ky0st"]
+[ext_resource type="PackedScene" uid="uid://d3va6w28owmw8" path="res://Assets/Enemies/Earth/Stone/Stone_1.tscn" id="3_cg7te"]
+[ext_resource type="Script" path="res://Assets/Enemies/Data_Enemy.cs" id="4_0sgdh"]
+
+[sub_resource type="Resource" id="Resource_us4jb"]
+script = ExtResource("2_ky0st")
+LifeForce = 0
+Substance = 2
+Flow = 0
+Breath = 0
+Energy = 2
+
+[resource]
+script = ExtResource("4_0sgdh")
+SceneFile = ExtResource("3_cg7te")
+SpawnCost = 3
+SpawnWeight = 12
+PlayerDamage = 2
+Speed = 30.0
+Reward = SubResource("Resource_us4jb")
+HealthRange = Vector2i(40, 50)
+DisplayName = "Pebble I"
+Icon = ExtResource("1_brrf0")
+Description = "As fast and hard as a rock."
