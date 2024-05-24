@@ -4,6 +4,7 @@ using System.Net.Http.Headers;
 
 public partial class CameraController : Camera2D
 {
+	[Export] public bool FixedPosition { get; protected set; } = false;
 	[Export] public float MinimumZoom { get; protected set; } = 0.75f;
 	[Export] public float MaximumZoom { get; protected set; } = 1.0f;
 	[Export] public float ZoomSpeed { get; protected set; } = 3f;
@@ -58,6 +59,8 @@ public partial class CameraController : Camera2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		if (FixedPosition) return;
+
 		Vector2 Dir = new(0,0);
 		if (Input.IsActionPressed("CameraPan_Left")){ Dir.X -= 1.0f; }
 		if (Input.IsActionPressed("CameraPan_Right")){ Dir.X += 1.0f; }

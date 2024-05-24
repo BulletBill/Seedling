@@ -43,6 +43,11 @@ public partial class Enemy : CharacterBody2D
 		Image = GetNodeOrNull<Sprite2D>("Image");
 		Shadow = GetNodeOrNull<Sprite2D>("Shadow");
 		SpeedVariance = MathHelper.GetFloatInRange(0.95f, 1.05f);
+
+		if (Game.Singleton.ShowLogsFor.Contains(LogCategory.EnemyPathing))
+		{
+			Nav.DebugEnabled = true;
+		}
 	}
 
 	public void SetData(Data_Enemy NewData)
@@ -77,9 +82,7 @@ public partial class Enemy : CharacterBody2D
 		if (Shadow != null) { Shadow.Rotation = Image.Rotation; }
 		MoveAndSlide();
 		
-
-		DistanceToTarget = Nav.DistanceToTarget();
-		if (DistanceToTarget < MainMap.GetTileSize())
+		if (Nav.DistanceToTarget() < MainMap.GetTileSize())
 		{
 			PlayerEvent.Bus.EmitSignal(PlayerEvent.SignalName.LoseLife, Data.PlayerDamage);
 			QueueFree();
@@ -93,9 +96,21 @@ public partial class Enemy : CharacterBody2D
 		TargetReachable = Nav.IsTargetReachable();
 		if (!TargetReachable)
 		{
-			Game.LogError(LogCategory.Enemy, "Enemy.MakePath: " + Name + " cannot reach the target!");
+			Game.LogError(LogCategory.EnemyPathing, Name + " cannot reach the target!");
 			QueueFree();
 		}
+
+		DistanceToTarget = 0.0f;
+		int i = 0;
+		foreach (Vector2 PathSegment in Nav.GetCurrentNavigationPath())
+		{
+			if (i > Nav.GetCurrentNavigationPathIndex())
+			{
+				DistanceToTarget += PathSegment.Length();
+			}
+			i++;
+		}
+		Game.Log(LogCategory.EnemyPathing, Name + " is " + DistanceToTarget.ToString() + " away from the target.");
 	}
 
 	public bool IsAlive()

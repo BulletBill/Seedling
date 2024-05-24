@@ -62,6 +62,6 @@ public enum LogCategory
     Map,
     UI,
     Cursor,
-    Enemy,
+    EnemyPathing,
     EnemySpawner,
 }

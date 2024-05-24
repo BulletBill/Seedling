@@ -126,11 +126,11 @@ public partial class C_Attack : Node2D, ITowerComponent
             float Score = 0.0f;
             if (TargetPriority == ETargetPriority.ClosestToShooter)
             {
-                Score = 10000 - Distance;
+                Score = 100000 - Distance;
             }
             else if (TargetPriority == ETargetPriority.ClosestToFinish)
             {
-                Score = 10000 - TestEnemy.DistanceToTarget;
+                Score = 100000 - TestEnemy.DistanceToTarget;
             }
             else if (TargetPriority == ETargetPriority.HighestHealth)
             {
