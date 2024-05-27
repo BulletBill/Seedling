@@ -79,6 +79,17 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_rtbfc")
 value = 50.0
 show_percentage = false
 
+[node name="Clock" type="RichTextLabel" parent="Timer"]
+offset_left = 6.0
+offset_top = 1.0
+offset_right = 243.0
+offset_bottom = 27.0
+mouse_filter = 2
+theme = ExtResource("3_qrcuc")
+theme_override_font_sizes/normal_font_size = 16
+text = "2:30"
+scroll_active = false
+
 [node name="Wave" type="RichTextLabel" parent="Timer"]
 offset_left = 212.0
 offset_top = -33.0

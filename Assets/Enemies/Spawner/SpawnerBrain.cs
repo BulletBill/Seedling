@@ -14,21 +14,14 @@ public partial class SpawnerBrain : Node
     [Export] public float TimedSpawningPool = 16.0f;
     [Export] public float SuccessPoolMultiplier = 1.5f;
     [Export] public float FailurePoolMultiplier = 1.3f;
+    [Export] public float TimeLostFromExpansion = 2.0f;
     int WaveCount = 1;
     bool FinalWave = false;
+    bool PlayerHurt = false;
     float BigWaveTimer = 301.0f;
     int TimerSecondsLeft = 300;
+    int ExpansionAmount = 0;
     R_SpawnWave NextTimedWave = new();
-
-    // Expansion waves
-    [Export] Vector2I ExpansionRange = new(18,26);
-    [Export] float ExpansionLevelPerSpawn = 0.25f;
-    [Export] float ExpansionSpawningPool = 6;
-    [Export] float ExpansionPoolMultiplier = 1.2f;
-    float ExpansionLevel = 1;
-    int ExpansionRemaining = 0;
-    R_SpawnWave NextExpansionWave = new();
-
 
     // DEBUG
     public bool DisableSpawns = false;
@@ -50,22 +43,14 @@ public partial class SpawnerBrain : Node
             }
         }
 
-        int NextExpansionRequired = MathHelper.GetIntInRange(ExpansionRange);
-        ExpansionRemaining = 37 + NextExpansionRequired;
         BigWaveTimer = SecondsUntilNextWave;
 
         EnemyEvent.Broadcast(EnemyEvent.SignalName.WaveTimerChanged, SecondsUntilNextWave, SecondsUntilNextWave);
-        EnemyEvent.Broadcast(EnemyEvent.SignalName.PlayerExpansionChanged, 0, NextExpansionRequired);
-        EnemyEvent.Broadcast(EnemyEvent.SignalName.ExpansionWaveCountChanged, ExpansionLevel);
         EnemyEvent.Broadcast(EnemyEvent.SignalName.TimedWaveCountChanged, WaveCount);
 
         Game.Log(LogCategory.EnemySpawner, "Calculating timed spawn " + WaveCount.ToString() + " with a pool of " + ((int)TimedSpawningPool).ToString());
         CalculateNextWave(NextTimedWave, WaveCount, (int)TimedSpawningPool);
         EnemyEvent.Broadcast(EnemyEvent.SignalName.ShowNextTimedWave, NextTimedWave);
-
-        Game.Log(LogCategory.EnemySpawner, "Calculating expansion spawn " + ExpansionLevel.ToString() + " with a pool of " + ((int)ExpansionSpawningPool).ToString());
-        CalculateNextWave(NextExpansionWave, (int)ExpansionLevel, (int)ExpansionSpawningPool);
-        EnemyEvent.Broadcast(EnemyEvent.SignalName.ShowNextExpandWave, NextExpansionWave);
     }
 
     public override void _Process(double delta)
@@ -93,43 +78,46 @@ public partial class SpawnerBrain : Node
 
     void GrassGrown(int Count)
     {
-        ExpansionRemaining -= Count;
+        ExpansionAmount += Count;
+        if (ExpansionAmount <= 37) return;
+        
+        BigWaveTimer -= Count * TimeLostFromExpansion;
 
-        if (ExpansionRemaining <= 0)
+        int LastSecond = TimerSecondsLeft;
+        TimerSecondsLeft = Mathf.FloorToInt(BigWaveTimer);
+        if (LastSecond != TimerSecondsLeft)
         {
-            ExpansionRemaining += MathHelper.GetIntInRange(ExpansionRange.X, ExpansionRange.Y);
-            SpawnExpansionWave();
+            EnemyEvent.Broadcast(EnemyEvent.SignalName.WaveTimerChanged, TimerSecondsLeft, SecondsUntilNextWave);
         }
 
-        EnemyEvent.Broadcast(EnemyEvent.SignalName.PlayerExpansionChanged, ExpansionRemaining, ExpansionRange.Y);
+        if (BigWaveTimer <= 0)
+        {
+            BigWaveTimer += SecondsUntilNextWave;
+            SpawnTimedWave();
+        }
     }
 
-    void SpawnExpansionWave()
+    void PlayerDamaged(int NewLife)
     {
-        SpawnEnemies(NextExpansionWave);
-
-        ExpansionLevel++;
-        int SpawningPool = Mathf.FloorToInt(ExpansionSpawningPool * Math.Pow(ExpansionPoolMultiplier, ExpansionLevel));
-
-        Game.Log(LogCategory.EnemySpawner, "Calculating expansion spawn " + ExpansionLevel.ToString() + " with a pool of " + ((int)ExpansionSpawningPool).ToString());
-        CalculateNextWave(NextExpansionWave, (int)ExpansionLevel, SpawningPool);
-
-        EnemyEvent.Broadcast(EnemyEvent.SignalName.ExpansionWaveCountChanged, ExpansionLevel);
-        EnemyEvent.Broadcast(EnemyEvent.SignalName.ShowNextExpandWave, NextExpansionWave);
+        PlayerHurt = true;
     }
 
     void SpawnTimedWave()
     {
+        Game.Log(LogCategory.EnemySpawner, "Spawning Wave " + WaveCount.ToString());
         SpawnEnemies(NextTimedWave);
 
         WaveCount++;
-        int SpawningPool = Mathf.FloorToInt(TimedSpawningPool * Math.Pow(SuccessPoolMultiplier, WaveCount));
+        float Multi = PlayerHurt ? FailurePoolMultiplier : SuccessPoolMultiplier;
+        int SpawningPool = Mathf.FloorToInt(TimedSpawningPool * Math.Pow(Multi, WaveCount));
         
-        Game.Log(LogCategory.EnemySpawner, "Calculating timed spawn " + WaveCount.ToString() + " with a pool of " + ((int)TimedSpawningPool).ToString());
+        Game.Log(LogCategory.EnemySpawner, "Calculating next wave " + WaveCount.ToString() + " with a pool of " + ((int)TimedSpawningPool).ToString());
         CalculateNextWave(NextTimedWave, WaveCount, SpawningPool);
 
         EnemyEvent.Broadcast(EnemyEvent.SignalName.TimedWaveCountChanged, WaveCount);
         EnemyEvent.Broadcast(EnemyEvent.SignalName.ShowNextTimedWave, NextTimedWave);
+
+        PlayerHurt = false;
     }
 
     void StartFinalWave()
@@ -193,7 +181,7 @@ public partial class SpawnerBrain : Node
                         spawnCount.Count++;
                         SpawningPool -= spawnCount.Data.SpawnCost;
                         Sum = 0;
-                        Game.Log(LogCategory.EnemySpawner, "Adding" + spawnCount.Data.DisplayName + " to next wave. " + SpawningPool.ToString() + " spawn cost remains.");
+                        Game.LogSpam(LogCategory.EnemySpawner, "Adding" + spawnCount.Data.DisplayName + " to next wave. " + SpawningPool.ToString() + " spawn cost remains.");
                         break;
                     }
 

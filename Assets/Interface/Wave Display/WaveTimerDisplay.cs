@@ -18,6 +18,11 @@ public partial class WaveTimerDisplay : Node
             Bar.MaxValue = SecondsMax;
             Bar.Value = SecondsMax - SecondsRemaining;
         }
+        RichTextLabel ClockLabel = GetNodeOrNull<RichTextLabel>("Clock");
+        if (IsInstanceValid(ClockLabel))
+        {
+            ClockLabel.Text = MathHelper.GetTimeFromSeconds(SecondsRemaining);
+        }
     }
 
     public void UpdateWave(int WaveCount)
@@ -53,6 +58,11 @@ public partial class WaveTimerDisplay : Node
         if (IsInstanceValid(Label))
         {
             Label.Text = "Final Wave";
+        }
+        RichTextLabel ClockLabel = GetNodeOrNull<RichTextLabel>("Clock");
+        if (IsInstanceValid(ClockLabel))
+        {
+            ClockLabel.Visible = false;
         }
     }
 }
