@@ -2,9 +2,8 @@ using Godot;
 using System;
 
 public partial class C_PassiveIncome : Node, ITowerComponent
-{
-    [Export] public float IncomeInterval = 5.0f;
-    [Export] public R_Cost IncomeAmount = new();
+{ 
+    [Export] public R_Income IncomeAmount = new();
     Vector2 ParentPositon;
 	Vector2I MapPosition;
 	float IncomeTimer = 1.0f;
@@ -12,37 +11,33 @@ public partial class C_PassiveIncome : Node, ITowerComponent
 	float FlowIncome;
 	float BreathIncome;
 	float EnergyIncome;
-	ProgressBar TimerBar;
+	CostReadout IncomeDisplay;
 
     public override void _EnterTree()
     {
+        IncomeDisplay = GetNodeOrNull<CostReadout>("IncomeDisplay");
         MainMap.Register(MainMap.SignalName.GridVisibleChanged, Callable.From((bool b) => ShowText(b)));
 		ShowText(MainMap.IsOutlineActive());
     }
 
     void ShowText(bool NewShow)
 	{
-		RichTextLabel IncomeNode = GetNodeOrNull<RichTextLabel>("Income");
-		if (IncomeNode != null)
+		CostReadout IncomeDisplay = GetNodeOrNull<CostReadout>("IncomeDisplay");
+		if (IncomeDisplay != null)
 		{
-			IncomeNode.Visible = NewShow;
-		}
-
-		ProgressBar TimerBar = GetNodeOrNull<ProgressBar>("TimerBar");
-		if (TimerBar != null)
-		{
-			TimerBar.Visible = NewShow;
+            IncomeDisplay.SetIncome(IncomeAmount);
+			IncomeDisplay.Visible = NewShow;
 		}
 	}
-
-    void CalculateIncome()
-    {
-
-    }
 
     // Tower Component interface
     public void TowerReady()
     {
+        PlayerEvent.BroadcastAddIncome(ECurrencyType.Lifeforce, IncomeAmount.LifeForce);
+        PlayerEvent.BroadcastAddIncome(ECurrencyType.Substance, IncomeAmount.Substance);
+        PlayerEvent.BroadcastAddIncome(ECurrencyType.Flow, IncomeAmount.Flow);
+        PlayerEvent.BroadcastAddIncome(ECurrencyType.Breath, IncomeAmount.Breath);
+        PlayerEvent.BroadcastAddIncome(ECurrencyType.Energy, IncomeAmount.Energy);
     }
 
     public void TowerRemoved()

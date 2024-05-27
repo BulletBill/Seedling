@@ -46,4 +46,40 @@ public partial class CostReadout : RichTextLabel
 		}
 		Text += "[/center]";
 	}
+
+	public void SetIncome(R_Income Income)
+	{
+				bool FirstResult = true;
+		Text = "";
+		Text += "[center]";
+		if (Income.LifeForce != 0)
+		{
+			Text += TextHelpers.Icon("Lifeforce Small") + Income.LifeForce.ToString("F1");
+			FirstResult = false;
+		}
+		if (Income.Substance != 0)
+		{
+			if (!FirstResult) { Text += " "; }
+			Text += TextHelpers.Icon("Substance Small") + Income.Substance.ToString("F1");
+			FirstResult = false;
+		}
+		if (Income.Flow != 0)
+		{
+			if (!FirstResult) { Text += " "; }
+			Text += TextHelpers.Icon("Flow Small") + Income.Flow.ToString("F1");
+			FirstResult = false;
+		}
+		if (Income.Breath != 0)
+		{
+			if (!FirstResult) { Text += " "; }
+			Text += TextHelpers.Icon("Breath Small") + Income.Breath.ToString("F1");
+			FirstResult = false;
+		}
+		if (Income.Energy != 0)
+		{
+			if (!FirstResult) { Text += " "; }
+			Text += TextHelpers.Icon("Energy Small") + Income.Energy.ToString("F1");
+		}
+		Text += "[/center]";
+	}
 }

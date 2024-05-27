@@ -64,6 +64,8 @@ public partial class C_HarvestArea : Node2D, ITowerComponent
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		return; // Disable this feature. Income is handled by the player object.
+
 		if (Player.IncomeTime <= 0.0f) return;
 
 		IncomeTimer -= (float)delta * Level.GetSpeed();

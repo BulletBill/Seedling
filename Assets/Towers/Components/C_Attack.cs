@@ -113,7 +113,7 @@ public partial class C_Attack : Node2D, ITowerComponent
             }
         }
 
-        float BestScore = 0.0f;
+        float BestScore = -100000.0f;
         Enemy NewTarget = null;
         foreach(Node EnemyNode in GetTree().GetNodesInGroup(Enemy.EnemyGroup))
         {

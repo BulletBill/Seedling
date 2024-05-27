@@ -20,8 +20,8 @@ public partial class Currency : Node2D
     [Export] public Texture2D IconSmall;
     [Export] public bool ShowMaximum;
     [Export] public bool ShowBar;
-    public int Amount { get; protected set; }
-    public int MaximumAmount { get; protected set; }
+    public float Amount { get; protected set; }
+    public float MaximumAmount { get; protected set; }
     public float Income { get; protected set; } // Per second
     public override void _EnterTree()
     {
@@ -30,8 +30,8 @@ public partial class Currency : Node2D
             PlayerParent.Currencies.Add(this.CurrencyType, this);
         }
 
-        PlayerEvent.RegisterResourceAdd(CurrencyType, Callable.From((int n) => AddAmount(n)));
-        PlayerEvent.RegisterResourceAddMax(CurrencyType, Callable.From((int n) => AddMax(n)));
+        PlayerEvent.RegisterResourceAdd(CurrencyType, Callable.From((float n) => AddAmount(n)));
+        PlayerEvent.RegisterResourceAddMax(CurrencyType, Callable.From((float n) => AddMax(n)));
         PlayerEvent.RegisterResourceAddIncome(CurrencyType, Callable.From((float f) => AddIncome(f)));
     }
 
@@ -40,11 +40,11 @@ public partial class Currency : Node2D
         PlayerEvent.Broadcast(CurrencyType.ToString() + "Changed", Amount, MaximumAmount);
     }
 
-    public void AddAmount(int InAmount)
+    public void AddAmount(float InAmount)
     {
         if (InAmount == 0) return;
 
-        int PrevAmount = Amount;
+        float PrevAmount = Amount;
         Amount += InAmount;
         if (MaximumAmount > 0 && CurrencyType != ECurrencyType.Lifeforce)
         {
@@ -57,7 +57,7 @@ public partial class Currency : Node2D
         }
     }
 
-    public void AddMax(int InMax)
+    public void AddMax(float InMax)
     {
         if (InMax == 0) return;
         MaximumAmount += InMax;
@@ -69,7 +69,7 @@ public partial class Currency : Node2D
         BroadcastChange();
     }
 
-    public int GetSpace()
+    public float GetSpace()
     {
         return MaximumAmount - Amount;
     }
@@ -81,6 +81,11 @@ public partial class Currency : Node2D
         Income += InIncome;
         PlayerEvent.Broadcast(CurrencyType.ToString() + "IncomeChanged", Income);
         PlayerEvent.Broadcast(PlayerEvent.SignalName.AnyResourceChanged);
+    }
+
+    public void TriggerIncome()
+    {
+        AddAmount(Income);
     }
 
     void BroadcastChange()

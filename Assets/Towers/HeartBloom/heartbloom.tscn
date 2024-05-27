@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bltnii6x6epdm"]
+[gd_scene load_steps=27 format=3 uid="uid://bltnii6x6epdm"]
 
 [ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_qvlx0"]
 [ext_resource type="Texture2D" uid="uid://cjl4aixbpkx80" path="res://Assets/Art/Towers/Heart Bloom/Art-HeartBloom.png" id="2_xhf6y"]
@@ -6,12 +6,12 @@
 [ext_resource type="Resource" uid="uid://cnxh15qnwr5eo" path="res://Assets/Towers/HeartBloom/Data_HeartBloom.tres" id="4_0juh4"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="5_ev5tl"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_GrassGrowth.cs" id="6_08vtw"]
-[ext_resource type="Script" path="res://Assets/Towers/Components/C_HarvestArea.cs" id="6_wd2sv"]
-[ext_resource type="Theme" uid="uid://svogtundy1nx" path="res://Assets/Art/Interface/default_theme.tres" id="7_herpu"]
+[ext_resource type="Script" path="res://Assets/Towers/Components/C_PassiveIncome.cs" id="7_4gkqa"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_AddResources.cs" id="7_q4drf"]
-[ext_resource type="Script" path="res://Assets/Interface/CostReadout.cs" id="8_3a8nf"]
 [ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="8_cereb"]
+[ext_resource type="Script" path="res://Assets/Towers/R_Income.cs" id="8_k3q2i"]
 [ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Interface/Hover Area/HoverArea.tscn" id="9_mbxf4"]
+[ext_resource type="Script" path="res://Assets/Interface/CostReadout.cs" id="9_tq7vg"]
 [ext_resource type="Script" path="res://Assets/Core/Common/PausableAnimation.cs" id="10_vwlp0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7wjg6"]
@@ -22,6 +22,14 @@ shader_parameter/width = 0.0
 shader_parameter/pattern = 0
 shader_parameter/inside = false
 shader_parameter/add_margins = true
+
+[sub_resource type="Resource" id="Resource_m12o5"]
+script = ExtResource("8_k3q2i")
+LifeForce = 0.0
+Substance = 4.0
+Flow = 0.0
+Breath = 0.0
+Energy = 0.0
 
 [sub_resource type="Resource" id="Resource_2llxm"]
 script = ExtResource("8_cereb")
@@ -155,22 +163,17 @@ TowerData = ExtResource("4_0juh4")
 y_sort_enabled = true
 script = ExtResource("5_ev5tl")
 
-[node name="HarvestArea" type="Node2D" parent="." groups=["HarvestArea"]]
-script = ExtResource("6_wd2sv")
+[node name="GrassGrowth" type="Node2D" parent="."]
+script = ExtResource("6_08vtw")
+Radius = 108.0
+GrowthInterval = 0.1
+AttractEnemies = false
 
-[node name="TimerBar" type="ProgressBar" parent="HarvestArea"]
-z_index = -1
-offset_left = -14.0
-offset_top = -15.0
-offset_right = 42.0
-offset_bottom = -9.0
-scale = Vector2(0.5, 0.5)
-mouse_filter = 2
-theme = ExtResource("7_herpu")
-show_percentage = false
-metadata/_edit_use_anchors_ = true
+[node name="Income" type="Node2D" parent="."]
+script = ExtResource("7_4gkqa")
+IncomeAmount = SubResource("Resource_m12o5")
 
-[node name="Income" type="RichTextLabel" parent="HarvestArea"]
+[node name="IncomeDisplay" type="RichTextLabel" parent="Income"]
 offset_left = -23.0
 offset_top = -11.0
 offset_right = 69.0
@@ -180,14 +183,8 @@ mouse_filter = 2
 bbcode_enabled = true
 text = "[center]SampleText[/center]"
 scroll_active = false
-script = ExtResource("8_3a8nf")
+script = ExtResource("9_tq7vg")
 metadata/_edit_use_anchors_ = true
-
-[node name="GrassGrowth" type="Node2D" parent="."]
-script = ExtResource("6_08vtw")
-Radius = 108.0
-GrowthInterval = 0.1
-AttractEnemies = false
 
 [node name="ResourceOnSpawn" type="Node2D" parent="."]
 script = ExtResource("7_q4drf")

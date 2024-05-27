@@ -29,7 +29,7 @@ CanBuildOnDirt = true
 CanBuildOnWater = true
 CanBuildOnChasm = true
 CanBuildOnStone = true
-DisplayName = "Heart Bloom"
+DisplayName = "Bloom Heart"
 Icon = ExtResource("2_m2rak")
 Description = "The center of life. Defend the heart or life will be lost.
 +5[img]res://Assets/Art/Icons/Lifeforce Small.png[/img] +500 Storage

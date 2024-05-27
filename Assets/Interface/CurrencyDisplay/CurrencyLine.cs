@@ -15,7 +15,7 @@ public partial class CurrencyLine : Node2D
 
     public override void _EnterTree()
     {
-		PlayerEvent.RegisterResourceChanged(CurrencyType, Callable.From((int n, int m) => CurrencyUpdate(n,m)));
+		PlayerEvent.RegisterResourceChanged(CurrencyType, Callable.From((float n, float m) => CurrencyUpdate(n,m)));
 		PlayerEvent.RegisterResourceIncome(CurrencyType, Callable.From((float f) => IncomeUpdate(f)));
     }
 
@@ -47,17 +47,19 @@ public partial class CurrencyLine : Node2D
 			}
 		}
 	}
-	void CurrencyUpdate(int NewAmount, int NewMax)
+	void CurrencyUpdate(float NewAmount, float NewMax)
 	{
+		int DisplayedAmount = Mathf.FloorToInt(NewAmount);
+		int DisplayedMax = Mathf.FloorToInt(NewMax);
 		if (Amount != null)
 		{
-			Amount.Text = NewAmount.ToString();
-			if (NewMax > 0 && ShowMaximum)
+			Amount.Text = DisplayedAmount.ToString();
+			if (DisplayedMax > 0 && ShowMaximum)
 			{
 				Amount.Text += "/" + NewMax.ToString();
 			}
 
-			if (NewMax > 0 && NewAmount >= NewMax)
+			if (DisplayedMax > 0 && DisplayedAmount >= DisplayedMax)
 			{
 				if (CurrencyType == ECurrencyType.Lifeforce)
 				{

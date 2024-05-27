@@ -10,7 +10,8 @@ public partial class Player : Node2D
     public int Lives { get; protected set;}
     public Dictionary<ECurrencyType, Currency> Currencies = new();
     public static List<Tower> DefendTargets = new();
-    public static readonly float IncomeTime = 5.0f;
+    public static readonly float IncomeTime = 1.0f;
+    float IncomeTimer = 1.0f;
 
     // DEBUG
     public bool FreeTowers = false;
@@ -41,14 +42,30 @@ public partial class Player : Node2D
         }
     }
 
+    public override void _Process(double delta)
+    {
+        if (IncomeTimer > 0.0f)
+        {
+            IncomeTimer -= (float)delta * Level.GetSpeed();
+            if (IncomeTimer <= 0.0f)
+            {
+                IncomeTimer = IncomeTime;
+                foreach(var CurrencyPair in Currencies)
+                {
+                    CurrencyPair.Value.TriggerIncome();
+                }
+            }
+        }
+    }
+
     // Static functions
 
-    public static int GetCurrentAmount(ECurrencyType Type)
+    public static float GetCurrentAmount(ECurrencyType Type)
     {
         if (Singleton == null) return 0;
         return Singleton.Currencies[Type].Amount;
     }
-    public static int GetCurrentMax(ECurrencyType Type)
+    public static float GetCurrentMax(ECurrencyType Type)
     {
         if (Singleton == null) return 0;
         return Singleton.Currencies[Type].MaximumAmount;
