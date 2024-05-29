@@ -48,9 +48,10 @@ public partial class S_PlaceTower : Cursor_State
 
 	public override void OnMove(Vector2I NewMapPosition)
     {
+        CurrentPosition = NewMapPosition;
+
         if (TowerData == null) return;
         if (CachedTileMap == null) { CachedTileMap = MainMap.Singleton; return; }
-        CurrentPosition = NewMapPosition;
 
         bool CanAfford = Player.CanAfford(TowerData.Cost);
         bool CanPlace = CanPlaceTile(NewMapPosition);
@@ -82,7 +83,7 @@ public partial class S_PlaceTower : Cursor_State
         TowerToBuild = NewTowerToBuild;
         ParentCursor.PlacementGhost.Visible = true;
         ParentCursor.PlacementGhost.Texture = TowerData.Icon;
-        ParentCursor.PlacementGhost.SelfModulate = PlacementIsValid ? GoodColor : BadColor;
+        OnMove(Cursor.GetCurrentTile());
 
         Cursor.Broadcast(Cursor.SignalName.SetFixedObject, TowerData);
         Game.Log(LogCategory.Cursor, "Placement target is " + TowerData.DisplayName);

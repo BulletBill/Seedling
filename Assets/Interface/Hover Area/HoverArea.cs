@@ -116,6 +116,11 @@ public partial class HoverArea : Area2D
     {
         ReactStates.Remove(RemoveState);
     }
+
+    public bool HasReactState(ECursorState State)
+    {
+        return ReactStates.Contains(State);
+    }
 }
 
 public interface IHoverable

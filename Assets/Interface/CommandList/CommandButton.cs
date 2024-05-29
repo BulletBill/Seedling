@@ -99,11 +99,32 @@ public partial class CommandButton : Node2D, IHoverable
 			HoverArea?.SetDisabled(true);
 		}
 	}
+	
+	public void SetHotkey(int Position)
+	{
+		String InputName = "CommandButton_" + (Position + 1).ToString();
+		if (InputMap.HasAction(InputName) == false) return;
 
-	void OnClick()
+		String LabelText = InputMap.ActionGetEvents(InputName)[0].AsText();
+		NinePatchRect HotkeyBG = GetNodeOrNull<NinePatchRect>("HotkeyBG");
+		if (HotkeyBG != null)
+		{
+			HotkeyBG.Visible = true;
+
+			RichTextLabel HotkeyLabel = HotkeyBG.GetNodeOrNull<RichTextLabel>("HotkeyLabel");
+			if (HotkeyLabel != null)
+			{
+				HotkeyLabel.Text = "[right]" + LabelText + "[/right]";
+			}
+
+		}
+	}
+
+	public void OnClick()
 	{
 		if (ActionParams == null) return;
 		if (!CanAfford) return;
+		if (IsInstanceValid(HoverArea) && HoverArea.HasReactState(Cursor.GetCurrentState()) == false) return;
 
 		AnimationPlayer Anim = GetNodeOrNull<AnimationPlayer>("AnimationPlayer");
 		Anim?.Play("Success");
@@ -141,6 +162,12 @@ public partial class CommandButton : Node2D, IHoverable
 		if (IconSprite != null)
 		{
 			IconSprite.Texture = null;
+		}
+
+		NinePatchRect HotkeyBG = GetNodeOrNull<NinePatchRect>("HotkeyBG");
+		if (HotkeyBG != null)
+		{
+			HotkeyBG.Visible = false;
 		}
 	}
 

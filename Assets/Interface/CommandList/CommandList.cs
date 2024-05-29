@@ -21,6 +21,19 @@ public partial class CommandList : Node2D
     {
     }
 
+    public override void _Process(double delta)
+    {
+        if (ButtonArray.Count <= 0) return;
+
+        for (int i = 0; i < ButtonArray.Count; i++)
+        {
+            if (Input.IsActionJustPressed("CommandButton_" + (i+1).ToString()))
+            {
+                ButtonArray[i].OnClick();
+            }
+        }
+    }
+ 
     public void ApplyActionArray(Array<Data_Action> InArray)
     {
         // Clear the buttons first
@@ -43,6 +56,7 @@ public partial class CommandList : Node2D
             }
 
             ButtonArray[TryButtonIndex].AssignActionParams(action);
+            ButtonArray[TryButtonIndex].SetHotkey(TryButtonIndex);
         }
     }
 }

@@ -9,7 +9,7 @@ public partial class Cursor : Node2D
 	public static Cursor Singleton;
 	Stack<Cursor_State> StateStack = new();
 	[Export] public Node DefaultCursorState;
-	Vector2I CurrentTile = new();
+	public Vector2I CurrentTile = new();
 	int TileSize = 32;
 	float MapScale = 1.0f;
 	public Sprite2D PlacementGhost;
@@ -98,6 +98,7 @@ public partial class Cursor : Node2D
 		StateStack.Peek()?.OnDisable();
 		StateStack.Push(NewState);
 		NewState?.OnEnable();
+		NewState?.OnMove(CurrentTile);
 
 		Broadcast(SignalName.AnyStateChanged);
 		return NewState;
@@ -172,6 +173,13 @@ public partial class Cursor : Node2D
 
 		return new Vector2(Cursor.Singleton.CurrentTile.X * Cursor.Singleton.TileSize,
 						   Cursor.Singleton.CurrentTile.Y * Cursor.Singleton.TileSize);
+	}
+
+	public static Vector2I GetCurrentTile()
+	{
+		if (Cursor.Singleton == null) return new(0,0);
+
+		return Cursor.Singleton.CurrentTile;
 	}
 
 	public static ECursorState GetCurrentState()

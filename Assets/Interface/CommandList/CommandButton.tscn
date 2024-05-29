@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dlgl700nd4604"]
+[gd_scene load_steps=18 format=3 uid="uid://dlgl700nd4604"]
 
 [ext_resource type="Script" path="res://Assets/Interface/CommandList/CommandButton.cs" id="1_msh1r"]
 [ext_resource type="Texture2D" uid="uid://b8f8gxftwupbw" path="res://Assets/Art/Interface/ButtonFrame.png" id="2_si0sa"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Assets/Interface/CostReadout.cs" id="4_4tgpm"]
 [ext_resource type="Texture2D" uid="uid://c4cqjktrt205k" path="res://Assets/Art/Interface/WindowBG.png" id="4_ohsq1"]
 [ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Interface/Hover Area/HoverArea.tscn" id="5_kaq8k"]
+[ext_resource type="FontFile" uid="uid://bfar38wupdif2" path="res://Assets/Art/Fonts/Font Data/Big Pixel demo.otf" id="7_3l3ws"]
 
 [sub_resource type="Animation" id="Animation_60qwl"]
 resource_name = "Disabled"
@@ -394,3 +395,27 @@ ReactStates = [0, 1, 2]
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HoverArea"]
 visible = false
 shape = SubResource("CircleShape2D_16wea")
+
+[node name="HotkeyBG" type="NinePatchRect" parent="."]
+visible = false
+offset_left = 11.0
+offset_top = 13.0
+offset_right = 31.0
+offset_bottom = 31.0
+texture = ExtResource("4_ohsq1")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="HotkeyLabel" type="RichTextLabel" parent="HotkeyBG"]
+layout_mode = 0
+offset_left = -41.0
+offset_right = 15.0
+offset_bottom = 18.0
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("7_3l3ws")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "[right]ESC[/right]"
+scroll_active = false
