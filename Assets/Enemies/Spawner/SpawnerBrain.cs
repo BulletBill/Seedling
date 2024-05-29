@@ -7,6 +7,7 @@ using System.Security.Cryptography;
 public partial class SpawnerBrain : Node
 {
     [Export] public Godot.Collections.Array<R_SpawnCount> PossibleSpawns = new();
+    [Export] public int MaxTypesPerWave = 3;
     List<EnemySpawner> Spawners = new();
 
     // Timed waves
@@ -104,14 +105,13 @@ public partial class SpawnerBrain : Node
 
     void SpawnTimedWave()
     {
-        Game.Log(LogCategory.EnemySpawner, "Spawning Wave " + WaveCount.ToString());
         SpawnEnemies(NextTimedWave);
 
         WaveCount++;
         float Multi = PlayerHurt ? FailurePoolMultiplier : SuccessPoolMultiplier;
         int SpawningPool = Mathf.FloorToInt(TimedSpawningPool * Math.Pow(Multi, WaveCount));
         
-        Game.Log(LogCategory.EnemySpawner, "Calculating next wave " + WaveCount.ToString() + " with a pool of " + ((int)TimedSpawningPool).ToString());
+        Game.Log(LogCategory.EnemySpawner, "Calculating next wave " + WaveCount.ToString() + " with a pool of " + ((int)SpawningPool).ToString());
         CalculateNextWave(NextTimedWave, WaveCount, SpawningPool);
 
         EnemyEvent.Broadcast(EnemyEvent.SignalName.TimedWaveCountChanged, WaveCount);
@@ -126,32 +126,9 @@ public partial class SpawnerBrain : Node
         FinalWave = true;
     }
 
-    void SpawnEnemies(R_SpawnWave WaveData)
-    {
-        if (DisableSpawns) return;
-        if (Spawners.Count <= 0) return;
-        if (WaveData.SpawnCounts.Count <= 0) return;
-
-        Game.Log(LogCategory.EnemySpawner, "Spawn wave!");
-
-        int SpawnerIndex = MathHelper.GetIntInRange(0, Spawners.Count - 1);
-        foreach (R_SpawnCount SpawnCount in WaveData.SpawnCounts)
-        {
-            for (int i = 0; i < SpawnCount.Count; i++)
-            {
-                Enemy NewEnemy = SpawnCount.Data.Spawn();
-                if (NewEnemy != null)
-                {
-                    Spawners[SpawnerIndex].EnemiesToPlace.Enqueue(NewEnemy);
-                }
-            }
-        }
-    }
-
     void CalculateNextWave(R_SpawnWave Wave, int Level, int SpawningPool)
     {
         Wave.SpawnCounts = new();
-        int TotalWeight = 0;
         // Gather enemies that can possibly spawn this wave
         foreach (R_SpawnCount spawnCount in PossibleSpawns)
         {
@@ -162,9 +139,21 @@ public partial class SpawnerBrain : Node
             }
             if (Level >= spawnCount.WaveRange.X && (Level <= spawnCount.WaveRange.Y || spawnCount.WaveRange.Y < 0))
             {
-                TotalWeight += spawnCount.Data.SpawnWeight;
                 Wave.SpawnCounts.Add(new R_SpawnCount(spawnCount));
             }
+        }
+
+        // Cull enemy types
+        while (Wave.SpawnCounts.Count > MaxTypesPerWave)
+        {
+            Wave.SpawnCounts.RemoveAt(MathHelper.GetIntInRange(0, Wave.SpawnCounts.Count - 1));
+        }
+
+        // Add weights
+        int TotalWeight = 0;
+        foreach (R_SpawnCount spawnCount in Wave.SpawnCounts)
+        {
+            TotalWeight += spawnCount.Data.SpawnWeight;
         }
         
         // Randomly add enemies to the spawn list by weight
@@ -202,6 +191,34 @@ public partial class SpawnerBrain : Node
             if (Wave.SpawnCounts[i].Count <= 0)
             {
                 Wave.SpawnCounts.RemoveAt(i);
+            }
+        }
+    }
+
+    void SpawnEnemies(R_SpawnWave WaveData)
+    {
+        if (DisableSpawns) return;
+        if (Spawners.Count <= 0) return;
+        if (WaveData.SpawnCounts.Count <= 0) return;
+
+        Game.Log(LogCategory.EnemySpawner, "Spawning Wave " + WaveCount.ToString());
+
+        int SpawnerIndex = MathHelper.GetIntInRange(0, Spawners.Count - 1);
+
+        while(WaveData.SpawnCounts.Count > 0)
+        {
+            R_SpawnCount Slot = WaveData.SpawnCounts[MathHelper.GetIntInRange(0, WaveData.SpawnCounts.Count - 1)];
+            
+            Enemy NewEnemy = Slot.Data.Spawn();
+            if (NewEnemy != null)
+            {
+                Spawners[SpawnerIndex].EnemiesToPlace.Enqueue(NewEnemy);
+            }
+
+            Slot.Count--;
+            if (Slot.Count <= 0)
+            {
+                WaveData.SpawnCounts.Remove(Slot);
             }
         }
     }
