@@ -12,12 +12,13 @@ public partial class C_HealthPool : EnemyComponent
     public int PendingDamage;
     ProgressBar HealthVisual;
 
-    public override void OnDataSet(Data_Enemy NewData)
+    public override void SetData(Data_Enemy NewData)
     {
 		if (NewData == null) return;
 		
 		MinStartingHealth = NewData.HealthRange.X;
 		MaxStartingHealth = NewData.HealthRange.Y;
+        Armor = NewData.Armor;
 		CalculateHealth();
     }
 

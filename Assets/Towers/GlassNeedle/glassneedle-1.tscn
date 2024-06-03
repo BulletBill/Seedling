@@ -1,0 +1,183 @@
+[gd_scene load_steps=24 format=3 uid="uid://rmx7hcu53gvt"]
+
+[ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_1383i"]
+[ext_resource type="Texture2D" uid="uid://ce37lkdce5wmh" path="res://Assets/Art/Towers/MorningStar/Art-MorningStar-1.png" id="2_ufowm"]
+[ext_resource type="Script" path="res://Assets/Towers/Tower.cs" id="3_orfmh"]
+[ext_resource type="Resource" uid="uid://drymylmtnicu" path="res://Assets/Towers/MorningStar/Data_MorningStar_1.tres" id="4_vu4ct"]
+[ext_resource type="Resource" uid="uid://dr2317w84u581" path="res://Assets/Towers/Actions/Action_Sell.tres" id="5_uqgt0"]
+[ext_resource type="Resource" uid="uid://dnvyi3ug6klmx" path="res://Assets/Towers/Actions/Action_Deselect.tres" id="6_t777a"]
+[ext_resource type="Resource" uid="uid://b2tlsdctk3apk" path="res://Assets/Towers/MorningStar/Upgrade_MorningStar_2.tres" id="7_yrfi6"]
+[ext_resource type="Resource" uid="uid://c81qoyyrdxuns" path="res://Assets/Towers/Actions/Action_BuildCancel.tres" id="8_jwxfq"]
+[ext_resource type="Script" path="res://Assets/Towers/Components/C_Attack.cs" id="9_lnkt1"]
+[ext_resource type="PackedScene" uid="uid://bd2lvtlkweaqj" path="res://Assets/Towers/MorningStar/Projectiles/Seedpod.tscn" id="10_eooax"]
+[ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="11_03avo"]
+[ext_resource type="Animation" uid="uid://8i3h0e1uvnfa" path="res://Assets/Towers/Animations/Anim-Upgrade.res" id="12_v01xc"]
+[ext_resource type="Script" path="res://Assets/Core/Common/PausableAnimation.cs" id="13_jgiwc"]
+[ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Interface/Hover Area/HoverArea.tscn" id="14_8hvh5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bjj0w"]
+shader = ExtResource("1_1383i")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/multiply_color = Color(1, 1, 1, 1)
+shader_parameter/width = 0.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+
+[sub_resource type="Animation" id="Animation_7dypm"]
+resource_name = "Attack"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -3.49066, -6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_772tj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/multiply_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x4dt6"]
+_data = {
+"Attack": SubResource("Animation_7dypm"),
+"RESET": SubResource("Animation_772tj"),
+"Upgrade": ExtResource("12_v01xc")
+}
+
+[sub_resource type="Animation" id="Animation_vro8x"]
+resource_name = "Hover"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_8e3l7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_n53sj"]
+resource_name = "Unhover"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v61gj"]
+_data = {
+"Hover": SubResource("Animation_vro8x"),
+"RESET": SubResource("Animation_8e3l7"),
+"Unhover": SubResource("Animation_n53sj")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6l6xg"]
+size = Vector2(30, 31)
+
+[node name="Morningstar" type="Sprite2D" groups=["Tower"]]
+z_index = 10
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_bjj0w")
+texture = ExtResource("2_ufowm")
+script = ExtResource("3_orfmh")
+TowerData = ExtResource("4_vu4ct")
+Actions = [ExtResource("5_uqgt0"), ExtResource("6_t777a"), ExtResource("7_yrfi6")]
+UpgradingActions = [ExtResource("8_jwxfq"), ExtResource("6_t777a")]
+
+[node name="BuildBar" type="ProgressBar" parent="."]
+visible = false
+offset_left = -14.0
+offset_top = 11.0
+offset_right = 42.0
+offset_bottom = 17.0
+scale = Vector2(0.5, 0.5)
+max_value = 500.0
+step = 1.0
+show_percentage = false
+
+[node name="Attack" type="Node2D" parent="." groups=["Attacker"]]
+script = ExtResource("9_lnkt1")
+FiredProjectile = ExtResource("10_eooax")
+DamageDelay = 0.2
+TargetPriority = 1
+CanChangeTarget = true
+
+[node name="AlignToMap" type="Node2D" parent="."]
+script = ExtResource("11_03avo")
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_x4dt6")
+}
+script = ExtResource("13_jgiwc")
+
+[node name="HoverAnimator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_v61gj")
+}
+autoplay = "Unhover"
+
+[node name="HoverArea" parent="." node_paths=PackedStringArray("ParentAnimator") instance=ExtResource("14_8hvh5")]
+ParentAnimator = NodePath("../HoverAnimator")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HoverArea"]
+visible = false
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_6l6xg")

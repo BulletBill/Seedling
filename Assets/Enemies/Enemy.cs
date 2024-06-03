@@ -16,6 +16,7 @@ public partial class Enemy : CharacterBody2D
 	Sprite2D Image;
 	Sprite2D Shadow;
 	List<EnemyComponent> Components = new();
+	bool DataIsSet = false;
 
 	// Targeting Metrics
 	public float HealthPercent { get; protected set; } = 100.0f;
@@ -29,7 +30,7 @@ public partial class Enemy : CharacterBody2D
 			if (child is EnemyComponent childComponent)
 			{
 				Components.Add(childComponent);
-				childComponent.OnDataSet(Data);
+				childComponent.SetData(Data);
 				childComponent.OnReady();
 			}
 		}
@@ -52,10 +53,26 @@ public partial class Enemy : CharacterBody2D
 
 	public void SetData(Data_Enemy NewData)
 	{
+		if (DataIsSet)
+		{
+			Game.LogError(LogCategory.EnemySpawner, "Enemy Data already set!");
+			return;
+		}
+
 		Data = NewData;
+		Name = Data.DisplayName;
+		DataIsSet = true;
+		foreach (PackedScene SceneData in Data.ExtraBehaviors)
+		{
+			EnemyComponent NewComponent = SceneData.InstantiateOrNull<EnemyComponent>();
+			if (IsInstanceValid(NewComponent))
+			{
+				AddChild(NewComponent);
+			}
+		}
 		foreach (EnemyComponent childComponent in Components)
 		{
-			childComponent.OnDataSet(Data);
+			childComponent.SetData(Data);
 		}
 	}
 

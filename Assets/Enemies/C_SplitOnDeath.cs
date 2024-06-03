@@ -10,7 +10,7 @@ public partial class C_SplitOnDeath : EnemyComponent
 	// Called when the node enters the scene tree for the first time.
 	public override void OnReady() {}
 
-    public override void OnDataSet(Data_Enemy NewData) {}
+    public override void SetData(Data_Enemy NewData) {}
 
     public override void OnDeath()
     {
