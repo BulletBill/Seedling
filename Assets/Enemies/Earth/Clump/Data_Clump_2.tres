@@ -16,12 +16,15 @@ Energy = 2
 [resource]
 script = ExtResource("4_l8104")
 SceneFile = ExtResource("3_vje82")
+DefaultAnimation = "Walk"
 SpawnCost = 10
 SpawnWeight = 3
 PlayerDamage = 5
 Speed = 25.0
 Reward = SubResource("Resource_us4jb")
 HealthRange = Vector2i(200, 240)
+Armor = 0
+ExtraBehaviors = []
 DisplayName = "Clump II"
 Icon = ExtResource("1_omne5")
 Description = "A dense clump of dirt. It's still angry.

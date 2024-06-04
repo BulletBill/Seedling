@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://ch3t8841qamrf" path="res://Assets/Art/Enemies/Clod/Art-Claude.png" id="1_aj811"]
 [ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="2_pca6r"]
 [ext_resource type="Script" path="res://Assets/Enemies/Data_Enemy.cs" id="3_0tmtn"]
-[ext_resource type="PackedScene" uid="uid://b35skdgsbuiug" path="res://Assets/Enemies/Earth/Clod/Clod_2.tscn" id="3_jeqkc"]
+[ext_resource type="PackedScene" uid="uid://bjsmg2t4xjnwf" path="res://Assets/Enemies/Earth/Clod/BasicEnemy.tscn" id="3_3r1n0"]
 
 [sub_resource type="Resource" id="Resource_us4jb"]
 script = ExtResource("2_pca6r")
@@ -15,13 +15,16 @@ Energy = 2
 
 [resource]
 script = ExtResource("3_0tmtn")
-SceneFile = ExtResource("3_jeqkc")
+SceneFile = ExtResource("3_3r1n0")
+DefaultAnimation = "Walk"
 SpawnCost = 2
 SpawnWeight = 10
 PlayerDamage = 1
 Speed = 40.0
 Reward = SubResource("Resource_us4jb")
 HealthRange = Vector2i(40, 50)
+Armor = 0
+ExtraBehaviors = null
 DisplayName = "Clod II"
 Icon = ExtResource("1_aj811")
 Description = "A ball of loose dirt and anger."

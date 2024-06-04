@@ -16,12 +16,15 @@ Energy = 2
 [resource]
 script = ExtResource("4_iuv33")
 SceneFile = ExtResource("3_akn7h")
+DefaultAnimation = "Walk"
 SpawnCost = 5
 SpawnWeight = 6
 PlayerDamage = 2
 Speed = 30.0
 Reward = SubResource("Resource_us4jb")
 HealthRange = Vector2i(100, 140)
+Armor = 0
+ExtraBehaviors = []
 DisplayName = "Stone II"
 Icon = ExtResource("1_upbjc")
 Description = "As fast and hard as a bigger rock."

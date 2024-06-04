@@ -16,12 +16,15 @@ Energy = 2
 [resource]
 script = ExtResource("4_fas7d")
 SceneFile = ExtResource("3_q3vu8")
+DefaultAnimation = "Walk"
 SpawnCost = 2
 SpawnWeight = 16
 PlayerDamage = 1
 Speed = 70.0
 Reward = SubResource("Resource_us4jb")
 HealthRange = Vector2i(30, 38)
+Armor = 0
+ExtraBehaviors = []
 DisplayName = "Marble I"
 Icon = ExtResource("1_21v3f")
 Description = "A smooth rock with a fast roll."

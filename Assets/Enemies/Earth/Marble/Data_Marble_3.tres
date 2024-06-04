@@ -16,12 +16,15 @@ Energy = 2
 [resource]
 script = ExtResource("4_ows6q")
 SceneFile = ExtResource("3_khv25")
+DefaultAnimation = "Walk"
 SpawnCost = 8
 SpawnWeight = 4
 PlayerDamage = 1
 Speed = 70.0
 Reward = SubResource("Resource_us4jb")
 HealthRange = Vector2i(120, 144)
+Armor = 0
+ExtraBehaviors = []
 DisplayName = "Shooter III"
 Icon = ExtResource("1_lkpgi")
 Description = "A huge rock to knock around the others."

@@ -11,10 +11,10 @@ public partial class Data_Enemy : Data_Hoverable
     [Export] public int SpawnWeight { get; protected set; }
     [Export] public int PlayerDamage { get; protected set; }
     [Export] public float Speed { get; protected set; }
-    [Export] public R_Cost Reward { get; protected set; }
-    [Export] public Vector2I HealthRange { get; protected set; }
+    [Export] public R_Cost Reward { get; protected set; } = new();
+    [Export] public Vector2I HealthRange { get; protected set; } = new();
     [Export] public int Armor { get; protected set; }
-    [Export] public Array<PackedScene> ExtraBehaviors { get; protected set; }
+    [Export] public Array<PackedScene> ExtraBehaviors { get; protected set; } = new();
 
     public override string GetFullDescription()
     {

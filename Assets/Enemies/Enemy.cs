@@ -15,6 +15,7 @@ public partial class Enemy : CharacterBody2D
 	C_HealthPool HealthPool;
 	Sprite2D Image;
 	Sprite2D Shadow;
+	AnimationPlayer Animator;
 	List<EnemyComponent> Components = new();
 	bool DataIsSet = false;
 
@@ -25,24 +26,20 @@ public partial class Enemy : CharacterBody2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		foreach (Node child in GetChildren())
+		if (!DataIsSet)
 		{
-			if (child is EnemyComponent childComponent)
-			{
-				Components.Add(childComponent);
-				childComponent.SetData(Data);
-				childComponent.OnReady();
-			}
+			FindChildren();
 		}
+
+		foreach (EnemyComponent childComponent in Components)
+		{
+			childComponent.OnReady();
+		}		
 		
-		Nav = GetNodeOrNull<NavigationAgent2D>("NavigationAgent2D");
 		if (Player.DefendTargets.Count > 0)
 		{
 			Nav.TargetPosition = Player.DefendTargets[MathHelper.GetIntInRange(0, Player.DefendTargets.Count - 1)].GlobalPosition;
 		}
-		HealthPool = GetNodeOrNull<C_HealthPool>("HealthPool");
-		Image = GetNodeOrNull<Sprite2D>("Image");
-		Shadow = GetNodeOrNull<Sprite2D>("Shadow");
 		SpeedVariance = MathHelper.GetFloatInRange(0.95f, 1.05f);
 
 		if (Game.Singleton.ShowLogsFor.Contains(LogCategory.EnemyPathing))
@@ -62,6 +59,8 @@ public partial class Enemy : CharacterBody2D
 		Data = NewData;
 		Name = Data.DisplayName;
 		DataIsSet = true;
+
+		// Add behaviors before finding children
 		foreach (PackedScene SceneData in Data.ExtraBehaviors)
 		{
 			EnemyComponent NewComponent = SceneData.InstantiateOrNull<EnemyComponent>();
@@ -70,9 +69,42 @@ public partial class Enemy : CharacterBody2D
 				AddChild(NewComponent);
 			}
 		}
+
+		FindChildren();
+
+		if (IsInstanceValid(Image))
+		{
+			Image.Texture = Data.Icon;
+		}
+		if (IsInstanceValid(Shadow))
+		{
+			Shadow.Texture = Data.Icon;
+		}
+		if (IsInstanceValid(Animator) && Data.DefaultAnimation != "")
+		{
+			Animator.Play(Data.DefaultAnimation);
+		}
+
 		foreach (EnemyComponent childComponent in Components)
 		{
 			childComponent.SetData(Data);
+		}
+	}
+
+	public void FindChildren()
+	{
+		Nav = GetNodeOrNull<NavigationAgent2D>("NavigationAgent2D");
+		HealthPool = GetNodeOrNull<C_HealthPool>("HealthPool");
+		Image = GetNodeOrNull<Sprite2D>("Image");
+		Shadow = GetNodeOrNull<Sprite2D>("Shadow");
+		Animator = GetNodeOrNull<AnimationPlayer>("AnimationPlayer");
+
+		foreach (Node child in GetChildren())
+		{
+			if (child is EnemyComponent childComponent)
+			{
+				Components.Add(childComponent);
+			}
 		}
 	}
 

@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cc0ig1pd8v765"]
+
+[ext_resource type="Script" path="res://Assets/Enemies/C_SplitOnDeath.cs" id="1_wwlfg"]
+[ext_resource type="Resource" uid="uid://by1l3gp0tkyvm" path="res://Assets/Enemies/Earth/Clod/Data_Clod_1.tres" id="2_vt33h"]
+
+[node name="SplitOnDeath_Small" type="Node2D"]
+script = ExtResource("1_wwlfg")
+SpawnData = ExtResource("2_vt33h")

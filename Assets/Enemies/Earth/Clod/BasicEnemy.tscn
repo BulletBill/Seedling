@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Assets/Enemies/Enemy.cs" id="1_7801h"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="2_6o26y"]
 [ext_resource type="Script" path="res://Assets/Enemies/C_HealthPool.cs" id="3_iwsuw"]
-[ext_resource type="Texture2D" uid="uid://bh1b344tvyn2a" path="res://Assets/Art/Enemies/Clod/Art-Claude-Smol.png" id="4_te83f"]
+[ext_resource type="Texture2D" uid="uid://1fr3tscvkv1u" path="res://Assets/Art/Enemies/Metal/Art-Ingot.png" id="4_l16mf"]
 [ext_resource type="Script" path="res://Assets/Core/Common/PausableAnimation.cs" id="5_b2ng7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1e1oq"]
@@ -175,14 +175,14 @@ value = 100.0
 show_percentage = false
 
 [node name="Image" type="Sprite2D" parent="."]
-texture = ExtResource("4_te83f")
+texture = ExtResource("4_l16mf")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 self_modulate = Color(0, 0, 0, 0.392157)
 z_index = -1
 position = Vector2(0, 2.81015)
 scale = Vector2(0.936715, 0.936715)
-texture = ExtResource("4_te83f")
+texture = ExtResource("4_l16mf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

@@ -16,12 +16,15 @@ Energy = 2
 [resource]
 script = ExtResource("4_esww4")
 SceneFile = ExtResource("3_8ypd7")
+DefaultAnimation = "Walk"
 SpawnCost = 9
 SpawnWeight = 2
 PlayerDamage = 2
 Speed = 30.0
 Reward = SubResource("Resource_us4jb")
 HealthRange = Vector2i(200, 280)
+Armor = 0
+ExtraBehaviors = []
 DisplayName = "Boulder III"
 Icon = ExtResource("1_68nap")
 Description = "As fast and hard as a boulder."

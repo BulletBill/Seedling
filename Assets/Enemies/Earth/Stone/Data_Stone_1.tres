@@ -16,12 +16,15 @@ Energy = 2
 [resource]
 script = ExtResource("4_0sgdh")
 SceneFile = ExtResource("3_cg7te")
+DefaultAnimation = "Walk"
 SpawnCost = 3
 SpawnWeight = 12
 PlayerDamage = 2
 Speed = 30.0
 Reward = SubResource("Resource_us4jb")
 HealthRange = Vector2i(40, 50)
+Armor = 0
+ExtraBehaviors = []
 DisplayName = "Pebble I"
 Icon = ExtResource("1_brrf0")
 Description = "As fast and hard as a rock."
