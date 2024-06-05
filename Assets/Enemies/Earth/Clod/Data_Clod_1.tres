@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bh1b344tvyn2a" path="res://Assets/Art/Enemies/Clod/Art-Claude-Smol.png" id="1_kme3i"]
 [ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="2_tfr1b"]
 [ext_resource type="Script" path="res://Assets/Enemies/Data_Enemy.cs" id="3_hyoe0"]
-[ext_resource type="PackedScene" uid="uid://bjsmg2t4xjnwf" path="res://Assets/Enemies/Earth/Clod/BasicEnemy.tscn" id="3_mtbo8"]
+[ext_resource type="PackedScene" uid="uid://bjsmg2t4xjnwf" path="res://Assets/Enemies/BasicEnemy.tscn" id="3_mtbo8"]
 
 [sub_resource type="Resource" id="Resource_us4jb"]
 script = ExtResource("2_tfr1b")

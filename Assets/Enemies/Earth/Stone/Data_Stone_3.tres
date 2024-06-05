@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dufqfh4t0xy4m" path="res://Assets/Art/Enemies/Stone/Art-Boulder.png" id="1_68nap"]
 [ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="2_jfytn"]
-[ext_resource type="PackedScene" uid="uid://bveh0kum4yimb" path="res://Assets/Enemies/Earth/Stone/Stone_3.tscn" id="3_8ypd7"]
+[ext_resource type="PackedScene" uid="uid://bjsmg2t4xjnwf" path="res://Assets/Enemies/BasicEnemy.tscn" id="3_w6ar7"]
 [ext_resource type="Script" path="res://Assets/Enemies/Data_Enemy.cs" id="4_esww4"]
 
 [sub_resource type="Resource" id="Resource_us4jb"]
@@ -15,7 +15,7 @@ Energy = 2
 
 [resource]
 script = ExtResource("4_esww4")
-SceneFile = ExtResource("3_8ypd7")
+SceneFile = ExtResource("3_w6ar7")
 DefaultAnimation = "Walk"
 SpawnCost = 9
 SpawnWeight = 2

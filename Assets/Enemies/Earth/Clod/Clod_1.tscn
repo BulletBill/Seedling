@@ -1,8 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://c4nme8pyly5sa"]
+[gd_scene load_steps=11 format=3 uid="uid://pnnqfwit2cqm"]
 
 [ext_resource type="Script" path="res://Assets/Enemies/Enemy.cs" id="1_u0de8"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="2_x1r6g"]
-[ext_resource type="Script" path="res://Assets/Enemies/C_HealthPool.cs" id="3_0wq6k"]
+[ext_resource type="Script" path="res://Assets/Enemies/Components/C_HealthPool.cs" id="3_frj6e"]
 [ext_resource type="Texture2D" uid="uid://bh1b344tvyn2a" path="res://Assets/Art/Enemies/Clod/Art-Claude-Smol.png" id="4_d0huq"]
 [ext_resource type="Script" path="res://Assets/Core/Common/PausableAnimation.cs" id="5_x4tn1"]
 
@@ -159,7 +159,7 @@ script = ExtResource("1_u0de8")
 script = ExtResource("2_x1r6g")
 
 [node name="HealthPool" type="Node2D" parent="."]
-script = ExtResource("3_0wq6k")
+script = ExtResource("3_frj6e")
 MaxStartingHealth = 20
 
 [node name="HealthBar" type="ProgressBar" parent="HealthPool"]

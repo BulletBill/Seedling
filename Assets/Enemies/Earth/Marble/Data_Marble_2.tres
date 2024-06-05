@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cdxsd7ogumlsc" path="res://Assets/Art/Enemies/Marble/Art-Marble.png" id="1_2ffkv"]
 [ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="2_72t6e"]
-[ext_resource type="PackedScene" uid="uid://e3vh66wpp75j" path="res://Assets/Enemies/Earth/Marble/Marble_2.tscn" id="3_cg6ur"]
+[ext_resource type="PackedScene" uid="uid://bjsmg2t4xjnwf" path="res://Assets/Enemies/BasicEnemy.tscn" id="3_vgom1"]
 [ext_resource type="Script" path="res://Assets/Enemies/Data_Enemy.cs" id="4_fus4i"]
 
 [sub_resource type="Resource" id="Resource_us4jb"]
@@ -15,8 +15,8 @@ Energy = 2
 
 [resource]
 script = ExtResource("4_fus4i")
-SceneFile = ExtResource("3_cg6ur")
-DefaultAnimation = "Walk"
+SceneFile = ExtResource("3_vgom1")
+DefaultAnimation = "Brotate"
 SpawnCost = 4
 SpawnWeight = 8
 PlayerDamage = 1

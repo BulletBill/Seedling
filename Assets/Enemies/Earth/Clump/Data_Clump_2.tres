@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="Data_Enemy" load_steps=6 format=3 uid="uid://biqug4fcrpbac"]
+[gd_resource type="Resource" script_class="Data_Enemy" load_steps=7 format=3 uid="uid://biqug4fcrpbac"]
 
 [ext_resource type="Texture2D" uid="uid://dwxxxpy5kxjpk" path="res://Assets/Art/Enemies/Clump/Art-Clump.png" id="1_omne5"]
+[ext_resource type="PackedScene" uid="uid://c7v4us3qctpd5" path="res://Assets/Enemies/Earth/Clump/SplitOnDeath_Medium.tscn" id="1_yx6qd"]
 [ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="2_od546"]
-[ext_resource type="PackedScene" uid="uid://c222eokuqqef4" path="res://Assets/Enemies/Earth/Clump/Clump_2.tscn" id="3_vje82"]
+[ext_resource type="PackedScene" uid="uid://bjsmg2t4xjnwf" path="res://Assets/Enemies/BasicEnemy.tscn" id="4_i1d0m"]
 [ext_resource type="Script" path="res://Assets/Enemies/Data_Enemy.cs" id="4_l8104"]
 
 [sub_resource type="Resource" id="Resource_us4jb"]
@@ -15,7 +16,7 @@ Energy = 2
 
 [resource]
 script = ExtResource("4_l8104")
-SceneFile = ExtResource("3_vje82")
+SceneFile = ExtResource("4_i1d0m")
 DefaultAnimation = "Walk"
 SpawnCost = 10
 SpawnWeight = 3
@@ -24,7 +25,7 @@ Speed = 25.0
 Reward = SubResource("Resource_us4jb")
 HealthRange = Vector2i(200, 240)
 Armor = 0
-ExtraBehaviors = []
+ExtraBehaviors = [ExtResource("1_yx6qd")]
 DisplayName = "Clump II"
 Icon = ExtResource("1_omne5")
 Description = "A dense clump of dirt. It's still angry.

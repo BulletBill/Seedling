@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dn8xh7rl50l8o" path="res://Assets/Art/Enemies/Marble/Art-Marble-Smol.png" id="1_21v3f"]
 [ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="2_xxwrt"]
-[ext_resource type="PackedScene" uid="uid://dwtfql3pnqlrv" path="res://Assets/Enemies/Earth/Marble/Marble_1.tscn" id="3_q3vu8"]
+[ext_resource type="PackedScene" uid="uid://bjsmg2t4xjnwf" path="res://Assets/Enemies/BasicEnemy.tscn" id="3_7ii3h"]
 [ext_resource type="Script" path="res://Assets/Enemies/Data_Enemy.cs" id="4_fas7d"]
 
 [sub_resource type="Resource" id="Resource_us4jb"]
@@ -15,8 +15,8 @@ Energy = 2
 
 [resource]
 script = ExtResource("4_fas7d")
-SceneFile = ExtResource("3_q3vu8")
-DefaultAnimation = "Walk"
+SceneFile = ExtResource("3_7ii3h")
+DefaultAnimation = "Brotate"
 SpawnCost = 2
 SpawnWeight = 16
 PlayerDamage = 1

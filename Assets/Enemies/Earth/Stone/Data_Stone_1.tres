@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://vvlddevmkuo2" path="res://Assets/Art/Enemies/Stone/Art-Pebble.png" id="1_brrf0"]
 [ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="2_ky0st"]
-[ext_resource type="PackedScene" uid="uid://d3va6w28owmw8" path="res://Assets/Enemies/Earth/Stone/Stone_1.tscn" id="3_cg7te"]
+[ext_resource type="PackedScene" uid="uid://bjsmg2t4xjnwf" path="res://Assets/Enemies/BasicEnemy.tscn" id="3_4u1dk"]
 [ext_resource type="Script" path="res://Assets/Enemies/Data_Enemy.cs" id="4_0sgdh"]
 
 [sub_resource type="Resource" id="Resource_us4jb"]
@@ -15,7 +15,7 @@ Energy = 2
 
 [resource]
 script = ExtResource("4_0sgdh")
-SceneFile = ExtResource("3_cg7te")
+SceneFile = ExtResource("3_4u1dk")
 DefaultAnimation = "Walk"
 SpawnCost = 3
 SpawnWeight = 12
