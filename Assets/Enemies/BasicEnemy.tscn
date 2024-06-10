@@ -181,8 +181,8 @@ texture = ExtResource("4_fovnn")
 [node name="Shadow" type="Sprite2D" parent="."]
 self_modulate = Color(0, 0, 0, 0.392157)
 z_index = -1
-position = Vector2(0, 2.81015)
-scale = Vector2(0.936715, 0.936715)
+position = Vector2(0, 3)
+scale = Vector2(0.95, 0.95)
 texture = ExtResource("4_q8iyp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

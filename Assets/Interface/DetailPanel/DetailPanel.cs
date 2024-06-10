@@ -15,6 +15,7 @@ public partial class DetailPanel : Node2D
 	public override void _EnterTree()
 	{
 		Cursor.Register(Cursor.SignalName.SelectableHovered, Callable.From((Data_Hoverable T) => ObjectHovered(T)));
+		Cursor.Register(Cursor.SignalName.SelectableHoveredCustom, Callable.From((Texture2D I, string T, string V) => SetValues(I,T,V)));
 		Cursor.Register(Cursor.SignalName.SelectableExited, Callable.From(() => ObjectExitHovered()));
 		Cursor.Register(Cursor.SignalName.SetFixedObject, Callable.From((Data_Hoverable T) => SetFixedObject(T)));
 		Cursor.Register(Cursor.SignalName.ClearFixedObject, Callable.From(() => ClearFixedObject()));
@@ -32,24 +33,25 @@ public partial class DetailPanel : Node2D
 	{
 		if (HoveredObject == null || HoveredObject.DisplayName == "")
 		{
-			if (Icon != null) { Icon.Texture = FixedTexture; }
-			if (Header != null) { Header.Text = FixedHeader; }
-			if (Body != null) { Body.Text = FixedBody; }
+			SetValues(FixedTexture, FixedHeader, FixedBody);
 			return;
 		}
 		
-		if (Icon != null) { Icon.Texture = HoveredObject.Icon; }
-		if (Header != null) { Header.Text = HoveredObject.DisplayName; }
-		if (Body != null) { Body.Text = HoveredObject.GetFullDescription(); }
+		SetValues(HoveredObject.Icon, HoveredObject.DisplayName, HoveredObject.GetFullDescription());
+	}
+
+	public void SetValues(Texture2D NewIcon, string NewHeader, string NewBody)
+	{
+		if (Icon != null) { Icon.Texture = NewIcon; }
+		if (Header != null) { Header.Text = NewHeader; }
+		if (Body != null) { Body.Text = NewBody; }
 	}
 
 	public void ObjectExitHovered()
 	{
 		if (!Cursor.IsOverHoverable())
 		{
-			if (Icon != null) { Icon.Texture = FixedTexture; }
-			if (Header != null) { Header.Text = FixedHeader; }
-			if (Body != null) { Body.Text = FixedBody; }
+			SetValues(FixedTexture, FixedHeader, FixedBody);
 		}
 	}
 

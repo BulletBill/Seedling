@@ -11,7 +11,7 @@ public interface ITowerComponent
 	void TowerUpdated();
 }
 
-public partial class Tower : Sprite2D, IHoverable
+public partial class Tower : Node2D, IHoverable
 {
 	public static readonly String GroupName = "Tower";
 	[Export] public bool IsDefendTarget = false;
@@ -29,6 +29,10 @@ public partial class Tower : Sprite2D, IHoverable
 	public double BuildTimer { get; protected set; }
 	public bool Building { get; protected set; } = false;
 	public bool Upgrading { get; protected set; } = false;
+
+	// Leveling
+	public int TowerLevel { get; protected set; } = 1;
+
 
 	public override void _EnterTree()
 	{
@@ -124,9 +128,10 @@ public partial class Tower : Sprite2D, IHoverable
 		Player.DefendTargets.Remove(this);
     }
 
+
 	public void OnHovered()
 	{
-		Cursor.Broadcast(Cursor.SignalName.SelectableHovered, TowerData);
+		Cursor.Broadcast(Cursor.SignalName.SelectableHoveredCustom, TowerData.Icon, TowerData.DisplayName, TowerData.GetLeveledDescription(TowerLevel));
 	}
 
 	public void ExitHovered()

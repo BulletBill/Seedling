@@ -1,17 +1,14 @@
-[gd_scene load_steps=17 format=3 uid="uid://dwsle41sxrc0k"]
+[gd_scene load_steps=14 format=3 uid="uid://bruianhqjiq47"]
 
-[ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_unyhk"]
-[ext_resource type="Texture2D" uid="uid://bgwrgn4myd7tk" path="res://Assets/Art/Interface/DefaultImage.png" id="2_6oo2q"]
-[ext_resource type="Script" path="res://Assets/Towers/Tower.cs" id="3_hapdb"]
-[ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="4_a8ets"]
-[ext_resource type="Resource" uid="uid://coyd0ad8jrvd7" path="res://Assets/Towers/Buckthorn/Data_Buckthorn_1.tres" id="4_rljx0"]
-[ext_resource type="PackedScene" uid="uid://cnq5verjyrwl7" path="res://Assets/Towers/Buckthorn/buckthorn-1.tscn" id="5_374r2"]
-[ext_resource type="Resource" uid="uid://c81qoyyrdxuns" path="res://Assets/Towers/Actions/Action_BuildCancel.tres" id="5_lel61"]
-[ext_resource type="Resource" uid="uid://dnvyi3ug6klmx" path="res://Assets/Towers/Actions/Action_Deselect.tres" id="5_nrvo0"]
-[ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Interface/Hover Area/HoverArea.tscn" id="6_py4lt"]
+[ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_whvi5"]
+[ext_resource type="Script" path="res://Assets/Towers/Tower_Build.cs" id="2_5wf51"]
+[ext_resource type="PackedScene" uid="uid://cnq5verjyrwl7" path="res://Assets/Towers/Buckthorn/buckthorn-1.tscn" id="6_evt3d"]
+[ext_resource type="Texture2D" uid="uid://bgwrgn4myd7tk" path="res://Assets/Art/Interface/DefaultImage.png" id="7_qee5a"]
+[ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="8_pyf6n"]
+[ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Interface/Hover Area/HoverArea.tscn" id="9_oksjw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_68xpg"]
-shader = ExtResource("1_unyhk")
+shader = ExtResource("1_whvi5")
 shader_parameter/outline_color = Color(1, 1, 1, 1)
 shader_parameter/multiply_color = Color(1, 1, 1, 1)
 shader_parameter/width = 0.0
@@ -20,7 +17,7 @@ shader_parameter/inside = false
 shader_parameter/add_margins = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xnl06"]
-shader = ExtResource("1_unyhk")
+shader = ExtResource("1_whvi5")
 shader_parameter/outline_color = Color(1, 1, 1, 1)
 shader_parameter/multiply_color = Color(1, 1, 1, 1)
 shader_parameter/width = 0.0
@@ -87,15 +84,12 @@ size = Vector2(30, 31)
 
 [node name="Build-Tower" type="Node2D" groups=["Tower"]]
 material = SubResource("ShaderMaterial_68xpg")
-script = ExtResource("3_hapdb")
-TowerData = ExtResource("4_rljx0")
-Actions = [ExtResource("5_lel61"), ExtResource("5_nrvo0")]
-TowerToBecome = ExtResource("5_374r2")
-BuildTime = 8.0
+script = ExtResource("2_5wf51")
+TowerTemplate = ExtResource("6_evt3d")
 
 [node name="Image" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_xnl06")
-texture = ExtResource("2_6oo2q")
+texture = ExtResource("7_qee5a")
 
 [node name="Base" type="Sprite2D" parent="."]
 z_index = -1
@@ -105,7 +99,7 @@ self_modulate = Color(0, 0, 0, 0.392157)
 z_index = -1
 position = Vector2(0, 1.5)
 scale = Vector2(0.95, 0.95)
-texture = ExtResource("2_6oo2q")
+texture = ExtResource("7_qee5a")
 
 [node name="TimerBar" type="ProgressBar" parent="."]
 offset_left = -14.0
@@ -118,14 +112,14 @@ step = 1.0
 show_percentage = false
 
 [node name="AlignToMap" type="Node2D" parent="."]
-script = ExtResource("4_a8ets")
+script = ExtResource("8_pyf6n")
 
 [node name="HoverAnimator" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_v61gj")
 }
 
-[node name="HoverArea" parent="." node_paths=PackedStringArray("ParentAnimator") instance=ExtResource("6_py4lt")]
+[node name="HoverArea" parent="." node_paths=PackedStringArray("ParentAnimator") instance=ExtResource("9_oksjw")]
 visible = false
 ParentAnimator = NodePath("../HoverAnimator")
 

@@ -48,4 +48,9 @@ public partial class MathHelper : Node
 
         return ret;
     }
+
+    public static float LeveledDamageFormula(float StartingValue, int TowerLevel)
+    {
+        return StartingValue * (1.0f + (TowerLevel * 0.5f)) * (1.0f + Mathf.Pow(TowerLevel * 0.3f, 2.0f));
+    }
 }

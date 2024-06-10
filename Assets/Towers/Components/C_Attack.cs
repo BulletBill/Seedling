@@ -16,8 +16,8 @@ public partial class C_Attack : Node2D, ITowerComponent
     public static readonly String AttackTowerGroupName = "Attacker";
     [Export] public PackedScene FiredProjectile = null;
     [Export]public float DamageDelay; // Affects projectile speed
-    public int MinDamage = 1;
-    public int MaxDamage = 1;
+    public float MinDamage = 1;
+    public float MaxDamage = 1;
     public float AttackDelay = 1.0f;
     public float Range = 100.0f;
     public float AreaOfEffect = 0.0f;
@@ -54,8 +54,8 @@ public partial class C_Attack : Node2D, ITowerComponent
         {
             if (ParentTower.TowerData != null)
             {
-                MinDamage = ParentTower.TowerData.MinDamage;
-                MaxDamage = ParentTower.TowerData.MaxDamage;
+                MinDamage = MathHelper.LeveledDamageFormula(ParentTower.TowerData.MinDamage, ParentTower.TowerLevel);
+                MaxDamage = MathHelper.LeveledDamageFormula(ParentTower.TowerData.MaxDamage, ParentTower.TowerLevel);
                 AttackDelay = ParentTower.TowerData.FireDelay;
                 Range = ParentTower.TowerData.Range;
                 AreaOfEffect = ParentTower.TowerData.AreaOfEffect;
@@ -171,7 +171,7 @@ public partial class C_Attack : Node2D, ITowerComponent
         AttackTimer = AttackDelay;
         DamageTimer = DamageDelay * (GlobalPosition.DistanceTo(CurrentTarget.GlobalPosition) / Range);
         PendingDamageTaker = CurrentTarget;
-        PendingDamage = MathHelper.GetIntInRange(MinDamage, MaxDamage);
+        PendingDamage = (int)MathHelper.GetFloatInRange(MinDamage, MaxDamage);
 
         C_HealthPool TargetHealth = PendingDamageTaker.GetNodeOrNull<C_HealthPool>("HealthPool");
         PendingDamage = TargetHealth.TakeDamage(PendingDamage);
@@ -209,7 +209,7 @@ public partial class C_Attack : Node2D, ITowerComponent
             C_HealthPool AreaHealth = AreaEnemy.GetNodeOrNull<C_HealthPool>("HealthPool");
             if (AreaHealth != null)
             {
-                AreaHealth.TakeDamageImmediate(MathHelper.GetIntInRange(MinDamage, MaxDamage));
+                AreaHealth.TakeDamageImmediate((int)MathHelper.GetFloatInRange(MinDamage, MaxDamage));
             }
         }
     }
