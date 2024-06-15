@@ -9,7 +9,6 @@ public partial class S_PlaceTower : Cursor_State
     Vector2I CurrentPosition = new();
     Cursor ParentCursor;
     Data_Tower TowerData;
-    PackedScene TowerToBuild;
     bool PlacementIsValid;
     bool PlacedOne = false;
     MainMap CachedTileMap;
@@ -74,13 +73,11 @@ public partial class S_PlaceTower : Cursor_State
             ParentCursor.PlacementGhost.SelfModulate = PlacementIsValid ? GoodColor : BadColor;
         }
     }
-    public void SetTowerToBuild(Data_Tower NewTowerData, PackedScene NewTowerToBuild)
+    public void SetTowerToBuild(Data_Tower NewTowerData)
     {
         if (ParentCursor == null) return;
         if (NewTowerData == null) return;
-        if (NewTowerToBuild == null) return;
         TowerData = NewTowerData;
-        TowerToBuild = NewTowerToBuild;
         ParentCursor.PlacementGhost.Visible = true;
         ParentCursor.PlacementGhost.Texture = TowerData.Icon;
         OnMove(Cursor.GetCurrentTile());
@@ -148,10 +145,9 @@ public partial class S_PlaceTower : Cursor_State
 
         if (PlacementIsValid == false) return;
         if (TowerData == null) return;
-        if (TowerToBuild == null) return;
         if (CameraController.MouseIsOverUIPanel()) return;
 
-        Node2D NewTower = TowerToBuild.Instantiate<Node2D>();
+        Node2D NewTower = TowerData.CreateTower();
         if (NewTower == null) return;
         NewTower.GlobalPosition = Cursor.GetTilePosition();
         MainMap.Singleton.AddChild(NewTower);

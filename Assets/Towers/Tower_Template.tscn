@@ -1,31 +1,28 @@
-[gd_scene load_steps=25 format=3 uid="uid://rbdn4q2hanmr"]
+[gd_scene load_steps=22 format=3 uid="uid://rbdn4q2hanmr"]
 
-[ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_wjw50"]
-[ext_resource type="Script" path="res://Assets/Towers/Tower.cs" id="2_vf13a"]
-[ext_resource type="Resource" uid="uid://coyd0ad8jrvd7" path="res://Assets/Towers/Buckthorn/Data_Buckthorn_1.tres" id="3_ab7l0"]
-[ext_resource type="Resource" uid="uid://cx5tj3ji2jabv" path="res://Assets/Towers/Buckthorn/Upgrade_Buckthorn_2.tres" id="4_ji7i7"]
-[ext_resource type="Resource" uid="uid://dr2317w84u581" path="res://Assets/Towers/Actions/Action_Sell.tres" id="5_afayj"]
-[ext_resource type="Resource" uid="uid://dnvyi3ug6klmx" path="res://Assets/Towers/Actions/Action_Deselect.tres" id="6_emdfw"]
-[ext_resource type="Resource" uid="uid://c81qoyyrdxuns" path="res://Assets/Towers/Actions/Action_BuildCancel.tres" id="7_83v7n"]
-[ext_resource type="Texture2D" uid="uid://bko43lmcg7kpd" path="res://Assets/Art/Towers/Buckthorn/Art-Buckthorn-1.png" id="8_1kwmt"]
-[ext_resource type="Script" path="res://Assets/Towers/Components/C_Attack.cs" id="9_n3bii"]
-[ext_resource type="PackedScene" uid="uid://crck6cv15vkic" path="res://Assets/Towers/Buckthorn/Projectiles/Thorn.tscn" id="10_klfnk"]
-[ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="11_w48e8"]
-[ext_resource type="Animation" uid="uid://8i3h0e1uvnfa" path="res://Assets/Towers/Animations/Anim-Upgrade.res" id="12_cvchm"]
-[ext_resource type="Script" path="res://Assets/Core/Common/PausableAnimation.cs" id="13_rtuhk"]
-[ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Interface/Hover Area/HoverArea.tscn" id="14_cea0k"]
+[ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_2i5xh"]
+[ext_resource type="Script" path="res://Assets/Towers/Tower.cs" id="2_2u5td"]
+[ext_resource type="Resource" uid="uid://cx5tj3ji2jabv" path="res://Assets/Towers/Buckthorn/Upgrade_Buckthorn_2.tres" id="4_pqk23"]
+[ext_resource type="Resource" uid="uid://dr2317w84u581" path="res://Assets/Towers/Actions/Action_Sell.tres" id="5_q0i1l"]
+[ext_resource type="Resource" uid="uid://dnvyi3ug6klmx" path="res://Assets/Towers/Actions/Action_Deselect.tres" id="6_uahjx"]
+[ext_resource type="Resource" uid="uid://c81qoyyrdxuns" path="res://Assets/Towers/Actions/Action_BuildCancel.tres" id="7_hckls"]
+[ext_resource type="Texture2D" uid="uid://bgwrgn4myd7tk" path="res://Assets/Art/Interface/DefaultImage.png" id="7_us1lx"]
+[ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="11_wavn5"]
+[ext_resource type="Animation" uid="uid://8i3h0e1uvnfa" path="res://Assets/Towers/Animations/Anim-Upgrade.res" id="12_iwrcx"]
+[ext_resource type="Script" path="res://Assets/Core/Common/PausableAnimation.cs" id="13_ltuv6"]
+[ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Interface/Hover Area/HoverArea.tscn" id="14_p1we5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bjj0w"]
-shader = ExtResource("1_wjw50")
+shader = ExtResource("1_2i5xh")
 shader_parameter/outline_color = Color(1, 1, 1, 1)
 shader_parameter/multiply_color = Color(1, 1, 1, 1)
-shader_parameter/width = 2.0
+shader_parameter/width = 0.0
 shader_parameter/pattern = 0
 shader_parameter/inside = false
 shader_parameter/add_margins = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mpcvh"]
-shader = ExtResource("1_wjw50")
+shader = ExtResource("1_2i5xh")
 shader_parameter/outline_color = Color(1, 1, 1, 1)
 shader_parameter/multiply_color = Color(1, 1, 1, 1)
 shader_parameter/width = 0.0
@@ -80,7 +77,7 @@ tracks/1/keys = {
 _data = {
 "Attack": SubResource("Animation_7dypm"),
 "RESET": SubResource("Animation_772tj"),
-"Upgrade": ExtResource("12_cvchm")
+"Upgrade": ExtResource("12_iwrcx")
 }
 
 [sub_resource type="Animation" id="Animation_vro8x"]
@@ -144,16 +141,16 @@ size = Vector2(30, 31)
 z_index = 10
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_bjj0w")
-script = ExtResource("2_vf13a")
-TowerData = ExtResource("3_ab7l0")
-Actions = [ExtResource("4_ji7i7"), ExtResource("5_afayj"), ExtResource("6_emdfw")]
-UpgradingActions = [ExtResource("7_83v7n"), ExtResource("6_emdfw")]
+script = ExtResource("2_2u5td")
+Actions = [ExtResource("4_pqk23"), ExtResource("5_q0i1l"), ExtResource("6_uahjx")]
+UpgradingActions = [ExtResource("7_hckls"), ExtResource("6_uahjx")]
 
 [node name="Image" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_mpcvh")
-texture = ExtResource("8_1kwmt")
+texture = ExtResource("7_us1lx")
 
 [node name="Base" type="Sprite2D" parent="."]
+visible = false
 z_index = -1
 
 [node name="Shadow" type="Sprite2D" parent="."]
@@ -161,7 +158,7 @@ self_modulate = Color(0, 0, 0, 0.392157)
 z_index = -1
 position = Vector2(0, 1.5)
 scale = Vector2(0.95, 0.95)
-texture = ExtResource("8_1kwmt")
+texture = ExtResource("7_us1lx")
 
 [node name="BuildBar" type="ProgressBar" parent="."]
 visible = false
@@ -174,21 +171,14 @@ max_value = 500.0
 step = 1.0
 show_percentage = false
 
-[node name="Attack" type="Node2D" parent="." groups=["Attacker"]]
-script = ExtResource("9_n3bii")
-FiredProjectile = ExtResource("10_klfnk")
-DamageDelay = 0.15
-TargetPriority = 1
-CanChangeTarget = true
-
 [node name="AlignToMap" type="Node2D" parent="."]
-script = ExtResource("11_w48e8")
+script = ExtResource("11_wavn5")
 
 [node name="Animator" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_x4dt6")
 }
-script = ExtResource("13_rtuhk")
+script = ExtResource("13_ltuv6")
 
 [node name="HoverAnimator" type="AnimationPlayer" parent="."]
 libraries = {
@@ -196,7 +186,7 @@ libraries = {
 }
 autoplay = "Unhover"
 
-[node name="HoverArea" parent="." node_paths=PackedStringArray("ParentAnimator") instance=ExtResource("14_cea0k")]
+[node name="HoverArea" parent="." node_paths=PackedStringArray("ParentAnimator") instance=ExtResource("14_p1we5")]
 ParentAnimator = NodePath("../HoverAnimator")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HoverArea"]

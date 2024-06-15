@@ -1,14 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://bruianhqjiq47"]
+[gd_scene load_steps=13 format=3 uid="uid://bruianhqjiq47"]
 
-[ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_whvi5"]
-[ext_resource type="Script" path="res://Assets/Towers/Tower_Build.cs" id="2_5wf51"]
-[ext_resource type="PackedScene" uid="uid://cnq5verjyrwl7" path="res://Assets/Towers/Buckthorn/buckthorn-1.tscn" id="6_evt3d"]
-[ext_resource type="Texture2D" uid="uid://bgwrgn4myd7tk" path="res://Assets/Art/Interface/DefaultImage.png" id="7_qee5a"]
-[ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="8_pyf6n"]
-[ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Interface/Hover Area/HoverArea.tscn" id="9_oksjw"]
+[ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_3dhlw"]
+[ext_resource type="Script" path="res://Assets/Towers/Tower_Build.cs" id="2_enlqk"]
+[ext_resource type="Texture2D" uid="uid://bgwrgn4myd7tk" path="res://Assets/Art/Interface/DefaultImage.png" id="4_4s2dr"]
+[ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="5_nr084"]
+[ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Interface/Hover Area/HoverArea.tscn" id="6_27ytf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_68xpg"]
-shader = ExtResource("1_whvi5")
+shader = ExtResource("1_3dhlw")
 shader_parameter/outline_color = Color(1, 1, 1, 1)
 shader_parameter/multiply_color = Color(1, 1, 1, 1)
 shader_parameter/width = 0.0
@@ -17,7 +16,7 @@ shader_parameter/inside = false
 shader_parameter/add_margins = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xnl06"]
-shader = ExtResource("1_whvi5")
+shader = ExtResource("1_3dhlw")
 shader_parameter/outline_color = Color(1, 1, 1, 1)
 shader_parameter/multiply_color = Color(1, 1, 1, 1)
 shader_parameter/width = 0.0
@@ -31,7 +30,7 @@ length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/width")
+tracks/0/path = NodePath("Image:material:shader_parameter/width")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -46,7 +45,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/width")
+tracks/0/path = NodePath("Image:material:shader_parameter/width")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -62,7 +61,7 @@ length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/width")
+tracks/0/path = NodePath("Image:material:shader_parameter/width")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -84,12 +83,11 @@ size = Vector2(30, 31)
 
 [node name="Build-Tower" type="Node2D" groups=["Tower"]]
 material = SubResource("ShaderMaterial_68xpg")
-script = ExtResource("2_5wf51")
-TowerTemplate = ExtResource("6_evt3d")
+script = ExtResource("2_enlqk")
 
 [node name="Image" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_xnl06")
-texture = ExtResource("7_qee5a")
+texture = ExtResource("4_4s2dr")
 
 [node name="Base" type="Sprite2D" parent="."]
 z_index = -1
@@ -99,7 +97,7 @@ self_modulate = Color(0, 0, 0, 0.392157)
 z_index = -1
 position = Vector2(0, 1.5)
 scale = Vector2(0.95, 0.95)
-texture = ExtResource("7_qee5a")
+texture = ExtResource("4_4s2dr")
 
 [node name="TimerBar" type="ProgressBar" parent="."]
 offset_left = -14.0
@@ -112,14 +110,14 @@ step = 1.0
 show_percentage = false
 
 [node name="AlignToMap" type="Node2D" parent="."]
-script = ExtResource("8_pyf6n")
+script = ExtResource("5_nr084")
 
 [node name="HoverAnimator" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_v61gj")
 }
 
-[node name="HoverArea" parent="." node_paths=PackedStringArray("ParentAnimator") instance=ExtResource("9_oksjw")]
+[node name="HoverArea" parent="." node_paths=PackedStringArray("ParentAnimator") instance=ExtResource("6_27ytf")]
 visible = false
 ParentAnimator = NodePath("../HoverAnimator")
 

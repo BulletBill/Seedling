@@ -4,13 +4,6 @@ using Godot.Collections;
 using System.Numerics;
 using System.Reflection.Metadata.Ecma335;
 
-public interface ITowerComponent
-{
-	void TowerReady();
-	void TowerRemoved();
-	void TowerUpdated();
-}
-
 public partial class Tower : Node2D, IHoverable
 {
 	public static readonly String GroupName = "Tower";
@@ -22,7 +15,6 @@ public partial class Tower : Node2D, IHoverable
 	public R_Cost TotalCost = new();
 	
 	// Upgrade/Build variables
-	[Export] public PackedScene TowerToBecome = null;
 	[Export] public double BuildTime = 0.0f;
 	protected ProgressBar TimerBar;
 	protected Data_Tower UpgradeData = null;
@@ -50,17 +42,6 @@ public partial class Tower : Node2D, IHoverable
 			QueueFree();
 			return;
 		}
-
-		if (TowerToBecome != null)
-		{
-			Building = true;
-			BuildTimer = BuildTime;
-			if (IsInstanceValid(TimerBar))
-			{
-				TimerBar.Visible = true;
-				TimerBar.MaxValue = (int)(BuildTime * 100);
-			}
-		}
 		
 		TotalCost += TowerData.Cost;
 
@@ -79,7 +60,7 @@ public partial class Tower : Node2D, IHoverable
 
 		foreach(Node n in GetChildren())
 		{
-			if (n is ITowerComponent towerComp)
+			if (n is TowerComponent towerComp)
 			{
 				towerComp.TowerReady();
 			}
@@ -98,26 +79,7 @@ public partial class Tower : Node2D, IHoverable
 			
 			if (BuildTimer <= 0.0f || Player.Singleton.FreeTowers)
 			{
-				Tower NewTower = TowerToBecome.Instantiate<Tower>();
-        		if (NewTower == null) return;
-				if (!Building)
-				{
-					NewTower.TotalCost += TotalCost;
-				}
-
-        		NewTower.Position = Position;
-        		MainMap.Singleton.AddChild(NewTower);
-
-				foreach(Node n in GetChildren())
-				{
-					if (n is ITowerComponent towerComp)
-					{
-						towerComp.TowerRemoved();
-					}
-				}
-				PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerRemoved, this);
-				PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerFinished, NewTower);
-				QueueFree();
+				// Finish upgrading
 			}
 		}
 	}
@@ -203,7 +165,7 @@ public partial class Tower : Node2D, IHoverable
 		{
 			foreach(Node n in GetChildren())
 			{
-				if (n is ITowerComponent towerComp)
+				if (n is TowerComponent towerComp)
 				{
 					towerComp.TowerRemoved();
 				}
@@ -222,24 +184,38 @@ public partial class Tower : Node2D, IHoverable
 		}
 	}
 
-	public void UpgradeTo(PackedScene NewTowerScene, Data_Tower NewUpgradeData)
+	public void SetData(Data_Tower NewData)
 	{
-		if (NewTowerScene == null || NewUpgradeData == null) return;
+		if (NewData == null) return;
 
-		UpgradeData = NewUpgradeData;
-		TowerToBecome = NewTowerScene;
+		TowerData = NewData;
+		Sprite2D Image = GetNodeOrNull<Sprite2D>("Image");
+		Sprite2D Shadow = GetNodeOrNull<Sprite2D>("Shadow");
 
-		Upgrading = true;
-		BuildTimer = BuildTime = UpgradeData.BuildTime;
-
-		Player.Spend(UpgradeData.Cost);
-		if (IsInstanceValid(TimerBar))
+		if (IsInstanceValid(Image))
 		{
-			TimerBar.Visible = true;
-			TimerBar.MaxValue = (int)(BuildTime * 100);
+			Image.Texture = TowerData.Icon;
+		}
+		if (IsInstanceValid(Shadow))
+		{
+			Shadow.Texture = TowerData.Icon;
 		}
 
-		AnimationPlayer Anim = GetNodeOrNull<AnimationPlayer>("Animator");
-		Anim?.Play("Upgrade");
+		foreach (PackedScene SceneData in NewData.ExtraBehaviors)
+		{
+			TowerComponent NewComponent = SceneData.InstantiateOrNull<TowerComponent>();
+			if (NewComponent != null)
+			{
+				AddChild(NewComponent);
+			}
+		}
+
+		foreach (Node child in GetChildren())
+		{
+			if (child is TowerComponent component)
+			{
+				component.TowerUpdated();
+			}
+		}
 	}
 }

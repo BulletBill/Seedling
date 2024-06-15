@@ -6,8 +6,7 @@ using System.Linq;
 using System.Runtime.Intrinsics.Arm;
 using System.Reflection;
 
-[Tool]
-public partial class C_GrassGrowth : Node2D, ITowerComponent
+public partial class C_GrassGrowth : TowerComponent
 {
     [Export] public float Radius = 1.0f;
     [Export] public float GrowthInterval = 2.0f;
@@ -16,23 +15,19 @@ public partial class C_GrassGrowth : Node2D, ITowerComponent
     List<TileAtDistance> TilesToGrass = new();
     List<Vector2I> TilesInArea = new();
 
-    public void TowerReady()
+    public override void TowerReady()
     {
         if (Engine.IsEditorHint()) return; // Don't run in editor
         
         GetTilesInGrowingRange();
     }
 
-    public void TowerRemoved()
+    public override void TowerRemoved()
     {
         foreach(var tile in TilesInArea)
         {
             MainMap.RemoveGrassTile(tile);
         }
-    }
-
-    public void TowerUpdated()
-    {
     }
 
     public override void _Process(double delta)
@@ -68,7 +63,7 @@ public partial class C_GrassGrowth : Node2D, ITowerComponent
         {
             Vector2 TilePos = CachedTileMap.ToGlobal(CachedTileMap.MapToLocal(i));
             float Distance = ParentNode.GlobalPosition.DistanceTo(TilePos);
-            if (Distance < (Radius * GlobalScale.X))
+            if (Distance < (Radius * ParentNode.GlobalScale.X))
             {
                 TilesInArea.Add(i);
                 if (MainMap.TileHasFlag(i, MainMap.Custom_Grass))
@@ -113,9 +108,11 @@ public partial class C_GrassGrowth : Node2D, ITowerComponent
         }
     }
 
+    /*
     public override void _Draw()
     {
         if (!Engine.IsEditorHint()) return; // Only execute in Editor
         DrawArc(Position, Radius, 0.0f, 360.0f, 36, Colors.LawnGreen);
     }
+    */
 }

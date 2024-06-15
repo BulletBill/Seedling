@@ -2,7 +2,7 @@ using Godot;
 using System;
 using Godot.Collections;
 
-public partial class C_HarvestArea : Node2D, ITowerComponent
+public partial class C_HarvestArea : TowerComponent
 {
 	[Export] public int Range = 1;
 	Vector2 ParentPositon;
@@ -38,7 +38,7 @@ public partial class C_HarvestArea : Node2D, ITowerComponent
 	}
 
 	// Called when the node enters the scene tree for the first time.
-	public void TowerReady()
+	public override void TowerReady()
 	{
 		if (GetParentOrNull<Tower>() != null)
 		{
@@ -52,13 +52,9 @@ public partial class C_HarvestArea : Node2D, ITowerComponent
 		IncomeTimer = Player.IncomeTime;
 	}
 
-	public void TowerRemoved()
+	public override void TowerRemoved()
 	{
 		RemoveSelf();
-	}
-
-	public void  TowerUpdated()
-	{
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

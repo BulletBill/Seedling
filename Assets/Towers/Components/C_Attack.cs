@@ -11,7 +11,7 @@ public enum ETargetPriority
     LowestHealth,
 }
 
-public partial class C_Attack : Node2D, ITowerComponent
+public partial class C_Attack : TowerComponent
 {
     public static readonly String AttackTowerGroupName = "Attacker";
     [Export] public PackedScene FiredProjectile = null;
@@ -32,17 +32,12 @@ public partial class C_Attack : Node2D, ITowerComponent
     int PendingDamage = 0;
     Enemy PendingDamageTaker;
 
-    public void TowerReady()
+    public override void TowerReady()
     {
         UpdateFromParentData();
     }
 
-    public void TowerRemoved()
-    {
-
-    }
-
-    public void TowerUpdated()
+    public override void TowerUpdated()
     {
         UpdateFromParentData();
     }
@@ -101,7 +96,7 @@ public partial class C_Attack : Node2D, ITowerComponent
 
         if (IsInstanceValid(CurrentTarget) && !CanChangeTarget)
         {
-            float Distance = GlobalPosition.DistanceTo(CurrentTarget.GlobalPosition);
+            float Distance = ParentTower.GlobalPosition.DistanceTo(CurrentTarget.GlobalPosition);
 
             if (Distance > (Range * 2.0f)) 
             {
@@ -118,7 +113,7 @@ public partial class C_Attack : Node2D, ITowerComponent
         foreach(Node EnemyNode in GetTree().GetNodesInGroup(Enemy.EnemyGroup))
         {
             if (EnemyNode is not Enemy TestEnemy) continue;
-            float Distance = GlobalPosition.DistanceTo(TestEnemy.GlobalPosition);
+            float Distance = ParentTower.GlobalPosition.DistanceTo(TestEnemy.GlobalPosition);
 
             if (Distance > (Range * 2.0f)) continue;
             if (!TestEnemy.IsAlive()) continue;
@@ -163,13 +158,14 @@ public partial class C_Attack : Node2D, ITowerComponent
     void Fire()
     {
         if (!IsInstanceValid(CurrentTarget)) return;
+        if (!IsInstanceValid(ParentTower)) return;
         if (PendingDamage > 0)
         {
             Game.LogError(LogCategory.Tower, "Trying to fire before pending damage has been resolved!");
             return;
         }
         AttackTimer = AttackDelay;
-        DamageTimer = DamageDelay * (GlobalPosition.DistanceTo(CurrentTarget.GlobalPosition) / Range);
+        DamageTimer = DamageDelay * (ParentTower.GlobalPosition.DistanceTo(CurrentTarget.GlobalPosition) / Range);
         PendingDamageTaker = CurrentTarget;
         PendingDamage = (int)MathHelper.GetFloatInRange(MinDamage, MaxDamage);
 
@@ -182,7 +178,7 @@ public partial class C_Attack : Node2D, ITowerComponent
             if(NewProjectile != null)
             {
                 AddChild(NewProjectile);
-                NewProjectile.Assign(GlobalPosition, CurrentTarget, DamageTimer);
+                NewProjectile.Assign(ParentTower.GlobalPosition, CurrentTarget, DamageTimer);
             }
         }
 
@@ -211,14 +207,6 @@ public partial class C_Attack : Node2D, ITowerComponent
             {
                 AreaHealth.TakeDamageImmediate((int)MathHelper.GetFloatInRange(MinDamage, MaxDamage));
             }
-        }
-    }
-
-    public override void _Draw()
-    {
-        if (MainMap.IsOutlineActive())
-        {
-            //DrawArc(Position, Range, 0.0f, 360.0f, 36, Colors.OrangeRed);
         }
     }
 }

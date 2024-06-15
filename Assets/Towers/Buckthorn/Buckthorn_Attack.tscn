@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6fv8usct73ei"]
+
+[ext_resource type="Script" path="res://Assets/Towers/Components/C_Attack.cs" id="1_rqd43"]
+[ext_resource type="PackedScene" uid="uid://crck6cv15vkic" path="res://Assets/Towers/Buckthorn/Projectiles/Thorn.tscn" id="2_bccd0"]
+
+[node name="Attack" type="Node2D" groups=["Attacker"]]
+script = ExtResource("1_rqd43")
+FiredProjectile = ExtResource("2_bccd0")
+DamageDelay = 0.15
+TargetPriority = 1
+CanChangeTarget = true

@@ -3,8 +3,7 @@ using System;
 
 public partial class Tower_Build : Node2D, IHoverable
 {
-	[Export] public PackedScene TowerTemplate;
-	[Export] public Data_Tower TowerData;
+	public Data_Tower TowerData;
 	double BuildTimer;
 	protected ProgressBar TimerBar;
 
@@ -43,8 +42,13 @@ public partial class Tower_Build : Node2D, IHoverable
 			
 			if (BuildTimer <= 0.0f || Player.Singleton.FreeTowers)
 			{
-				Tower NewTower = TowerTemplate.Instantiate<Tower>();
-        		if (NewTower == null) return;
+				Tower NewTower = GD.Load<PackedScene>("res://Assets/Towers/Tower_Template.tscn").InstantiateOrNull<Tower>();
+        		if (NewTower == null)
+				{
+					Game.LogError(LogCategory.Tower, "Failed to create tower template!");
+					return;
+				}
+				NewTower.SetData(TowerData);
 
 				NewTower.TotalCost += TowerData.Cost;
         		NewTower.Position = Position;
@@ -52,12 +56,12 @@ public partial class Tower_Build : Node2D, IHoverable
 
 				foreach(Node n in GetChildren())
 				{
-					if (n is ITowerComponent towerComp)
+					if (n is TowerComponent towerComp)
 					{
 						towerComp.TowerRemoved();
 					}
 				}
-				PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerRemoved, this);
+				
 				PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerFinished, NewTower);
 				QueueFree();
 			}
@@ -66,7 +70,22 @@ public partial class Tower_Build : Node2D, IHoverable
 
 	public void SetData(Data_Tower NewData)
 	{
+		if (NewData == null) return;
+
 		TowerData = NewData;
+		Name = TowerData.DisplayName + "_Build";
+
+		Sprite2D Image = GetNodeOrNull<Sprite2D>("Image");
+		Sprite2D Shadow = GetNodeOrNull<Sprite2D>("Shadow");
+
+		if (IsInstanceValid(Image))
+		{
+			Image.Texture = TowerData.SpriteSheet;
+		}
+		if (IsInstanceValid(Shadow))
+		{
+			Shadow.Texture = TowerData.SpriteSheet;
+		}
 	}
 
 	public void OnHovered()

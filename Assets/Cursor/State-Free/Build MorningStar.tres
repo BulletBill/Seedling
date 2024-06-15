@@ -1,8 +1,7 @@
-[gd_resource type="Resource" script_class="Data_Action" load_steps=6 format=3 uid="uid://c7mji5t6pm5jh"]
+[gd_resource type="Resource" script_class="Data_Action" load_steps=5 format=3 uid="uid://c7mji5t6pm5jh"]
 
 [ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="1_ui6k7"]
-[ext_resource type="PackedScene" uid="uid://dwsle41sxrc0k" path="res://Assets/Towers/Buckthorn/build-buckthorn.tscn" id="2_hwxsr"]
-[ext_resource type="Resource" uid="uid://coyd0ad8jrvd7" path="res://Assets/Towers/Buckthorn/Data_Buckthorn_1.tres" id="3_c4sou"]
+[ext_resource type="Resource" uid="uid://drymylmtnicu" path="res://Assets/Towers/MorningStar/Data_MorningStar_1.tres" id="2_rb7tg"]
 [ext_resource type="Script" path="res://Assets/Interface/CommandList/Data_Action.cs" id="4_rtlwi"]
 
 [sub_resource type="Resource" id="Resource_fyd0l"]
@@ -17,8 +16,7 @@ Energy = 0
 script = ExtResource("4_rtlwi")
 ActionType = 1
 ClickCost = SubResource("Resource_fyd0l")
-TowerData = ExtResource("3_c4sou")
-SceneToCreate = ExtResource("2_hwxsr")
-DesiredPosition = 5
+TowerData = ExtResource("2_rb7tg")
+DesiredPosition = 6
 DisplayName = ""
 Description = ""

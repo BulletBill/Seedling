@@ -17,7 +17,6 @@ public partial class Data_Action : Data_Hoverable
     [Export] public EActionType ActionType { get; protected set; } = EActionType.None;
     [Export] public R_Cost ClickCost { get; protected set; } = new();
     [Export] public Data_Tower TowerData { get; protected set; } = null;
-    [Export] public PackedScene SceneToCreate { get; protected set; } = null;
     [Export] public int DesiredPosition { get; protected set; } = 0; 
 
     public void SetFromTowerParams()
@@ -35,7 +34,6 @@ public partial class Data_Action : Data_Hoverable
         ActionType = EActionType.None;
         ClickCost = new();
         TowerData = null;
-        SceneToCreate = null;
         DesiredPosition = 0;
 
         Icon = null;

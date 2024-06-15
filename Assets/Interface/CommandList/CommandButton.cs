@@ -199,13 +199,12 @@ public partial class CommandButton : Node2D, IHoverable
 
 	void Execute_BuildTower()
 	{
-		if (ActionParams == null || ActionParams.SceneToCreate == null || ActionParams.TowerData == null) return;
+		if (ActionParams == null || ActionParams.TowerData == null) return;
 		Data_Tower OutTower = ActionParams.TowerData;
-		PackedScene OutScene = ActionParams.SceneToCreate;
 
         if (Cursor.PushState("State_Placement") is S_PlaceTower PlacementState)
         {
-            PlacementState.SetTowerToBuild(OutTower, OutScene);
+            PlacementState.SetTowerToBuild(OutTower);
         }
 	}
 
@@ -223,11 +222,11 @@ public partial class CommandButton : Node2D, IHoverable
 	{
 		if (Cursor.GetSelectedObject() is Tower SelectedTower)
 		{
-			if (ActionParams.SceneToCreate != null)
-			{
-				SelectedTower.UpgradeTo(ActionParams.SceneToCreate, ActionParams.TowerData);
-				Cursor.PopState();
-			}
+			//if (ActionParams.SceneToCreate != null)
+			//{
+			//	SelectedTower.UpgradeTo(ActionParams.SceneToCreate, ActionParams.TowerData);
+			//	Cursor.PopState();
+			//}
 		}
 	}
 }

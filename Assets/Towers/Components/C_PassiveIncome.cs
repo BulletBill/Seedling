@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class C_PassiveIncome : Node, ITowerComponent
+public partial class C_PassiveIncome : TowerComponent
 { 
     [Export] public R_Income IncomeAmount = new();
     Vector2 ParentPositon;
@@ -31,20 +31,12 @@ public partial class C_PassiveIncome : Node, ITowerComponent
 	}
 
     // Tower Component interface
-    public void TowerReady()
+    public override void TowerReady()
     {
         PlayerEvent.BroadcastAddIncome(ECurrencyType.Lifeforce, IncomeAmount.LifeForce);
         PlayerEvent.BroadcastAddIncome(ECurrencyType.Substance, IncomeAmount.Substance);
         PlayerEvent.BroadcastAddIncome(ECurrencyType.Flow, IncomeAmount.Flow);
         PlayerEvent.BroadcastAddIncome(ECurrencyType.Breath, IncomeAmount.Breath);
         PlayerEvent.BroadcastAddIncome(ECurrencyType.Energy, IncomeAmount.Energy);
-    }
-
-    public void TowerRemoved()
-    {
-    }
-
-    public void TowerUpdated()
-    {
     }
 }

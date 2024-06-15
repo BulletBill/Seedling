@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="Data_Tower" load_steps=6 format=3 uid="uid://coyd0ad8jrvd7"]
+[gd_resource type="Resource" script_class="Data_Tower" load_steps=8 format=3 uid="uid://coyd0ad8jrvd7"]
 
 [ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="1_okcfk"]
+[ext_resource type="PackedScene" uid="uid://b6fv8usct73ei" path="res://Assets/Towers/Buckthorn/Buckthorn_Attack.tscn" id="2_p3aw4"]
 [ext_resource type="Texture2D" uid="uid://bko43lmcg7kpd" path="res://Assets/Art/Towers/Buckthorn/Art-Buckthorn-1.png" id="2_xhqh3"]
 [ext_resource type="Script" path="res://Assets/Towers/Data_Tower.cs" id="4_xuhh0"]
+[ext_resource type="Texture2D" uid="uid://b3ohqqlo3egwh" path="res://Assets/Art/Towers/Buckthorn/Art-BuildBuckthorn.png" id="4_yfmon"]
 
 [sub_resource type="Resource" id="Resource_4ujqw"]
 script = ExtResource("1_okcfk")
@@ -12,7 +14,7 @@ Flow = 0
 Breath = 0
 Energy = 0
 
-[sub_resource type="Resource" id="Resource_iobvg"]
+[sub_resource type="Resource" id="Resource_4vk00"]
 script = ExtResource("1_okcfk")
 LifeForce = 0
 Substance = 0
@@ -24,7 +26,7 @@ Energy = 0
 script = ExtResource("4_xuhh0")
 Ident = "Buckthorn"
 Cost = SubResource("Resource_4ujqw")
-UpgradeCostPerLevel = SubResource("Resource_iobvg")
+UpgradeCostPerLevel = SubResource("Resource_4vk00")
 BuildTime = 8.0
 MinDamage = 2
 MaxDamage = 3
@@ -32,6 +34,7 @@ Range = 150.0
 AreaOfEffect = 0.0
 FireDelay = 1.0
 MaximumLevel = 1
+SpriteSheet = ExtResource("4_yfmon")
 NeedsSparkFlag = false
 NeedsGrassFlag = true
 CanBuildOnGrass = true
@@ -39,6 +42,7 @@ CanBuildOnDirt = false
 CanBuildOnWater = false
 CanBuildOnChasm = false
 CanBuildOnStone = false
+ExtraBehaviors = [ExtResource("2_p3aw4")]
 DisplayName = "Buckthorn"
 Icon = ExtResource("2_xhqh3")
 Description = "Damage:%min-%max Rate:%rof Range:%rng
