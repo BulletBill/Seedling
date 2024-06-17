@@ -11,11 +11,11 @@ public partial class Tower : Node2D, IHoverable
 	[Export] public Data_Tower TowerData;
 	[Export] public Array<Data_Action> Actions = new();
 	[Export] public Array<Data_Action> UpgradingActions = new();
+	[Export] public Array<Data_Action> BuildingActions = new();
 	public Vector2I MapPosition = new();
 	public R_Cost TotalCost = new();
 	
 	// Upgrade/Build variables
-	[Export] public double BuildTime = 0.0f;
 	protected ProgressBar TimerBar;
 	protected Data_Tower UpgradeData = null;
 	public double BuildTimer { get; protected set; }
@@ -35,7 +35,6 @@ public partial class Tower : Node2D, IHoverable
 	public override void _Ready()
 	{
 		Material = new ShaderMaterial() { Shader = (Material as ShaderMaterial).Shader.Duplicate() as Shader };
-		TimerBar = GetNodeOrNull<ProgressBar>("BuildBar");
 
 		if (TowerData == null)
 		{
@@ -72,14 +71,21 @@ public partial class Tower : Node2D, IHoverable
 		if (BuildTimer > 0.0f)
 		{
 			BuildTimer -= delta * Level.GetSpeed();
-			if (IsInstanceValid(TimerBar))
+			if (IsInstanceValid(TimerBar) && TowerData != null)
 			{
-				TimerBar.Value = TimerBar.MaxValue - (int)((BuildTimer / BuildTime) * TimerBar.MaxValue);
+				TimerBar.Value = TimerBar.MaxValue - (int)((BuildTimer / TowerData.BuildTime) * TimerBar.MaxValue);
 			}
 			
 			if (BuildTimer <= 0.0f || Player.Singleton.FreeTowers)
 			{
-				// Finish upgrading
+				if (Building)
+				{
+					FinishBuild();
+				}
+				if (Upgrading)
+				{
+					Upgrading = false;
+				}
 			}
 		}
 	}
@@ -184,11 +190,48 @@ public partial class Tower : Node2D, IHoverable
 		}
 	}
 
-	public void SetData(Data_Tower NewData)
+	public void StartBuild(Data_Tower NewData)
 	{
 		if (NewData == null) return;
 
 		TowerData = NewData;
+		Sprite2D Image = GetNodeOrNull<Sprite2D>("Image");
+		Sprite2D Shadow = GetNodeOrNull<Sprite2D>("Shadow");
+		TimerBar = GetNodeOrNull<ProgressBar>("BuildBar");
+	
+		if (IsInstanceValid(Image))
+		{
+			Image.Texture = TowerData.SpriteSheet;
+		}
+		if (IsInstanceValid(Shadow))
+		{
+			Shadow.Visible = false;
+		}
+		if (IsInstanceValid(TimerBar))
+		{
+			TimerBar.Visible = true;
+			TimerBar.MaxValue = (int)(TowerData.BuildTime * 100);
+		}
+
+		Building = true;
+		BuildTimer = NewData.BuildTime;
+	}
+
+	public void FinishBuild()
+	{
+		if (Building == false)
+		{
+			Game.LogError(LogCategory.Tower, "Already finished building!");
+			return;
+		}
+		if (TowerData == null)
+		{
+			Game.LogError(LogCategory.Tower, "Tried to finish building with no data!");
+			return;
+		}
+
+		Building = false;
+
 		Sprite2D Image = GetNodeOrNull<Sprite2D>("Image");
 		Sprite2D Shadow = GetNodeOrNull<Sprite2D>("Shadow");
 
@@ -199,9 +242,24 @@ public partial class Tower : Node2D, IHoverable
 		if (IsInstanceValid(Shadow))
 		{
 			Shadow.Texture = TowerData.Icon;
+			Shadow.Visible = true;
+		}
+		if (IsInstanceValid(TimerBar))
+		{
+			TimerBar.Visible = false;
 		}
 
-		foreach (PackedScene SceneData in NewData.ExtraBehaviors)
+		foreach (Data_Action AddAction in TowerData.ExtraActions)
+		{
+			Data_Action NewAction = new(AddAction);
+			Actions.Add(NewAction);
+			if (NewAction.ActionType == EActionType.SelfUpgrade)
+			{
+				NewAction.SetCost(TowerData.UpgradeCostPerLevel);
+			}
+		}
+
+		foreach (PackedScene SceneData in TowerData.ExtraBehaviors)
 		{
 			TowerComponent NewComponent = SceneData.InstantiateOrNull<TowerComponent>();
 			if (NewComponent != null)
@@ -217,5 +275,7 @@ public partial class Tower : Node2D, IHoverable
 				component.TowerUpdated();
 			}
 		}
+
+		PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerFinished, this);
 	}
 }

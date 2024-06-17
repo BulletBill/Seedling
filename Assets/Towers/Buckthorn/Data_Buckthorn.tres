@@ -1,0 +1,52 @@
+[gd_resource type="Resource" script_class="Data_Tower" load_steps=9 format=3 uid="uid://coyd0ad8jrvd7"]
+
+[ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="1_0pk1e"]
+[ext_resource type="PackedScene" uid="uid://b6fv8usct73ei" path="res://Assets/Towers/Buckthorn/Buckthorn_Attack.tscn" id="2_7fy35"]
+[ext_resource type="Resource" uid="uid://cx5tj3ji2jabv" path="res://Assets/Towers/Actions/Action_SelfUpgrade.tres" id="2_thbps"]
+[ext_resource type="Texture2D" uid="uid://cedcepcgtfr5w" path="res://Assets/Art/Towers/Buckthorn/Art-Buckthorn.png" id="4_4g164"]
+[ext_resource type="Texture2D" uid="uid://b3ohqqlo3egwh" path="res://Assets/Art/Towers/Buckthorn/Art-BuildBuckthorn.png" id="4_x33ar"]
+[ext_resource type="Script" path="res://Assets/Towers/Data_Tower.cs" id="5_h248a"]
+
+[sub_resource type="Resource" id="Resource_4ujqw"]
+script = ExtResource("1_0pk1e")
+LifeForce = 5
+Substance = 100
+Flow = 0
+Breath = 0
+Energy = 0
+
+[sub_resource type="Resource" id="Resource_2cfe6"]
+script = ExtResource("1_0pk1e")
+LifeForce = 0
+Substance = 0
+Flow = 0
+Breath = 0
+Energy = 0
+
+[resource]
+script = ExtResource("5_h248a")
+Ident = "Buckthorn"
+Cost = SubResource("Resource_4ujqw")
+UpgradeCostPerLevel = SubResource("Resource_2cfe6")
+BuildTime = 8.0
+MinDamage = 2
+MaxDamage = 3
+Range = 150.0
+AreaOfEffect = 0.0
+FireDelay = 1.0
+MaximumLevel = 5
+SpriteSheet = ExtResource("4_x33ar")
+NeedsSparkFlag = false
+NeedsGrassFlag = true
+CanBuildOnGrass = true
+CanBuildOnDirt = false
+CanBuildOnWater = false
+CanBuildOnChasm = false
+CanBuildOnStone = false
+ExtraBehaviors = [ExtResource("2_7fy35")]
+ExtraActions = [ExtResource("2_thbps")]
+DisplayName = "Buckthorn"
+Icon = ExtResource("4_4g164")
+Description = "Damage:%min-%max Rate:%rof Range:%rng
+Attacks nearby enemies.
+"

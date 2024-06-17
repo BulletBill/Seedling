@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Data_Action" load_steps=5 format=3 uid="uid://cx5tj3ji2jabv"]
+
+[ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="1_0ssdd"]
+[ext_resource type="Texture2D" uid="uid://bo3oarmgys30p" path="res://Assets/Art/Icons/Upgrade.png" id="2_nfmdx"]
+[ext_resource type="Script" path="res://Assets/Interface/CommandList/Data_Action.cs" id="2_uxt3o"]
+
+[sub_resource type="Resource" id="Resource_xgwu7"]
+script = ExtResource("1_0ssdd")
+LifeForce = 0
+Substance = 0
+Flow = 0
+Breath = 0
+Energy = 0
+
+[resource]
+script = ExtResource("2_uxt3o")
+ActionType = 4
+ClickCost = SubResource("Resource_xgwu7")
+DesiredPosition = 0
+DisplayName = "Upgrade"
+Icon = ExtResource("2_nfmdx")
+Description = "Upgrade this tower's level, increasing damage."

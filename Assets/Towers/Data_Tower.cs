@@ -24,6 +24,7 @@ public partial class Data_Tower : Data_Hoverable
     [Export] public bool CanBuildOnChasm { get; protected set; } = false;
     [Export] public bool CanBuildOnStone { get; protected set; } = false;
     [Export] public Array<PackedScene> ExtraBehaviors { get; protected set; } = new();
+    [Export] public Array<Data_Action> ExtraActions { get; protected set; } = new();
 
     public override string GetFullDescription()
     {
@@ -54,16 +55,16 @@ public partial class Data_Tower : Data_Hoverable
         return ret;
     }
 
-    public Tower_Build CreateTower()
+    public Tower CreateTower()
     {
-        Tower_Build NewTower = GD.Load<PackedScene>("res://Assets/Towers/Tower_Build_Template.tscn").InstantiateOrNull<Tower_Build>();
+        Tower NewTower = GD.Load<PackedScene>("res://Assets/Towers/Tower_Template.tscn").InstantiateOrNull<Tower>();
         if (IsInstanceValid(NewTower))
         {
-            NewTower.SetData(this);
+            NewTower.StartBuild(this);
         }
         else
         {
-            Game.LogError(LogCategory.Tower, "Failed to create tower build template!");
+            Game.LogError(LogCategory.Tower, "Failed to create tower template! (Bad path or type)");
         }
 
         return NewTower;

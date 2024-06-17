@@ -92,17 +92,18 @@ color = Color(0, 0.184314, 0, 1)
 
 [node name="Title" type="RichTextLabel" parent="."]
 offset_left = -11.0
-offset_top = 135.0
+offset_top = 461.0
 offset_right = 1929.0
 offset_bottom = 637.0
 theme = ExtResource("1_3on0u")
 theme_override_fonts/normal_font = ExtResource("2_f6sr5")
 theme_override_font_sizes/normal_font_size = 128
 bbcode_enabled = true
-text = "[center]DEFEND WITH TOWERS: BLOOM HEART TOWER DEFENSE
+text = "[center]BLOOM HEART TD
 [/center]"
 
 [node name="Subtitle" type="RichTextLabel" parent="."]
+visible = false
 offset_left = 1235.0
 offset_top = 946.0
 offset_right = 1925.0

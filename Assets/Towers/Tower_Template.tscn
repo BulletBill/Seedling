@@ -1,8 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://rbdn4q2hanmr"]
+[gd_scene load_steps=21 format=3 uid="uid://rbdn4q2hanmr"]
 
 [ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_2i5xh"]
 [ext_resource type="Script" path="res://Assets/Towers/Tower.cs" id="2_2u5td"]
-[ext_resource type="Resource" uid="uid://cx5tj3ji2jabv" path="res://Assets/Towers/Buckthorn/Upgrade_Buckthorn_2.tres" id="4_pqk23"]
 [ext_resource type="Resource" uid="uid://dr2317w84u581" path="res://Assets/Towers/Actions/Action_Sell.tres" id="5_q0i1l"]
 [ext_resource type="Resource" uid="uid://dnvyi3ug6klmx" path="res://Assets/Towers/Actions/Action_Deselect.tres" id="6_uahjx"]
 [ext_resource type="Resource" uid="uid://c81qoyyrdxuns" path="res://Assets/Towers/Actions/Action_BuildCancel.tres" id="7_hckls"]
@@ -142,8 +141,9 @@ z_index = 10
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_bjj0w")
 script = ExtResource("2_2u5td")
-Actions = [ExtResource("4_pqk23"), ExtResource("5_q0i1l"), ExtResource("6_uahjx")]
+Actions = [ExtResource("5_q0i1l"), ExtResource("6_uahjx")]
 UpgradingActions = [ExtResource("7_hckls"), ExtResource("6_uahjx")]
+BuildingActions = [ExtResource("7_hckls"), ExtResource("6_uahjx")]
 
 [node name="Image" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_mpcvh")
@@ -190,6 +190,4 @@ autoplay = "Unhover"
 ParentAnimator = NodePath("../HoverAnimator")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HoverArea"]
-visible = false
-position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_6l6xg")

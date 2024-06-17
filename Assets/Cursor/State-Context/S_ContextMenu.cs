@@ -29,6 +29,10 @@ public partial class S_ContextMenu : Cursor_State
 		{
 			StateActions = NewTower.UpgradingActions;
 		}
+		else if (NewTower.Building)
+		{
+			StateActions = NewTower.BuildingActions;
+		}
 		else
 		{
 			StateActions = NewTower.Actions;
