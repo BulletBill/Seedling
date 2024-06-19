@@ -17,13 +17,14 @@ public partial class Tower : Node2D, IHoverable
 	
 	// Upgrade/Build variables
 	protected ProgressBar TimerBar;
-	protected Data_Tower UpgradeData = null;
 	public double BuildTimer { get; protected set; }
 	public bool Building { get; protected set; } = false;
 	public bool Upgrading { get; protected set; } = false;
 
 	// Leveling
 	public int TowerLevel { get; protected set; } = 1;
+
+	[Signal] public delegate void TowerUpdatedEventHandler();
 
 
 	public override void _EnterTree()
@@ -84,7 +85,7 @@ public partial class Tower : Node2D, IHoverable
 				}
 				if (Upgrading)
 				{
-					Upgrading = false;
+					FinishUpgrade();
 				}
 			}
 		}
@@ -99,7 +100,10 @@ public partial class Tower : Node2D, IHoverable
 
 	public void OnHovered()
 	{
-		Cursor.Broadcast(Cursor.SignalName.SelectableHoveredCustom, TowerData.Icon, TowerData.DisplayName, TowerData.GetLeveledDescription(TowerLevel));
+		Texture2D Image = TowerData.Icon;
+		String Header = TowerLevel > 1 ? TowerData.DisplayName + " Level " + TowerLevel.ToString() : TowerData.DisplayName;
+		String Body = TowerData.GetLeveledDescription(TowerLevel);
+		Cursor.Broadcast(Cursor.SignalName.SelectableHoveredCustom, Image, Header, Body);
 	}
 
 	public void ExitHovered()
@@ -131,7 +135,7 @@ public partial class Tower : Node2D, IHoverable
 
 		if (Upgrading)
 		{
-			Refund = UpgradeData.Cost;
+			Refund = TowerData.UpgradeCostPerLevel * TowerLevel;
 		}
 		else if (Building)
 		{
@@ -214,7 +218,7 @@ public partial class Tower : Node2D, IHoverable
 		}
 
 		Building = true;
-		BuildTimer = NewData.BuildTime;
+		BuildTimer = TowerData.BuildTime;
 	}
 
 	public void FinishBuild()
@@ -277,5 +281,49 @@ public partial class Tower : Node2D, IHoverable
 		}
 
 		PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerFinished, this);
+		EmitSignal(SignalName.TowerUpdated);
+	}
+
+	public void StartUpgrade()
+	{
+		if (IsInstanceValid(TimerBar))
+		{
+			TimerBar.Visible = true;
+		}
+		Upgrading = true;
+		BuildTimer = TowerData.BuildTime;
+		EmitSignal(SignalName.TowerUpdated);
+	}
+
+	public void FinishUpgrade()
+	{
+		if (IsInstanceValid(TimerBar))
+		{
+			TimerBar.Visible = false;
+		}
+		Upgrading = false;
+
+		TotalCost += TowerData.UpgradeCostPerLevel * TowerLevel;
+		TowerLevel += 1;
+
+		if (TowerLevel >= TowerData.MaximumLevel)
+		{
+			for (int i = Actions.Count - 1; i >= 0; i--)
+			{
+				if (Actions[i].ActionType == EActionType.SelfUpgrade)
+				{
+					Actions.RemoveAt(i);
+				}
+			}
+		}
+
+		foreach (Node child in GetChildren())
+		{
+			if (child is TowerComponent component)
+			{
+				component.TowerUpdated();
+			}
+		}
+		EmitSignal(SignalName.TowerUpdated);
 	}
 }

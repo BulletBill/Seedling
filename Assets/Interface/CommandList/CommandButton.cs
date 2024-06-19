@@ -79,7 +79,7 @@ public partial class CommandButton : Node2D, IHoverable
 		UpdateCosts(true);
 	}
 
-	void UpdateCosts(bool ForceUpdate)
+	public void UpdateCosts(bool ForceUpdate)
 	{
 		HasCost = false;
 		if (ActionParams == null || ActionParams.ActionType == EActionType.None) return;
@@ -223,11 +223,8 @@ public partial class CommandButton : Node2D, IHoverable
 	{
 		if (Cursor.GetSelectedObject() is Tower SelectedTower)
 		{
-			//if (ActionParams.SceneToCreate != null)
-			//{
-			//	SelectedTower.UpgradeTo(ActionParams.SceneToCreate, ActionParams.TowerData);
-			//	Cursor.PopState();
-			//}
+			Player.Spend(ActionParams.ClickCost * CostMultiplier);
+			SelectedTower.StartUpgrade();
 		}
 	}
 }

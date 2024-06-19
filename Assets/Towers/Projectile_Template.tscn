@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cm3yeeqtm5yqj"]
+
+[ext_resource type="Texture2D" uid="uid://dai3abjsii2ub" path="res://Assets/Art/Projectiles/Thorn.png" id="1_ergq7"]
+[ext_resource type="Script" path="res://Assets/Towers/Projectiles/Projectile.cs" id="2_x1rkm"]
+
+[node name="Thorn" type="Sprite2D"]
+top_level = true
+texture = ExtResource("1_ergq7")
+offset = Vector2(2.5, 0)
+script = ExtResource("2_x1rkm")

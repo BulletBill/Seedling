@@ -15,10 +15,10 @@ Flow = 0
 Breath = 0
 Energy = 0
 
-[sub_resource type="Resource" id="Resource_2cfe6"]
+[sub_resource type="Resource" id="Resource_4bd0g"]
 script = ExtResource("1_0pk1e")
 LifeForce = 0
-Substance = 0
+Substance = 50
 Flow = 0
 Breath = 0
 Energy = 0
@@ -27,7 +27,7 @@ Energy = 0
 script = ExtResource("5_h248a")
 Ident = "Buckthorn"
 Cost = SubResource("Resource_4ujqw")
-UpgradeCostPerLevel = SubResource("Resource_2cfe6")
+UpgradeCostPerLevel = SubResource("Resource_4bd0g")
 BuildTime = 8.0
 MinDamage = 2
 MaxDamage = 3
