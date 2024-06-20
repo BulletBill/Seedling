@@ -50,7 +50,7 @@ public partial class CommandButton : Node2D, IHoverable
 			ActionParams.SetFromTowerParams();
 		}
 
-		if (ActionParams == null || ActionParams.ActionType == EActionType.None)
+		if (ActionParams == null || ActionParams.ActionType == EActionType.None || ActionParams.Disabled)
 		{
 			Disable();
 			return;
@@ -209,13 +209,16 @@ public partial class CommandButton : Node2D, IHoverable
         }
 	}
 
-	static void Execute_SellTower()
+	void Execute_SellTower()
 	{
 		if (Cursor.GetSelectedObject() is Tower SelectedTower)
 		{
+			if (SelectedTower.Building)
+			{
+				Cursor.PopState();
+			}
 			SelectedTower.SellTower();
 			PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerDeselected);
-			Cursor.PopState();
 		}
 	}
 

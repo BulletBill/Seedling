@@ -103,7 +103,8 @@ public partial class Tower : Node2D, IHoverable
 		Texture2D Image = TowerData.Icon;
 		String Header = TowerLevel > 1 ? TowerData.DisplayName + " Level " + TowerLevel.ToString() : TowerData.DisplayName;
 		String Body = TowerData.GetLeveledDescription(TowerLevel);
-		Cursor.Broadcast(Cursor.SignalName.SelectableHoveredCustom, Image, Header, Body);
+		Data_Hoverable UpdatedData = new(Header, Image, Body);
+		Cursor.Broadcast(Cursor.SignalName.SelectableHovered, UpdatedData);
 	}
 
 	public void ExitHovered()
@@ -118,7 +119,13 @@ public partial class Tower : Node2D, IHoverable
 		if (Cursor.PushState("State_ContextMenu") is S_ContextMenu ContextState)
         {
             ContextState.AssignTower(this);
-			Cursor.Broadcast(Cursor.SignalName.SetFixedObject, TowerData);
+
+			Texture2D Image = TowerData.Icon;
+			String Header = TowerLevel > 1 ? TowerData.DisplayName + " Level " + TowerLevel.ToString() : TowerData.DisplayName;
+			String Body = TowerData.GetLeveledDescription(TowerLevel);
+			Data_Hoverable UpdatedData = new(Header, Image, Body);
+			Cursor.Broadcast(Cursor.SignalName.SetFixedObject, UpdatedData);
+
 			PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerSelected, this);
 			AnimationPlayer Anim = GetNodeOrNull<AnimationPlayer>("HoverAnimator");
 			Anim?.Play("Hover");
@@ -185,12 +192,14 @@ public partial class Tower : Node2D, IHoverable
 		}
 		else
 		{
-			Upgrading = false;
 			BuildTimer = 0.0f;
 			if (IsInstanceValid(TimerBar)) { TimerBar.Visible = false; }
 
 			AnimationPlayer Anim = GetNodeOrNull<AnimationPlayer>("Animator");
 			Anim?.Play("RESET");
+
+			Upgrading = false;
+			EmitSignal(SignalName.TowerUpdated);
 		}
 	}
 
@@ -217,8 +226,10 @@ public partial class Tower : Node2D, IHoverable
 			TimerBar.MaxValue = (int)(TowerData.BuildTime * 100);
 		}
 
-		Building = true;
 		BuildTimer = TowerData.BuildTime;
+
+		Building = true;
+		EmitSignal(SignalName.TowerUpdated);
 	}
 
 	public void FinishBuild()
@@ -233,8 +244,6 @@ public partial class Tower : Node2D, IHoverable
 			Game.LogError(LogCategory.Tower, "Tried to finish building with no data!");
 			return;
 		}
-
-		Building = false;
 
 		Sprite2D Image = GetNodeOrNull<Sprite2D>("Image");
 		Sprite2D Shadow = GetNodeOrNull<Sprite2D>("Shadow");
@@ -281,6 +290,8 @@ public partial class Tower : Node2D, IHoverable
 		}
 
 		PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerFinished, this);
+		
+		Building = false;
 		EmitSignal(SignalName.TowerUpdated);
 	}
 
@@ -290,8 +301,9 @@ public partial class Tower : Node2D, IHoverable
 		{
 			TimerBar.Visible = true;
 		}
-		Upgrading = true;
 		BuildTimer = TowerData.BuildTime;
+
+		Upgrading = true;
 		EmitSignal(SignalName.TowerUpdated);
 	}
 
@@ -301,7 +313,6 @@ public partial class Tower : Node2D, IHoverable
 		{
 			TimerBar.Visible = false;
 		}
-		Upgrading = false;
 
 		TotalCost += TowerData.UpgradeCostPerLevel * TowerLevel;
 		TowerLevel += 1;
@@ -324,6 +335,8 @@ public partial class Tower : Node2D, IHoverable
 				component.TowerUpdated();
 			}
 		}
+
+		Upgrading = false;
 		EmitSignal(SignalName.TowerUpdated);
 	}
 }

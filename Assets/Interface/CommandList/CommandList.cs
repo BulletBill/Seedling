@@ -6,7 +6,6 @@ public partial class CommandList : Node2D
 {
     public Array<CommandButton> ButtonArray = new();
     public int SelectedTowerLevel { get; protected set; } = 1;
-    Tower SelectedTower = null;
 
     public override void _EnterTree()
     {
@@ -59,38 +58,19 @@ public partial class CommandList : Node2D
                 if (TryButtonIndex >= ButtonArray.Count) { TryButtonIndex = 0; }
             }
 
-            ButtonArray[TryButtonIndex].CostMultiplier = action.ActionType == EActionType.SelfUpgrade ? SelectedTowerLevel : 1;
             ButtonArray[TryButtonIndex].AssignActionParams(action);
             ButtonArray[TryButtonIndex].SetHotkey(TryButtonIndex);
+            ButtonArray[TryButtonIndex].CostMultiplier = action.ActionType == EActionType.SelfUpgrade ? SelectedTowerLevel : 1;
         }
     }
 
     public void SelectTower(Tower NewTower)
     {
-        if (IsInstanceValid(NewTower)) { ClearTower(); return; }
-        SelectedTower = NewTower;
-
-        SelectedTowerLevel = SelectedTower.TowerLevel;
-        SelectedTower.Connect(Tower.SignalName.TowerUpdated, Callable.From(SelectedTowerUpdated));
+        SelectedTowerLevel = NewTower.TowerLevel;
     }
 
     public void ClearTower()
     {
         SelectedTowerLevel = 1;
-
-        if (IsInstanceValid(SelectedTower))
-        {
-            SelectedTower.Disconnect(Tower.SignalName.TowerUpdated, Callable.From(SelectedTowerUpdated));
-            SelectedTower = null;
-        }
-    }
-
-    public void SelectedTowerUpdated()
-    {
-        SelectedTowerLevel = SelectedTower.TowerLevel;
-        foreach (CommandButton button in ButtonArray)
-        {
-            button.UpdateCosts(true);
-        }
     }
 }

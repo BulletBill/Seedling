@@ -18,6 +18,7 @@ public partial class Data_Action : Data_Hoverable
     [Export] public R_Cost ClickCost { get; protected set; } = new();
     [Export] public Data_Tower TowerData { get; protected set; } = null;
     [Export] public int DesiredPosition { get; protected set; } = 0;
+    public bool Disabled = false;
 
     public Data_Action(Data_Action OtherAction)
     {

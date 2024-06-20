@@ -19,7 +19,6 @@ public partial class Cursor : Node2D
 	// Signals
 	[Signal] public delegate void AnyStateChangedEventHandler();
 	[Signal] public delegate void SelectableHoveredEventHandler(Data_Hoverable NewHoverable);
-	[Signal] public delegate void SelectableHoveredCustomEventHandler(Texture2D Icon, string Header, string Body);
 	[Signal] public delegate void SelectableExitedEventHandler();
 	[Signal] public delegate void SetFixedObjectEventHandler(Data_Hoverable NewFixedObject);
 	[Signal] public delegate void ClearFixedObjectEventHandler();

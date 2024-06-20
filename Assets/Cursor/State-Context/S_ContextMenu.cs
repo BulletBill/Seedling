@@ -23,22 +23,32 @@ public partial class S_ContextMenu : Cursor_State
 		PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerDeselected);
 		Cursor.Broadcast(Cursor.SignalName.ClearFixedObject);
 		SelectedTower = NewTower;
-		if (NewTower == null) return;
+		SelectedTowerUpdated();
 
-		if (NewTower.Upgrading)
+		if (IsInstanceValid(SelectedTower) && !SelectedTower.IsConnected(Tower.SignalName.TowerUpdated, Callable.From(SelectedTowerUpdated)))
 		{
-			StateActions = NewTower.UpgradingActions;
+			SelectedTower.Connect(Tower.SignalName.TowerUpdated, Callable.From(SelectedTowerUpdated));
+		}		
+		PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerSelected, NewTower);
+	}
+
+	void SelectedTowerUpdated()
+	{
+		if (SelectedTower == null) return;
+
+		if (SelectedTower.Upgrading)
+		{
+			StateActions = SelectedTower.UpgradingActions;
 		}
-		else if (NewTower.Building)
+		else if (SelectedTower.Building)
 		{
-			StateActions = NewTower.BuildingActions;
+			StateActions = SelectedTower.BuildingActions;
 		}
 		else
 		{
-			StateActions = NewTower.Actions;
+			StateActions = SelectedTower.Actions;
 		}
 
-		PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerSelected, NewTower);
 		Cursor.Broadcast(Cursor.SignalName.AnyStateActionsChanged, StateActions);
 	}
 
@@ -57,6 +67,11 @@ public partial class S_ContextMenu : Cursor_State
 	{
 		PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerDeselected);
 		Cursor.Broadcast(Cursor.SignalName.ClearFixedObject);
+
+		if (IsInstanceValid(SelectedTower) && SelectedTower.IsConnected(Tower.SignalName.TowerUpdated, Callable.From(SelectedTowerUpdated)))
+		{
+			SelectedTower.Disconnect(Tower.SignalName.TowerUpdated, Callable.From(SelectedTowerUpdated));
+		}		
 		SelectedTower = null;
 	}
 	public override void OnClick()
