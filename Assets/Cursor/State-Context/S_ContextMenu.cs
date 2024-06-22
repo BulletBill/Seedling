@@ -49,6 +49,7 @@ public partial class S_ContextMenu : Cursor_State
 			StateActions = SelectedTower.Actions;
 		}
 
+		SelectedTower.SetSelectedText();
 		Cursor.Broadcast(Cursor.SignalName.AnyStateActionsChanged, StateActions);
 	}
 

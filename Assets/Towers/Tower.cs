@@ -1,8 +1,6 @@
 using Godot;
 using System;
 using Godot.Collections;
-using System.Numerics;
-using System.Reflection.Metadata.Ecma335;
 
 public partial class Tower : Node2D, IHoverable
 {
@@ -120,16 +118,21 @@ public partial class Tower : Node2D, IHoverable
         {
             ContextState.AssignTower(this);
 
-			Texture2D Image = TowerData.Icon;
-			String Header = TowerLevel > 1 ? TowerData.DisplayName + " Level " + TowerLevel.ToString() : TowerData.DisplayName;
-			String Body = TowerData.GetLeveledDescription(TowerLevel);
-			Data_Hoverable UpdatedData = new(Header, Image, Body);
-			Cursor.Broadcast(Cursor.SignalName.SetFixedObject, UpdatedData);
+			SetSelectedText();
 
 			PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerSelected, this);
 			AnimationPlayer Anim = GetNodeOrNull<AnimationPlayer>("HoverAnimator");
 			Anim?.Play("Hover");
         }
+	}
+
+	public void SetSelectedText()
+	{
+		Texture2D Image = TowerData.Icon;
+		String Header = TowerLevel > 1 ? TowerData.DisplayName + " Level " + TowerLevel.ToString() : TowerData.DisplayName;
+		String Body = TowerData.GetLeveledDescription(TowerLevel);
+		Data_Hoverable UpdatedData = new(Header, Image, Body);
+		Cursor.Broadcast(Cursor.SignalName.SetFixedObject, UpdatedData);
 	}
 
 	void Deselected()
@@ -262,15 +265,23 @@ public partial class Tower : Node2D, IHoverable
 			TimerBar.Visible = false;
 		}
 
+		//Create new instance of action list to break references
+		Array<Data_Action> NewActionList = new();
+		foreach (Data_Action CurrentAction in Actions)
+		{
+			NewActionList.Add(CurrentAction);
+		}
+
 		foreach (Data_Action AddAction in TowerData.ExtraActions)
 		{
 			Data_Action NewAction = new(AddAction);
-			Actions.Add(NewAction);
+			NewActionList.Add(NewAction);
 			if (NewAction.ActionType == EActionType.SelfUpgrade)
 			{
 				NewAction.SetCost(TowerData.UpgradeCostPerLevel);
 			}
 		}
+		Actions = NewActionList;
 
 		foreach (PackedScene SceneData in TowerData.ExtraBehaviors)
 		{
