@@ -28,8 +28,7 @@ public partial class S_ContextMenu : Cursor_State
 		if (IsInstanceValid(SelectedTower) && !SelectedTower.IsConnected(Tower.SignalName.TowerUpdated, Callable.From(SelectedTowerUpdated)))
 		{
 			SelectedTower.Connect(Tower.SignalName.TowerUpdated, Callable.From(SelectedTowerUpdated));
-		}		
-		PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerSelected, NewTower);
+		}
 	}
 
 	void SelectedTowerUpdated()

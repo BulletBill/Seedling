@@ -3,9 +3,9 @@
 [ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_2i5xh"]
 [ext_resource type="Script" path="res://Assets/Towers/Tower.cs" id="2_2u5td"]
 [ext_resource type="Resource" uid="uid://dr2317w84u581" path="res://Assets/Towers/Actions/Action_Sell.tres" id="5_q0i1l"]
+[ext_resource type="Texture2D" uid="uid://cedcepcgtfr5w" path="res://Assets/Art/Towers/Buckthorn/Art-Buckthorn.png" id="6_n4brd"]
 [ext_resource type="Resource" uid="uid://dnvyi3ug6klmx" path="res://Assets/Towers/Actions/Action_Deselect.tres" id="6_uahjx"]
 [ext_resource type="Resource" uid="uid://c81qoyyrdxuns" path="res://Assets/Towers/Actions/Action_BuildCancel.tres" id="7_hckls"]
-[ext_resource type="Texture2D" uid="uid://bgwrgn4myd7tk" path="res://Assets/Art/Interface/DefaultImage.png" id="7_us1lx"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="11_wavn5"]
 [ext_resource type="Animation" uid="uid://8i3h0e1uvnfa" path="res://Assets/Towers/Animations/Anim-Upgrade.res" id="12_iwrcx"]
 [ext_resource type="Script" path="res://Assets/Core/Common/PausableAnimation.cs" id="13_ltuv6"]
@@ -147,7 +147,7 @@ BuildingActions = [ExtResource("7_hckls"), ExtResource("6_uahjx")]
 
 [node name="Image" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_mpcvh")
-texture = ExtResource("7_us1lx")
+texture = ExtResource("6_n4brd")
 
 [node name="Base" type="Sprite2D" parent="."]
 visible = false
@@ -158,7 +158,7 @@ self_modulate = Color(0, 0, 0, 0.392157)
 z_index = -1
 position = Vector2(0, 1.5)
 scale = Vector2(0.95, 0.95)
-texture = ExtResource("7_us1lx")
+texture = ExtResource("6_n4brd")
 
 [node name="BuildBar" type="ProgressBar" parent="."]
 visible = false

@@ -27,6 +27,15 @@ public partial class R_Cost : Resource
         Energy = energy;
     }
 
+    public R_Cost(R_Cost Other)
+    {
+        LifeForce = Other.LifeForce;
+        Substance = Other.Substance;
+        Flow = Other.Flow;
+        Breath = Other.Breath;
+        Energy = Other.Energy;
+    }
+
     public String GetString(ECurrencyType Type)
     {
         if (Type == ECurrencyType.Lifeforce) { return TextHelpers.Icon("Lifeforce Small") + LifeForce.ToString(); }

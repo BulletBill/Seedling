@@ -5,13 +5,9 @@ using Godot.Collections;
 public partial class CommandList : Node2D
 {
     public Array<CommandButton> ButtonArray = new();
-    public int SelectedTowerLevel { get; protected set; } = 1;
-
     public override void _EnterTree()
     {
         Cursor.Register(Cursor.SignalName.AnyStateActionsChanged, Callable.From((Array<Data_Action> a) => ApplyActionArray(a)));
-        PlayerEvent.Register(PlayerEvent.SignalName.TowerSelected, Callable.From((Tower t) => SelectTower(t)));
-        PlayerEvent.Register(PlayerEvent.SignalName.TowerDeselected, Callable.From(() => ClearTower()));
 
         foreach (Node n in GetChildren())
         if (n is CommandButton button)
@@ -60,17 +56,6 @@ public partial class CommandList : Node2D
 
             ButtonArray[TryButtonIndex].AssignActionParams(action);
             ButtonArray[TryButtonIndex].SetHotkey(TryButtonIndex);
-            ButtonArray[TryButtonIndex].CostMultiplier = action.ActionType == EActionType.SelfUpgrade ? SelectedTowerLevel : 1;
         }
-    }
-
-    public void SelectTower(Tower NewTower)
-    {
-        SelectedTowerLevel = NewTower.TowerLevel;
-    }
-
-    public void ClearTower()
-    {
-        SelectedTowerLevel = 1;
     }
 }

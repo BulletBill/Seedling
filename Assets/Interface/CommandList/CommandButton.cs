@@ -4,7 +4,6 @@ using System;
 public partial class CommandButton : Node2D, IHoverable
 {
 	[Export] public Data_Action ActionParams = new();
-	public float CostMultiplier = 1.0f;
 	bool CanAfford = false;
 	bool HasCost = false;
 	bool Hovered = false;
@@ -67,7 +66,7 @@ public partial class CommandButton : Node2D, IHoverable
 		CostReadout CostText = GetNodeOrNull<CostReadout>("Cost/Cost Text");
 		if (CostText != null && ActionParams.ActionType != EActionType.None)
 		{
-			CostText.SetCosts(ActionParams.ClickCost * CostMultiplier);
+			CostText.SetCosts(ActionParams.ClickCost);
 		}
 
 		RichTextLabel NameText = GetNodeOrNull<RichTextLabel>("Name");
@@ -84,7 +83,7 @@ public partial class CommandButton : Node2D, IHoverable
 		HasCost = false;
 		if (ActionParams == null || ActionParams.ActionType == EActionType.None) return;
 		HasCost = !ActionParams.ClickCost.IsZero();
-		bool CanAffordNow = Player.CanAfford(ActionParams.ClickCost * CostMultiplier);
+		bool CanAffordNow = Player.CanAfford(ActionParams.ClickCost);
 		if (CanAfford == CanAffordNow && !ForceUpdate) return;
 
 		AnimationPlayer Anim = GetNodeOrNull<AnimationPlayer>("AnimationPlayer");
@@ -216,9 +215,9 @@ public partial class CommandButton : Node2D, IHoverable
 			if (SelectedTower.Building)
 			{
 				Cursor.PopState();
+				PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerDeselected);
 			}
 			SelectedTower.SellTower();
-			PlayerEvent.Broadcast(PlayerEvent.SignalName.TowerDeselected);
 		}
 	}
 
@@ -226,7 +225,7 @@ public partial class CommandButton : Node2D, IHoverable
 	{
 		if (Cursor.GetSelectedObject() is Tower SelectedTower)
 		{
-			Player.Spend(ActionParams.ClickCost * CostMultiplier);
+			Player.Spend(ActionParams.ClickCost);
 			SelectedTower.StartUpgrade();
 		}
 	}

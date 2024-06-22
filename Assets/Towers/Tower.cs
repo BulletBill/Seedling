@@ -145,7 +145,7 @@ public partial class Tower : Node2D, IHoverable
 
 		if (Upgrading)
 		{
-			Refund = TowerData.UpgradeCostPerLevel * TowerLevel;
+			Refund = TowerData.UpgradeCostPerLevel * (TowerLevel + 1);
 		}
 		else if (Building)
 		{
@@ -278,7 +278,7 @@ public partial class Tower : Node2D, IHoverable
 			NewActionList.Add(NewAction);
 			if (NewAction.ActionType == EActionType.SelfUpgrade)
 			{
-				NewAction.SetCost(TowerData.UpgradeCostPerLevel);
+				NewAction.SetCost(GetUpgradeCost());
 			}
 		}
 		Actions = NewActionList;
@@ -325,16 +325,20 @@ public partial class Tower : Node2D, IHoverable
 			TimerBar.Visible = false;
 		}
 
-		TotalCost += TowerData.UpgradeCostPerLevel * TowerLevel;
+		TotalCost += GetUpgradeCost();
 		TowerLevel += 1;
 
-		if (TowerLevel >= TowerData.MaximumLevel)
+		for (int i = Actions.Count - 1; i >= 0; i--)
 		{
-			for (int i = Actions.Count - 1; i >= 0; i--)
+			if (Actions[i].ActionType == EActionType.SelfUpgrade)
 			{
-				if (Actions[i].ActionType == EActionType.SelfUpgrade)
+				if (TowerLevel >= TowerData.MaximumLevel)
 				{
 					Actions.RemoveAt(i);
+				}
+				else
+				{
+					Actions[i].SetCost(GetUpgradeCost());
 				}
 			}
 		}
@@ -349,5 +353,13 @@ public partial class Tower : Node2D, IHoverable
 
 		Upgrading = false;
 		EmitSignal(SignalName.TowerUpdated);
+	}
+
+	public R_Cost GetUpgradeCost()
+	{
+		R_Cost ret = new(TowerData.UpgradeCostPerLevel);
+		ret *= TowerLevel + 1;
+
+		return ret;
 	}
 }
