@@ -186,6 +186,19 @@ libraries = {
 }
 autoplay = "Unhover"
 
+[node name="LevelLabel" type="RichTextLabel" parent="."]
+visible = false
+z_index = 1
+offset_left = -14.0
+offset_top = 1.0
+offset_right = 15.0
+offset_bottom = 16.0
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "1"
+scroll_active = false
+
 [node name="HoverArea" parent="." node_paths=PackedStringArray("ParentAnimator") instance=ExtResource("14_p1we5")]
 ParentAnimator = NodePath("../HoverAnimator")
 

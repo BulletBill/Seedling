@@ -28,6 +28,7 @@ public partial class Tower : Node2D, IHoverable
 	public override void _EnterTree()
 	{
 		PlayerEvent.Register(PlayerEvent.SignalName.TowerDeselected, Callable.From(() => Deselected()));
+		MainMap.Register(MainMap.SignalName.GridVisibleChanged, Callable.From((bool v) => ShowDetailsChanged(v)));
 	}
 
 	// Called when the node enters the scene tree for the first time.
@@ -137,6 +138,15 @@ public partial class Tower : Node2D, IHoverable
 
 	void Deselected()
 	{
+	}
+
+	public void ShowDetailsChanged(bool ShowDetail)
+	{
+		RichTextLabel LevelLabel = GetNodeOrNull<RichTextLabel>("LevelLabel");
+		if (IsInstanceValid(LevelLabel))
+		{
+			LevelLabel.Visible = ShowDetail && TowerLevel > 1;
+		}
 	}
 
 	public void SellTower()
@@ -349,6 +359,12 @@ public partial class Tower : Node2D, IHoverable
 			{
 				component.TowerUpdated();
 			}
+		}
+
+		RichTextLabel LevelLabel = GetNodeOrNull<RichTextLabel>("LevelLabel");
+		if (IsInstanceValid(LevelLabel))
+		{
+			LevelLabel.Text = TowerLevel.ToString();
 		}
 
 		Upgrading = false;
