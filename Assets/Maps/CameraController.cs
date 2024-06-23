@@ -19,6 +19,8 @@ public partial class CameraController : Camera2D
 	bool MousePanning = false;
 	Vector2 MousePanStart;
 	Vector2 CameraPanStart;
+	
+	[Signal] public delegate void OnZoomChangedEventHandler(float NewZoom);
 
 	public CameraController()
 	{
@@ -130,6 +132,7 @@ public partial class CameraController : Camera2D
 		CurrentZoom = Mathf.Clamp(CurrentZoom + Delta, MinimumZoom, MaximumZoom);
 		Zoom = new Vector2(CurrentZoom, CurrentZoom);
 		UpdateSizes();
+		MainMap.Broadcast(MainMap.SignalName.OnZoomChanged, CurrentZoom);
 	}
 
 	// Static accessors

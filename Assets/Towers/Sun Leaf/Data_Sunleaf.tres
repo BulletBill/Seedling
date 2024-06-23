@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="Data_Tower" load_steps=7 format=3 uid="uid://pqk4g5tts6in"]
+[gd_resource type="Resource" script_class="Data_Tower" load_steps=8 format=3 uid="uid://pqk4g5tts6in"]
 
 [ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="1_qudfg"]
 [ext_resource type="Texture2D" uid="uid://blygruvq4wq11" path="res://Assets/Art/Towers/Sunleaf/Art-Sun Leaf.png" id="2_8ae21"]
 [ext_resource type="PackedScene" uid="uid://40v1u5lv650u" path="res://Assets/Towers/Sun Leaf/Sunleaf_Income.tscn" id="2_22fdd"]
 [ext_resource type="Script" path="res://Assets/Towers/Data_Tower.cs" id="4_3fgbh"]
+[ext_resource type="Texture2D" uid="uid://buxupkbpoki3h" path="res://Assets/Art/Towers/Sunleaf/Art-Build Sun Leaf.png" id="4_g3k0i"]
 
 [sub_resource type="Resource" id="Resource_4ujqw"]
 script = ExtResource("1_qudfg")
@@ -13,7 +14,7 @@ Flow = 0
 Breath = 0
 Energy = 0
 
-[sub_resource type="Resource" id="Resource_wlf8q"]
+[sub_resource type="Resource" id="Resource_2j1g5"]
 script = ExtResource("1_qudfg")
 LifeForce = 0
 Substance = 0
@@ -25,7 +26,7 @@ Energy = 0
 script = ExtResource("4_3fgbh")
 Ident = "SunLeaf"
 Cost = SubResource("Resource_4ujqw")
-UpgradeCostPerLevel = SubResource("Resource_wlf8q")
+UpgradeCostPerLevel = SubResource("Resource_2j1g5")
 BuildTime = 5.0
 MinDamage = 0
 MaxDamage = 0
@@ -33,12 +34,13 @@ Range = 0.0
 AreaOfEffect = 0.0
 FireDelay = 1.0
 MaximumLevel = 1
+SpriteSheet = ExtResource("4_g3k0i")
 NeedsSparkFlag = false
 NeedsGrassFlag = true
 NeedsHarvestFlag = true
 CanBuildOnGrass = true
 CanBuildOnDirt = false
-CanBuildOnWater = true
+CanBuildOnWater = false
 CanBuildOnChasm = false
 CanBuildOnStone = false
 ExtraBehaviors = [ExtResource("2_22fdd")]

@@ -5,10 +5,13 @@ using System.Linq;
 
 public partial class CostReadout : RichTextLabel
 {
+	float BaseScale = 1.0f;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		BaseScale = Scale.X;
 		base._Ready();
+		MainMap.Register(MainMap.SignalName.OnZoomChanged, Callable.From((float f) => AdjustZoom(f)));
 	}
 
 	public void SetCosts(R_Cost Cost)
@@ -81,5 +84,13 @@ public partial class CostReadout : RichTextLabel
 			Text += TextHelpers.Icon("Energy Small") + Income.Energy.ToString("F1");
 		}
 		Text += "[/center]";
+	}
+
+	void AdjustZoom(float NewZoom)
+	{
+		if (NewZoom == 0.0f) return;
+
+		float NewScale = BaseScale * (1 / NewZoom);
+		Scale = new Vector2(NewScale, NewScale);
 	}
 }

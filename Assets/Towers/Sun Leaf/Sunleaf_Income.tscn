@@ -7,12 +7,13 @@
 script = ExtResource("1_pyh8e")
 
 [node name="Income" type="RichTextLabel" parent="."]
-offset_left = -23.0
-offset_top = -11.0
-offset_right = 69.0
-offset_bottom = 33.0
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 48.0
+offset_bottom = 48.0
 scale = Vector2(0.5, 0.5)
 mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
 text = "[center]SampleText[/center]"
 scroll_active = false

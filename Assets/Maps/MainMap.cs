@@ -48,6 +48,7 @@ public partial class MainMap : TileMap
 	[Signal] public delegate void PlayerExpandedEventHandler(int Count);
 	[Signal] public delegate void AnyTileChangedEventHandler();
 	[Signal] public delegate void GridVisibleChangedEventHandler(bool Shown);
+	[Signal] public delegate void OnZoomChangedEventHandler(float NewZoom);
 
 	public MainMap()
 	{

@@ -18,6 +18,7 @@ public partial class C_HarvestArea : TowerComponent
     public override void _EnterTree()
     {
         MainMap.Register(MainMap.SignalName.GridVisibleChanged, Callable.From((bool b) => ShowText(b)));
+		
 		ShowText(MainMap.IsOutlineActive());
 		AddToGroup(HarvestGroup);
     }
@@ -84,9 +85,9 @@ public partial class C_HarvestArea : TowerComponent
 				{
 					HarvestedPositions.Add(HarvestTile);
 					if (HarvestedCurrency == ECurrencyType.Substance) { SubstanceIncome+=IncomePerTile; AddedSubstance+=IncomePerTile; }
-					else if (HarvestedCurrency == ECurrencyType.Flow) { FlowIncome++; AddedFlow++; }
-					else if (HarvestedCurrency == ECurrencyType.Breath) { BreathIncome++; AddedBreath++; }
-					else if (HarvestedCurrency == ECurrencyType.Energy) { EnergyIncome++; AddedEnergy++; }
+					else if (HarvestedCurrency == ECurrencyType.Flow) { FlowIncome+=IncomePerTile; AddedFlow+=IncomePerTile; }
+					else if (HarvestedCurrency == ECurrencyType.Breath) { BreathIncome+=IncomePerTile; AddedBreath+=IncomePerTile; }
+					else if (HarvestedCurrency == ECurrencyType.Energy) { EnergyIncome+=IncomePerTile; AddedEnergy+=IncomePerTile; }
 				}
 			}
 		}
