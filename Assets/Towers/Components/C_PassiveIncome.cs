@@ -39,4 +39,13 @@ public partial class C_PassiveIncome : TowerComponent
         PlayerEvent.BroadcastAddIncome(ECurrencyType.Breath, IncomeAmount.Breath);
         PlayerEvent.BroadcastAddIncome(ECurrencyType.Energy, IncomeAmount.Energy);
     }
+
+    public override void TowerRemoved()
+    {
+        PlayerEvent.BroadcastAddIncome(ECurrencyType.Lifeforce, IncomeAmount.LifeForce * -1);
+        PlayerEvent.BroadcastAddIncome(ECurrencyType.Substance, IncomeAmount.Substance * -1);
+        PlayerEvent.BroadcastAddIncome(ECurrencyType.Flow, IncomeAmount.Flow * -1);
+        PlayerEvent.BroadcastAddIncome(ECurrencyType.Breath, IncomeAmount.Breath * -1);
+        PlayerEvent.BroadcastAddIncome(ECurrencyType.Energy, IncomeAmount.Energy * -1);
+    }
 }

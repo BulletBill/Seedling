@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://40v1u5lv650u"]
+
+[ext_resource type="Script" path="res://Assets/Towers/Components/C_HarvestArea.cs" id="1_pyh8e"]
+[ext_resource type="Script" path="res://Assets/Interface/CostReadout.cs" id="2_sfgdl"]
+
+[node name="SunleafIncome" type="Node2D"]
+script = ExtResource("1_pyh8e")
+
+[node name="Income" type="RichTextLabel" parent="."]
+offset_left = -23.0
+offset_top = -11.0
+offset_right = 69.0
+offset_bottom = 33.0
+scale = Vector2(0.5, 0.5)
+mouse_filter = 2
+bbcode_enabled = true
+text = "[center]SampleText[/center]"
+scroll_active = false
+script = ExtResource("2_sfgdl")
+metadata/_edit_use_anchors_ = true

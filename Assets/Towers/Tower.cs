@@ -306,6 +306,7 @@ public partial class Tower : Node2D, IHoverable
 		{
 			if (child is TowerComponent component)
 			{
+				component.TowerReady();
 				component.TowerUpdated();
 			}
 		}

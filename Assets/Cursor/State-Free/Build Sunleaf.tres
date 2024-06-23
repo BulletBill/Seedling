@@ -1,7 +1,6 @@
-[gd_resource type="Resource" script_class="Data_Action" load_steps=6 format=3 uid="uid://cik314dnnfc82"]
+[gd_resource type="Resource" script_class="Data_Action" load_steps=5 format=3 uid="uid://cik314dnnfc82"]
 
 [ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="1_7xooe"]
-[ext_resource type="PackedScene" uid="uid://brrad01kekp4g" path="res://Assets/Towers/Sun Leaf/build-sunleaf.tscn" id="2_kmeiw"]
 [ext_resource type="Resource" uid="uid://pqk4g5tts6in" path="res://Assets/Towers/Sun Leaf/Data_Sunleaf.tres" id="3_jywss"]
 [ext_resource type="Script" path="res://Assets/Interface/CommandList/Data_Action.cs" id="4_ecg7r"]
 
@@ -18,7 +17,6 @@ script = ExtResource("4_ecg7r")
 ActionType = 1
 ClickCost = SubResource("Resource_fyd0l")
 TowerData = ExtResource("3_jywss")
-SceneToCreate = ExtResource("2_kmeiw")
 DesiredPosition = 0
 DisplayName = ""
 Description = ""

@@ -18,6 +18,7 @@ public partial class Data_Tower : Data_Hoverable
     [Export] public Texture2D SpriteSheet { get; protected set; } = null;
     [Export] public bool NeedsSparkFlag { get; protected set; } = false;
     [Export] public bool NeedsGrassFlag { get; protected set; } = true;
+    [Export] public bool NeedsHarvestFlag { get; protected set; } = false;
     [Export] public bool CanBuildOnGrass { get; protected set; } = true;
     [Export] public bool CanBuildOnDirt { get; protected set; } = false;
     [Export] public bool CanBuildOnWater { get; protected set; } = false;

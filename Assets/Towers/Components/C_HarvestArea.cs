@@ -5,15 +5,14 @@ using Godot.Collections;
 public partial class C_HarvestArea : TowerComponent
 {
 	[Export] public int Range = 1;
+	[Export] public float IncomePerTile = 0.2f;
 	Vector2 ParentPositon;
 	Vector2I MapPosition;
 	Array<Vector2I> HarvestedPositions = new();
-	float IncomeTimer = 1.0f;
-	int SubstanceIncome;
-	int FlowIncome;
-	int BreathIncome;
-	int EnergyIncome;
-	ProgressBar TimerBar;
+	float SubstanceIncome;
+	float FlowIncome;
+	float BreathIncome;
+	float EnergyIncome;
 	public static readonly String HarvestGroup = "HarvestArea";
 
     public override void _EnterTree()
@@ -29,12 +28,6 @@ public partial class C_HarvestArea : TowerComponent
 		{
 			IncomeNode.Visible = NewShow;
 		}
-
-		ProgressBar TimerBar = GetNodeOrNull<ProgressBar>("TimerBar");
-		if (TimerBar != null)
-		{
-			TimerBar.Visible = NewShow;
-		}
 	}
 
 	// Called when the node enters the scene tree for the first time.
@@ -46,51 +39,13 @@ public partial class C_HarvestArea : TowerComponent
 			MapPosition = GetParent<Tower>().MapPosition;
 		}
 
+		ShowText(MainMap.IsOutlineActive());
 		CalculateIncome();
-
-		TimerBar = GetNodeOrNull<ProgressBar>("TimerBar");
-		IncomeTimer = Player.IncomeTime;
 	}
 
 	public override void TowerRemoved()
 	{
 		RemoveSelf();
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-		return; // Disable this feature. Income is handled by the player object.
-
-		if (Player.IncomeTime <= 0.0f) return;
-
-		IncomeTimer -= (float)delta * Level.GetSpeed();
-		if (IncomeTimer <= 0.0f)
-		{
-			IncomeTimer = Player.IncomeTime;
-			if (SubstanceIncome > 0)
-			{
-				PlayerEvent.Broadcast(PlayerEvent.SignalName.AddSubstance, SubstanceIncome);
-			}
-			if (FlowIncome > 0)
-			{
-				PlayerEvent.Broadcast(PlayerEvent.SignalName.AddFlow, FlowIncome);
-			}
-			if (BreathIncome > 0)
-			{
-				PlayerEvent.Broadcast(PlayerEvent.SignalName.AddBreath, BreathIncome);
-			}
-			if (EnergyIncome > 0)
-			{
-				PlayerEvent.Broadcast(PlayerEvent.SignalName.AddEnergy, EnergyIncome);
-			}
-			EffectsManager.SpawnResourceCluster(ParentPositon, SubstanceIncome, FlowIncome, BreathIncome, EnergyIncome);
-		}
-
-		if (IsInstanceValid(TimerBar))
-		{
-			TimerBar.Value = TimerBar.MaxValue - ((IncomeTimer / Player.IncomeTime) * 100.0f);
-		}
 	}
 
 	void CalculateIncome()
@@ -110,7 +65,7 @@ public partial class C_HarvestArea : TowerComponent
 				if (HarvestedCurrency != ECurrencyType.None)
 				{
 					HarvestedPositions.Add(HarvestTile);
-					if (HarvestedCurrency == ECurrencyType.Substance) { SubstanceIncome++; AddedSubstance++; }
+					if (HarvestedCurrency == ECurrencyType.Substance) { SubstanceIncome+=IncomePerTile; AddedSubstance+=IncomePerTile; }
 					else if (HarvestedCurrency == ECurrencyType.Flow) { FlowIncome++; AddedFlow++; }
 					else if (HarvestedCurrency == ECurrencyType.Breath) { BreathIncome++; AddedBreath++; }
 					else if (HarvestedCurrency == ECurrencyType.Energy) { EnergyIncome++; AddedEnergy++; }
@@ -118,25 +73,25 @@ public partial class C_HarvestArea : TowerComponent
 			}
 		}
 
-		if (AddedSubstance > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Substance, AddedSubstance / Player.IncomeTime); }
-		if (AddedFlow > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Flow, AddedFlow / Player.IncomeTime); }
-		if (AddedBreath > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Breath, AddedBreath / Player.IncomeTime); }
-		if (AddedEnergy > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Energy, AddedEnergy / Player.IncomeTime); }
+		if (AddedSubstance > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Substance, AddedSubstance); }
+		if (AddedFlow > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Flow, AddedFlow); }
+		if (AddedBreath > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Breath, AddedBreath); }
+		if (AddedEnergy > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Energy, AddedEnergy); }
 
 		CostReadout IncomeText = GetNodeOrNull<CostReadout>("Income");
 		if (IsInstanceValid(IncomeText))
 		{
-			R_Cost IncomeStruct = new(0, SubstanceIncome, FlowIncome, BreathIncome, EnergyIncome);
-			IncomeText.SetCosts(IncomeStruct);
+			R_Income IncomeStruct = new(0, SubstanceIncome, FlowIncome, BreathIncome, EnergyIncome);
+			IncomeText.SetIncome(IncomeStruct);
 		}
 	}
 
 	void RemoveSelf()
 	{
-		if (SubstanceIncome > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Substance, -(SubstanceIncome / Player.IncomeTime)); }
-		if (FlowIncome > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Flow, -(FlowIncome / Player.IncomeTime)); }
-		if (BreathIncome > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Breath, -(BreathIncome / Player.IncomeTime)); }
-		if (EnergyIncome > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Energy, -(EnergyIncome / Player.IncomeTime)); }
+		if (SubstanceIncome > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Substance, SubstanceIncome * -1); }
+		if (FlowIncome > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Flow, FlowIncome * -1); }
+		if (BreathIncome > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Breath, BreathIncome * -1); }
+		if (EnergyIncome > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Energy, EnergyIncome * -1); }
 
 		foreach (Vector2I clearTile in HarvestedPositions)
 		{

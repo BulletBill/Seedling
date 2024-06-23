@@ -54,6 +54,7 @@ public partial class S_PlaceTower : Cursor_State
 
         bool CanAfford = Player.CanAfford(TowerData.Cost);
         bool CanPlace = CanPlaceTile(NewMapPosition);
+        bool HarvestValid = !TowerData.NeedsHarvestFlag || HarvestTileInRange(CurrentPosition);
         bool Occupied = false;
         foreach (Node TowerNode in GetTree().GetNodesInGroup(Tower.GroupName))
         {
@@ -66,7 +67,7 @@ public partial class S_PlaceTower : Cursor_State
             }
         }
 
-        PlacementIsValid = CanAfford && CanPlace && !Occupied;
+        PlacementIsValid = CanAfford && CanPlace && HarvestValid && !Occupied;
 
         if (ParentCursor != null)
         {
@@ -112,6 +113,25 @@ public partial class S_PlaceTower : Cursor_State
         result &= MatchesTile;
 
         return result;
+    }
+
+    bool HarvestTileInRange(Vector2I Position)
+    {
+		for (int x = -1; x <= 1; x++)
+		{
+			for (int y = -1; y <= 1; y++)
+			{
+				Vector2I HarvestTile = Position + new Vector2I(x, y);
+
+				ECurrencyType HarvestedCurrency = MainMap.HarvestTile(HarvestTile);
+				if (HarvestedCurrency != ECurrencyType.None)
+				{
+					return true;
+				}
+			}
+		}
+
+        return false;
     }
 
     // Cursor state interface

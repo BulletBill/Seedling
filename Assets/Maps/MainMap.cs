@@ -218,7 +218,7 @@ public partial class MainMap : TileMap
 		int Type = GetTileType(GridPosition);
 		if (Type == MainMap.Terrain_Void) return ECurrencyType.None;
 
-		if (Type == MainMap.Terrain_Dirt || Type == MainMap.Terrain_Stone || Type == MainMap.Terrain_Grass)
+		if (Type == MainMap.Terrain_Stone /*|| Type == MainMap.Terrain_Dirt || Type == MainMap.Terrain_Grass*/)
 		{
 			return ECurrencyType.Substance;
 		}
@@ -226,7 +226,7 @@ public partial class MainMap : TileMap
 		{
 			return ECurrencyType.Flow;
 		}
-		if (Type == MainMap.Terrain_Chasm || Type == MainMap.Terrain_Sand)
+		if (Type == MainMap.Terrain_Chasm /*|| Type == MainMap.Terrain_Sand*/)
 		{
 			return ECurrencyType.Breath;
 		}
