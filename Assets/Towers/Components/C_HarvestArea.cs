@@ -19,6 +19,7 @@ public partial class C_HarvestArea : TowerComponent
     {
         MainMap.Register(MainMap.SignalName.GridVisibleChanged, Callable.From((bool b) => ShowText(b)));
 		ShowText(MainMap.IsOutlineActive());
+		AddToGroup(HarvestGroup);
     }
 
 	void ShowText(bool NewShow)
@@ -45,7 +46,24 @@ public partial class C_HarvestArea : TowerComponent
 
 	public override void TowerRemoved()
 	{
-		RemoveSelf();
+		if (SubstanceIncome > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Substance, SubstanceIncome * -1); }
+		if (FlowIncome > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Flow, FlowIncome * -1); }
+		if (BreathIncome > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Breath, BreathIncome * -1); }
+		if (EnergyIncome > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Energy, EnergyIncome * -1); }
+
+		foreach (Vector2I clearTile in HarvestedPositions)
+		{
+			MainMap.UnHarvestTile(clearTile);
+		}
+
+		foreach(Node n in GetTree().GetNodesInGroup(C_HarvestArea.HarvestGroup))
+		{
+			if (n == this) continue;
+			if (n is C_HarvestArea hArea)
+			{
+				hArea.CalculateIncome();
+			}
+		}
 	}
 
 	void CalculateIncome()
@@ -83,28 +101,6 @@ public partial class C_HarvestArea : TowerComponent
 		{
 			R_Income IncomeStruct = new(0, SubstanceIncome, FlowIncome, BreathIncome, EnergyIncome);
 			IncomeText.SetIncome(IncomeStruct);
-		}
-	}
-
-	void RemoveSelf()
-	{
-		if (SubstanceIncome > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Substance, SubstanceIncome * -1); }
-		if (FlowIncome > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Flow, FlowIncome * -1); }
-		if (BreathIncome > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Breath, BreathIncome * -1); }
-		if (EnergyIncome > 0) { PlayerEvent.BroadcastAddIncome(ECurrencyType.Energy, EnergyIncome * -1); }
-
-		foreach (Vector2I clearTile in HarvestedPositions)
-		{
-			MainMap.UnHarvestTile(clearTile);
-		}
-
-		foreach(Node n in GetTree().GetNodesInGroup(C_HarvestArea.HarvestGroup))
-		{
-			if (n == this) continue;
-			if (n is C_HarvestArea hArea)
-			{
-				hArea.CalculateIncome();
-			}
 		}
 	}
 }
