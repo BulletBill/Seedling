@@ -19,6 +19,7 @@ config/icon="res://Assets/Art/Towers/Heart Bloom/Art-HeartBloom.png"
 
 EffectsManager="*res://Assets/Core/Helpers/EffectsManager.cs"
 MathHelper="*res://Assets/Core/Helpers/MathHelper.cs"
+BetterTerrain="*res://addons/better-terrain/BetterTerrain.gd"
 
 [display]
 
@@ -30,6 +31,10 @@ mouse_cursor/custom_image="res://Assets/Art/Cursors/Basic.png"
 [dotnet]
 
 project/assembly_name="Project Seedling"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/better-terrain/plugin.cfg")
 
 [gui]
 
