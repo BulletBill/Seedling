@@ -38,6 +38,7 @@ MaximumLevel = 5
 SpriteSheet = ExtResource("4_x33ar")
 NeedsSparkFlag = false
 NeedsGrassFlag = true
+NeedsHarvestFlag = false
 CanBuildOnGrass = true
 CanBuildOnDirt = false
 CanBuildOnWater = false

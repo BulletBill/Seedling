@@ -1,0 +1,52 @@
+[gd_resource type="Resource" script_class="Data_Tower" load_steps=8 format=3 uid="uid://bmd4ngk8oi5f1"]
+
+[ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="1_i4akj"]
+[ext_resource type="PackedScene" uid="uid://cg1p30p01rs68" path="res://Assets/Towers/Sapling/GroveTree_Growth.tscn" id="2_4i1v6"]
+[ext_resource type="Texture2D" uid="uid://bv6bt3gtpjquy" path="res://Assets/Art/Towers/Sapling/Art-Sapling-3.png" id="3_tw446"]
+[ext_resource type="Texture2D" uid="uid://u88sw73qd72t" path="res://Assets/Art/Towers/Sapling/Art-Sapling-1.png" id="3_vjecw"]
+[ext_resource type="Script" path="res://Assets/Towers/Data_Tower.cs" id="4_8u5jr"]
+
+[sub_resource type="Resource" id="Resource_4ujqw"]
+script = ExtResource("1_i4akj")
+LifeForce = 0
+Substance = 60
+Flow = 100
+Breath = 0
+Energy = 0
+
+[sub_resource type="Resource" id="Resource_tq55u"]
+script = ExtResource("1_i4akj")
+LifeForce = 0
+Substance = 0
+Flow = 0
+Breath = 0
+Energy = 0
+
+[resource]
+script = ExtResource("4_8u5jr")
+Ident = "GroveTree"
+Cost = SubResource("Resource_4ujqw")
+UpgradeCostPerLevel = SubResource("Resource_tq55u")
+BuildTime = 14.0
+MinDamage = 0
+MaxDamage = 0
+Range = 0.0
+AreaOfEffect = 3.0
+FireDelay = 1.0
+MaximumLevel = 1
+SpriteSheet = ExtResource("3_vjecw")
+NeedsSparkFlag = false
+NeedsGrassFlag = true
+NeedsHarvestFlag = false
+CanBuildOnGrass = true
+CanBuildOnDirt = false
+CanBuildOnWater = false
+CanBuildOnChasm = false
+CanBuildOnStone = false
+ExtraBehaviors = [ExtResource("2_4i1v6")]
+ExtraActions = []
+DisplayName = "Grove Tree"
+Icon = ExtResource("3_tw446")
+Description = "Expands buildable area by growing grass.
+Grass Radius:%aoe
+Gain +1 [img]res://Assets/Art/Icons/Lifeforce Small.png[/img] for each grass tile created."

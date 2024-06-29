@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Data_Tower" load_steps=5 format=3 uid="uid://cnxh15qnwr5eo"]
+[gd_resource type="Resource" script_class="Data_Tower" load_steps=6 format=3 uid="uid://cnxh15qnwr5eo"]
 
 [ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="1_ogu2s"]
 [ext_resource type="Texture2D" uid="uid://cjl4aixbpkx80" path="res://Assets/Art/Towers/Heart Bloom/Art-HeartBloom.png" id="2_m2rak"]
@@ -12,23 +12,36 @@ Flow = 200
 Breath = 0
 Energy = 100
 
+[sub_resource type="Resource" id="Resource_4q60c"]
+script = ExtResource("1_ogu2s")
+LifeForce = 0
+Substance = 0
+Flow = 0
+Breath = 0
+Energy = 0
+
 [resource]
 script = ExtResource("3_l8lnr")
 Ident = "HeartBloom"
 Cost = SubResource("Resource_8bfvv")
+UpgradeCostPerLevel = SubResource("Resource_4q60c")
 BuildTime = 60.0
 MinDamage = 0
 MaxDamage = 0
 Range = 0.0
 AreaOfEffect = 0.0
 FireDelay = 1.0
+MaximumLevel = 1
 NeedsSparkFlag = true
 NeedsGrassFlag = true
+NeedsHarvestFlag = false
 CanBuildOnGrass = true
 CanBuildOnDirt = true
 CanBuildOnWater = true
 CanBuildOnChasm = true
 CanBuildOnStone = true
+ExtraBehaviors = []
+ExtraActions = []
 DisplayName = "Bloom Heart"
 Icon = ExtResource("2_m2rak")
 Description = "The center of life. Defend the heart or life will be lost.

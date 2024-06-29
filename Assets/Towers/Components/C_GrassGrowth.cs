@@ -93,18 +93,31 @@ public partial class C_GrassGrowth : TowerComponent
         {
             if (TilesToGrass[i].Distance <= DistanceToUse)
             {
-                TilesToGrow.Add(TilesToGrass[i]);
+                if (MainMap.TileHasFlag(TilesToGrass[i].TilePosition, MainMap.Custom_Grass))
+                {
+                    TilesToGrass.RemoveAt(i);
+                }
+                else
+                {
+                    TilesToGrow.Add(TilesToGrass[i]);
+                }
             }
         }
 
         if (TilesToGrow.Count > 0)
         {
             // Modify Tilemap
+            int ChosenTile = MathHelper.GetIntInRange(0, TilesToGrow.Count - 1);
+            MainMap.AddGrassTile(TilesToGrow[ChosenTile].TilePosition);
+            TilesToGrass.Remove(TilesToGrow[ChosenTile]);
+            
+            /* Add all close tiles
             foreach (TileAtDistance tile in TilesToGrow)
             {
                 MainMap.AddGrassTile(tile.TilePosition);
                 TilesToGrass.Remove(tile);
             }
+            */
         }
     }
 
