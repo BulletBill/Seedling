@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dd4xa43pg2j0l"]
+
+[ext_resource type="Shader" path="res://Assets/Art/Shaders/TileColorReplace.gdshader" id="1_5dany"]
+
+[resource]
+shader = ExtResource("1_5dany")
+shader_parameter/dirt_color = Color(0.992157, 0.976471, 0.964706, 1)
+shader_parameter/grass_color = Color(0.968627, 0.705882, 0.745098, 1)
+shader_parameter/water_color = Color(0.670588, 0.792157, 0.964706, 1)
+shader_parameter/sand_color = Color(0.996078, 0.921569, 0.898039, 1)
