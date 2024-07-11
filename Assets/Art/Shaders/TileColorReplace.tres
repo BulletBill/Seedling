@@ -4,7 +4,7 @@
 
 [resource]
 shader = ExtResource("1_5dany")
-shader_parameter/dirt_color = Color(0.984314, 0.94902, 0.92549, 1)
-shader_parameter/grass_color = Color(0.972549, 0.784314, 0.862745, 1)
-shader_parameter/water_color = Color(0.670588, 0.792157, 0.964706, 1)
-shader_parameter/sand_color = Color(0.996078, 0.913725, 0.890196, 1)
+shader_parameter/dirt_color = Color(0.89, 0.74, 0.44, 1)
+shader_parameter/grass_color = Color(0.47, 0.74, 0.32, 1)
+shader_parameter/water_color = Color(0.3, 0.65, 0.71, 1)
+shader_parameter/sand_color = Color(1, 1, 0.71, 1)
