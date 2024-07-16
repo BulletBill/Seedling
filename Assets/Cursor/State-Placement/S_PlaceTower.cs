@@ -108,8 +108,7 @@ public partial class S_PlaceTower : Cursor_State
         bool MatchesTile = ((TowerData.CanBuildOnGrass && TileType == MainMap.Terrain_Grass) ||
                             (TowerData.CanBuildOnDirt && TileType == MainMap.Terrain_Dirt) ||
                             (TowerData.CanBuildOnStone && TileType == MainMap.Terrain_Stone) ||
-                            (TowerData.CanBuildOnWater && TileType == MainMap.Terrain_Water) ||
-                            (TowerData.CanBuildOnChasm && TileType == MainMap.Terrain_Chasm));
+                            (TowerData.CanBuildOnWater && (TileType == MainMap.Terrain_WetDirt || TileType == MainMap.Terrain_WetGrass)));
         result &= MatchesTile;
 
         return result;

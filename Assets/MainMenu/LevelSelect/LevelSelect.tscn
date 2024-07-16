@@ -82,7 +82,7 @@ events = [SubResource("InputEventKey_pq5x4")]
 
 [node name="LevelSelect" type="Node2D"]
 script = ExtResource("1_uhvr7")
-Levels = ["TitleScreen", "TestLevel", "E03"]
+Levels = ["TitleScreen", "TestLevel", "E1"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 self_modulate = Color(0, 0.184314, 0, 1)

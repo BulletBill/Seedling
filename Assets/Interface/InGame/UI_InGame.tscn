@@ -36,72 +36,72 @@ position = Vector2(-361, 107)
 OpenPosition = Vector2(960, 540)
 
 [node name="MiniMap" parent="." instance=ExtResource("2_drqwd")]
-position = Vector2(-1, 888)
+position = Vector2(0, 896)
 
 [node name="CurrencyDisplay" parent="." instance=ExtResource("2_ty7fb")]
 z_index = 10
-position = Vector2(191, 888)
+position = Vector2(184, 896)
 
 [node name="Command Buttons" type="Node2D" parent="."]
-position = Vector2(410, 1003)
+position = Vector2(412, 1003)
 script = ExtResource("3_ho7kd")
 
 [node name="Button_01" parent="Command Buttons" instance=ExtResource("3_0wfvo")]
-position = Vector2(-22, -83)
+position = Vector2(-28, -74)
 
 [node name="Button_02" parent="Command Buttons" instance=ExtResource("3_0wfvo")]
-position = Vector2(42, -83)
+position = Vector2(33, -74)
 
 [node name="Button_03" parent="Command Buttons" instance=ExtResource("3_0wfvo")]
-position = Vector2(106, -83)
+position = Vector2(94, -74)
 
 [node name="Button_04" parent="Command Buttons" instance=ExtResource("3_0wfvo")]
-position = Vector2(170, -83)
+position = Vector2(155, -74)
 
 [node name="Button_05" parent="Command Buttons" instance=ExtResource("3_0wfvo")]
-position = Vector2(234, -83)
+position = Vector2(216, -74)
 
 [node name="Button_06" parent="Command Buttons" instance=ExtResource("3_0wfvo")]
-position = Vector2(-22, -19)
+position = Vector2(-28, -13)
 
 [node name="Button_07" parent="Command Buttons" instance=ExtResource("3_0wfvo")]
-position = Vector2(42, -19)
+position = Vector2(33, -13)
 
 [node name="Button_08" parent="Command Buttons" instance=ExtResource("3_0wfvo")]
-position = Vector2(106, -19)
+position = Vector2(94, -13)
 
 [node name="Button_09" parent="Command Buttons" instance=ExtResource("3_0wfvo")]
-position = Vector2(170, -19)
+position = Vector2(155, -13)
 
 [node name="Button_10" parent="Command Buttons" instance=ExtResource("3_0wfvo")]
-position = Vector2(234, -19)
+position = Vector2(216, -13)
 
 [node name="Button_11" parent="Command Buttons" instance=ExtResource("3_0wfvo")]
-position = Vector2(-22, 45)
+position = Vector2(-28, 48)
 
 [node name="Button_12" parent="Command Buttons" instance=ExtResource("3_0wfvo")]
-position = Vector2(42, 45)
+position = Vector2(33, 48)
 
 [node name="Button_13" parent="Command Buttons" instance=ExtResource("3_0wfvo")]
-position = Vector2(106, 45)
+position = Vector2(94, 48)
 
 [node name="Button_14" parent="Command Buttons" instance=ExtResource("3_0wfvo")]
-position = Vector2(170, 45)
+position = Vector2(155, 48)
 
 [node name="Button_15" parent="Command Buttons" instance=ExtResource("3_0wfvo")]
-position = Vector2(234, 45)
+position = Vector2(216, 48)
 
 [node name="DetailPanel" parent="." instance=ExtResource("4_2ycw0")]
-position = Vector2(676, 888)
+position = Vector2(657, 896)
 
 [node name="ObjectiveDisplay" parent="." instance=ExtResource("3_xfso7")]
-position = Vector2(1113, 888)
+position = Vector2(1094, 896)
 
 [node name="Wave Display - Timed" parent="." instance=ExtResource("7_ryy0r")]
-position = Vector2(1395, 888)
+position = Vector2(1376, 896)
 
 [node name="DebugPanel" type="Node2D" parent="."]
-position = Vector2(1377, 819)
+position = Vector2(1792, 905)
 
 [node name="NinePatchRect" type="NinePatchRect" parent="DebugPanel"]
 self_modulate = Color(1, 1, 1, 0.490196)
@@ -139,9 +139,8 @@ script = ExtResource("17_wkykc")
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 self_modulate = Color(0.494118, 0.494118, 0.494118, 1)
 z_index = -1
-offset_left = -1.0
-offset_top = 888.0
-offset_right = 1921.0
+offset_top = 896.0
+offset_right = 1920.0
 offset_bottom = 1080.0
 texture = ExtResource("18_qastj")
 patch_margin_left = 6

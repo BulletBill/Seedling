@@ -1,6 +1,7 @@
-[gd_scene load_steps=27 format=3 uid="uid://bltnii6x6epdm"]
+[gd_scene load_steps=28 format=3 uid="uid://bltnii6x6epdm"]
 
 [ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_qvlx0"]
+[ext_resource type="Texture2D" uid="uid://dwmt51sld7id0" path="res://Assets/Art/Towers/Heart Bloom/Sprite Sheet-Bloom Heart.png" id="2_j1mkb"]
 [ext_resource type="Texture2D" uid="uid://cjl4aixbpkx80" path="res://Assets/Art/Towers/Heart Bloom/Art-HeartBloom.png" id="2_xhf6y"]
 [ext_resource type="Script" path="res://Assets/Towers/Tower.cs" id="3_r2iep"]
 [ext_resource type="Resource" uid="uid://cnxh15qnwr5eo" path="res://Assets/Towers/HeartBloom/Data_HeartBloom.tres" id="4_0juh4"]
@@ -154,10 +155,22 @@ _data = {
 [node name="HeartBloom" type="Sprite2D" groups=["Tower"]]
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_7wjg6")
-texture = ExtResource("2_xhf6y")
+texture = ExtResource("2_j1mkb")
+hframes = 6
+vframes = 4
+frame = 6
 script = ExtResource("3_r2iep")
 IsDefendTarget = true
 TowerData = ExtResource("4_0juh4")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0, 0, 0.431373)
+z_index = -1
+position = Vector2(2, 2)
+texture = ExtResource("2_j1mkb")
+hframes = 6
+vframes = 4
+frame = 6
 
 [node name="AlignToMap" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -165,7 +178,7 @@ script = ExtResource("5_ev5tl")
 
 [node name="GrassGrowth" type="Node2D" parent="."]
 script = ExtResource("6_08vtw")
-Radius = 108.0
+Radius = 220.0
 GrowthInterval = 0.1
 AttractEnemies = false
 
@@ -174,11 +187,10 @@ script = ExtResource("7_4gkqa")
 IncomeAmount = SubResource("Resource_m12o5")
 
 [node name="IncomeDisplay" type="RichTextLabel" parent="Income"]
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 48.0
-offset_bottom = 48.0
-scale = Vector2(0.5, 0.5)
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true

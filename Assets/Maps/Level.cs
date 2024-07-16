@@ -5,6 +5,7 @@ using System.ComponentModel;
 
 public partial class Level : Node
 {
+    [Export] public String LevelName = "Unnamed Level";
     [Export] public String ExitLevel = "LevelSelect";
 
     float PausedSpeed = 0.0f;

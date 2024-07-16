@@ -51,7 +51,7 @@ bg_color = Color(0, 0.376471, 0, 1)
 
 [node name="Background" type="NinePatchRect" parent="."]
 offset_right = 263.0
-offset_bottom = 192.0
+offset_bottom = 184.0
 texture = ExtResource("1_v3juf")
 patch_margin_left = 6
 patch_margin_top = 6
@@ -153,21 +153,3 @@ position = Vector2(194, 125)
 
 [node name="EnemyDisplay_12" parent="Incoming Enemy Display" instance=ExtResource("5_ftwsq")]
 position = Vector2(236, 125)
-
-[node name="EnemyDisplay_13" parent="Incoming Enemy Display" instance=ExtResource("5_ftwsq")]
-position = Vector2(26, 167)
-
-[node name="EnemyDisplay_14" parent="Incoming Enemy Display" instance=ExtResource("5_ftwsq")]
-position = Vector2(68, 167)
-
-[node name="EnemyDisplay_15" parent="Incoming Enemy Display" instance=ExtResource("5_ftwsq")]
-position = Vector2(110, 167)
-
-[node name="EnemyDisplay_16" parent="Incoming Enemy Display" instance=ExtResource("5_ftwsq")]
-position = Vector2(152, 167)
-
-[node name="EnemyDisplay_17" parent="Incoming Enemy Display" instance=ExtResource("5_ftwsq")]
-position = Vector2(194, 167)
-
-[node name="EnemyDisplay_18" parent="Incoming Enemy Display" instance=ExtResource("5_ftwsq")]
-position = Vector2(236, 167)

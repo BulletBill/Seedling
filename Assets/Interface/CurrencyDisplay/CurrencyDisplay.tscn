@@ -12,8 +12,8 @@
 [node name="CurrencyDisplay" type="Node2D"]
 
 [node name="StopMouseBackground" type="NinePatchRect" parent="."]
-offset_right = 165.0
-offset_bottom = 192.0
+offset_right = 167.0
+offset_bottom = 184.0
 mouse_filter = 0
 texture = ExtResource("1_7mujh")
 patch_margin_left = 6

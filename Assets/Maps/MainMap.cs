@@ -5,7 +5,6 @@ using Godot.Collections;
 
 public partial class MainMap : TileMap
 {
-	[Export] public Color GridColor;
 	[Export] public ECurrencyType ResourcePerGrass = ECurrencyType.Lifeforce;
 	[Export] public int AmountPerGrass = 1;
 	[Export] public bool AddToMaximum = true;
@@ -24,25 +23,31 @@ public partial class MainMap : TileMap
 	public static readonly int Terrain_Dirt = 0;
 	public static readonly int Terrain_Grass = 1;
 	public static readonly int Terrain_Stone = 2;
-	public static readonly int Terrain_Water = 3;
-	public static readonly int Terrain_Chasm = 4;
-	public static readonly int Terrain_WetDirt = 5;
-	public static readonly int Terrain_WetGrass = 6;
-	public static readonly int Terrain_WetRocks = 7;
-	public static readonly int Terrain_Sand = 8;
+	public static readonly int Terrain_WaterEdge = 3;
+	public static readonly int Terrain_WetDirt = 4;
+	public static readonly int Terrain_WetGrass = 5;
+	public static readonly int Terrain_WetRocks = 6;
+	public static readonly int Terrain_DirtEdge = 7;
+	public static readonly int Terrain_Path = 8;
+	public static readonly int Terrain_Sand = 9;
 
 	public static readonly int TerrainSet_Default = 0;
 
-	public static readonly int Layer_Path = 0;
-	public static readonly int Layer_Ground = 1;
-	public static readonly int Layer_Below = 2;
-	public static readonly int Layer_Outline = 3;
-	public static readonly int Layer_Water = 4;
+	public static readonly int Layer_BelowGround = 0;
+	public static readonly int Layer_WaterShader = 1;
+	public static readonly int Layer_Ground = 2;
+	public static readonly int Layer_Path = 3;
+	public static readonly int Layer_AboveGround = 4;
+	public static readonly int Layer_Grid = 5;
 
 	public static readonly String Custom_Spark = "Spark";
 	public static readonly String Custom_Grass = "Grass";
 	public static readonly String Custom_Water = "Water";
 	public static readonly String Custom_CanGrowGrass = "CanGrowGrass";
+	public static readonly String Custom_ProduceEarth = "ProduceEarth";
+	public static readonly String Custom_ProduceWater = "ProduceWater";
+	public static readonly String Custom_ProduceAir = "ProduceAir";
+	public static readonly String Custom_ProduceFire = "ProduceFire";
 
 	// Event bus
 	[Signal] public delegate void PlayerExpandedEventHandler(int Count);
@@ -63,7 +68,8 @@ public partial class MainMap : TileMap
 	// Called when the node enters the scene tree for the first time.
 	public override void _EnterTree()
 	{
-		SetLayerModulate(Layer_Outline, new Color(0.0f, 0.0f, 0.0f, 0.0f));
+		SetLayerEnabled(Layer_Grid, false);
+		SetLayerModulate(Layer_Path, new Color(0.0f, 0.0f, 0.0f, 0.0f));
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -82,14 +88,14 @@ public partial class MainMap : TileMap
 		if (OutlineActive > 0 && !OutlineShown)
 		{
 			OutlineShown = true;
-			SetLayerModulate(Layer_Outline, GridColor);
+			SetLayerEnabled(Layer_Grid, true);
 			EmitSignal(SignalName.GridVisibleChanged, true);
 		}
 
 		if (OutlineActive <= 0 && OutlineShown)
 		{
 			OutlineShown = false;
-			SetLayerModulate(Layer_Outline, new Color(0.0f, 0.0f, 0.0f, 0.0f));
+			SetLayerEnabled(Layer_Grid, false);
 			EmitSignal(SignalName.GridVisibleChanged, false);
 		}
 	}
@@ -118,9 +124,12 @@ public partial class MainMap : TileMap
 		{
 			SetCellsTerrainConnect(MainMap.Layer_Ground, TileToGrow, MainMap.TerrainSet_Default, MainMap.Terrain_Grass);
 		}
-		if ((bool)MainMap.Singleton.GetCellTileData(Layer_Below, TileToGrow[0]).GetCustomData(Custom_CanGrowGrass))
+		if (Singleton.GetCellTileData(Layer_BelowGround, TileToGrow[0]) != null)
 		{
-			SetCellsTerrainConnect(MainMap.Layer_Below, TileToGrow, MainMap.TerrainSet_Default, MainMap.Terrain_WetGrass);
+			if ((bool)MainMap.Singleton.GetCellTileData(Layer_BelowGround, TileToGrow[0]).GetCustomData(Custom_CanGrowGrass))
+			{
+				SetCellsTerrainConnect(MainMap.Layer_BelowGround, TileToGrow, MainMap.TerrainSet_Default, MainMap.Terrain_WetGrass);
+			}
 		}
         Broadcast(SignalName.AnyTileChanged);
 		AddGrassResource(1 * AmountPerGrass);
@@ -144,9 +153,9 @@ public partial class MainMap : TileMap
 			{
 				SetCellsTerrainConnect(MainMap.Layer_Ground, TileToRemove, MainMap.TerrainSet_Default, MainMap.Terrain_Dirt);
 			}
-			if ((bool)MainMap.Singleton.GetCellTileData(Layer_Below, TileToRemove[0]).GetCustomData(Custom_CanGrowGrass))
+			if ((bool)MainMap.Singleton.GetCellTileData(Layer_BelowGround, TileToRemove[0]).GetCustomData(Custom_CanGrowGrass))
 			{
-				SetCellsTerrainConnect(MainMap.Layer_Below, TileToRemove, MainMap.TerrainSet_Default, MainMap.Terrain_WetDirt);
+				SetCellsTerrainConnect(MainMap.Layer_BelowGround, TileToRemove, MainMap.TerrainSet_Default, MainMap.Terrain_WetDirt);
 			}
 			Broadcast(SignalName.AnyTileChanged);
 			AddGrassResource(-1 * AmountPerGrass);
@@ -177,15 +186,21 @@ public partial class MainMap : TileMap
 	{
 		if (MainMap.Singleton == null) return MainMap.Terrain_Void;
 		
-		if (MainMap.Singleton.GetCellTileData(Layer_Path, GridPosition) != null)
+		if (MainMap.Singleton.GetCellTileData(Layer_AboveGround, GridPosition) != null)
 		{
-			int Terrain = MainMap.Singleton.GetCellTileData(Layer_Path, GridPosition).Terrain;
+			int Terrain = MainMap.Singleton.GetCellTileData(Layer_AboveGround, GridPosition).Terrain;
 			if (Terrain >= 0) { return Terrain; }
 		}
 
 		if (MainMap.Singleton.GetCellTileData(Layer_Ground, GridPosition) != null)
 		{
 			int Terrain = MainMap.Singleton.GetCellTileData(Layer_Ground, GridPosition).Terrain;
+			if (Terrain >= 0 && Terrain != Terrain_DirtEdge && Terrain != Terrain_WaterEdge) { return Terrain; }
+		}
+
+		if (MainMap.Singleton.GetCellTileData(Layer_BelowGround, GridPosition) != null)
+		{
+			int Terrain = MainMap.Singleton.GetCellTileData(Layer_BelowGround, GridPosition).Terrain;
 			if (Terrain >= 0) { return Terrain; }
 		}
 
@@ -196,20 +211,20 @@ public partial class MainMap : TileMap
 	{
 		if (MainMap.Singleton == null) return false;
 
-		if (MainMap.Singleton.GetCellTileData(Layer_Below, GridPosition) != null)
+		if (MainMap.Singleton.GetCellTileData(Layer_AboveGround, GridPosition) != null)
 		{
-			TileData BelowData = MainMap.Singleton.GetCellTileData(Layer_Below, GridPosition);
+			TileData ObjectData = MainMap.Singleton.GetCellTileData(Layer_AboveGround, GridPosition);
+			if ((bool)ObjectData.GetCustomData(CustomFlag)) return true;
+		}
+		if (MainMap.Singleton.GetCellTileData(Layer_BelowGround, GridPosition) != null)
+		{
+			TileData BelowData = MainMap.Singleton.GetCellTileData(Layer_BelowGround, GridPosition);
 			if ((bool)BelowData.GetCustomData(CustomFlag)) return true;
 		}
 		if (MainMap.Singleton.GetCellTileData(Layer_Ground, GridPosition) != null)
 		{
 			TileData GroundData = MainMap.Singleton.GetCellTileData(Layer_Ground, GridPosition);
 			if ((bool)GroundData.GetCustomData(CustomFlag)) return true;
-		}
-		if (MainMap.Singleton.GetCellTileData(Layer_Path, GridPosition) != null)
-		{
-			TileData PathData = MainMap.Singleton.GetCellTileData(Layer_Path, GridPosition);
-			if ((bool)PathData.GetCustomData(CustomFlag)) return true;
 		}
 		return false;
 	}
@@ -219,17 +234,21 @@ public partial class MainMap : TileMap
 		int Type = GetTileType(GridPosition);
 		if (Type == MainMap.Terrain_Void) return ECurrencyType.None;
 
-		if (Type == MainMap.Terrain_Stone /*|| Type == MainMap.Terrain_Dirt || Type == MainMap.Terrain_Grass*/)
+		if (TileHasFlag(GridPosition, Custom_ProduceEarth))
 		{
 			return ECurrencyType.Substance;
 		}
-		if (Type == MainMap.Terrain_Water)
+		if (TileHasFlag(GridPosition, Custom_ProduceWater))
 		{
 			return ECurrencyType.Flow;
 		}
-		if (Type == MainMap.Terrain_Chasm /*|| Type == MainMap.Terrain_Sand*/)
+		if (TileHasFlag(GridPosition, Custom_ProduceAir))
 		{
 			return ECurrencyType.Breath;
+		}
+		if (TileHasFlag(GridPosition, Custom_ProduceFire))
+		{
+			return ECurrencyType.Energy;
 		}
 
 		return ECurrencyType.None;

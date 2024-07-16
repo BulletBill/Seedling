@@ -5,8 +5,8 @@
 [node name="MiniMap" type="Node2D"]
 
 [node name="StopMouseBackground" type="NinePatchRect" parent="."]
-offset_right = 192.0
-offset_bottom = 192.0
+offset_right = 184.0
+offset_bottom = 184.0
 mouse_filter = 0
 texture = ExtResource("1_bxyks")
 patch_margin_left = 6

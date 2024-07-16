@@ -58,7 +58,7 @@ cache/0/24/0/kerning_overrides/24/0 = Vector2(0, 0)
 
 [node name="StopMouseBackground" type="NinePatchRect" parent="."]
 offset_right = 282.0
-offset_bottom = 192.0
+offset_bottom = 184.0
 mouse_filter = 0
 texture = ExtResource("1_fo2xk")
 patch_margin_left = 6
