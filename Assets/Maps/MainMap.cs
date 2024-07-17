@@ -33,10 +33,10 @@ public partial class MainMap : TileMap
 
 	public static readonly int TerrainSet_Default = 0;
 
-	public static readonly int Layer_BelowGround = 0;
-	public static readonly int Layer_WaterShader = 1;
-	public static readonly int Layer_Ground = 2;
-	public static readonly int Layer_Path = 3;
+	public static readonly int Layer_Path = 0;
+	public static readonly int Layer_BelowGround = 1;
+	public static readonly int Layer_WaterShader = 2;
+	public static readonly int Layer_Ground = 3;
 	public static readonly int Layer_AboveGround = 4;
 	public static readonly int Layer_Grid = 5;
 
