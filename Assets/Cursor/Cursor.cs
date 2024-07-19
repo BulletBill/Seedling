@@ -10,7 +10,7 @@ public partial class Cursor : Node2D
 	Stack<Cursor_State> StateStack = new();
 	[Export] public Node DefaultCursorState;
 	public Vector2I CurrentTile = new();
-	int TileSize = 32;
+	int TileSize = 64;
 	float MapScale = 1.0f;
 	public Sprite2D PlacementGhost;
 	public Sprite2D TileSelector;
@@ -76,7 +76,7 @@ public partial class Cursor : Node2D
 			StateStack.Peek().OnMove(CurrentTile);
 		}
 
-		Vector2 TileCenter = new Vector2(CurrentTile.X, CurrentTile.Y) * (TileSize * MapScale);
+		Vector2 TileCenter = new Vector2(CurrentTile.X, CurrentTile.Y) * (TileSize * MapScale) + new Vector2(TileSize * 0.5f, TileSize * 0.5f);
 		PlacementGhost.GlobalPosition = TileCenter;
 
 		if (Input.IsActionJustPressed("Click"))

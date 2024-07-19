@@ -81,7 +81,7 @@ position = Vector2(-1, 0)
 script = ExtResource("1_3h5cw")
 StartingScene = NodePath("TitleScreen")
 LevelDefMap = [ExtResource("2_lk3nh"), ExtResource("3_db6cj"), ExtResource("3_k1yfu"), ExtResource("5_mlhpu"), ExtResource("6_jffqs")]
-ShowLogsFor = [0, 7]
+ShowLogsFor = [0]
 
 [node name="Transition" type="CanvasLayer" parent="."]
 layer = 128
