@@ -63,7 +63,7 @@ public partial class C_GrassGrowth : TowerComponent
         {
             Vector2 TilePos = CachedTileMap.ToGlobal(CachedTileMap.MapToLocal(i));
             float Distance = ParentNode.GlobalPosition.DistanceTo(TilePos);
-            if (Distance < (Radius * ParentNode.GlobalScale.X))
+            if (Distance < Radius)
             {
                 TilesInArea.Add(i);
                 if (MainMap.TileHasFlag(i, MainMap.Custom_Grass))

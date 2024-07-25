@@ -159,7 +159,7 @@ public partial class Enemy : CharacterBody2D
 			}
 			i++;
 		}
-		Game.Log(LogCategory.EnemyPathing, Name + " is " + DistanceToTarget.ToString() + " away from the target.");
+		Game.LogSpam(LogCategory.EnemyPathing, Name + " is " + DistanceToTarget.ToString() + " away from the target.");
 	}
 
 	public bool IsAlive()

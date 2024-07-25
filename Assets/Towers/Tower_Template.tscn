@@ -1,9 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://rbdn4q2hanmr"]
+[gd_scene load_steps=22 format=3 uid="uid://rbdn4q2hanmr"]
 
 [ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_2i5xh"]
 [ext_resource type="Script" path="res://Assets/Towers/Tower.cs" id="2_2u5td"]
 [ext_resource type="Resource" uid="uid://dr2317w84u581" path="res://Assets/Towers/Actions/Action_Sell.tres" id="5_q0i1l"]
 [ext_resource type="Texture2D" uid="uid://cedcepcgtfr5w" path="res://Assets/Art/Towers/Buckthorn/Art-Buckthorn.png" id="6_n4brd"]
+[ext_resource type="Texture2D" uid="uid://dcrotgoodk8f4" path="res://Assets/Art/Towers/Buckthorn/Art-Buckthorn-SpriteSheet.png" id="6_qth0d"]
 [ext_resource type="Resource" uid="uid://dnvyi3ug6klmx" path="res://Assets/Towers/Actions/Action_Deselect.tres" id="6_uahjx"]
 [ext_resource type="Resource" uid="uid://c81qoyyrdxuns" path="res://Assets/Towers/Actions/Action_BuildCancel.tres" id="7_hckls"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="11_wavn5"]
@@ -134,7 +135,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6l6xg"]
-size = Vector2(30, 31)
+size = Vector2(64, 64)
 
 [node name="TowerTemplate" type="Node2D" groups=["Tower"]]
 z_index = 10
@@ -147,7 +148,10 @@ BuildingActions = [ExtResource("7_hckls"), ExtResource("6_uahjx")]
 
 [node name="Image" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_mpcvh")
-texture = ExtResource("6_n4brd")
+texture = ExtResource("6_qth0d")
+hframes = 6
+vframes = 4
+frame = 6
 
 [node name="Base" type="Sprite2D" parent="."]
 visible = false
@@ -162,11 +166,11 @@ texture = ExtResource("6_n4brd")
 
 [node name="BuildBar" type="ProgressBar" parent="."]
 visible = false
-offset_left = -14.0
-offset_top = 11.0
-offset_right = 42.0
-offset_bottom = 17.0
-scale = Vector2(0.5, 0.5)
+z_index = 1
+offset_left = -29.0
+offset_top = -29.0
+offset_right = 29.0
+offset_bottom = -23.0
 max_value = 500.0
 step = 1.0
 show_percentage = false
@@ -187,12 +191,11 @@ libraries = {
 autoplay = "Unhover"
 
 [node name="LevelLabel" type="RichTextLabel" parent="."]
-visible = false
 z_index = 1
-offset_left = -14.0
-offset_top = 1.0
-offset_right = 15.0
-offset_bottom = 16.0
+offset_left = -32.0
+offset_top = 17.0
+offset_right = -3.0
+offset_bottom = 32.0
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 12
 bbcode_enabled = true

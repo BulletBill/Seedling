@@ -84,7 +84,7 @@ events = [SubResource("InputEventKey_pq5x4")]
 script = ExtResource("1_uhvr7")
 Levels = ["TitleScreen", "TestLevel", "E1"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="."]
 self_modulate = Color(0, 0.184314, 0, 1)
 scale = Vector2(214.889, 121.667)
 texture = ExtResource("1_sm7ra")
