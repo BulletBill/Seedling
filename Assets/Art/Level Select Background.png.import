@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://t66nokb2rvaw"
-path="res://.godot/imported/Art-Buckthorn-2.png-bca959a325c9fe0377f15c1ae8640fe6.ctex"
+uid="uid://bky7puffdfu3i"
+path="res://.godot/imported/Level Select Background.png-1f0f7fcecc3ca66177d6d0677c0a76c5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/Towers/Buckthorn/Art-Buckthorn-2.png"
-dest_files=["res://.godot/imported/Art-Buckthorn-2.png-bca959a325c9fe0377f15c1ae8640fe6.ctex"]
+source_file="res://Assets/Art/Level Select Background.png"
+dest_files=["res://.godot/imported/Level Select Background.png-1f0f7fcecc3ca66177d6d0677c0a76c5.ctex"]
 
 [params]
 

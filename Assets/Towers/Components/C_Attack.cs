@@ -182,12 +182,7 @@ public partial class C_Attack : TowerComponent
             }
         }
 
-        AnimationPlayer Anim = GetNodeOrNull<AnimationPlayer>("../Animator");
-        if (Anim != null)
-        {
-            Anim.SpeedScale = AttackDelay > 0.0f ? 1.0f / AttackDelay : 1.0f;
-            Anim.Play("Attack");
-        }
+        ParentTower?.PlayAnimation("Attack");
     }
 
     void HitArea()

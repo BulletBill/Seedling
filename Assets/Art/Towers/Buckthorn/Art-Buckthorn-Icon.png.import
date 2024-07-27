@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3ohqqlo3egwh"
-path="res://.godot/imported/Art-BuildBuckthorn.png-fff31910d0236ded6310a2cdfa03bba0.ctex"
+uid="uid://6k4mj536qhqi"
+path="res://.godot/imported/Art-Buckthorn-Icon.png-1b260e8e4f4ad70a2816bd1d9fbc69e0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/Towers/Buckthorn/Art-BuildBuckthorn.png"
-dest_files=["res://.godot/imported/Art-BuildBuckthorn.png-fff31910d0236ded6310a2cdfa03bba0.ctex"]
+source_file="res://Assets/Art/Towers/Buckthorn/Art-Buckthorn-Icon.png"
+dest_files=["res://.godot/imported/Art-Buckthorn-Icon.png-1b260e8e4f4ad70a2816bd1d9fbc69e0.ctex"]
 
 [params]
 

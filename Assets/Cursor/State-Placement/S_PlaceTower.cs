@@ -80,7 +80,7 @@ public partial class S_PlaceTower : Cursor_State
         if (NewTowerData == null) return;
         TowerData = NewTowerData;
         ParentCursor.PlacementGhost.Visible = true;
-        ParentCursor.PlacementGhost.Texture = TowerData.Icon;
+        ParentCursor.PlacementGhost.Texture = TowerData.SpriteSheet;
         OnMove(Cursor.GetCurrentTile());
 
         Cursor.Broadcast(Cursor.SignalName.SetFixedObject, TowerData);

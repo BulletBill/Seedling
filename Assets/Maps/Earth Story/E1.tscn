@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bjp60p1si4fju"]
+[gd_scene load_steps=20 format=3 uid="uid://bjp60p1si4fju"]
 
 [ext_resource type="Script" path="res://Assets/Maps/Level.cs" id="1_odh4j"]
 [ext_resource type="Script" path="res://Assets/Maps/Objectives.cs" id="2_nvj8m"]
@@ -15,16 +15,22 @@
 [ext_resource type="Resource" uid="uid://chbnq31sf5y1p" path="res://Assets/Enemies/Earth/Clod/Data_Clod_2.tres" id="12_n8msm"]
 [ext_resource type="PackedScene" uid="uid://cqlpygxb75t08" path="res://Assets/Enemies/Spawner/EnemySpawner.tscn" id="12_w1mbi"]
 [ext_resource type="Texture2D" uid="uid://daibtvxvfuxy6" path="res://Assets/Art/Icons/Spark.png" id="13_hdqv1"]
+[ext_resource type="Resource" uid="uid://bubcwmernk2og" path="res://Assets/Enemies/Earth/Clod/Data_Clod_3.tres" id="13_ynevw"]
 
 [sub_resource type="Resource" id="Resource_wfxrr"]
 script = ExtResource("6_wb82m")
 Data = ExtResource("5_xttoq")
-WaveRange = Vector2i(1, -1)
+WaveRange = Vector2i(1, 4)
 
 [sub_resource type="Resource" id="Resource_bdsp0"]
 script = ExtResource("6_wb82m")
 Data = ExtResource("12_n8msm")
 WaveRange = Vector2i(3, 6)
+
+[sub_resource type="Resource" id="Resource_xmm1y"]
+script = ExtResource("6_wb82m")
+Data = ExtResource("13_ynevw")
+WaveRange = Vector2i(5, -1)
 
 [node name="E1" type="Node2D"]
 script = ExtResource("1_odh4j")
@@ -82,9 +88,9 @@ script = ExtResource("2_nvj8m")
 
 [node name="SpawnerBrain" type="Node2D" parent="."]
 script = ExtResource("4_yy167")
-PossibleSpawns = [SubResource("Resource_wfxrr"), SubResource("Resource_bdsp0")]
+PossibleSpawns = [SubResource("Resource_wfxrr"), SubResource("Resource_bdsp0"), SubResource("Resource_xmm1y")]
 SecondsUntilNextWave = 60
-TimedSpawningPool = 12.0
+InitialSpawningPool = 10.0
 TimeLostFromExpansion = 0.0
 
 [node name="Enemy Bus" type="Node2D" parent="."]

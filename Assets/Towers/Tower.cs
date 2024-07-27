@@ -12,6 +12,7 @@ public partial class Tower : Node2D, IHoverable
 	[Export] public Array<Data_Action> BuildingActions = new();
 	public Vector2I MapPosition = new();
 	public R_Cost TotalCost = new();
+
 	
 	// Upgrade/Build variables
 	protected ProgressBar TimerBar;
@@ -208,8 +209,7 @@ public partial class Tower : Node2D, IHoverable
 			BuildTimer = 0.0f;
 			if (IsInstanceValid(TimerBar)) { TimerBar.Visible = false; }
 
-			AnimationPlayer Anim = GetNodeOrNull<AnimationPlayer>("Animator");
-			Anim?.Play("RESET");
+			PlayAnimation("Idle");
 
 			Upgrading = false;
 			EmitSignal(SignalName.TowerUpdated);
@@ -221,6 +221,7 @@ public partial class Tower : Node2D, IHoverable
 		if (NewData == null) return;
 
 		TowerData = NewData;
+		Name = TowerData.DisplayName;
 		Sprite2D Image = GetNodeOrNull<Sprite2D>("Image");
 		Sprite2D Shadow = GetNodeOrNull<Sprite2D>("Shadow");
 		TimerBar = GetNodeOrNull<ProgressBar>("BuildBar");
@@ -231,6 +232,7 @@ public partial class Tower : Node2D, IHoverable
 		}
 		if (IsInstanceValid(Shadow))
 		{
+			Shadow.Texture = TowerData.SpriteSheet;
 			Shadow.Visible = false;
 		}
 		if (IsInstanceValid(TimerBar))
@@ -243,6 +245,8 @@ public partial class Tower : Node2D, IHoverable
 
 		Building = true;
 		EmitSignal(SignalName.TowerUpdated);
+
+		PlayAnimation("Building");
 	}
 
 	public void FinishBuild()
@@ -261,13 +265,8 @@ public partial class Tower : Node2D, IHoverable
 		Sprite2D Image = GetNodeOrNull<Sprite2D>("Image");
 		Sprite2D Shadow = GetNodeOrNull<Sprite2D>("Shadow");
 
-		if (IsInstanceValid(Image))
-		{
-			Image.Texture = TowerData.Icon;
-		}
 		if (IsInstanceValid(Shadow))
 		{
-			Shadow.Texture = TowerData.Icon;
 			Shadow.Visible = true;
 		}
 		if (IsInstanceValid(TimerBar))
@@ -315,6 +314,8 @@ public partial class Tower : Node2D, IHoverable
 		
 		Building = false;
 		EmitSignal(SignalName.TowerUpdated);
+
+		PlayAnimation("FinishBuilding");
 	}
 
 	public void StartUpgrade()
@@ -378,5 +379,14 @@ public partial class Tower : Node2D, IHoverable
 		ret *= TowerLevel + 1;
 
 		return ret;
+	}
+
+	
+	public void PlayAnimation(String AnimName)
+	{
+		AnimationPlayer Anim = GetNodeOrNull<AnimationPlayer>("Animator");
+		if (IsInstanceValid(Anim) == false) return;
+
+		Anim.Play(AnimName);
 	}
 }

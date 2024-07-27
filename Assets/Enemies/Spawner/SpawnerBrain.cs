@@ -12,7 +12,7 @@ public partial class SpawnerBrain : Node
 
     // Timed waves
     [Export] public int SecondsUntilNextWave { get; protected set; } = 300;
-    [Export] public float TimedSpawningPool = 16.0f;
+    [Export] public float InitialSpawningPool = 16.0f;
     [Export] public float SuccessPoolMultiplier = 1.5f;
     [Export] public float FailurePoolMultiplier = 1.3f;
     [Export] public float TimeLostFromExpansion = 2.0f;
@@ -49,8 +49,8 @@ public partial class SpawnerBrain : Node
         EnemyEvent.Broadcast(EnemyEvent.SignalName.WaveTimerChanged, SecondsUntilNextWave, SecondsUntilNextWave);
         EnemyEvent.Broadcast(EnemyEvent.SignalName.TimedWaveCountChanged, WaveCount);
 
-        Game.Log(LogCategory.EnemySpawner, "Calculating timed spawn " + WaveCount.ToString() + " with a pool of " + ((int)TimedSpawningPool).ToString());
-        CalculateNextWave(NextTimedWave, WaveCount, (int)TimedSpawningPool);
+        Game.Log(LogCategory.EnemySpawner, "Calculating timed spawn " + WaveCount.ToString() + " with a pool of " + ((int)InitialSpawningPool).ToString());
+        CalculateNextWave(NextTimedWave, WaveCount, (int)InitialSpawningPool);
         EnemyEvent.Broadcast(EnemyEvent.SignalName.ShowNextTimedWave, NextTimedWave);
     }
 
@@ -109,7 +109,7 @@ public partial class SpawnerBrain : Node
 
         WaveCount++;
         float Multi = PlayerHurt ? FailurePoolMultiplier : SuccessPoolMultiplier;
-        int SpawningPool = Mathf.FloorToInt(TimedSpawningPool * Math.Pow(Multi, WaveCount));
+        int SpawningPool = Mathf.FloorToInt(InitialSpawningPool * Math.Pow(Multi, WaveCount));
         
         Game.Log(LogCategory.EnemySpawner, "Calculating next wave " + WaveCount.ToString() + " with a pool of " + ((int)SpawningPool).ToString());
         CalculateNextWave(NextTimedWave, WaveCount, SpawningPool);

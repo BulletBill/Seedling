@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://Assets/Towers/R_Cost.cs" id="1_0pk1e"]
 [ext_resource type="PackedScene" uid="uid://b6fv8usct73ei" path="res://Assets/Towers/Buckthorn/Buckthorn_Attack.tscn" id="2_7fy35"]
 [ext_resource type="Resource" uid="uid://cx5tj3ji2jabv" path="res://Assets/Towers/Actions/Action_SelfUpgrade.tres" id="2_thbps"]
-[ext_resource type="Texture2D" uid="uid://cedcepcgtfr5w" path="res://Assets/Art/Towers/Buckthorn/Art-Buckthorn.png" id="4_4g164"]
-[ext_resource type="Texture2D" uid="uid://b3ohqqlo3egwh" path="res://Assets/Art/Towers/Buckthorn/Art-BuildBuckthorn.png" id="4_x33ar"]
+[ext_resource type="Texture2D" uid="uid://6k4mj536qhqi" path="res://Assets/Art/Towers/Buckthorn/Art-Buckthorn-Icon.png" id="4_bwrol"]
+[ext_resource type="Texture2D" uid="uid://dcrotgoodk8f4" path="res://Assets/Art/Towers/Buckthorn/Art-Buckthorn-SpriteSheet.png" id="5_7iuq1"]
 [ext_resource type="Script" path="res://Assets/Towers/Data_Tower.cs" id="5_h248a"]
 
 [sub_resource type="Resource" id="Resource_4ujqw"]
@@ -35,7 +35,7 @@ Range = 150.0
 AreaOfEffect = 0.0
 FireDelay = 1.0
 MaximumLevel = 5
-SpriteSheet = ExtResource("4_x33ar")
+SpriteSheet = ExtResource("5_7iuq1")
 NeedsSparkFlag = false
 NeedsGrassFlag = true
 NeedsHarvestFlag = false
@@ -47,7 +47,7 @@ CanBuildOnStone = false
 ExtraBehaviors = [ExtResource("2_7fy35")]
 ExtraActions = [ExtResource("2_thbps")]
 DisplayName = "Buckthorn"
-Icon = ExtResource("4_4g164")
+Icon = ExtResource("4_bwrol")
 Description = "Damage:%min-%max Rate:%rof Range:%rng
 Attacks nearby enemies.
 "

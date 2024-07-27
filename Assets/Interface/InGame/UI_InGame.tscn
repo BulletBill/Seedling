@@ -47,49 +47,49 @@ position = Vector2(412, 1003)
 script = ExtResource("3_ho7kd")
 
 [node name="Button_01" parent="Command Buttons" instance=ExtResource("3_0wfvo")]
-position = Vector2(-28, -74)
+position = Vector2(-30, -76)
 
 [node name="Button_02" parent="Command Buttons" instance=ExtResource("3_0wfvo")]
-position = Vector2(33, -74)
+position = Vector2(31, -76)
 
 [node name="Button_03" parent="Command Buttons" instance=ExtResource("3_0wfvo")]
-position = Vector2(94, -74)
+position = Vector2(92, -76)
 
 [node name="Button_04" parent="Command Buttons" instance=ExtResource("3_0wfvo")]
-position = Vector2(155, -74)
+position = Vector2(153, -76)
 
 [node name="Button_05" parent="Command Buttons" instance=ExtResource("3_0wfvo")]
-position = Vector2(216, -74)
+position = Vector2(214, -76)
 
 [node name="Button_06" parent="Command Buttons" instance=ExtResource("3_0wfvo")]
-position = Vector2(-28, -13)
+position = Vector2(-30, -15)
 
 [node name="Button_07" parent="Command Buttons" instance=ExtResource("3_0wfvo")]
-position = Vector2(33, -13)
+position = Vector2(31, -15)
 
 [node name="Button_08" parent="Command Buttons" instance=ExtResource("3_0wfvo")]
-position = Vector2(94, -13)
+position = Vector2(92, -15)
 
 [node name="Button_09" parent="Command Buttons" instance=ExtResource("3_0wfvo")]
-position = Vector2(155, -13)
+position = Vector2(153, -15)
 
 [node name="Button_10" parent="Command Buttons" instance=ExtResource("3_0wfvo")]
-position = Vector2(216, -13)
+position = Vector2(214, -15)
 
 [node name="Button_11" parent="Command Buttons" instance=ExtResource("3_0wfvo")]
-position = Vector2(-28, 48)
+position = Vector2(-30, 46)
 
 [node name="Button_12" parent="Command Buttons" instance=ExtResource("3_0wfvo")]
-position = Vector2(33, 48)
+position = Vector2(31, 46)
 
 [node name="Button_13" parent="Command Buttons" instance=ExtResource("3_0wfvo")]
-position = Vector2(94, 48)
+position = Vector2(92, 46)
 
 [node name="Button_14" parent="Command Buttons" instance=ExtResource("3_0wfvo")]
-position = Vector2(155, 48)
+position = Vector2(153, 46)
 
 [node name="Button_15" parent="Command Buttons" instance=ExtResource("3_0wfvo")]
-position = Vector2(216, 48)
+position = Vector2(214, 46)
 
 [node name="DetailPanel" parent="." instance=ExtResource("4_2ycw0")]
 position = Vector2(657, 896)
