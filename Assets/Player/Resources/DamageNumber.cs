@@ -25,7 +25,6 @@ public partial class DamageNumber : RichTextLabel
     {
         StartingPosition = NewStartingPosition + new Vector2(-28.0f, 0.0f);
         GlobalPosition = NewStartingPosition + new Vector2(-28.0f, 0.0f);
-        Scale = new Vector2(0.5f, 0.5f);
 
         Text = "";
         if (Centered) Text += "[center]";

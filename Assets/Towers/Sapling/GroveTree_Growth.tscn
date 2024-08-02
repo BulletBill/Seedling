@@ -5,4 +5,4 @@
 [node name="GrassGrowth" type="Node2D"]
 script = ExtResource("1_624yc")
 Radius = 220.0
-GrowthInterval = 1.0
+GrowthInterval = 0.1
