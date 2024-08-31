@@ -23,7 +23,6 @@ public partial class C_Attack : TowerComponent
     public float AreaOfEffect = 0.0f;
     [Export] public ETargetPriority TargetPriority;
     [Export] bool CanChangeTarget = false;
-    Tower ParentTower = null;
 
     float AttackTimer;
     Enemy CurrentTarget;

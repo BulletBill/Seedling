@@ -12,13 +12,13 @@ public partial class Tower : Node2D, IHoverable
 	[Export] public Array<Data_Action> BuildingActions = new();
 	public Vector2I MapPosition = new();
 	public R_Cost TotalCost = new();
-
 	
 	// Upgrade/Build variables
 	protected ProgressBar TimerBar;
 	public double BuildTimer { get; protected set; }
 	public bool Building { get; protected set; } = false;
 	public bool Upgrading { get; protected set; } = false;
+	public bool Disabled { get; protected set; } = false;
 
 	// Leveling
 	public int TowerLevel { get; protected set; } = 1;

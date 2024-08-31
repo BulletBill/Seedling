@@ -1,9 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://b3fxnt1sq3rjq"]
+[gd_scene load_steps=18 format=3 uid="uid://b3fxnt1sq3rjq"]
 
 [ext_resource type="Shader" path="res://Assets/Art/Shaders/Outline.gdshader" id="1_6e13c"]
 [ext_resource type="Texture2D" uid="uid://dg1ugbc0qnr32" path="res://Assets/Art/Towers/Heart Bloom/Art-Build HeartBloom.png" id="2_od7bj"]
 [ext_resource type="Script" path="res://Assets/Towers/Tower.cs" id="3_47a4l"]
-[ext_resource type="PackedScene" uid="uid://bltnii6x6epdm" path="res://Assets/Towers/HeartBloom/heartbloom.tscn" id="4_l3g7m"]
 [ext_resource type="Resource" uid="uid://cnxh15qnwr5eo" path="res://Assets/Towers/HeartBloom/Data_HeartBloom.tres" id="5_d6f8k"]
 [ext_resource type="Script" path="res://Assets/Towers/Components/C_AlignToMap.cs" id="6_ctvlb"]
 [ext_resource type="PackedScene" uid="uid://bgnh626id26jp" path="res://Assets/Interface/Hover Area/HoverArea.tscn" id="7_gqmr2"]
@@ -128,8 +127,6 @@ texture = ExtResource("2_od7bj")
 script = ExtResource("3_47a4l")
 IsDefendTarget = true
 TowerData = ExtResource("5_d6f8k")
-TowerToBecome = ExtResource("4_l3g7m")
-BuildTime = 12.0
 
 [node name="AlignToMap" type="Node2D" parent="."]
 script = ExtResource("6_ctvlb")

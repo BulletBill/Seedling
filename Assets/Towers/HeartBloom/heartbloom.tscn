@@ -178,9 +178,10 @@ script = ExtResource("5_ev5tl")
 
 [node name="GrassGrowth" type="Node2D" parent="."]
 script = ExtResource("6_08vtw")
-Radius = 220.0
+Radius = 200.0
 GrowthInterval = 0.1
 AttractEnemies = false
+GrassSource = true
 
 [node name="Income" type="Node2D" parent="."]
 script = ExtResource("7_4gkqa")

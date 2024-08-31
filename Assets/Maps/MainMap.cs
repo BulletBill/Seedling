@@ -149,11 +149,12 @@ public partial class MainMap : TileMap
 		if (GrassTiles[TileLoc] <= 0)
 		{
 			Array<Vector2I> TileToRemove = new() { TileLoc };
-			if ((bool)MainMap.Singleton.GetCellTileData(Layer_Ground, TileToRemove[0]).GetCustomData(Custom_CanGrowGrass))
+
+			if (Singleton.GetCellTileData(Layer_Ground, TileToRemove[0]) != null)
 			{
 				SetCellsTerrainConnect(MainMap.Layer_Ground, TileToRemove, MainMap.TerrainSet_Default, MainMap.Terrain_Dirt);
 			}
-			if ((bool)MainMap.Singleton.GetCellTileData(Layer_BelowGround, TileToRemove[0]).GetCustomData(Custom_CanGrowGrass))
+			if (Singleton.GetCellTileData(Layer_BelowGround, TileToRemove[0]) != null)
 			{
 				SetCellsTerrainConnect(MainMap.Layer_BelowGround, TileToRemove, MainMap.TerrainSet_Default, MainMap.Terrain_WetDirt);
 			}

@@ -11,15 +11,32 @@ public partial class C_GrassGrowth : TowerComponent
     [Export] public float Radius = 1.0f;
     [Export] public float GrowthInterval = 2.0f;
     [Export] public bool AttractEnemies = true;
+    [Export] public bool GrassSource = false;
     float GrowthTimer = 0.1f;
     List<TileAtDistance> TilesToGrass = new();
     List<Vector2I> TilesInArea = new();
+    C_GrassGrowth ParentConnection = null;
+    List<C_GrassGrowth> ChildConnections = new List<C_GrassGrowth>();
+    public int ConnectionDepth { get; protected set;} = 0;
+    public bool Connected { get; protected set; } = false;
+    public static readonly String GrassNodeGroup = "GrassNode";
 
     public override void TowerReady()
     {
-        if (Engine.IsEditorHint()) return; // Don't run in editor
+        ParentTower = GetParentOrNull<Tower>();
         
         GetTilesInGrowingRange();
+        AddToGroup(GrassNodeGroup);
+
+        if (GrassSource)
+        {
+            Connected = true;
+            ConnectionDepth = 0;
+        }
+        else
+        {
+            ConnectToParent();
+        }
     }
 
     public override void TowerRemoved()
@@ -28,6 +45,20 @@ public partial class C_GrassGrowth : TowerComponent
         {
             MainMap.RemoveGrassTile(tile);
         }
+        RemoveFromGroup(GrassNodeGroup);
+
+        foreach (C_GrassGrowth OtherGrower in ChildConnections)
+        {
+            OtherGrower.ConnectToParent();
+        }
+    }
+
+    public override void TowerDisabled()
+    {
+    }
+
+    public override void TowerEnabled()
+    {
     }
 
     public override void _Process(double delta)
@@ -121,11 +152,70 @@ public partial class C_GrassGrowth : TowerComponent
         }
     }
 
-    /*
-    public override void _Draw()
+    public void ConnectToParent()
     {
-        if (!Engine.IsEditorHint()) return; // Only execute in Editor
-        DrawArc(Position, Radius, 0.0f, 360.0f, 36, Colors.LawnGreen);
+        Connected = false;
+        ParentConnection = null;
+
+        int BestConnection = 10000;
+        float BestDistance = 10000.0f;
+        foreach (Node GrassNode in GetTree().GetNodesInGroup(GrassNodeGroup))
+        {
+            if (GrassNode is C_GrassGrowth OtherGrower)
+            {
+                if (GrassNode == this) continue;
+                if (!OtherGrower.Connected) continue;
+                float Distance = ParentTower.GlobalPosition.DistanceTo(OtherGrower.ParentTower.GlobalPosition);
+                if (Distance > Radius) continue;
+                if (OtherGrower.ConnectionDepth < BestConnection || (OtherGrower.ConnectionDepth == BestConnection && Distance < BestDistance))
+                {
+                    BestConnection = OtherGrower.ConnectionDepth;
+                    BestDistance = Distance;
+                    ParentConnection = OtherGrower;
+                    OtherGrower.AddChildConnection(this);
+                    Connected = true;
+
+                    Sprite2D ConnectionArrow = GetNode<Sprite2D>("ConnectionArrow");
+                    if (IsInstanceValid(ConnectionArrow))
+                    {
+                        ConnectionArrow.Visible = true;
+                        ConnectionArrow.LookAt(OtherGrower.ParentTower.GlobalPosition);
+                        ConnectionArrow.Rotate(Mathf.Pi);
+                        ConnectionArrow.Scale = new Vector2(Distance / 182.0f, ConnectionArrow.Scale.Y);
+                    }
+                }
+            }
+        }
+
+        if (Connected)
+        {
+            ConnectionDepth = ParentConnection.ConnectionDepth + 1;
+        }
+        else
+        {
+            Sprite2D ConnectionArrow = GetNode<Sprite2D>("ConnectionArrow");
+            if (IsInstanceValid(ConnectionArrow))
+            {
+                ConnectionArrow.Visible = false;
+            }
+
+            foreach (C_GrassGrowth OtherGrower in ChildConnections)
+            {
+                OtherGrower.ConnectToParent();
+            }
+        }
     }
-    */
+
+    void ConnectToChildren()
+    {
+        
+    }
+
+    public void AddChildConnection(C_GrassGrowth NewChild)
+    {
+        if (NewChild == null) return;
+        if (ChildConnections.Contains(NewChild)) return;
+
+        ChildConnections.Add(NewChild);
+    }
 }

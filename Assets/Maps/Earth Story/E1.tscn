@@ -67,16 +67,16 @@ layer_5/tile_data = PackedInt32Array(0, 655360, 5, 65536, 655360, 5, 131072, 655
 script = ExtResource("7_uav6d")
 
 [node name="Bloom Heart" parent="NeoMap" instance=ExtResource("11_8eomd")]
-position = Vector2(287, 608)
+position = Vector2(271, 567)
 
 [node name="EnemySpawner" parent="NeoMap" instance=ExtResource("12_w1mbi")]
-position = Vector2(544, -31)
+position = Vector2(511, -27)
 texture = ExtResource("13_hdqv1")
 MinSpawnTime = 0.8
 MaxSpawnTime = 1.2
 
 [node name="EnemySpawner2" parent="NeoMap" instance=ExtResource("12_w1mbi")]
-position = Vector2(1376, -29)
+position = Vector2(1290, -29)
 texture = ExtResource("13_hdqv1")
 MinSpawnTime = 0.8
 MaxSpawnTime = 1.2
